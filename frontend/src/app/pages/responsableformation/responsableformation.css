@@ -1,70 +1,133 @@
 .container {
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 16px;
+  margin: 60px auto;
+  padding: 0 20px;
   color: #e9ecff;
 }
 
+/* Top section */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 
 .subtitle {
-  opacity: 0.75;
+  opacity: 0.7;
+  margin-top: 6px;
 }
 
 .pill {
   background: rgba(255,255,255,.15);
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
   font-size: 13px;
 }
 
+/* Grid layout */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 24px;
+  margin-bottom: 30px;
 }
 
+/* Card blocks */
 .block {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 16px;
-  padding: 18px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.block:hover {
+  border-color: rgba(108, 124, 255, 0.6);
+  transform: translateY(-2px);
 }
 
 .block h2 {
   margin-top: 0;
+  margin-bottom: 18px;
+  font-weight: 600;
 }
 
-input {
+/* Inputs + Select */
+input,
+select {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 14px;
   margin-bottom: 10px;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
-.btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  background: #6c7cff;
-  color: white;
-  border: none;
+input::placeholder {
+  color: rgba(255,255,255,.5);
+}
+
+input:focus,
+select:focus {
+  border-color: #6c7cff;
+  background: rgba(255,255,255,.12);
+}
+
+/* Fix ugly select arrow */
+select {
+  appearance: none;
   cursor: pointer;
 }
 
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #6c7cff, #8896ff);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(108,124,255,.4);
+}
+
+/* Ghost button */
 .ghost {
   background: transparent;
   border: none;
   color: #cdd3ff;
   cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
 }
 
+.ghost:hover {
+  opacity: 0.7;
+}
+
+/* Bottom action button */
+.actions {
+  margin-top: 10px;
+}
+
+.btn.primary {
+  font-size: 15px;
+  padding: 14px;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
