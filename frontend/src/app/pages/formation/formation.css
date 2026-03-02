@@ -1,0 +1,94 @@
+.container{
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+  color: #e9ecff;
+}
+
+.topbar{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.brand h1{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.brand p{
+  margin: 6px 0 0;
+  opacity: .75;
+}
+
+.badge{
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #e9ecff;
+}
+
+.card{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+
+.card-body{
+  padding: 18px;
+}
+
+.card-title{
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card-subtitle{
+  margin: 0 0 14px;
+  opacity: .75;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.formation-btn{
+  text-align: left;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #e9ecff;
+  cursor: pointer;
+  transition: .15s ease;
+}
+
+.formation-btn:hover{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.22);
+  transform: translateY(-1px);
+}
+
+.formation-title{
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.formation-subtitle{
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: .75;
+}
+
+@media (max-width: 820px){
+  .grid{ grid-template-columns: 1fr; }
+}

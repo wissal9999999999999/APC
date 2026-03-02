@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <h1>Prototype APC — AC / AAD</h1>
+      <p>Commence par choisir une formation.</p>
+    </div>
+    <span class="badge">v0.1</span>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Choisir une formation</h2>
+      <p class="card-subtitle">Cette sélection servira à configurer la suite.</p>
+
+      <div class="grid">
+        <button
+          class="formation-btn"
+          *ngFor="let f of formations"
+          type="button"
+          (click)="selectFormation(f.id)"
+        >
+          <div class="formation-title">{{ f.title }}</div>
+          <div class="formation-subtitle" *ngIf="f.subtitle">{{ f.subtitle }}</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

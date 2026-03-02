@@ -1,0 +1,22 @@
+# Environnements
+apc-env/
+venv/
+env/
+.conda/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# DB (si tu ne veux pas la versionner)
+# app.db
+frontend/node_modules/
+frontend/node_modules/
+node_modules/

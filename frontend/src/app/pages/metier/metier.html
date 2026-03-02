@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <h1>Choisir un rôle</h1>
+      <p>Formation sélectionnée : <span class="pill">{{ formationId }}</span></p>
+    </div>
+
+    <button class="ghost" type="button" (click)="back()">← Retour</button>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Quel est ton rôle ?</h2>
+      <p class="card-subtitle">Le rôle détermine les fonctionnalités affichées.</p>
+
+      <div class="grid">
+        <button
+          class="role-btn"
+          *ngFor="let r of roles"
+          type="button"
+          (click)="selectRole(r.id)"
+        >
+          <div class="role-title">{{ r.title }}</div>
+          <div class="role-subtitle">{{ r.subtitle }}</div>
+          <div class="go">Continuer →</div>
+        </button>
+      </div>
+
+      <p class="note">
+        (Pour l’instant, “Responsable EC” est branché. “Responsable de formation” sera ajouté ensuite.)
+      </p>
+    </div>
+  </div>
+</div>

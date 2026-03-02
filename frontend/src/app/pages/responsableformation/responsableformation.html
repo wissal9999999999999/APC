@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="topbar">
+    <div>
+      <h1>Responsable de formation</h1>
+      <p class="subtitle">
+        Formation : <span class="pill">{{ formationId }}</span>
+      </p>
+    </div>
+
+    <button class="ghost" type="button" (click)="back()">← Retour</button>
+  </div>
+
+  <div class="grid">
+
+    <!-- Savoir-agir -->
+    <div class="block">
+      <h2>Savoirs-agir</h2>
+
+      <input [(ngModel)]="newSavoirAgir" placeholder="Ajouter un savoir-agir…" />
+      <button class="btn" type="button" (click)="addSavoirAgir()">Ajouter</button>
+
+      <ul *ngIf="savoirAgir.length > 0">
+        <li *ngFor="let s of savoirAgir">{{ s }}</li>
+      </ul>
+    </div>
+
+    <!-- Jalons -->
+    <div class="block">
+      <h2>Jalons</h2>
+
+      <input [(ngModel)]="newJalon" placeholder="Ajouter un jalon…" />
+      <button class="btn" type="button" (click)="addJalon()">Ajouter</button>
+
+      <ul *ngIf="jalons.length > 0">
+        <li *ngFor="let j of jalons">{{ j }}</li>
+      </ul>
+    </div>
+
+    <!-- AC -->
+    <div class="block">
+      <h2>Apprentissages critiques (AC)</h2>
+
+      <input [(ngModel)]="newAC" placeholder="Ajouter un AC…" />
+      <button class="btn" type="button" (click)="addAC()">Ajouter</button>
+
+      <ul *ngIf="acs.length > 0">
+        <li *ngFor="let a of acs">{{ a }}</li>
+      </ul>
+    </div>
+
+  </div>
+</div>

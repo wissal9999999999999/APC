@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <h1>Prototype APC — AC / AAD</h1>
+      <p>Sélectionne une matière pour commencer.</p>
+    </div>
+    <span class="badge">v0.1</span>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Matières disponibles</h2>
+      <p class="card-subtitle">Tu pourras ensuite choisir Alignement ou Identification.</p>
+
+      <div class="grid">
+        <button class="btn" type="button" (click)="go('algo')">Algorithmique</button>
+        <button class="btn" type="button" (click)="go('c')">Langage C</button>
+        <button class="btn" type="button" (click)="go('bd1')">Base de Données (BD1)</button>
+        <button class="btn" type="button" (click)="go('elec')">Électronique</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+.container{
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+  color: #e9ecff;
+}
+
+.topbar{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.brand h1{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.brand p{
+  margin: 8px 0 0;
+  opacity: .75;
+}
+
+.pill{
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+}
+
+.ghost{
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #e9ecff;
+  cursor: pointer;
+}
+
+.ghost:hover{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.22);
+}
+
+.card{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+
+.card-body{
+  padding: 18px;
+}
+
+.card-title{
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.card-subtitle{
+  margin: 0 0 14px;
+  opacity: .75;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.role-btn{
+  text-align: left;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #e9ecff;
+  cursor: pointer;
+  transition: .15s ease;
+}
+
+.role-btn:hover{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.22);
+  transform: translateY(-1px);
+}
+
+.role-title{
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.role-subtitle{
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: .75;
+  line-height: 1.35;
+}
+
+.go{
+  margin-top: 12px;
+  font-weight: 700;
+  opacity: .9;
+}
+
+.note{
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: .65;
+}
+
+@media (max-width: 820px){
+  .grid{ grid-template-columns: 1fr; }
+}

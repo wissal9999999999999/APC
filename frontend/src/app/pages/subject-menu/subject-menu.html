@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <h1>Menu matière</h1>
+      <p>Matière sélectionnée : <span class="badge">{{ subjectId }}</span></p>
+    </div>
+    <button class="btn btn-ghost" (click)="back()">← Matières</button>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Que voulez-vous faire ?</h2>
+      <p class="card-subtitle">Choisis une fonctionnalité pour cette matière.</p>
+
+      <div class="grid">
+        <button class="btn btn-primary" type="button" (click)="goIdentify()">
+          Identification des AAD
+        </button>
+
+        <button class="btn" type="button" (click)="goAlign()">
+          Alignement AC → AAD
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

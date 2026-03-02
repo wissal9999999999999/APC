@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">AI</div>
+      <div>
+        <h1>Alignement AC → AAD</h1>
+        <p>Tape un AC, puis clique sur “Rechercher”.</p>
+      </div>
+    </div>
+
+    <span class="badge">v0.1 • Align</span>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="section-title">Rechercher des AAD alignés</div>
+
+      <div class="bar">
+        <input
+          class="input"
+          [(ngModel)]="ac"
+          placeholder="Ex : Développer un algorithme en C..."
+        />
+
+        <button class="btn btn-primary" (click)="search()" [disabled]="loading">
+          {{ loading ? 'Recherche...' : 'Rechercher' }}
+        </button>
+      </div>
+
+      <p class="hint" *ngIf="error">{{ error }}</p>
+
+      <div *ngIf="results.length > 0">
+        <div class="results-head">
+          <div class="section-title">Résultats</div>
+          <span class="pill">Top {{ results.length }}</span>
+        </div>
+
+        <div class="grid">
+          <div class="item" *ngFor="let item of results">
+            <div>
+              <p class="item-title">{{ item.aad }}</p>
+              <p class="item-sub">AAD proposé par similarité (cosine).</p>
+            </div>
+
+            <span class="score">{{ item.score }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty" *ngIf="!loading && results.length === 0 && ac.trim().length > 0 && !error">
+        Aucun résultat pour l’instant.
+      </div>
+    </div>
+  </div>
+</div>
