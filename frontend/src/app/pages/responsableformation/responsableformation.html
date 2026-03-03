@@ -17,14 +17,18 @@
     <div class="block">
       <h2>Savoir-agir</h2>
 
-      <select [(ngModel)]="selectedSavoirAgirId"
-              (change)="onSavoirChange()">
-        <option value="">-- Choisir un savoir-agir --</option>
-        <option *ngFor="let s of savoirAgirList"
-                [value]="s.id">
-          {{ s.name }}
-        </option>
-      </select>
+<select
+  [(ngModel)]="selectedSavoirAgirId"
+  (ngModelChange)="onSavoirChange()">
+
+  <option [ngValue]="null">-- Choisir un savoir-agir --</option>
+
+  <option *ngFor="let s of savoirAgirList; trackBy: trackById"
+          [ngValue]="s.id">
+    {{ s.name }}
+  </option>
+
+</select>
     </div>
 
     <!-- Jalons -->
@@ -32,27 +36,30 @@
       <h2>Jalon</h2>
 
       <select [(ngModel)]="selectedJalonId">
-        <option value="">-- Choisir un jalon --</option>
+
+        <option [ngValue]="null">-- Choisir un jalon --</option>
+
         <option *ngFor="let j of jalonsList"
-                [value]="j.id">
+                [ngValue]="j.id">
           {{ j.name }}
         </option>
+
       </select>
     </div>
 
     <!-- AC -->
-<div class="block">
-  <h2>Apprentissage critique (AC)</h2>
+    <div class="block">
+      <h2>Apprentissage critique (AC)</h2>
 
-  <input type="text"
-         [(ngModel)]="newAC"
-         placeholder="Tapez votre AC…" />
+      <input type="text"
+             [(ngModel)]="newAC"
+             placeholder="Tapez votre AC…" />
 
-  <button class="btn"
-          (click)="addAC()">
-    Ajouter AC
-  </button>
-</div>
+      <button class="btn"
+              (click)="addAC()">
+        Ajouter AC
+      </button>
+    </div>
 
   </div>
 
