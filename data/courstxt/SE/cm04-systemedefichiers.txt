@@ -1,0 +1,508 @@
+--- PAGE 1 ---
+SYSTÈME D'EXPLOITATION
+
+
+
+
+    Système de fichiers
+        N. Malandain
+
+
+
+
+                          1
+
+--- PAGE 2 ---
+Plan
+
+Généralités
+
+Structuration du stockage
+
+Stockage sécurisé
+
+
+
+
+                            2
+
+--- PAGE 3 ---
+Généralités
+
+
+
+
+              3
+
+--- PAGE 4 ---
+Système de Gestion de Fichiers (SGF)
+   Structure de données permettant l'organisation d'informations
+      dans des fichiers sur un support de stockage secondaire
+
+
+
+
+stockage (conservation)
+chiffrement
+manipulation (création, suppression, édition)
+partage (entre programmes ou utilisateurs)
+vue abstraite et uniforme pour l'utilisateur
+identification/localisation des fichiers
+
+
+
+
+                                                                   4
+
+--- PAGE 5 ---
+Types de fichiers
+Fichiers « classiques »
+ –   fichiers texte (ASCII/Unicode/...)
+       ●
+           lignes de texte (caractères de fin de ligne, fin de fichier)
+       ●
+           humainement lisible et modifiable
+ –   fichiers binaires
+       ●
+           structurés (suite d'octets correspondant à des éléments stockés, structure,
+           double, ...)
+Répertoires
+ –   fichier spécifique pointant vers des fichiers
+Fichiers spéciaux
+ –   orientés caractères : modélisation des entrées/sorties (imprimantes, souris)
+ –   orientés blocs : modélisation des disques
+
+
+
+
+                                                                                         5
+
+--- PAGE 6 ---
+Meta-informations
+         un ensemble d'informations est associé à chaque fichier
+
+
+
+
+propriétaire                             droits
+créateur                                 mot de passe
+date de création                         indication de visibilité (caché)
+date du dernier accès                    indication de verrouillage
+date de dernière modification            chiffrement
+taille                                   ...
+
+
+
+
+                                                                            6
+
+--- PAGE 7 ---
+Opérations de base sur des fichiers
+create
+delete
+open
+close
+read
+write
+append
+seek
+get attributes
+set attributes
+rename
+
+
+
+
+                                         7
+
+--- PAGE 8 ---
+Structuration du stockage
+
+
+
+
+                            8
+
+--- PAGE 9 ---
+La structure de bas niveau
+Exemple du disque dur
+ –   chaque plateau contient des pistes
+ –   secteur : zone angulaire d'un plateau
+ –   cylindre : les pistes de même diamètre des plateaux                  Piste
+                                                                            Secteur d'une piste
+                                                                                Secteur géométrique
+
+
+
+ –   partitions
+      ●
+          découpage du disque physique en partitions
+          par exemple, pour 1000 secteurs
+            –   partition 1 : secteur 1-600
+                                                       fr.wikipedia.org
+            –   partition 2 : section 601-999                             Cluster
+                                                                          (bloc)
+      ●
+          l'OS les présentera comme des disques
+      ●
+          utilité :
+            –   support des grandes tailles de disque par les OS
+            –   installation de différents OS
+            –   partition de swap
+            –   séparation des données et de l'OS
+                                                                                             9
+
+--- PAGE 10 ---
+Gestion de l'espace disque
+
+Au démarrage, l'OS doit savoir :
+ –   quels secteurs contiennent des données
+ –   quels secteurs sont libres
+Impossible de garder cela en mémoire principale (volatile)
+ –   stockage de ces informations sur le disque même
+
+       ●
+           stockage d'informations de gestion en plus des données
+       ●
+           espaces libres/occupés
+       ●
+           journaux
+
+
+       les données de gestion peuvent atteindre
+       10%-20% de l'espace occupé par les données
+
+
+
+
+                                                                    10
+
+--- PAGE 11 ---
+Stockage des fichiers
+               Quelques politiques de stockage des fichiers
+
+
+
+
+L'unité de stockage la plus petite est le bloc
+Comment l'OS organise les blocs d'un fichier pour le stocker
+ –   allocation contiguë
+ –   allocation par blocs chaînés
+ –   allocation indexée
+
+
+
+
+                                                               11
+
+--- PAGE 12 ---
+Allocation contiguë
+
+Méthode très simple
+adapté aux accès séquentiels
+problèmes :
+ –   nouveau fichier
+ –   agrandir un fichier
+ –   fragmentation importante
+
+
+
+
+                                fichier J : adresse 0, taille 4 blocs
+                                fichier R : adresse 9, taille 11 blocs
+
+
+
+
+                                                                         12
+
+--- PAGE 13 ---
+Allocation par blocs chaînés
+La « File Allocation Table » contient le chaînage des blocs
+ –   simple
+ –   ajout/extension : plus de problème de taille d'espace libre
+ –   nécessité de parcourir tous les blocs pour arriver à l'octet voulu      bloc
+      -> insertion en fin de fichier coûteuse                          Fic R 1      4
+                                                                               2 null
+ – difficulté de gestion de fichiers volumineux
+                                                                               3 vide
+ – petits fichiers -> perte de place dans les blocs (cf. exemple)              4    8
+                                                                               5 vide
+Le système de fichier FAT                                                      6   14
+                                                                               7 vide
+ – des fichiers particuliers : association de noms/attributs à des N°blocs
+                                                                               8   16
+   = répertoires (contenant des fichiers)                               Fic J 9    11
+ – les méta-informations des fichiers sont stockées dans les répertoires      10 vide
+                                                                              11    6
+   -> un seul chemin d'accès (strictement hiérarchique)                       12 vide
+ – noms des fichiers limités à 8+3                                            13 vide
+                                                                              14 null
+ – pas de gestion des droits                                                  15 vide
+                                                                              16    2
+ – FAT16 => 216 blocs,
+                                                                              17 vide
+   taille partition max = 4Go                                                 18 vide
+     taille du bloc = taille disque/216 = 64ko
+                                                                               13
+
+--- PAGE 14 ---
+Allocation indexée
+                       système de fichiers à i-nodes
+les adresses de blocs d'un fichier sont stockés dans une table d'index
+elle même stockée dans un bloc
+ –   accès direct à un bloc (pas de parcours séquentiel)
+ –   place gaspillée dans la table d'index
+ –   les tailles de blocs sont entre 512o et 8Ko
+ –   l'i-node représente l'élément de base du système de fichier
+      ●
+          contient ses attributs
+      ●
+          contient les adresses de ses blocs
+ –   un répertoire ne fait qu'associer i-nodes et noms
+     -> un même i-node peut avoir différents chemin d'accès
+
+
+
+
+                                                                     14
+
+--- PAGE 15 ---
+Les i-nodes dans un système Unix (1/2)
+
+0     direct
+1     direct
+2     direct
+3     direct                    bloc
+                                 de
+                              données
+ 9     direct
+10 1 indirection
+11 2 indirections
+12 3 indirections
+
+
+
+
+                                                 15
+
+--- PAGE 16 ---
+Les i-nodes dans un système Unix (2/2)
+Calcul de la taille maximum d'un fichier
+ –   bloc : 1024o
+ –   adresse : 4 octets
+ –   bloc en accès direct (0 - 9)
+      ●
+          10 * 1024 = 10Ko
+ –   bloc en 1 accès indirect (10)
+      ●
+          1024 / 4 = 256 adresses de blocs
+      ●
+          256 * 1024 = 256Ko
+ –   bloc en 2 accès indirects (11)
+      ●
+          256 * 256 * 1024 = 65536Ko (64Mo)
+ –   bloc en 3 accès indirects (12)
+      ●
+          256 * 256 * 256 * 1024 = 16777216Ko (16Go)
+Soit un total de : 1024 * (10 + 2561 + 2562 + 2563)=17247250432
+                             Environ 16Go
+
+
+                                                                  16
+
+--- PAGE 17 ---
+Fiabilité d'un système de fichiers
+           Le coup de la panne de courant ou du disque usé
+
+Gestion des blocs endommagés
+ –   mémorisation matérielle ou logiciel
+Gestion de la cohérence du système de fichiers
+ –   Les 2 étapes de suppression d'un fichier en EXT2
+      ●
+          retirer l'entrée dans le répertoire contenant
+      ●
+          libérer son i-node
+ –   si l'un des 2 n'est pas fait : système inconsistant
+ –   le système au redémarrage vérifie et corrige (très gourmand)
+Les systèmes de fichiers journalisés
+      ●
+          journal complet : sav des données et méta-données
+      ●
+          métajournal : sav des méta-données
+      ●
+          journal ordonné : idem journal complet, mais les données sont écrites en 1°
+ –   seul un commit valide l'écriture définitive sur le disque
+
+                                                                                        17
+
+--- PAGE 18 ---
+Stockage « sécurisé »
+
+
+
+
+                        18
+
+--- PAGE 19 ---
+Disque unique
+● Écriture/Lecture d’un ensemble de secteurs consécutifs sur le
+  disque: 1, 2, 3, 4, 5
+● Déplacer la tête en 1, écrire, attendre un tour pour qu’elle se
+  positionne en 2, écrire, attendre…
+
+             1     2
+                          3       ●   Vitesse: comment optimiser les déplacements et les
+                                      attentes ?
+
+                              4
+                                  ● Sécurité: et si le disque casse…?
+                                    Mean Time Between Failure: MTBF(1D)=100000h
+                                  ● Capacité: comment faire de grands volumes ?
+                          5
+
+
+
+
+                                                                                           19
+
+--- PAGE 20 ---
+RAID 0 : Stripping (vitesse)
+                1                      2                  3               4
+
+                     5
+
+
+
+
+●   Un device est en réalité une « grappe » de 4 à 8 disques.
+●   Les écritures se font par « bandes » ou « stripes », chaque secteur sur un disque
+    différent avec rotation.
+●   Vitesse: Ecriture: gain 5 à 10%, Lecture: gain 10 à 15 % (si gestion en hard)
+●   Sécurité:
+     ●   Si un disque casse, on perd toutes les données
+     ●   MTBF(10 disques)=~ 1an…: probabilité de crash forte
+●   Capacité: permet de faire de plus grands volumes, mais mauvaise solution.
+    Abandonné pour des solutions de plus haut niveau
+
+
+                                                                                        20
+
+--- PAGE 21 ---
+RAID 1 : Mirroring (sécurité)
+                                   ●   Chaque écriture est effectuée sur un disque
+                                       « maître » et sur un disque « miroir ».
+         1                    1'   ●   Si détection de panne sur le maître, le
+                                       contrôleur passe automatiquement sur le
+                                       miroir qui devient le maître.
+                                   ●   On peut casser et remettre
+                                       « logiciellement » le miroir.
+                                   ●   Synchronisation entre le maître et le
+                                       nouveau miroir.
+         T             T+dt
+                                   ●   On peut avoir autant de miroirs que
+                                       nécessaire en fonctions des applications.
+             write(s1)             ●   Vitesse: écriture perte 1 à 3%, lecture
+C ontrôleur                            identique
+                  S1               ●   Sécurité: maximale
+
+
+
+                                                                                     21
+
+--- PAGE 22 ---
+RAID 3 : Stripping + parité
+    1                   2                3                 4            1±2±3±4
+
+          5                 6                                              5±6±7±8
+
+
+
+
+● Les écritures sont strippées sur x disques
+● Les mêmes secteurs des x disques sont XORés sur un secteur du disque de parité.
+● Permet la reconstruction:
+             ● d’un des x disques si il casse
+
+             ● du disque de parité
+
+● Vitesse: Écriture: perte de ~80% des performances, Lecture perte 5-10%
+             ● 1 écriture logique = 2 écritures physiques + 1 lecture + attente +
+
+               CPU
+             ● Reconstruction: nb disques lectures + 1 écriture + beaucoup de CPU
+
+               + attente
+● Le disque de parité est sollicité en permanence…
+● Sécurité: très bonne
+● Abandonné au profit du RAID 5
+
+                                                                                     22
+
+--- PAGE 23 ---
+RAID 5 : Stripping + parité tournante
+
+    1                      2                   3                   4         1±2±3±4
+
+                               7                   8               5±6±7±8             5
+          6
+
+
+
+
+● Évite de solliciter en permanence le disque de parité
+● Les secteurs de parité sont écrits sur chaque disque à tour de rôle
+● Vitesse: Ecriture perte 75%. Lecture idem RAID 3
+● Sécurité: très bonne
+
+
+
+
+                                                                                           23
+
+--- PAGE 24 ---
+Solution peu chère : RAID 1+0 ou 0+1
+
+     RAID 1     RAID 1               RAID 1
+
+
+
+
+                     RAID 0
+
+
+       RAID 0               RAID 0
+
+
+
+
+                         RAID 1
+
+
+
+
+                                              24
+
+--- PAGE 25 ---
+Solution chère
+●   « Armoire » de ~400 disques
+●   Technologies propriétaires se basant sur du RAID 5 évolué
+●   Cache de 1Go à 65Go RAM, processeurs spécialisés pour et gestion des caches
+    et des chemins de transfert de données.
+●   Capacité de stockage de l’ordre de 50 To
+●   Vue par le système comme un ensemble de disques
+●   Sécurisation maximale:
+              Volumes mirorés
+               ●
+
+           ● Disques « spare » remplaçant automatiquement des disques
+
+             défaillants
+           ● Tout est doublé voire triplé (alimentation, interfaces, CPU de
+
+             calcul, RAM, etc.)
+● Performances: 15 à 30 fois un disque seul
+
+●   Prix: en rapport.
+
+                                                                                  25

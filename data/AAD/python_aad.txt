@@ -1,0 +1,31 @@
+AAD-ID,AAD-TITLE
+PYTHON-PRG-01,"Choisir et utiliser les types de bases (bool, int, float, complex, list, etc.)"
+PYTHON-PRG-02,"Utiliser les structures de contrôle (if, for, while, etc.)"
+PYTHON-PRG-03,"Définir une fonction (arité variable, valeurs par défaut, obligation des paramètres positionnels ou nommés, etc.)"
+PYTHON-PRG-04,"Appeler une fonction (passage de paramètre posiitonnel ou nommé, tuple ou dictionnaire en paramètres effectifs, etc.)"
+PYTHON-PRG-05,"Créer des packages, modules et script"
+PYTHON-PRG-06,"Importer des modules, éléments de modules en les renommant si nécessaire"
+PYTHON-PRG-07,Comprendre l'affectation
+PYTHON-PRG-08,Utiliser les fonctions lambda
+PYTHON-PRG-09,"Utiliser les fonctions map, filter et comprehension de séquences"
+PYTHON-PRG-10,Utiliser l'instruction yield
+PYTHON-POO-01,"Définir une classe (attributs, méthodes, initialiseur, etc.)"
+PYTHON-POO-02,Utiliser les propriétés
+PYTHON-POO-03,Définir les méthodes spéciales
+PYTHON-POO-04,Définir et utiliser les méthodes statiques et de classes
+PYTHON-POO-05,Définir et utiliser des énumérations
+PYTHON-POO-06,Définir et utiliser des dataclasses
+PYTHON-POO-07,Définir et utiliser des classes abstraites et des protocoles
+PYTHON-POO-08,Définir et utiliser des exceptions
+PYTHON-POO-09,Définir et utiliser des gestionnaires de contexte
+PYTHON-POO-10,Utiliser des flux
+PYTHON-DEV-01,Dissocier Python du Système d'exploitation (pyenv)
+PYTHON-DEV-02,Gérer les dépendances
+PYTHON-DEV-03,Céer et utiliser les tests unitaires
+PYTHON-DEV-04,Utiliser les logs
+PYTHON-DEV-05,Utiliser le annotations
+PYTHON-DEV-06,Réaliser une audit statique de code
+PYTHON-ARC-01,Créer des décorateurs
+PYTHON-ARC-02,Créer et utiliser des métaclasses
+PYTHON-ARC-03,Controler l'accès aux attributs
+PYTHON-ARC-04,Créer et utiliser des coroutines

@@ -1,0 +1,118 @@
+--- PAGE 1 ---
+Python
+                          yield
+
+
+                       Nicolas Delestre
+
+
+
+
+Expr. λ, etc. - v1.1                      1/6
+
+--- PAGE 2 ---
+Itération sans séquence
+
+     Concept
+         Python permet grâce à l’instruction yield de créer des fonctions dont leurs résultats
+         puissent être utilisés comme des séquences sans qu’ils ne le soient
+         Cela permet :
+                       de ne calculer que les éléments réellement utilisés (gain en temps et en espace mémoire)
+                       de pouvoir créer des séquences  infinies 
+
+     Instruction yield
+             équivalent d’un return qui retourne une valeur
+             au prochain élément demandé, la fonction reprend où elle s’était arrétée, jusqu’au prochain yield ou à
+             la fin de la fonction
+             dans 99% du temps le yield est au sein d’une itération (finie ou infinie)
+             la fonction retourne en fait un  générateur 
+
+Expr. λ, etc. - v1.1                                                                                                          2/6
+
+--- PAGE 3 ---
+Exemple : une fonction qui retourne les nombres premiers 1 / 3
+     est premier
+     def est_premier(n):
+         if n % 2 == 0:
+              return False
+         else :
+              borne = int(numpy.sqrt(n)) + 1
+              for i in range(3, borne, 2):
+                   if n % i == 0:
+                       return False
+              return True
+
+
+
+     nombres premiers
+1    def nombres_premiers(borne_max = None):
+2        yield 2
+3        i = 3
+4        while not borne_max or i <= borne_max:
+5            if est_premier(i):
+6                yield i
+7            i = i + 2
+
+Expr. λ, etc. - v1.1                                                   3/6
+
+--- PAGE 4 ---
+Exemple : une fonction qui retourne les nombres premiers 2 / 3
+
+
+     Affichage des nombres premiers inférieurs à 30
+     >>> for i in nombres_premiers(30):
+         print(i)
+        ...:
+     2
+     3
+     5
+     7
+     11
+     13
+     17
+     19
+     23
+     29
+     >>>
+
+
+
+
+Expr. λ, etc. - v1.1                                                   4/6
+
+--- PAGE 5 ---
+Exemple : une fonction qui retourne les nombres premiers 3 / 3
+
+
+
+     Calcul du premier nombre premier superieur à n
+
+     def premier_nombre_premier_superieur_a(n):
+         for i in nombres_premiers():
+             if i >= n:
+                 return i
+     >>> premier_nombre_premier_superieur_a(101548)
+     101561
+     >>>
+
+
+
+
+Expr. λ, etc. - v1.1                                                   5/6
+
+--- PAGE 6 ---
+Conclusion
+
+
+
+
+             L’instruction yield permet de créer des itérateurs qui calculent les valeurs  à la
+             demande 
+             Python s’inspire du langage CLU (1977)
+             On retrouve cette instruction dans quelques autres langages tels que Javascript, Ruby ou
+             C#
+
+
+
+
+Expr. λ, etc. - v1.1                                                                                  6/6

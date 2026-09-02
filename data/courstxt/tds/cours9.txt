@@ -1,0 +1,688 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+       Cours 9
+
+
+  Filtrage numérique
+
+
+        ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+   Introduction
+   Caractérisations des filtres numériques
+       Réponse impulsionnelle,
+       Equation aux différences,
+       Fonction de transfert en z
+   Etude des filtres RIF
+       Caractéristiques et propriétés
+       Synthèse des filtres RIF
+   Synthèse des filtres RII
+       Méthode de l'invariance impulsionnelle
+       Transformation bilinéaire
+
+
+
+
+TdS                                              2
+
+--- PAGE 3 ---
+Pourquoi des filtres numériques ?
+   2 critères pour comparer :
+       nombre de poles et de zéros
+       rapidité
+
+
+
+
+   Avantages du numérique:
+       Reproductibilité
+       Souplesse (changement de coefficients)
+       Simulations exactes
+       Insensibilité au bruit
+       Stabilité des caractéristiques avec le temps, la T°, etc.
+
+TdS                                                                 3
+
+--- PAGE 4 ---
+Caractérisations d'un filtre numérique
+   Filtre = système, => Réponse impulsionnelle h(n)
+                                                                                                         ∞
+      x(n)                 Filtre h(n)           yn           avec            y  n  =h  n ∗x  n  = ∑ h  m  x  n−m 
+                                                                                                       m=−∞
+
+      Remarque : h(n) peut être infini => calculs délicats
+
+
+   Equation aux différences (relation entrée-sortie)
+
+                           N              M
+                          ∑ ak yn−k =∑ b r x n−r                      Calculs finis !
+                          k=0             r= 0
+
+
+   Fonction de transfert en z
+                                                            N                    M
+
+             y  n  = h  n ∗ x  n                     ∑ ak yn−k =∑ b r x n−r 
+                                                           k=0                  r= 0
+
+                                            ou                            −M                −1
+              Y  z =X  z . H  z                              bM z        ⋯+b1 z           +b0
+                                                        H  z =
+                                                                   a N z −N ⋯+a 1 z −1 +a0
+TdS                                                                                                                              4
+
+--- PAGE 5 ---
+Filtres numériques : problématique
+                                                                                 |H( f )|
+      Synthèse de filtres : étant donné un gabarit,                       1+1
+      comment trouver les coefficients de h(n) ou H(z) ?                  1-1
+                                                                           2
+                                                                                                             f
+                                                                                            fc f s
+        Avec les contraintes suivantes sur h(n) : h  n = 0 ∀ n< 0
+            Causalité du filtre
+                  Le filtre est causal ssi la réponse impulsionnelle est causale
+            Stabilité                                                                               ∞
+                  Le filtre est stable ssi la réponse impulsionnelle est absolument sommable         ∑ ∣hn∣∞
+                                                                                                     n=−∞
+        Pour H(z), les contraintes sont :
+
+                Un filtre numérique linéaire et causal est stable ssi tous
+                les pôles i  de H(z) sont à l'intérieur du cercle unité
+                               ℂ
+                                                                                   {
+               En considérant un filtre causal, la RDC est donnée par RDC= z ∈ ℂ /∣z∣>max ∣λ i∣        }
+  Comment réaliser le filtre ?
+           La méthodologie dépend du type de filtre : RIF ou RII
+
+TdS                                                                                                              5
+
+--- PAGE 6 ---
+Caractérisations d'un filtre numérique
+                                                                                                    ∞
+      x(n)            Filtre h(n)           yn         avec          y  n  =h  n ∗x  n  = ∑ h  k  x  n−k 
+                                                                                                  k=−∞
+
+              Problème : h(n) potentiellement infini !
+
+   Deux solutions = deux types de filtres
+       Réponse impulsionnelle finie (RIF) : limitation à M du nombre d'échantillons
+                                                                                    ∞
+                 Réponse impulsionnelle : Filtre causal =>
+                                                             y  n  =h  n ∗x  n  = ∑ h  k  x  n−k  Toujours stables
+             
+
+                                                                 M               k=−∞
+                Equation aux différences : N=0 =>                                      réponse non récursive
+                                                       y n=∑ br x  n−r 
+                                                                r= 0
+
+       Réponse impulsionnelle infinie (RII) : mémorisation des sorties
+                Réponse impulsionnelle infinie : Filtre causal =>              ∞                        stabilité à vérifier
+                                                                       y  n  = ∑ h  k  x  n−k 
+                                                                               k=0
+                Mémorisation du signal de sortie => la réponse impulsionnelle infinie peut se calculer en un
+                 temps fini
+
+                Équation aux différences : N1 =>              N                 M                      réponse récursive
+                                                     yn=−∑ a k yn−k ∑ br xn−r 
+                                                             k=1                 r= 0
+TdS                                                                                                                             6
+
+--- PAGE 7 ---
+Filtre à réponse impulsionnelle finie (RIF)
+   Propriétés
+
+       Stabilité inconditionnelle
+                    N−1
+                                       Les filtres à réponse impulsionnelle finie sont
+          H  z = ∑ bn z−n            toujours stables car ils n'admettent pas de pôles.
+                    n=0
+
+       Approximation
+
+         Toute fonction de filtrage numérique stable et causale peut être approchée
+         par la fonction de transfert d'un filtre RIF
+       Phase linéaire
+
+         Les filtres RIF peuvent générer des filtres à phase linéaire
+         Si un filtre est à phase linéaire, sa réponse fréquentielle est de la forme
+          H  f =R  f e − jϕ f               ϕ  f =ϕ 0  2 πfτ
+                                                  Où                    Avec tau : constante
+
+      x  n  = a cos  2π fn            Filtre à phase linéaire          y  n =aR  f  cos 2π fn+ϕ 0 2 πfτ 
+
+
+               On montre qu'un filtre FIR est à phase linéaire si ses coefficients sont symétriques
+
+                                  h  n  = h  N − 1− n 
+TdS                                                                                                                   7
+
+--- PAGE 8 ---
+Filtre à réponse impulsionnelle finie (RIF)
+   Exemple de filtre à phase linéaire/non linéaire
+      f0 = 1
+      t=0:0.001:1;
+
+      % soit le signal x :
+      x=sin(2*pi*f0*t) + sin(4*pi*f0*t);
+      plot (t,x);
+
+      % déphasage linéaire : f -> 2f+1
+      x=sin(2*pi*(2*f0+1)*t) + sin(4*pi*(2*f0+1)*t);
+      plot (t,x);
+
+      % déphasage non linéaire :
+      x=sin(2*pi*(2*f0+1)*t) + sin(4*pi*(2*f0+7)*t);
+      plot (t,x);
+
+
+
+
+• Déphasage linéaire : conserve
+ l’allure générale du signal
+• Déphasage non linéaire : modifie
+ totalement le signal
+TdS                                                    8
+
+--- PAGE 9 ---
+Filtre à réponse impulsionnelle finie (RIF)
+  Exemple
+                                                                                1
+       Soit le filtre défini par la relation entrée-sortie suivante :   y  n =  x  n 2x n−1 +x  n−2 
+                                                                                4
+
+       Réponse impulsionnelle                                    Réponse fréquentielle
+
+                 1                                  (Voir TD)
+       h n =
+                 4
+                    δ  n2δ n−1 +δ  n−2                     H  f =e − j2πf cos2  πf 
+
+                                    2
+       • Module       ∣H  f ∣= cos  πf                         • Phase     arg  H  f   =−2πf
+
+
+
+
+                 Filtre passe-bas                     On remarque que la phase est linéaire par rapport à f
+
+  Il existe de nombreuses méthodes de synthèse de filtre RIF :
+       Méthode de la fenêtre, Optimisation par moindres carrés, Calcul des
+         coefficients par approximation de tchebycheff, Par TFD récursive, etc.
+TdS                                                                                                               9
+
+--- PAGE 10 ---
+Synthèse de filtre RIF
+  Méthode de la fenêtre
+
+       Problématique
+      A partir du gabarit fréquentiel, effectuer la synthèse d'un filtre RIF réalisable (causalité) à
+      phase linéaire  contrainte de symétrie des coefficients
+                                                    N −1
+      h  n  = h  N − 1− n         avec   0≤n≤
+                                                      2
+
+        Gabarit réel continu
+                                                               Filtre caractérisé par :
+                 |H( f )|                                            la bande passante BP
+        1+1
+                                                                     la bande atténuée (ou coupée)
+        1-1                                                         la largeur F de la zone de transition
+                                                                     l'amplitude des oscillations en bande
+          2
+                                                                      passante 1
+                                                           f         l'amplitude des ondulations en bande
+                                 fc     fs
+                                                                      atténuée 2
+
+           ΔF=f s − f c : largeur de la bande de transition
+TdS                                                                                                            10
+
+--- PAGE 11 ---
+Synthèse de filtre RIF
+  Méthode de la fenêtre : méthodologie
+                                                                                                          2            1        Fe
+       A partir du gabarit réel du filtre, déterminer la longueur de la RIF :                         N
+                                                                                                       M ≈ log 10            
+                                                                                                          3         10 δ 1 δ 2 Δf
+       (rmq : bande de transition + importante que les oscillations)
+
+       A partir du gabarit idéal du filtre, on peut déterminer les coefficients du filtre par TFTD -1.
+                                    1/2
+                                                                   h(n) symétrique car H(f) réel -> phase linéaire
+                          h n = ∫ H  f e j2πfn df              en revanche, h(n) est potentiellement infini
+                                    −1/2
+
+             Limitation de la réponse impulsionnelle à N échantillons (troncature)
+       Pondération de la réponse impulsionnelle idéale h(n) par une suite discrète w(n) : h N  n  =h  n . w  n 
+
+                                               Exemple : w(n) est la fenêtre rectangulaire.
+                                               En fréquence, on a donc :
+                                                                                           sin  Nπf 
+                                                H N  f =H  f ∗W  f  avec    W  f =
+                                                                                           sin  πf 
+
+                    |H( f )|                            Fe /2                             B /2
+                                                                                                                                f 1 +f 2
+                                               h n = ∫ H  f e j2πfn df     h n = ∫ H  f e j2πfn df         avec    B=
+                                                                                                                                    2
+                                                      −Fe /2                              −B/2
+      Avec H(f) :
+                                                                                          sin πBn 
+                                                                                h n =
+                          f1   f2          f                                                  πn
+TdS                                                                                                                                        11
+
+--- PAGE 12 ---
+Synthèse de filtre RIF
+  Méthode de la fenêtre : méthodologie
+
+       On a trouvé la réponse hN(n), mais celle ci est centrée sur 0
+       Donc elle n'est pas causale !
+                                                    Solution :
+
+                                                    En la retardant de N/2
+                                                    échantillons, la réponse
+                                                    impulsionnelle devient causale !
+
+
+
+          Facile à implémenter car numérique.
+                 (mémoires à décalage)
+
+
+
+
+         Mathématiquement, cela revient à multiplier HN(f) par un exponentiel complexe
+                         => déphasage, mais déphasage linéaire pi N f
+TdS                                                                                      12
+
+--- PAGE 13 ---
+Synthèse de filtre RIF
+   Méthode de la fenêtre : effets de la limitation du nombre d'échantillons à N
+
+   h N  n  =h n . w  n                                        Allure de W( f ) pour une fenêtre rectangulaire
+  H N  f =H  f ∗W  f 
+
+                                Fenêtre de pondération                                          A
+
+           Réponse idéale                                                                                       f
+  Réponse obtenue par limitation du nb d'échantillon à N                               l
+
+
+
+               ∣H  f ∣                           •La pondération           temporelle introduit des
+                                     ∣H N  f ∣    ondulations et limite la raideur de coupure du filtre.
+                                                    Un compromis est à faire entre la raideur et l'amplitudes
+                                                    des ondulations.
+
+                                                   • Cette méthode donne des ondulations de même
+                                                     amplitude dans la bande passante et dans la bande
+                                                     atténuée.
+
+
+
+TdS                                                                                                                 13
+
+--- PAGE 14 ---
+Synthèse de filtre RIF : méthode de la fenêtre
+  Choix de la fenêtre de pondération
+               |W( f )|
+                                                               Critères de qualité :
+                                                            l : largeur du lobe principal
+                                   A                        A : amplitude des lobes secondaires
+
+                                                        f
+                          l
+
+         Remarque                                                              AdB        l        F      2 (dB)
+
+      Relation entre la longueur N
+                                                             Rectangulaire      -13        4/N      0.9/N      -21
+      de la fenêtre et la bande de     N . ΔF=c   ste
+                                                             Hanning            -31        8/N      3.1/N      -44
+      transition F du filtre obtenu                         Hamming            -41        8/N      3.3/N      -53
+                                                             Blackman           -57        12/N     5.5/N      -74
+       Qq propriétés des fenêtres
+                                                                               Réglages
+       Si N croit, l décroît  bande de transition F faible
+                                                                              2 désirée  choix type de fenêtre
+       A est indépendant de la longueur de la fenêtre
+                                                                              F désirée  choix de N
+       On ne peut pas réduire simultanément A et l
+TdS                                                                                                                   14
+
+--- PAGE 15 ---
+Synthèse de filtre RIF : méthode de fenêtre
+   Choix de la fenêtre
+
+        Types de fenêtre utilisée de longueur N ou d'ordre N-1
+                                                                                           Bartlett
+          Hanning                                   Hamming
+      w  n =0 . 5−0 .5cos      2πn
+                                            w  n =0 . 54−0 . 46cos   
+                                                                        2πn
+                                                                                  w  n =1−
+                                                                                                
+                                                                                                2 n−
+                                                                                                      N −1
+                                                                                                        2    
+                                  N −1                                  N −1                        N −1
+
+
+
+
+TdS                                                                                                              15
+
+--- PAGE 16 ---
+Synthèse de filtre RIF
+   Il existe d'autres méthodes :
+       Méthode itérative par TFD :
+           Initialiser h(n) sur N points au hasard
+           1) Calculer la TFD sur N    points avec N0>N, et forcer les valeurs de H(k)
+                                       0
+              n'étant pas dans le gabarit
+           2) Faire une TFD-1 sur N       points et ne conserver que N points autour de
+                                       0
+            l'origine
+           3) recommencer en 1) jusqu'à ce qu'un critère d'erreur soit satisfait
+
+              => Démo !
+       Moindres carrés
+           Idée : calculer les coefficients de h(n) de manière à ce que la fonction de
+              transfert approche la fonction voulue par un critère de moindres carrés.
+       Calcul des coefficients par approximation de tchebycheff
+           Approximation de la fonction de transfert par un polynôme au sens de
+              tchebycheff, ce qui permet d'obtenir des ondulations d'amplitude constante
+       ...
+
+
+TdS                                                                                        16
+
+--- PAGE 17 ---
+Réalisation des filtres numériques
+  Réalisation de filtres RIF
+                                                                                     N−1
+       Filtre causal à réponse impulsionnelle finie de longueur N :           yn= ∑ xn−k hk 
+                                                                                     k=0
+       3 opérations élémentaires :
+           Retard (registre à décalage)
+           Opérateurs arithmétiques + et *
+           Registres pour la pondération
+
+
+
+       Réalisation non-récursive
+
+
+
+             x(n)        z-1          z-1                       z-1
+              h(0)             h(1)         h(2)   h(N2)             h(N1)
+
+                     +            +            +            +              +      y(n)
+
+
+
+
+TdS                                                                                                   17
+
+--- PAGE 18 ---
+Filtre à réponse impulsionnelle infinie (RII)
+   Synthèse des filtres RII
+
+       Principe
+        • Calculer un filtre analogique H(s)
+        • Transformer le filtre analogique en un filtre numérique équivalent H(z)
+
+       Contraintes
+                                                                    Plan des s
+        • Transformer une fraction rationnelle H(s)                                         Plan des z
+                                                                                               r=1
+             en une fraction rationnelle H(z)
+        • Conserver la stabilité du filtre analogique
+
+               Transformer le demi-plan complexe gauche en l'intérieur du cercle unité
+               Transformer l'axes des imaginaires en cercle unité
+
+      Méthodes
+        • Conservation de la réponse impulsionnelle du filtre analogique ("numérisation")
+
+         • Transformation bilinéaire
+
+TdS                                                                                                      18
+
+--- PAGE 19 ---
+Filtre RII : synthèse
+  Méthode de l'invariance impulsionnelle
+       Principe : passer de la TL à la TZ équivaut à échantillonner la réponse impulsionnelle
+      d'un filtre analogique connu
+                                            H a s                h a t                          h d nT e =ha  t ∣t=nT
+                                                       TL   -1
+                                                                              échantillonnage                               e
+
+
+       Réponse en fréquence
+                                                                                                                    
+                                                                                                       ∞
+                                                                                     1               k
+         L'échantillonnage de ha(t) entraîne une périodisation du spectre H d  f =      ∑
+                                                                                     T e k=−∞
+                                                                                              H a f+
+                                                                                                     Te
+         Condition de Shannon à respecter par conséquent
+
+       Pôles : Correspondance entre les pôles de H(s) et les pôles de H(z) : b  e b T                e
+
+
+
+
+         Exemple : soit le filtre analogique défini par :
+                   TL-1                    échantillonnage                                TZ
+             1                                                                                                 1        z
+                           h  t  =e bt                                                        H  z =
+                                                                                 bn T e
+  H s =                                                        h  nT e  =e                                       =
+            s−b                                                                                            1−e bT z−1 z−e bT
+                                                                                                                   e            e
+
+
+
+         Si Re(b)<0, alors |exp(b)|<1 : conservation de la stabilité
+         remarque : il n’est pas necessaire de passer par h(nTe), qui est infini !
+
+        Précautions
+         La réponse du filtre numérique sera proche de celle du filtre analogique dans la bande [Fe/2, Fe/2]
+         si le filtre analogique a une réponse fréquentielle nulle en dehors de cette bande. Cette méthode
+TdS      est utile seulement dans le cas de filtres analogiques à bande limitée.
+                                                                                                         19
+
+--- PAGE 20 ---
+Filtre RII : synthèse
+  Transformation bilinéaire
+                                             2 1−z−1
+       Passer de H  s   H  z  avec    s= .             (1)      Te : fréquence d'échantillonnage
+                                             T e 1 +z−1
+       Pôles               2/ Te+s
+                       z=                                              Plan des s
+                            2/Te−s                                                                                   Plan des z
+        Si s a une partie réelle négative, z est de module                                                           r=1
+        inférieur à 1  conservation de la stabilité
+
+
+
+       Déformation des fréquences
+                                                                                         1
+          La transformation entraîne une relation non                           πf a=       tan  πf d T e    (2)
+                                                                                         Te
+          linéaire entre les fréquences fa du domaine
+          analogique et les fréquences fd du domaine
+          numérique :      Distortion harmonique                              f d=
+                                                                                      1
+                                                                                          tan−1  πf a T e    (3)
+                                                                                     πT e
+       Méthodologie
+         - Définir le gabarit du filtre numérique
+         - Convertir ce gabarit en un gabarit correspondant au filtre analogique par la relation (2)
+         - Faire la synthèse du filtre analogique (Butterworth, Tchebychev …)  Ha(s)
+
+TdS      - Transformer Ha(s) en Hd(z) en utilisant (1)
+                                                                                                                              20
+
+--- PAGE 21 ---
+Filtre RII : synthèse
+  Transformation bilinéaire
+     Illustration de la déformation des fréquences
+
+
+
+
+                                                                 1
+                                                        πf a=       tan  πf d T e 
+                                                                 Te
+
+
+                                                              1
+                                                      f d=        tan−1  πf a T e 
+                                                             πT e
+
+
+
+
+TdS                                                                                    21
+
+--- PAGE 22 ---
+Transformation bilinéaire
+  Exemple
+
+      On utilise des fonctions modèles classiques de types filtres de Butterworth, Tchebychev….
+
+
+                                                                          ω2c
+      Soit un filtre de Butterworth analogique     H  s = 2
+                                                           s  2 ωc s+ωc2
+
+                                                       2 1−z −1
+      On applique la transformation bilinéaire       s= .
+                                                       Te 1+z−1
+
+       Après calcul et en prenant      ω c =2    T e= 2                     0. 0302 z 2 2z1 
+                                                                   H  z = 2
+                                                                           z −1 . 4514 z+ 0 .5724
+
+
+                                ∣H  f ∣            Fréquence de coupure du filtre analogique
+                                                     Fc =0.318 Hz
+
+
+                                                    Fréquence de coupure du filtre numérique
+
+                                                                  1
+                                                          F c=      tan−1  0 . 318∗2π    Fc=0.176 Hz
+                                                                 2π
+
+TdS                                                                                                      22
+
+--- PAGE 23 ---
+Classification des filtres numériques
+  Réalisation des filtres
+       Réalisation récursive
+                                                                            N               M
+              Filtre causal à réponse impulsionnelle infinie : y  n =−   ∑ a k y  n−k ∑ br x  n−r 
+                                                                           k=1             r= 0
+
+
+
+                                     b0
+                     x(n)                    +           +                          y(n)
+
+                              z-1                                          z-1
+                                      b1                         -a1
+                                             +
+
+
+
+
+                                                       +
+                              z-1                                          z-1
+                                     b2                         -a2
+                                             +
+
+
+                                                       +
+                                     bM1                       -aN-1
+                                             +
+                                                       +
+                                z
+                                -1                                         z-1
+                                     bM                         -aN
+                                             +
+                                                       +
+
+
+
+TdS                                                                                                         23
+
+--- PAGE 24 ---
+Comparaison RIF - RII
+
+ • Conclusion sur les filtres
+ RIF                                                         RII
+        Toujours stable.                                           Peuvent être instables.
+        Phase linéaire.                                            Phase non linéaire.
+        Facile à concevoir.                                        Nécessitent moins d ’opérations et de
+        La durée des transitoires = longueur du                    places mémoires.
+        filtre.                                                    Plus efficaces que RIF
+
+ • Bibliographie
+
+      1. S. Mitra, "Digital Signal Processing : A computer based approach", McGraw Hill Edt, 1998.
+      2. Y. Thomas, "Signaux et Systèmes Linéaires", Edition Masson, 1994.
+      3. M. Bellanger, " Traitement numérique du signal", Edition Dunod, 1993.
+      4. G. Blanchet, M. Charbit "Traitement numérique du signal", Edition Hermès, 1998
+      5. A. Quinquis "Le traitement du signal sous Matlab", Edition Hermès, 2000
+
+TdS                                                                                                   24
+
+--- PAGE 25 ---
+Table de la TZ
+
+
+
+
+TdS               25
+
+--- PAGE 26 ---
+Exercice
+
+      Soit un système linéaire
+
+                                             
+                                                  n
+                                               1
+      Lorsqu’on présente l’entrée    x [ n]=       n2n  −n−1
+                                               2
+
+
+                                                   n
+                                      n                 n
+                                 1                3
+      La sortie est :   y [ n]=6           n−6
+                                 2                4
+
+      Calculer la FT du système et déterminer si le système est stable et causal
+
+
+
+                                   z−2
+      On doit trouver : H  z=                       3 / 4∣z∣ 2
+                                  z−3 /4
+      Le pôle est à l’intérieur du cercle unité → stable.
+      La RDC est une couronne → système causal
+
+
+TdS                                                                                26

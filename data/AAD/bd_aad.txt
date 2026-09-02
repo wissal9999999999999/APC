@@ -1,0 +1,45 @@
+AAD-ID,AAD-TITLE
+BD1-GEN101,Identifier les caractéristiques d'un problème permettant de justifier d'une base de données selon le modèle relationnel
+BD1-GEN102,Expliquer le fonctionnement général et les principaux objectifs d'un SGBD
+BD1-GEN103,Expliciter les étapes de réalisation d'une base de données relationnelle
+BD1-GEN201,Donner un exemple de relation contenue dans la méta-base
+BD1-GEN202,Différencier le schéma d'une instance de base de données
+BD1-CON101,"Concevoir (i.e. définir les schéma) une base de données relationnelle selon les 3 niveaux d'abstraction : externe, conceptuel, interne"
+BD1-CON102,Expliciter les éléments d'un schéma E/A
+BD1-CON103,Produire un schéma relationnel cohérent vis à vis du schéma E/A à partir des règles du cours
+BD1-CON104,"Justifier des méthodes de transformation M, N (cas 4) vs. 1,1 (cas 3)"
+BD1-CON105,Définir une clé primaire appropriée pour une table au regard du contexte
+BD1-CON106,Définir une clé primaire appropriée pour une table au regard d'un ensemble de dépendances fonctionnelles
+BD1-CON107,Définir les contraintes d'intégrité référentielles
+BD1-CON108,Définir les (autres) contraintes d'intégrité appropriées au regard du contexte
+BD1-EVA201,Identifier les anomalies d'un schéma relationnel
+BD1-EVA202,Définir les dépendances fonctionnelles entre les attributs
+BD1-EVA203,Décomposer un schéma relationnel de manière approprié
+BD1-EVA204,Évaluer la forme normale d'un schéma relationnel
+BD1-EVA205,Réaliser la fermeture transitive d'une couverture minimale
+BD1-EVA206,Transformer un schéma relationnel pour « améliorer » sa forme normale
+BD1-EVA207,Argumenter en faveur ou non (dénormalisation) de l'équivalence modèle logique vs. modèle physique
+BD1-LAN101,Expliciter les éléments d'une requête en algèbre relationnelle au format textuel
+BD1-LAN102,Écrire une requête en algèbre relationnelle en utilisant les arbres algébriques
+BD1-LAN103,Avoir une intuition de l'optimisation de requête
+BD1-LAN201,Ecrire une requête simple de manipulation de données (LMD) en langage SQL
+BD1-LAN202,Ecrire une requête complexe de manipulation de données (LMD) en langage SQL
+BD1-LAN203,Ecrire une requête de définition de données (LDD) en langage SQL
+BD1-LAN204,Définir des contraintes d'intégrité simples en langage SQL
+BD1-LAN205,Identifier la nécessité de l'usage d'un trigger dans le cadre de la définition des CI (sans l'écrire)
+BD1-LAN206,Ecrire une requête d'attribution de droits en langage SQL (centralisé ou non)
+BD1-CONT101,Différencier sécurité (contrôle d'autorisation) et consistance (contrôle d'intégrité) des données
+BD1-CONT102,Différencier gestion centralisé/non centralisé des droits
+BD1-CONT201,Différencier vue relationnelle et relation
+BD1-CONT202,Ecrire la requête effectivement réalisée par le SGBD à partir de la définition de la vue interrogée.
+BD1-CONT203,Expliciter les avantages et inconvénients de l'usage des vues relationnelles
+BD1-CONT204,Identifier les problèmes de mise à jour dans les vues relationnelles
+BD1-CONT205,Utiliser la clause « with check option » dans la définition d'une vue relationnelle
+BD1-INT101,Identifier le besoin en optimisation au niveau du stockage. I. e. quand définir un index.
+BD1-INT102,Différencier le placement de l'accès aux données
+BD1-INT201,Identifier le besoin de mise en œuvre de la gestion de la concurrence d'accès
+BD1-INT202,Définir les opérations élémentaires (lecture/écriture) réalisées par le SGBD à partir d'un algorithme
+BD1-INT203,Poser les verrous en lecture et en écriture (en assurant le verrouillage 2 phases) pour assurer une sérialisation des transactions
+BD1-INT204,Associer problème de gestion de la concurrence et propriétés ACID
+BD1-INT205,Définir la granule de verrouillage utilisée à partir de l'exécution de transactions
+BD1-INT206,Identifier un interblocage (i.e. deadlock)

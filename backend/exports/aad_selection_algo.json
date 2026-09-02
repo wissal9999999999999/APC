@@ -1,0 +1,18 @@
+{
+  "subject_id": "algo",
+  "selected_count": 1,
+  "aads": [
+    {
+      "aad_id": "AAD-1",
+      "ac_alignment": "Cet AAD permet de mobiliser les notions de base du langage C, en particulier la déclaration et l'initialisation des variables, ce qui est une compétence fondamentale pour tout programmeur en C.",
+      "action_verb": "Déclarer",
+      "course_grounding": "L'extrait du cours présente les types simples en C (int, float, double, char) et explique comment déclarer et initialiser des variables. Les pages 19 et 20 détaillent ces concepts.",
+      "disciplinary_concept": "Types simples et déclaration de variables",
+      "formulation": "Déclarer et initialiser des variables de types simples en C.",
+      "source_pages": [
+        19,
+        20
+      ]
+    }
+  ]
+}

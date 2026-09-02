@@ -18,6 +18,11 @@ export class ResponsableFormation implements OnInit {
   savoirAgirList: any[] = [];
   jalonsList: any[] = [];
 
+  loadingSavoirAgir = false;
+  loadingJalons = false;
+  savoirAgirError = '';
+  jalonsError = '';
+
   selectedSavoirAgirId: number | null = null;
   selectedJalonId: number | null = null;
 
@@ -43,32 +48,50 @@ export class ResponsableFormation implements OnInit {
 
   // 🔹 Load all savoir-agir
   loadSavoirAgir(): void {
+    this.loadingSavoirAgir = true;
+    this.savoirAgirError = '';
+
     this.formationService.getSavoirAgir()
       .subscribe({
         next: (data) => {
           this.savoirAgirList = data;
-           this.cdr.detectChanges();
-          console.log(this.savoirAgirList);
+          this.loadingSavoirAgir = false;
+          this.cdr.detectChanges();
         },
-        error: (err) => console.error(err)
+        error: (err) => {
+          console.error(err);
+          this.loadingSavoirAgir = false;
+          this.savoirAgirError = 'Impossible de charger les savoir-agir.';
+        }
       });
   }
 
   // 🔹 When savoir changes, load jalons
   onSavoirChange(): void {
 
+    this.selectedJalonId = null;
+    this.jalonsError = '';
+
     if (!this.selectedSavoirAgirId) {
       this.jalonsList = [];
       return;
     }
+
+    this.loadingJalons = true;
+    this.jalonsList = [];
 
     this.formationService
       .getJalons(this.selectedSavoirAgirId.toString())
       .subscribe({
         next: (data) => {
           this.jalonsList = data;
+          this.loadingJalons = false;
         },
-        error: (err) => console.error(err)
+        error: (err) => {
+          console.error(err);
+          this.loadingJalons = false;
+          this.jalonsError = 'Impossible de charger les jalons.';
+        }
       });
   }
 
@@ -84,6 +107,7 @@ export class ResponsableFormation implements OnInit {
     }
 
     const payload = {
+      formation_id: this.formationId,
       savoir_agir_id: this.selectedSavoirAgirId,
       jalon_id: this.selectedJalonId,
       ac_text: this.newAC.trim()
@@ -91,8 +115,9 @@ export class ResponsableFormation implements OnInit {
 
     this.formationService.saveAC(payload)
       .subscribe({
-        next: () => {
-          alert("AC enregistré !");
+        next: (response) => {
+          const acId = response.ac?.['AC-ID'];
+          alert(acId ? `AC ${acId} enregistré dans le fichier JSON !` : 'AC enregistré !');
           this.newAC = '';
         },
         error: (err) => {

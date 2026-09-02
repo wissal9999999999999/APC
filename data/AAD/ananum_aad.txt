@@ -1,0 +1,52 @@
+AAD-ID,AAD-TITLE
+ANANUM-1-1,Retrouver les dimensions d’une matrice
+ANANUM-1-2,Identifier les différents type de matrice (structure et taille)
+ANANUM-1-3,Identifier et connaître un problème des moindres carrés
+ANANUM-2-1,Retrouver le schema de résolution des moindres carrés avec la méthode du gradient
+ANANUM-3-1,Maitriser les opérations vectorielles (produit scalaire
+ANANUM-14-1,Etre capable de représenter un systèmes d’équation linéaire sous forme matricielle
+ANANUM-15-3,Connaitre les propriétés d’une matrice de Gauss
+ANANUM-15-4,Connaitre les propriétés d’une matrice de permutation
+ANANUM-15-5,Connaitre les propriétés d’une matrice définie positive
+ANANUM-15-6,Connaitre les propriétés d’une matrice orthogonale
+ANANUM-15-7,Connaitre les propriétés d’une matrice de Householder
+ANANUM-15-8,Connaitre les propriétés des normes matricielles et vectorielles
+ANANUM-15-9,Connaitre les propriétés de la décomposition valeurs propres
+ANANUM-15-10,Connaitre les propriétés de la décomposition valeurs singulières
+ANANUM-16-1,Connaitre les conditions d’applications de Cholesky et LDL
+ANANUM-16-2,Identifier les avantages/limites des méthodes décomposition
+ANANUM-16-3,Identifier les similitudes et différences entre Jacobi
+ANANUM-29-1,Etre capable d’implémenter un produit matriciel
+ANANUM-29-2,Etre capable d’implémenter un produit matriciel de différentes manières
+ANANUM-29-3,Connaitre les complexités des opérations vectorielles et matricielles
+ANANUM-29-4,Implémenter la résolution d’un systeme d’équation linéaire avec matrice diagonale
+ANANUM-29-5,Implémenter la résolution d’un systeme d’équation linéaire avec matrice triangulaire
+ANANUM-29-6,Retrouver l’algorithme de calcul de l’inverse d’une matrice triangulaire
+ANANUM-29-7,Retrouver les variantes (exterieur/recursive/trisup) de Cholesky
+ANANUM-29-8,Connaitre les complexités des la résolution de systeme d’équation triangulaires
+ANANUM-29-9,Retrouver le schema de résolution de Ax=b donné A=LU
+ANANUM-29-10,Calculer une matrice triangulaire supérieure en utilisant les matrices de Gauss
+ANANUM-29-11,Connaitre l’algorithme de décomposition PA=LU
+ANANUM-29-12,Retrouver le schema de résolution de Ax=b donné PA=LU
+ANANUM-29-13,Retrouver l’algorithme de décomposition A=LDL
+ANANUM-29-14,Retrouver l’algorithme de Cholesky
+ANANUM-29-16,Retrouver le schema de résolution des moindres carrés avec QR
+ANANUM-29-17,Retrouver l’algorithme de décomposition QR avec Householder
+ANANUM-29-18,Connaitre le principe des méthodes itératives
+ANANUM-29-19,Connaitre le principe de PageRank
+ANANUM-29-20,Calculer  une valeur propre en utilisant l’algorithme des puissances itérées
+ANANUM-29-21,Implémenter l’algorithme QR pour les valeurs propres
+ANANUM-29-22,Calculer les valeurs singulieres d’une matrice a partir des valeurs propres
+ANANUM-29-23,Implémenter l’algorithme de bidiagonisation pour le calcul de la SVD
+ANANUM-30-1,Estimer les valeurs propres avec les cercles de Gershgorin
+ANANUM-31-1,Appliquer les décompositions valeurs propres/singulières pour du débruitage d’images ( ??)
+ANANUM-32-1,Exploiter les structures particulières de matrices
+ANANUM-32-2,Optimiser l’implémentation de la transformation de Gauss
+ANANUM-32-3,Optmisier l’approche QR pour les valeurs propres avec la forme tridiagonale
+ANANUM-49-1,Etre capable de coder en Python/numpy le produit matriciel
+ANANUM-49-2,Implémenter en Python/numpy l’algorithme de décomposition LU
+ANANUM-49-3,Implémenter en Python/numpy l’algorithme de décomposition PALU
+ANANUM-49-4,Implémenter LDL et Cholesky en python/numpy
+ANANUM-49-5,Implémenter efficacement en Python/numpy l’algorithme de décomposition QR
+ANANUM-49-6,Implémenter en Python/numpy un algorithme de méthode itérative
+ANANUM-49-7,Implémenter en python/numpy la décomposition valeurs propres/singulières

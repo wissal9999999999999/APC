@@ -1,0 +1,49 @@
+[
+  {
+    "course": "auto",
+    "excluded_positive_rows": 0,
+    "excluded_pairs": []
+  },
+  {
+    "course": "bigdata",
+    "excluded_positive_rows": 0,
+    "excluded_pairs": []
+  },
+  {
+    "course": "capt",
+    "excluded_positive_rows": 1,
+    "excluded_pairs": [
+      {
+        "ac_id": "communiquer-3.2",
+        "aad_id": "CAPT-Capt156",
+        "reason": "AC ou AAD absent du catalogue textuel"
+      }
+    ]
+  },
+  {
+    "course": "ddrs31",
+    "excluded_positive_rows": 4,
+    "excluded_pairs": [
+      {
+        "ac_id": "huma-3.3",
+        "aad_id": "DDRS-001",
+        "reason": "AC ou AAD absent du catalogue textuel"
+      },
+      {
+        "ac_id": "huma-3.5",
+        "aad_id": "DDRS-003",
+        "reason": "AC ou AAD absent du catalogue textuel"
+      },
+      {
+        "ac_id": "huma-3.5",
+        "aad_id": "DDRS-004",
+        "reason": "AC ou AAD absent du catalogue textuel"
+      },
+      {
+        "ac_id": "huma-3.5",
+        "aad_id": "DDRS-005",
+        "reason": "AC ou AAD absent du catalogue textuel"
+      }
+    ]
+  }
+]

@@ -1,0 +1,943 @@
+--- PAGE 1 ---
+Collections Autoboxing Interface fonct Lambda / Stream
+
+
+
+
+                         Programmation
+    - Méthodes génériques, Lambda expressions, Stream -
+
+                                              Nicolas Malandain
+
+
+
+
+quelques exemples sont issus du Tutoriel Java d’Oracle
+
+
+
+
+                       Méthodes génériques, Lambda expressions, Stream   1 / 34
+
+--- PAGE 2 ---
+Collections Autoboxing Interface fonct Lambda / Stream
+
+
+
+1   Collections
+      Méthodes génériques
+      Classe Collections
+      Le tri d’objets
+      Exemples
+2   Autoboxing
+      Présentation
+3   Interface fonct
+       Principe
+       Avec Java < V8
+       Avec Java ≥ V8
+4   Lambda / Stream
+      Exemples
+      Process Générique
+      Agrégats
+
+                     Méthodes génériques, Lambda expressions, Stream   2 / 34
+
+--- PAGE 3 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Méthode générique
+
+Utilisation & Syntaxe
+Les méthodes génériques sont utilisées lorsque des dépendances existent
+entre les types des arguments et/ou le type de retour. Dans le cas
+contraire (un seul type de paramètre) la simple utilisation du joker suffit.
+        <T> typeretour methode(paramètres) {
+          // utilisation du type T comme un type normal
+          // paramètre, variable locale, ...
+        }
+
+
+Problème classique                                                        (déjà évoqué précédemment)
+       static void tableauVersCollection(Object[] tab, Collection<?> col) {
+         for (Object o : tab)
+           col.add(o) // ne compile pas
+       }
+       static void <T> tableauVersCollection(T[] tab, Collection<T> col) {
+         for (T o : tab)
+           col.add(o) // compile
+       }
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                             3 / 34
+
+--- PAGE 4 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+La classe Collections
+
+
+Description
+Collections ne contient que des méthodes de classe
+       disponibilité de collections non modifiables
+       possibilité de rendre des collections non modifiables
+       assurer les accès concurrents aux collections (synchronized)
+       vérification de collections
+       manipule des Collection et les sous-classes
+               tri, mélange, max, min
+               copie
+               ajout, recherche, remplissage...
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                             4 / 34
+
+--- PAGE 5 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Collections ≪ immutable ≫ (non modifiables)
+
+Collections vides non modifiables
+static <T> List<T> emptyList()
+static <T> Set<T> emptySet()
+...
+
+Collections initialisées non modifiables
+static <E> List<E> of(E... elements)
+static <E> Set<E> of(E... elements)
+...
+
+Exemple
+           List<Integer> liste = Collections.emptyList();
+
+           List<String> listImmutable = List.of("123","456","789");
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                             5 / 34
+
+--- PAGE 6 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Collections ≪ immutable ≫ (non modifiables)
+
+Rendre une collection non modifiable
+static <T> List<T> unmodifiableList(List<? extends T> list)
+static <K,V> Map<K,V> unmodifiableMap(Map<? extends K,? extends V> m)
+...
+Utile notamment pour retourner une collection contenu dans une classe
+sans pouvoir la modifier
+
+Exemple : ExempleClassCollectionsImmutable.java
+           List<String> l=new ArrayList<>();
+           Collections.addAll(l, "toto","tata","titi");
+
+           List<String> limm = Collections.unmodifiableList(l);
+           limm.add("tutu"); // UnsupportedOperationException
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                             6 / 34
+
+--- PAGE 7 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Collections ≪ vérifiées ≫
+Généricité en Java
+      vérification des types à la compilation
+       contournable à l’exécution
+
+ExempleClassCollectionsCheckedCollection.java
+List<String> lstr = new ArrayList<>();
+Collections.addAll(lstr,"toto","tata","titi");
+List l=lstr;
+l.add(Integer.valueOf(42)); // warning compil
+
+// exception cast
+for (String s:lstr)
+     System.out.println(s);
+
+// verif runtime
+List<String> lstr2 = Collections.checkedList(new ArrayList<>(), String.class);
+Collections.addAll(lstr2,"toto","tata","titi");
+List l2=lstr2; // warning
+l2.add(Integer.valueOf(42)); // warning compil, runtime exception
+
+                     Méthodes génériques, Lambda expressions, Stream                                             7 / 34
+
+--- PAGE 8 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Explication d’une méthode générique : sort
+Deux méthodes de tri dans Collections
+        public static <T extends Comparable<? super T>> void sort(List<T> list)
+        public static <T> void sort(List<T> list, Comparator<? super T> c)
+
+
+L’interface Comparable
+Utilisé par la 1◦ méthode, les objets à comparer doivent l’implémenter
+        public interface Comparable<T> {
+          public int compareTo(T o);
+        }
+
+
+L’interface Comparator
+Utilisé par la 2◦ méthode, pour comparer des objets n’implémentant pas
+Comparable ou pour définir un autre système de comparaison.
+        public interface Comparator<T> {
+          public int compare(T o1, T o2);
+          public boolean equals(Object o);
+        }
+
+                     Méthodes génériques, Lambda expressions, Stream                                             8 / 34
+
+--- PAGE 9 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Exemple avec l’interface Comparable
+Reprise de PaireNumerique.java
+public class PaireNumerique<G extends Number, D extends Number>
+             extends Paire<G,D>
+             implements Comparable<PaireNumerique<?,?>> {
+
+    public PaireNumerique(G nbg, D nbd) {
+      super(nbg,nbd);
+    }
+    @Override
+    public int compareTo(PaireNumerique<?,?> pn) {
+      double res=getValeurGauche().doubleValue()-pn.getValeurGauche().doubleValue();
+      if (res < 0)
+        return -1;
+      if (res > 0)
+        return 1;
+      return 0;
+    }
+    public double somme(){
+      return getValeurGauche().doubleValue()+getValeurDroite().doubleValue();
+    }
+}
+
+                     Méthodes génériques, Lambda expressions, Stream                                             9 / 34
+
+--- PAGE 10 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Méthodes génériques Classe Collections Le tri d’objets Exem
+
+
+Exécution + exemple avec l’interface Comparator
+main
+PaireNumerique<Double,Integer> pn1 = new PaireNumerique<>(Double.valueOf(0.10), Integer.valueOf(3));
+PaireNumerique<Integer,Integer> pn2 = new PaireNumerique<>(Integer.valueOf(4), Integer.valueOf(3));
+PaireNumerique<Float,Integer> pn3 = new PaireNumerique<>(Double.valueOf(20.10).floatValue(),
+                                                         Integer.valueOf(3));
+List<PaireNumerique<?,?>> l = new ArrayList<>();
+l.add(pn3);
+l.add(pn2);
+l.add(pn1);
+
+Collections.sort(l);
+for (PaireNumerique pni : l)
+  System.out.println(pni);
+
+Collections.sort(l,new Comparator<PaireNumerique<?,?>>() {
+  @Override
+  public int compare(PaireNumerique<?,?> o1, PaireNumerique<?,?> o2) {
+    double res=o1.getValeurGauche().doubleValue()-o2.getValeurGauche().doubleValue();
+    if (res < 0)
+      return 1;
+    if (res > 0)
+      return -1;
+    return 0;
+  }
+});
+
+for (PaireNumerique pni : l)
+  System.out.println(pni);
+
+                     Méthodes génériques, Lambda expressions, Stream                                            10 / 34
+
+--- PAGE 11 ---
+Collections Autoboxing Interface fonct Lambda / Stream               Présentation
+
+
+ Autoboxing - Unboxing 1 / 2
+Principe
+“convertir” un type simple dans son type classe et réciproquement
+
+AutoBoxing.java
+public class AutoBoxing {                                                // les Integer de -127 à 127 sont figés
+  static void methode(Integer i) {                                       // figé = immutable
+    System.out.println("Integer␣:␣"+i);                                  Integer a120 = 120, b120 = 120;
+  }                                                                      if (a120 == b120)
+  static void methode(double d) {                                          System.out.println("Egal");
+    System.out.println("double␣:␣"+d);                                   else
+  }                                                                        System.out.println("Non␣egal");
+
+  public static void main(String[] args) {
+    Integer i1=10;                                                       Integer a127 = 127, b127 = 127;
+    int i2=i1;                                                           if (a127 == b127 && a127+100 == b127+100)
+                                                                           System.out.println("Egal");
+   // 10 autoboxing/unboxing                                             else
+   for (Integer i3=0; i3<10; i3++)                                         System.out.println("Non␣egal");
+     System.out.println(i3);                                         }
+   // pour compatibilité avec les JDK précédents              }
+   // => double : 5.0
+   methode(5);
+
+   Integer a256 = 256, b256 = 256;
+                                                                 Remarque
+   if (a256 == b256)
+     System.out.println("Egal");                                 toujours utiliser equals
+   else
+     System.out.println("Non␣egal");
+
+
+                         Méthodes génériques, Lambda expressions, Stream                                          11 / 34
+
+--- PAGE 12 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Présentation
+
+
+ Autoboxing - Unboxing 2 / 2
+
+
+
+
+reprise de l’exemple précédent
+PaireNumerique<Double,Integer> pn = new PaireNumerique<>(0.14159, 3);
+System.out.println(pn.somme());
+
+PaireNumerique<Double,Integer> pn1 = new PaireNumerique<>(0.10, 3);
+PaireNumerique<Integer,Integer> pn2 = new PaireNumerique<>(4, 3);
+PaireNumerique<Float,Integer> pn3 = new PaireNumerique<>(Double.valueOf(20.10).floatValue(), 3);
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                            12 / 34
+
+--- PAGE 13 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+Interface fonctionnelle
+
+
+
+Principe
+Interface ne possédant qu’une seule méthode abstraite.
+Définition d’une méthode afin de paramétrer un comportement via un
+passage de paramètre :
+       d’une reférence sur une méthode d’instance
+       d’une référence sur une méthode de classe
+       d’une référence sur un constructeur
+       d’une lambda expression
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                13 / 34
+
+--- PAGE 14 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+
+
+Syntaxe par annotation
+      @FunctionalInterface
+      interface ExempleInterfaceFonctionnelle {
+        void laMethodeAbstraite();
+        // il est possible d’ajouter des methodes par defaut
+      }
+
+
+Remarque
+Résultat de la compilation si il y a plusieurs méthodes abstraites :
+
+@FunctionalInterface
+  XXX is not a functional interface
+    multiple non-overriding abstract methods found in interfa
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                14 / 34
+
+--- PAGE 15 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+ Exemple avec Java < V8 1 / 2
+    Création de Personnes à partir de l’analyse d’une chaı̂ne de caractères
+                  “Toto 48” ⇒ nom : “Toto” et âge : 48 ans
+ExempleInterfacesFonctionnelles.java
+    class Personne {
+       private final int age;
+       private final String nom;
+       public Personne(String nom, int age) {
+            this .nom = nom;
+            this .age = age;
+       }
+       public int getAge() {
+           return age;
+       }
+       public String getNom() {
+           return nom;
+       }
+       public String toString() {
+           return String.format("%s-%s", getNom(), getAge());
+       }
+}
+
+                     Méthodes génériques, Lambda expressions, Stream                                15 / 34
+
+--- PAGE 16 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+ Exemple avec Java < V8 2 / 2
+Divers traitements pour Personne, dont la création à partir d’une chaı̂ne :
+ExempleInterfacesFonctionnelles.java                                                                   (...)
+class FonctionnalitesPersonne {
+  public static Personne analyse(String name, Creator creator) {
+        Scanner sc = new Scanner(name);
+        return creator.create(sc.next(), sc.nextInt());
+    }
+}
+interface Creator {
+    Personne create(String nom, int age);
+
+
+Obligation d’utiliser une classe anonyme :
+ExempleInterfacesFonctionnelles.java                                                                   (...)
+    public static void main(String[] args) {
+        Personne p1, p2, p3, p4, p5;
+        p1 = new Personne("Nicolas",40);
+        p2 = FonctionnalitesPersonne.analyse("Geraldine␣28", new Creator() {
+            @Override
+            public Personne create(String nom, int age) {
+                return new Personne(nom, age); // personnalisation possible
+            }
+          });
+    }
+                     Méthodes génériques, Lambda expressions, Stream                                   16 / 34
+
+--- PAGE 17 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+Interface fonctionnelle                                                                                Java ≥ V8
+
+
+
+Fonctionnement
+Java fait la correspondance entre la signature de la méthode de
+l’interface fonctionnelle et de la méthode passée en paramètre.
+
+Annotations de 2 interfaces fonctionnelles
+@FunctionalInterface
+interface Creator {
+    Personne create(String nom, int age);
+}
+
+@FunctionalInterface
+interface Action {
+    void execute(Personne p);
+}
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                     17 / 34
+
+--- PAGE 18 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+Exemple                                                                                                Java ≥ V8
+
+Ajouts dans ExempleInterfacesFonctionnelles.java
+class FonctionnalitesPersonne {
+    public static Personne analyse(String name, Creator creator) {
+        Scanner sc = new Scanner(name);
+        return creator.create(sc.next(), sc.nextInt());
+    }
+    public static void action(Personne p, Action fonction) { // ****** ajout ******
+        fonction.execute(p);
+    }
+  }
+class FactoryPersonne { // ****** ajout ******
+    public static Personne create(String nom, int age) {
+        return new Personne(nom, age);
+    }
+}
+
+
+Permet de faire :
+Dans le main
+p3 = FonctionnalitesPersonne.analyse("Gilles␣35", Personne::new); // constructeur
+FonctionnalitesPersonne.action(p3,System.out::println); // methode d’instance
+p4 = FonctionnalitesPersonne.analyse("Benoit␣15", FactoryPersonne::create); // methode de classe
+p5 = FonctionnalitesPersonne.analyse("Gilles␣35", (s , n) -> new Personne(s,n)); // lambda expression
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                     18 / 34
+
+--- PAGE 19 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Principe Avec Java < V8 Avec Java ≥ V8
+
+
+Le package java.util.function
+Contenu de java.util.function
+Java fournit un ensemble d’interfaces fonctionnelles prédéfinies :
+       interface IntPredicate { boolean test(int v)}
+       interface IntFunction<R> {R apply(int v)}
+       interface IntConsumer {void accept(int v)}
+       ...
+       interface Predicate<T> { boolean test(T t)}
+       interface BiPredicate<T,U> { boolean test(T t, U u)}
+       interface Function<T,R> {R apply(T t)}
+       interface BiFunction<T,U,R> {R apply(T t, U u)}
+       interface Consumer<T> {void accept(T t)}
+       interface BiConsumer<T,U> {void accept(T t, U u)}
+       ...
+                     Méthodes génériques, Lambda expressions, Stream                                19 / 34
+
+--- PAGE 20 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Les lambda expressions
+
+
+
+
+Syntaxe
+            ( [Type] paramètre “,”... ) − > une expression ou un bloc
+
+Utilisation
+Utilisable à tout endroit où est déclarée une interface fonctionnelle dont
+la signature correspond
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                20 / 34
+
+--- PAGE 21 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemples de ExempleLambdaExpressions.java
+void afficheInformaticienAvecPredicat(List<Informaticien> l,
+                                      Predicate<Informaticien> infTest) {
+    for (Informaticien i : l)
+         if (infTest.test(i))
+           System.out.println(i);
+}
+
+
+
+Utilisation
+UneClasse.afficheInformaticienAvecPredicat(liste, i -> i.getGenre() == Genre.HOMME);
+UneClasse.afficheInformaticienAvecPredicat(liste,
+                                          (Informaticien i) -> i.getGenre() == Genre.FEMME);
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                21 / 34
+
+--- PAGE 22 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemples de ExempleLambdaExpressions.java
+void traiterInformaticienAvecPredicat(List<Informaticien> l,
+                                      Predicate<Informaticien> infTest,
+                                      Consumer<Informaticien> action) {
+    for (Informaticien i : l)
+         if (infTest.test(i))
+           action.accept(i);
+}
+
+
+
+Utilisation
+UneClasse.traiterInformaticienAvecPredicat(liste,
+                                           i -> i.getGenre() == Genre.HOMME,
+                                           i -> System.out.println(i.toString()));
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                22 / 34
+
+--- PAGE 23 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemples de ExempleLambdaExpressions.java
+void traiterDonneesInformaticienAvecPredicat(List<Informaticien> l,
+                                              Predicate<Informaticien> infTest,
+                                              Function<Informaticien, Type> fonction,
+                                              Consumer<Type> action) {
+    for (Informaticien i : l)
+         if (infTest.test(i)) {
+             Type leType = fonction.apply(i);
+             action.accept(leType);
+         }
+}
+
+
+
+Utilisation
+UneClasse.traiterDonneesInformaticienAvecPredicat(liste,
+                                                 i -> i.getGenre() == Genre.HOMME,
+                                                 i-> i.getType(),
+                                                 type -> System.out.println(type));
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                23 / 34
+
+--- PAGE 24 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Un fonctionnement générique
+
+
+
+
+Des étapes classiques
+Pour chaque élément X d’une collection :
+       vérifier si une condition est remplie
+       associer une valeur Y à chaque élément X dont la condition est
+       vérifiée
+       effectuer une action sur cette valeur Y
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                24 / 34
+
+--- PAGE 25 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Exemple générique
+
+ProcessElements                                                                                        (source Oracle)
+
+    class ProcessElements {
+        public static <X, Y> void processElements(
+            Iterable<X> source,
+            Predicate<X> tester,
+            Function <X, Y> mapper,
+            Consumer<Y> block) {
+                for (X p : source) {
+                     if (tester.test(p)) {
+                         Y data = mapper.apply(p);
+                         block.accept(data);
+                    }
+                }
+            }
+    }
+
+
+
+Exemple d’utilisation
+    ProcessElements.processElements(liste,
+                                    i -> i.getGenre() == Genre.HOMME,
+                                    i-> i.getType(),
+                                    type -> System.out.println(type));
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                            25 / 34
+
+--- PAGE 26 ---
+Collections Autoboxing Interface fonct Lambda / Stream          Exemples Process Générique Agrégats
+
+
+Comparaison ProcessElements vs Agrégats                                                                 (source Oracle)
+
+
+
+
+Comparaison
+  ProcessElements                           Agrégats
+  source d’éléments (collection)          Stream<E> stream()
+  sélectionner les éléments              Stream<T> filter(Predicate<? super T> predicate)
+  obtenir une valeur liée à l’élément   <R> Stream<R> map(Function<? super T,? extends R> mapper)
+  effectuer une action sur la valeur        void forEach(Consumer<? super T> action)
+
+Stream : une séquence d’éléments, il ne s’agit pas d’une structure de données
+comme les collections.
+filter, map et forEach sont des opérations d’agrégat, opérations qui sont
+effectuées sur des Stream.
+L’ensemble forme un ≪ pipeline ≫ d’opérations
+Utilisation possible des lambda expressions
+
+
+
+
+                       Méthodes génériques, Lambda expressions, Stream                                        26 / 34
+
+--- PAGE 27 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Exemples
+
+liste.stream().filter(i->i.getGenre()==Genre.HOMME).map(i->i.getType()).forEach(t->System.out.println(t));
+liste.stream()
+     .filter(i->i.getGenre()==Genre.HOMME)
+     .map(i->i.getType())
+     .forEach(t->System.out.println(t));
+liste.stream()
+     .filter(i->i.getGenre()==Genre.FEMME)
+     .mapToInt(Informaticien::getAge)
+     .average() // retourne un OptionalDouble car peut etre vide
+     .getAsDouble()
+liste.stream()
+     .filter(GeekInformaticien.class::isInstance)
+     .mapToInt(Informaticien::getAge)
+     .max().getAsInt()
+
+Optional<Informaticien> optInf25=liste.stream()
+                                   .filter(inf->inf.getAge()>25)
+                                   .findFirst(); //voir aussi findAny()
+if (optInf25.isPresent())
+    System.out.println(optInf25.get());
+
+IntStream.range(1, 10)
+            .parallel()
+            .reduce(1, (a, b) -> a * b);
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                27 / 34
+
+--- PAGE 28 ---
+Collections Autoboxing Interface fonct Lambda / Stream           Exemples Process Générique Agrégats
+
+
+Explication de traces
+
+
+Exemple 1
+liste.stream().map(Informaticien::getAge).filter(age->age>20).forEach(System.out::println);
+
+// avec traces
+liste.stream()
+     .map(inf-> {System.out.println("map-"+inf); return inf.getAge();})
+     .filter(age->{System.out.println("filt-"+age);return age>20;})
+     .forEach(age->System.out.println("for-"+age));
+
+
+
+Trace exemple 1
+map-Informaticien:H1(homme,debutant)    filt-20
+map-Informaticien:F1(femme,debutant)    filt-16
+map-GeekInformaticien:H2(homme,debutant) filt-20
+map-Informaticien:F2(femme,nouveau)     filt-22        for -22
+map-Informaticien:H3(homme,confirme)    filt-50        for -50
+map-GeekInformaticien:F3(femme,confirme) filt-18
+map-GeekInformaticien:H4(homme,gourou) filt-25         for -25
+map-Informaticien:F4(femme,confirme)    filt-40        for -40
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                   28 / 34
+
+--- PAGE 29 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemple 2 inversion map↔filter
+liste.stream()
+     .filter(inf->{System.out.println("filt-"+inf);return inf.getAge()>20;})
+     .map(inf-> {System.out.println("map-"+inf); return inf.getAge();})
+     .forEach(age->System.out.println("for-"+age));
+
+
+
+Trace exemple 2 (nb opérations différent)
+filt-Informaticien:H1(homme,debutant)
+filt-Informaticien:F1(femme,debutant)
+filt-GeekInformaticien:H2(homme,debutant)
+filt-Informaticien:F2(femme,nouveau)      map-Informaticien:F2(femme,nouveau)               for -22
+filt-Informaticien:H3(homme,confirme)     map-Informaticien:H3(homme,confirme)              for -50
+filt-GeekInformaticien:F3(femme,confirme)
+filt-GeekInformaticien:H4(homme,gourou)   map-GeekInformaticien:H4(homme,gourou)            for -25
+filt-Informaticien:F4(femme,confirme)     map-Informaticien:F4(femme,confirme)              for -40
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                29 / 34
+
+--- PAGE 30 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemple 2 inversion map↔filter et parallèlisation
+liste.stream()
+     .parallel()
+     .filter(inf->{System.out.println("filt-"+inf);return inf.getAge()>20;})
+     .map(inf-> {System.out.println("map-"+inf); return inf.getAge();})
+     .forEach(age->System.out.println("for-"+age));
+
+
+
+Trace exemple 2
+filt-GeekInformaticien:F3(femme,confirme)
+filt-Informaticien:H3(homme,confirme)
+filt-Informaticien:F1(femme,debutant)
+filt-GeekInformaticien:H2(homme,debutant)
+filt-Informaticien:F4(femme,confirme)
+filt-Informaticien:H1(homme,debutant)
+                                        map-Informaticien:F4(femme,confirme)    for -40
+                                        map-Informaticien:H3(homme,confirme)
+filt-GeekInformaticien:H4(homme,gourou) map-GeekInformaticien:H4(homme,gourou) for-25
+                                                                                for -50
+filt-Informaticien:F2(femme,nouveau)    map-Informaticien:F2(femme,nouveau)     for -22
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                30 / 34
+
+--- PAGE 31 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+
+
+Exemple 3
+liste.stream().sorted((inf1,inf2)->inf1.getNom().compareTo(inf2.getNom())).forEach(System.out::println);
+
+liste.stream()
+     .sorted((inf1,inf2)->{System.out.println("tri-"+inf1.getNom()+"-"+inf2.getNom());
+                            return inf1.getNom().compareTo(inf2.getNom());
+                           })
+     .forEach(inf->System.out.println("for-"+inf));
+
+
+
+Trace exemple 3
+tri-F1-H1 tri-H2-F1 tri-H2-H1 tri-F2-H1 tri-F2-F1 tri-H3-H1 tri-H3-H2
+tri-F3-H1 tri-F3-F2 tri-H4-H1 tri-H4-H3 tri-F4-H1 tri-F4-F2 tri-F4-F3
+for -Informaticien:F1(femme,debutant)
+for -Informaticien:F2(femme,nouveau)
+for -GeekInformaticien:F3(femme,confirme)
+for -Informaticien:F4(femme,confirme)
+for -Informaticien:H1(homme,debutant)
+for -GeekInformaticien:H2(homme,debutant)
+for -Informaticien:H3(homme,confirme)
+for -GeekInformaticien:H4(homme,gourou)
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                31 / 34
+
+--- PAGE 32 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Opérations intermédiaires / terminales
+Opérations intermédiaires
+                                                                 Remarque
+     filter                                                      Les opérations intermédiaires laissent le
+       map                                                       stream ouvert. L’opération finale
+                                                                 déclenche la consommation des éléments
+       sorted                                                    du stream à travers l’enchaı̂nement des
+                                                                 opérations du pipeline
+       ...
+Opérations terminales
+count/max/min/... comme le nom l’indique
+       forEach consomme les éléments du stream
+         reduce aggrège les éléments du stream pour ne fournir q’un
+                unique résultat (de type Optional pouvant contenir un
+                résultat ou pas)
+         collect collecte les éléments du stream à l’aide d’un Collector,
+                 cela peut par exemple être sous la forme d’une List, ...
+                 Des Collector de base sont fournis dans Collectors.
+                     Méthodes génériques, Lambda expressions, Stream                                    32 / 34
+
+--- PAGE 33 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Reduce
+
+
+Signature de reduce
+         <U> U reduce(U identity,
+                      BiFunction<U,? super T,U> accumulator,
+                      BinaryOperator<U> combiner)
+il existe d’autres signatures simplifiées
+
+Exemple, réécriture de sum sur les âges
+liste.stream().mapToInt(Informaticien::getAge).sum();
+
+
+liste.stream()
+     .parallel()
+     .reduce(0, (accu, inf) -> accu+inf.getAge(), (res1, res2)-> res1+res2
+
+
+
+
+                     Méthodes génériques, Lambda expressions, Stream                                33 / 34
+
+--- PAGE 34 ---
+Collections Autoboxing Interface fonct Lambda / Stream        Exemples Process Générique Agrégats
+
+
+Collect
+Signatures de collect
+      <R,A> R collect(Collector<? super T,A,R> collector)
+
+      <R> R collect(Supplier<R> supplier,
+                    BiConsumer<R,? super T> accumulator,
+                    BiConsumer<R,R> combiner)
+
+Exemples
+liste.stream()
+     .filter(inf->inf.getGenre()==Genre.FEMME)
+     .map(Informaticien::getAge)
+     .collect(Collectors.toList())
+
+Map<Genre, List<Informaticien>> infParGenre;
+infParGenre = liste.stream().collect(Collectors.groupingBy(inf -> inf.getGenre()));
+
+String noms=liste.stream().map(Informaticien::getNom).collect(Collectors.joining(","));
+
+liste.parallelStream()
+     .filter(inf->inf.getGenre()==Genre.FEMME)
+     .map(Informaticien::getAge)
+     .collect(()->new ArrayList<Integer>(),(l,age)->l.add(age),(l1,l2)->l1.addAll(l2))
+
+                     Méthodes génériques, Lambda expressions, Stream                                34 / 34

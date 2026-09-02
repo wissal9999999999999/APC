@@ -1,0 +1,1151 @@
+--- PAGE 1 ---
+Plan
+
+
+
+
+            Programmation
+            - Introduction -
+
+             Nicolas Malandain
+
+
+
+
+Programmation - Introduction -   1 / 46
+
+--- PAGE 2 ---
+Plan
+
+
+
+
+Introduction à Java                                        Itération
+                                                      4   Classe
+1   Introduction
+                                                            Description
+       Présentation
+                                                            En java
+       Caractéristiques
+                                                      5   Organisation
+                                                            Fichiers et packages
+Le langage Java
+                                                            Commandes
+2   Types et Variables
+      Types simples                                   Exemple
+      Types complexes
+      Variables                                       6   La classe Ampoule
+3   Structures de contrôle                           7   La classe ClassMain
+      Alternative                                     8   Organisation
+
+
+
+                     Programmation - Introduction -                                2 / 46
+
+--- PAGE 3 ---
+Introduction
+
+
+
+
+                     Part I
+
+    Introduction à Java
+
+
+
+
+Programmation - Introduction -   3 / 46
+
+--- PAGE 4 ---
+Introduction        Présentation Caractéristiques
+
+
+Historique. . .
+                       Une techno pour les gouverner tous
+
+          1991 “Green Project” projet chez SUN1 ayant pour but d’embarquer
+               une technologie dans différents appareils (TV, électroménager,
+               . . . ) permettant de les piloter et de les faire communiquer entre
+               eux
+          1992 démonstration d’une télécommande (nom: *7) capable de piloter
+               des appareils électroménager, mais pas de marché pour ce
+               système. Un langage plus léger et facile que le C++ fut créé :
+               Oak (chêne) rebaptisé ensuite Java.
+Entre temps le Web se développe rapidement
+          1995 création d’un navigateur “WebRunner” qui allait s’appeler plus
+               tard “HotJava”
+               démonstration d’applications tournant dans un navigateur
+               (molécules 3D, . . . ): les applets
+               mise a disposition du code source à la communauté des
+               développeurs (succès immédiat)
+  1
+      http://www.sun.com
+                      Programmation - Introduction -                                     4 / 46
+
+--- PAGE 5 ---
+Introduction        Présentation Caractéristiques
+
+
+
+
+ . . . essor très important du langage qui était multiplateforme,
+       petite taille des applications : idéal pour le web
+       Netscape décide d’intégrer cette technologie dans son
+       navigateur
+1996 Java Development Kit 1.0
+1997 JDK 1.1 : amélioration de la syntaxe et des exceptions,
+     refonte de l’interface graphique (listener)
+     Netscape Communicator supporte la totalité de l’API
+1998 Java 2 (=J2SE 1.2) : apport du multimédia, une nouvelle
+     interface graphique incorporée : Swing
+2004 Java 5 : ajout de fonctionnalités : types génériques,
+     autoboxing, types énumérés, nouveau look, . . .
+2009 Sun est racheté par Oracle
+
+
+
+            Programmation - Introduction -                                     5 / 46
+
+--- PAGE 6 ---
+Introduction        Présentation Caractéristiques
+
+
+Portabilité. . .
+Langage “classique”
+
+                                           fichier
+                                           source
+
+                                                               compilation
+
+
+
+            fichier compilé           fichier compilé               fichier compilé
+              pour Linux              pour Windows                  pour MacOS X
+               sur 80x86                 sur 80x86                      sur M1
+
+                                                                                exécution
+                    ux
+
+
+
+
+                                             s
+
+
+
+
+                                                                              X
+                                           ow
+                 n
+
+
+
+
+                                                                         OS
+              Li
+
+
+
+
+                                      nd
+
+
+
+
+                                                                      c
+                                    Wi
+
+
+
+
+                                                                   Ma
+
+
+                     Programmation - Introduction -                                         6 / 46
+
+--- PAGE 7 ---
+Introduction        Présentation Caractéristiques
+
+
+Portabilité
+Langage Java : “Compile one time, run anywhere”
+
+
+
+
+                                         !
+                                                          "
+                                                                    #
+
+
+
+
+                 Programmation - Introduction -                                     7 / 46
+
+--- PAGE 8 ---
+Introduction        Présentation Caractéristiques
+
+
+Caractéristiques de Java
+
+
+
+
+    langage objet (pas d’héritage multiple)
+    nécessite une JVM pour l’exécution
+    indépendant de la plateforme
+    sécurisation des exécutions
+    ramasse miette (garbage collector)
+    Java ̸= Javascript
+
+
+
+
+                   Programmation - Introduction -                                     8 / 46
+
+--- PAGE 9 ---
+Types et Variables Structures de contrôle Classe Organisation
+
+
+
+
+                                                      Part II
+
+                                         Le langage Java
+
+
+
+
+                                 Programmation - Introduction -   9 / 46
+
+--- PAGE 10 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Qu’est ce qu’un type
+
+
+  Definition
+  Le type d’une donnée détermine
+         la taille de son espace de stockage
+         l’espace de ses valeurs
+         les opérations possibles
+
+
+
+  Java possède deux catégories de types :
+        simples : des valeurs “simples” (entiers, caractères, . . . )
+   complexes : des classes et des tableaux
+
+
+
+                                 Programmation - Introduction -                                             10 / 46
+
+--- PAGE 11 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Les types simples de Java
+
+    byte             entier 8 bits                                  -128 - 127
+    short            entier 16 bits                               -32768 - 32767
+    int              entier 32 bits                          -2147483648 - 2147483647
+    long             entier 64 bits                 -9223372036854775808 - 9223372036854775807
+    float            décimal2 32 bits                           ≈ ±10−45 − ±1038
+    double           décimal 64 bits                           ≈ ±10−323 − ±10308
+    char             caractère3 16 bits
+    boolean          booléen                                                 true / false
+
+
+  Exemple
+
+           int a=3,b;
+           b=a+2;
+
+
+
+
+      2
+          IEE754
+      3
+          Unicode
+                                 Programmation - Introduction -                                             11 / 46
+
+--- PAGE 12 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Objet et référence
+
+                         En Java, les types complexes sont des classes
+
+  Vocabulaire
+  Une variable de type classe contient une “référence” sur un objet
+  résultant de l’instanciation d’une classe (ou null).
+
+
+  Exemple
+
+             Scanner sc = new Scanner(System.in);
+             int i = sc.nextInt();
+
+
+
+  L’API4 fournit une bibliothèque très importante de classes
+  (http://java.oracle.com).
+      4
+          Application Program Interface
+                                 Programmation - Introduction -                                             12 / 46
+
+--- PAGE 13 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Tableau : vecteur de données de taille fixe. . .
+
+
+                               Le type tableau est un type complexe
+
+  Syntaxe
+
+      typeelement[] tableauelements1 = {elt1, elt2, ... , eltn};
+      typeelement[] tableauelements2;
+      tableauelements2 = new typeelement[taille];
+      tableauelements2[x]=valeur; // 0 ⩽ x < taille
+
+
+         L’attribut length permet d’obtenir la taille du tableau
+         La classe Arrays permet la manipulation de tableaux a l’aide de
+         méthodes de classe (tri, copie, . . . ).
+
+
+
+                                 Programmation - Introduction -                                             13 / 46
+
+--- PAGE 14 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+
+
+  Exemples
+
+           int[] taba = new int[2];
+           taba[0]=1;
+           taba[taba.length-1]=2; // le dernier élément
+           taba[2]=3; // lancement d’une exception
+           System.out.println("taille␣de␣taba␣:␣"+taba.length);
+
+           int[][] tabb = new int[2][3];
+           tabb[0][1]=5;
+
+           int[][] tabc = new int[4][];
+           // nécessite l’allocation des 4 sous tableaux
+
+
+
+
+                                 Programmation - Introduction -                                             14 / 46
+
+--- PAGE 15 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Manipulation. . .
+
+
+  Égalité
+  Le comportement de l’opérateur == dépend du type des variables :
+            simple : égalité des valeurs
+              objet : égalité des références
+
+  Pour la comparaison d’objets Java fournit la méthode equals
+  D’une manière générale, les variables de type :
+       simple se manipulent par valeur
+       complexe se manipulent par référence
+
+
+
+
+                                 Programmation - Introduction -                                             15 / 46
+
+--- PAGE 16 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+  Exemples
+
+        int a=1,b=1;
+        System.out.println(a==b);                                                       // true
+
+        Integer i1=new Integer(1),i2=new Integer(1);
+        System.out.println(i1==i2);                                                     // false
+        System.out.println(i1.equals(i2));                                              // true
+
+        int[] ta={1,2,3},tb={1,2,3};
+        System.out.println(ta==tb);                                                     // false
+        System.out.println(ta.equals(tb));                                              // false
+        System.out.println(Arrays.equals(ta,tb));                                       //true
+
+        Integer[][] tc={{new Integer(1),new Integer(2)},
+                      {new Integer(1),new Integer(2)}};
+        Integer[][] td={{new Integer(1),new Integer(2)},
+                      {new Integer(1),new Integer(2)}};
+        System.out.println(Arrays.equals(tc[0],tc[1])); // true
+        System.out.println(Arrays.equals(tc,td));       // false
+        System.out.println(Arrays.deepEquals(tc,td)); // true
+
+                                 Programmation - Introduction -                                             16 / 46
+
+--- PAGE 17 ---
+Types et Variables Structures de contrôle Classe Organisation    Types simples Types complexes Variables
+
+
+ Opérateurs
+
+
+  Opérateurs arithmétiques
+  + - * / %
+
+  Opérateurs d’affectation
+  = += -= *= /= %= ++ --
+
+  Opérateurs de comparaison
+  < > <= >= == !=
+
+  Opérateurs logiques
+  ! && ||
+
+
+
+                                 Programmation - Introduction -                                             17 / 46
+
+--- PAGE 18 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Conditionnelle
+
+
+
+    Permet d’exécuter une partie de code en fonction du résultat d’un test
+
+  Syntaxe
+
+          if (exprBooléenne)
+             InstructionOuBloc
+        [ else
+             InstructionOuBloc
+        ]
+
+
+
+
+                                 Programmation - Introduction -                            18 / 46
+
+--- PAGE 19 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple
+
+    Branchement en fonction d’une valeur entière, d’un énuméré ou d’une
+                      chaı̂ne de caractères (Java 7).
+
+  Syntaxe
+
+           switch (expr) {
+             case const1 :
+               instructionsCas1
+               [break;]
+             case const2 :
+               instructionsCas2
+               [break;]
+             ...
+             default :
+               instructionsparDefaut
+               [break;]
+           }
+
+
+                                 Programmation - Introduction -                            19 / 46
+
+--- PAGE 20 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple : exemples
+
+
+        static void exemple1(String[] args) {
+            int lg = args.length;
+
+              switch (lg) {
+                  case 1 :
+                     System.out.println("1");
+                     break;
+                  case 2:
+                     System.out.println("2");
+                     break;
+                  default :
+                     System.out.println("autre␣que␣1␣ou␣2");
+              }
+        }
+
+
+
+
+                                 Programmation - Introduction -                            20 / 46
+
+--- PAGE 21 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple : exemples
+
+
+
+        static void exemple2(String[] args) {
+            switch (args[0]) {
+                case "aaa":
+                   System.out.println("aaa");
+                   break;
+                case "bbb":
+                   System.out.println("bbb");
+                   break;
+                default :
+                   System.out.println("default");
+            }
+        }
+
+
+
+
+                                 Programmation - Introduction -                            21 / 46
+
+--- PAGE 22 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple : exemples
+
+
+            static void exemple3(String[] args) {
+              int lg = args.length;
+
+              int ref=switch (lg) {
+                  case 1 -> 10;
+
+                    case 2 -> {
+                        System.out.println("toto");
+                        yield 20;
+                    }
+
+                    default -> 100;
+
+              };
+        }
+
+
+
+
+                                 Programmation - Introduction -                            22 / 46
+
+--- PAGE 23 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple : exemples
+
+
+
+        enum EX {A,B,C};
+        static void exemple4(String[] args) {
+            int ref;
+
+              switch (EX.valueOf(args[0])) {
+                  case A -> ref=42;
+
+                    case B -> ref=666;
+
+                    default -> ref= 100;
+
+              }
+        }
+
+
+
+
+                                 Programmation - Introduction -                            23 / 46
+
+--- PAGE 24 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Choix multiple : exemples
+
+
+
+
+        static int exemple5(Object o) {
+
+              return switch (o) {
+                  case Integer i -> i.intValue();
+                  case String s -> Integer.parseInt(s);
+                  case null -> 0;
+                  default -> 1;
+
+              };
+        }
+
+
+
+
+                                 Programmation - Introduction -                            24 / 46
+
+--- PAGE 25 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+ Différents types d’itération
+
+
+
+                         L’itération permet la répétition d’instructions
+
+  Syntaxe
+
+      do                                                 while (exprBooléenne)
+        instructionOuBloc                                 instructionOuBloc
+      while (exprBooléenne);
+
+      for(initialisation;exprBooléenne;exprVariation)
+        instructionOuBloc
+
+
+
+
+                                 Programmation - Introduction -                            25 / 46
+
+--- PAGE 26 ---
+Types et Variables Structures de contrôle Classe Organisation    Alternative Itération
+
+
+
+
+  Exemples
+
+           int[] tableau={1,4,34,25,15,16};
+           int compteur=0;
+           do
+             compteur++;
+           while (compteur<tableau.length && tableau[compteur]%3 != 0);
+           if (compteur!=tableau.length) {
+             while (compteur>=0 && tableau[compteur]%2 != 0)
+               compteur--;
+             for(int i=0; i <= compteur; i++)
+               System.out.println(tableau[i]);
+           }
+
+
+
+
+                                 Programmation - Introduction -                            26 / 46
+
+--- PAGE 27 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Qu’est ce qu’une classe
+
+  Définition
+  Une classe (type complexe) est constituée :
+         d’attributs (un état interne)
+         de constructeurs / destructeurs
+         de méthodes dont les accesseurs
+  Un objet résulte de l’instanciation d’une classe
+  Manipulation d’un objet
+         initialisation à l’instanciation (construction)
+         modification / consultation de l’état via l’envoi de messages
+         destruction lorsqu’il n’est plus référencé
+  Les méthodes d’une classe forment l’interface permettant de manipuler
+  les objets.
+
+                                 Programmation - Introduction -                         27 / 46
+
+--- PAGE 28 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Constructeur/Destructeur
+
+
+
+  Le constructeur
+      permet d’initialiser un objet au moment de son instanciation
+         garantie un état initial stable de l’objet.
+
+  Le destructeur
+      permet de libérer l’espace mémoire réservé à l’objet
+         nettoie proprement le contenu de l’objet avant sa mort
+
+
+
+
+                                 Programmation - Introduction -                         28 / 46
+
+--- PAGE 29 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Encapsulation
+
+
+
+
+  Définition
+  Cette notion regroupe deux concepts :
+         regrouper une structure et des fonctions dans un même module
+         ⇒ la classe (attributs + méthodes)
+         assurer la cohérence de la classe en empêchant des manipulations
+         ⇒ limiter la portée des attributs et des méthodes
+
+
+
+
+                                 Programmation - Introduction -                         29 / 46
+
+--- PAGE 30 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Les classes en Java
+  Syntaxe
+
+           class NomClasse {
+             // attributs
+             accès1 typeA attributA1, ..., attributAn=initialisation1;
+             accès2 typeB attributB1=initialisation2, ..., attributBn;
+             ...
+             //constructeurs
+             accès3 NomClasse([type1 param1, type2 param2, ...) {
+               // instructions
+             }
+             ...
+             // méthodes
+             accès4 type nomMethodeI([type1 param1, type2 param2, ...]) {
+               // instructions
+             }
+             ...
+           }
+
+
+                                 Programmation - Introduction -                         30 / 46
+
+--- PAGE 31 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Spécificateurs d’accès des membres
+
+
+          Les membres d’une classe sont ils accessibles à une autre classe
+
+  4 spécificateurs :
+  Les membres
+               public sont tous visibles
+        protected ne sont visibles que par les classes filles ou de même
+                  package
+             private ne sont pas visibles
+  ‘‘friendly ’’ sont visibles pour les classes du même package
+
+                  Le spécificateur doit se placer devant chaque membre
+
+
+
+                                 Programmation - Introduction -                         31 / 46
+
+--- PAGE 32 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+ Constructeur / Destructeur
+
+  Syntaxe : constructeur
+
+            NomClasse([paramètres]) {
+              // instructions
+            }
+
+  Si aucun constructeur n’est défini, il y a un constructeur par défaut
+
+  Destructeur
+      Java ne possède pas de destructeur, un ramasse-miettea se charge
+      de libérer la mémoire.
+           La méthode finalize() appelée avant destruction de l’objet n’est
+           pas un destructeur. Elle n’est utile que pour les composants java
+           natifs qui auraient alloués de la mémoire.
+      a
+          Garbage Collector
+
+
+                                 Programmation - Introduction -                         32 / 46
+
+--- PAGE 33 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+   this : la référence et l’appel du constructeur 1 / 2
+
+
+
+
+  Définition / Utilisation
+         this est une référence à l’objet dans lequel il se trouve
+         permet de désambiguı̈ser un attribut et un paramètre de même nom
+         permet de passer l’objet en paramètre
+
+
+
+
+                                 Programmation - Introduction -                         33 / 46
+
+--- PAGE 34 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+   this : la référence et l’appel du constructeur 2 / 2
+  Rectangle.java
+  public class Rectangle {
+      private int x,y, longueur, largeur;
+
+      public Rectangle(int x, int y, int longueur, int largeur) {
+          this .x = x;
+          this .y = y;
+          this .longueur = longueur;
+          this .largeur = largeur;
+      }
+      public Rectangle(int longueur, int largeur) {
+          this (0, 0, longueur, largeur);
+      }
+      public Rectangle() {
+          this (0, 0, 0, 0);
+      }
+
+      public String toString() {
+        return String.format("%d,%d,%d,%d", this.x, this.y, this.longueur, this.largeur);
+        // return this.x+","+this.y+","+this.longueur+","+this.largeur; // lourd
+        // return x+","+y+","+longueur+","+largeur; (ne respecte pas les règles ‘‘Java’’)
+      }
+      public void enregistrement(Stockage stockage) {
+          stockage.enregistrer(this);
+      }
+  }
+                                 Programmation - Introduction -                              34 / 46
+
+--- PAGE 35 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+   Compiler / Exécuter un programme java 1 / 2
+
+  Première méthode exécutée à l’appel d’un programme java
+  Syntaxe
+
+           public static void main(String[] args) {
+             // instructions
+           }
+
+
+  Cette méthode doit être placée dans une classe “public” (accessible).
+
+
+  Remarques :
+         une classe dédiée à main
+         chaque classe peut avoir sa méthode main permettant de la tester
+
+
+
+                                 Programmation - Introduction -                         35 / 46
+
+--- PAGE 36 ---
+Types et Variables Structures de contrôle Classe Organisation    Description En java
+
+
+   Compiler / Exécuter un programme java 2 / 2
+
+  Exemple.java
+  public class Exemple {
+
+      public static void main(String[] args) {
+        System.out.println("42␣est␣la␣réponse");
+      }
+
+  }
+
+
+
+  Compilation du fichier source
+  javac Exemple.java
+
+  Exécution de la classe
+  java Exemple
+
+
+                                 Programmation - Introduction -                         36 / 46
+
+--- PAGE 37 ---
+Types et Variables Structures de contrôle Classe Organisation    Fichiers et packages Commandes
+
+
+ Package
+
+
+            Bibliothèque offrant des classes et des méthodes via une API
+
+  Pour le développeur du package
+      il est constitué de classes
+         ces classes sont réparties dans des fichiers
+         ces fichiers sont organisés dans des répertoires
+         l’arborescence peut être compressée dans un fichier .jar
+
+
+
+  Le nom des packages permet la gestion d’un espace de nommage
+  ⇒ résoud les ambiguı̈tés sur les noms de classes
+
+
+                                 Programmation - Introduction -                                    37 / 46
+
+--- PAGE 38 ---
+Types et Variables Structures de contrôle Classe Organisation    Fichiers et packages Commandes
+
+
+ Utilisation / Création de packages
+  Importation
+      import nom.du.package.*;
+      Importe l’ensemble des classes du package nom.du.package
+         import nom.du.package.UneClasse;
+         Importe uniquement UneClasse
+
+  Création
+  Directive en début de fichier : package nom.du.package ;
+         les sources sont placées dans chemin /src/nom/du/package
+         les classes seront compilées dans
+         chemin /classes/nom/du/package
+         chemin/classes doit être déclaré dans $CLASSPATH ou en
+         paramètre
+         utilisation par import nom.du.package.*;
+  Si le package n’est pas défini, les classes font parti du package “.”
+                                 Programmation - Introduction -                                    38 / 46
+
+--- PAGE 39 ---
+Types et Variables Structures de contrôle Classe Organisation    Fichiers et packages Commandes
+
+
+ Classe publique et fichier
+
+  Définition et syntaxe
+  Seules les classes publiques d’un package sont accessibles par les
+  utilisateurs.
+           public class NomClasse {
+             ...
+           }
+
+
+  Remarques
+         une seule classe publique par unité de compilation (fichier),
+         le nom de cette classe doit porter le nom du fichier,
+         les autres classes du fichier sont amicales (friendly), elles sont vues
+         comme support de la classe publique.
+
+
+                                 Programmation - Introduction -                                    39 / 46
+
+--- PAGE 40 ---
+Types et Variables Structures de contrôle Classe Organisation    Fichiers et packages Commandes
+
+
+ Organisation des classes/fichiers/packages/...
+
+
+         répertoire de base
+                 classes
+                         nom/du/package (automatique)
+                         les classes compilées .class du package
+                         des classes compilées
+                 doc
+                 la documentation générée par javadoc
+                 lib
+                 les bibliothèques .jar
+                 src
+                         nom/du/package
+                         les fichiers sources .java du package
+                         des fichiers sources .java
+
+
+
+
+                                 Programmation - Introduction -                                    40 / 46
+
+--- PAGE 41 ---
+Types et Variables Structures de contrôle Classe Organisation    Fichiers et packages Commandes
+
+
+ Compilation/Exécution
+  Syntaxe
+         Compilation (au dessus de src)
+                  javac -classpath ./classes
+                        -sourcepath ./src
+                        -d ./classes
+                        ./src/chemin/LeFichierSource.java
+
+         Exécution (au dessus de classes)
+         java -classpath classes nom.du.package.LaClasse
+         remarque: omettre le nom du package si il n’y en a pas
+
+  Remarques
+     plusieurs répertoires de classes ou de sources → séparateur ”:”
+         si les packages sont dans des jar, ajouter les “jar” comme des
+         répertoires
+                                 Programmation - Introduction -                                    41 / 46
+
+--- PAGE 42 ---
+La classe Ampoule La classe ClassMain Organisation
+
+
+
+
+                                            Part III
+
+                                           Exemple
+
+
+
+
+                         Programmation - Introduction -   42 / 46
+
+--- PAGE 43 ---
+La classe Ampoule La classe ClassMain Organisation
+
+
+
+
+Ampoule.java
+package fr.insarouen.iti.prog.cours1.materiel;                    public void setCouleur(Color couleur) {
+                                                                    this .couleur=couleur;
+import java.awt.Color;                                            }
+
+public class Ampoule {                                            public boolean basculer() {
+  private Color couleur=Color.WHITE;                                if (this.dureeVie>0) {
+  private boolean etat=false;                                          this .user();
+  private int dureeVie;                                                this .etat=!this.etat;
+                                                                    }
+ // constructeurs                                                   else {
+ public Ampoule() {                                                    this .etat=false;
+   this .dureeVie=1+Math.round((float)Math.random()*50);            }
+ }                                                                  return this .etat;
+ public Ampoule(Color couleur) {                                  }
+   this ();
+   this .couleur=couleur;                                         public boolean getEtat() {
+ }                                                                  return this .etat;
+                                                                  }
+ // méthodes
+ public Color getCouleur() {                                      private void user() {
+   return this .couleur;                                            this .dureeVie--;
+ }                                                                }
+                                                              }
+
+
+
+
+                             Programmation - Introduction -                                                 43 / 46
+
+--- PAGE 44 ---
+La classe Ampoule La classe ClassMain Organisation
+
+
+
+
+ClassMainTestAmpoule.java
+package fr.insarouen.iti.prog.cours1;
+
+import fr.insarouen.iti.prog.cours1.materiel.Ampoule;
+
+public class ClassMainTestAmpoule {
+
+    public static void main(String[] args) {
+
+        Ampoule ampoule=new Ampoule();
+        int resistance=0;
+        boolean etat=ampoule.getEtat();
+
+        while (etat != ampoule.basculer()) {
+          resistance++;
+          etat=ampoule.getEtat();
+        }
+
+        System.out.println(String.format("Resistance␣à␣l’utilisation␣:␣%d",resistance));
+    }
+}
+
+
+
+
+                                 Programmation - Introduction -                             44 / 46
+
+--- PAGE 45 ---
+La classe Ampoule La classe ClassMain Organisation
+
+
+
+
+Organisation des fichiers
+    répertoire de base
+            src
+                   fr/insarouen/iti/prog/cours1
+                   ClassMainTestAmpoule.java
+                   fr/insarouen/iti/prog/cours1/materiel
+                   Ampoule.java
+            classes
+                   fr/insarouen/iti/prog/cours1
+                   ClassMainTestAmpoule.class
+                   fr/insarouen/iti/prog/cours1/materiel
+                   Ampoule.class
+
+
+
+
+                           Programmation - Introduction -   45 / 46
+
+--- PAGE 46 ---
+La classe Ampoule La classe ClassMain Organisation
+
+
+Pour aller plus loin
+Introduction des modules
+ java.base                   Foundational APIs of the Java SE Platform.
+ java.compiler               Language Model, Annotation Processing, and Java Compiler APIs.
+ java.datatransfer           API for transferring data between and within applications.
+ java.desktop                AWT and Swing user interface toolkits, plus APIs for accessibility, audio
+ java.instrument             Services that allow agents to instrument programs running on the JVM.
+ java.logging                Java Logging API.
+ java.management             Java Management Extensions (JMX) API.
+ java.management.rmi         RMI connector for the Java Management Extensions (JMX) Remote AP
+ java.naming                 Java Naming and Directory Interface (JNDI) API.
+ java.net.http               HTTP Client and WebSocket APIs.
+ java.prefs                  Preferences API.
+ java.rmi                    Remote Method Invocation (RMI) API.
+ java.scripting              Scripting API.
+ java.se                     API of the Java SE Platform.
+ java.security.jgss          Java binding of the IETF Generic Security Services API (GSS-API).
+ java.security.sasl          Java support for the IETF Simple Authentication and Security Layer (SA
+ java.sql                    JDBC API.
+ java.sql.rowset             JDBC RowSet API.
+ java.transaction.xa         An API for supporting distributed transactions in JDBC.
+ java.xml                    Java API for XML Processing (JAXP), the Streaming API for XML (StA
+ java.xml.crypto             API for XML cryptography.
+
+                           Programmation - Introduction -                                     46 / 46

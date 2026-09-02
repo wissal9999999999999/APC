@@ -1,0 +1,481 @@
+--- PAGE 1 ---
+INSA         Informatique                                        UV Statistique
+Rouen        Technologie
+Normandie    Information                                            Cours n°8
+
+
+                            UV Statistique pour l'Ingénieur
+
+
+
+                                    Cours n° 8
+
+
+
+                        Statistique inférentielle : estimation
+
+                       méthodes d'estimation par intervalle
+
+ Ph. LERAY - A. ROGOZAN                                                           1
+
+--- PAGE 2 ---
+INSA          Informatique                                           UV Statistique
+Rouen         Technologie
+Normandie     Information                                               Cours n°8
+
+
+    Estimation par intervalle de confiance d'un paramètre
+• Soit T un estimateur ponctuel du paramètre θ d'une loi
+  supposée connue (choisir l'estimateur T le plus précis )
+
+• Objectif: construire un estimateur par intervalle de confiance
+  [T 1 , T 2 ] de niveau de confiance 1-α
+
+      
+            le risque (statistique) que le paramètre θ soit en dehors de
+            l'intervalle de confiance estimé est égale à α
+           en répétant un grand nombre de fois l'opération
+            d'échantillonnage (ou l'enquête), les estimations [t 1 , t 2 ]
+            des intervalles de confiances contiendront dans (1-α)%
+            des cas le paramètre θ
+ Ph. LERAY - A. ROGOZAN                                                               2
+
+--- PAGE 3 ---
+INSA           Informatique                                                 UV Statistique
+Rouen          Technologie
+Normandie      Information                                                     Cours n°8
+
+
+                      Intervalle de confiance d'un paramètre
+• Soit un intervalle de confiance [T 1 , T 2 ]
+  de niveau de confiance 1-α
+
+           Intervalle aléatoire : T 1=1 T        et T 2=2 T 
+           Il n'y pas d'unicité de l'intervalle de confiance
+           Exemple :
+                                     T estimateur sans biais
+                              T1
+                                                    Intervalle de confiance unilatéral
+                                                                [T 1 ,∞]
+
+ Ph. LERAY - A. ROGOZAN                                                                     3
+                                            Texte
+
+--- PAGE 4 ---
+INSA         Informatique                                               UV Statistique
+Rouen        Technologie
+Normandie    Information                                                   Cours n°8
+
+
+                    Intervalle de confiance d'un paramètre
+• Soit un intervalle de confiance [T 1 , T 2 ]                      T 1=1 T 
+  de niveau de confiance 1-α                                        T 2=2 T 
+
+
+
+                            T estimateur sans biais
+                       T1         T2
+                                                Intervalle de confiance bilatéral
+                                                [T , T ] à risques asymétriques
+                                                  1   2
+
+
+
+                            
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                  4
+
+--- PAGE 5 ---
+INSA         Informatique                                                 UV Statistique
+Rouen        Technologie
+Normandie    Information                                                     Cours n°8
+
+
+                    Intervalle de confiance d'un paramètre
+• Soit un intervalle de confiance [T 1 , T 2 ]                        T 1=1 T 
+  de niveau de confiance 1-α                                          T 2=2 T 
+
+
+                             T estimateur sans biais
+
+                        T1            T2
+
+                                                  Intervalle de confiance bilatéral
+                                                  [T , T ] à risques symétriques
+                                                     1    2
+
+
+
+                             
+   Le risque que T 1              Le risque que T 2
+   est égal à α/2                   est égal à α/2
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                    5
+
+--- PAGE 6 ---
+INSA           Informatique                                           UV Statistique
+Rouen          Technologie
+Normandie      Information                                               Cours n°8
+
+
+    Propriétés de l'intervalle de confiance d'un paramètre
+• Soit un intervalle de confiance [T 1 , T 2 ]
+  de niveau de confiance 1-α
+
+     
+            si le niveau de confiance 1-α augmente,
+            alors le risque statistique α doit diminuer
+                              => écartement de l'intervalle de confiance
+     
+            pour un niveau de confiance 1-α fixé
+            si la taille de l'échantillon n augmente,
+            alors Var T  diminue
+                              => T devient plus précis
+                              => réduction de l'intervalle de confiance
+ Ph. LERAY - A. ROGOZAN                                                                6
+
+--- PAGE 7 ---
+INSA           Informatique                                                  UV Statistique
+Rouen          Technologie
+Normandie      Information                                                      Cours n°8
+
+
+                                          Exemple
+• Vous envisagez d'acheter le dernier PC à la mode si les tests
+  de ce modèle à un benchmark B sont supérieurs à 0.2
+• Une enquête sur 400 PC de ce modèle donne un benchmark
+  moyen de 0.23       =0,01
+
+
+• Que décidez-vous ?
+
+                             2    −2
+• Modélisation : B~ N  ,    =10   
+                                                         B−
+                                                             ~ N 0, 1
+• Enquête :                   B~ N  ,  2 / 400        
+                                                          n
+
+                                                               B−
+           fonction de répartition de la loi N :    P −2.58≤     ≤2.58=0.99
+                                                                
+ Ph. LERAY - A. ROGOZAN                                                                       7
+                                                                n
+
+--- PAGE 8 ---
+INSA          Informatique                                               UV Statistique
+Rouen         Technologie
+Normandie     Information                                                   Cours n°8
+
+
+                                       Exemple
+
+                B−                                              
+ •    P −2.58≤     ≤2.58=0.99               P −2.58 ≤ B− ≤2.58 =0.99
+                                                     n          n
+                 n
+
+ • on cherche un intervalle de confiance sur µ
+                                                                             
+     P  B−2.58 ≤  ≤B2.58 =0.99               T 1 =B−2.58        T 2 =B2.58
+               n          n                                n                 n
+
+ • [T 1 , T 2 ] intervalle aléatoire : les bornes sont fonction de
+   l'estimateur T =B
+           application numérique : intervalle = [0.217 , 0.243] ... on achète !
+ Ph. LERAY - A. ROGOZAN                                                                   8
+
+--- PAGE 9 ---
+INSA         Informatique                                   UV Statistique
+Rouen        Technologie
+Normandie    Information                                       Cours n°8
+
+        « Fiche recette » pour l'estimation d'un paramètre
+                    par intervalle de confiance
+• Choisir un estimateur T de θ - le meilleur possible - dont on
+  connaît la loi de probabilité en fonction de θ
+
+• Déterminer la fonction pivotale f(T,θ) , dont la loi de
+  probabilité, notée P, ne dépend plus de θ (P = loi pivot)
+
+• Déterminer l1 et l2 tels que P l 1 f T ,l 2 =1−
+
+• En déduire, si possible,     P T 1T 2 =1−
+  où Ti sont 2 statistiques fonction de T
+
+            T 1=1 T  et T 2=2 T 
+
+ Ph. LERAY - A. ROGOZAN                                                      9
+
+--- PAGE 10 ---
+INSA          Informatique                                                       UV Statistique
+Rouen         Technologie
+Normandie     Information                                                           Cours n°8
+
+
+              Déterminer les bornes l1 et l2 de la loi pivot P
+• A partir de la fonction de répartition de la loi pivot P de la
+  variable aléatoire f(T,θ)
+
+           Intervalle de confiance unilatéral
+            P l 1 f T , =1−         => P  f T , l 1 =
+
+
+                             X = f T , ~P                                −1
+    P  X l 1 =                                                    l 1=F P 
+
+                                                                l1 = fractile d'ordre α
+                                x                                  de la loi pivot P
+
+ Ph. LERAY - A. ROGOZAN                                                                       10
+
+--- PAGE 11 ---
+INSA           Informatique                                                       UV Statistique
+Rouen          Technologie
+Normandie      Information                                                           Cours n°8
+
+
+               Déterminer les bornes l1 et l2 de la loi pivot P
+• A partir de la fonction de répartition de la loi pivot P de la
+  variable aléatoire f(T,θ)
+
+           Intervalle de confiance bilatéral à risques symétriques
+                                                                             −1 
+                              X = f T , ~P                          l 1=F  
+                                                                             P
+                                                                                 2
+                                                              l1 = fractile d'ordre α/2
+   P  X l 1 =                                                   de la loi pivot P
+                 2                          P  X l 2 =
+                                                          2
+                                                                            −1      
+                                                                       l 2=F 1− 
+                                x     x        
+                                                                            P
+                                                                                    2
+                                           1−
+                                 2              2             l2 = fractile d'ordre 1 - α/2
+ Ph. LERAY - A. ROGOZAN
+                                                                     de la loi pivot P     11
+
+--- PAGE 12 ---
+INSA           Informatique                                                       UV Statistique
+Rouen          Technologie
+Normandie      Information                                                           Cours n°8
+
+
+              Quelques lois de fonctions pivotales usuelles
+                                                    2
+•                     2
+          f T =S , =        2
+                                                   p
+                                                      loi du chi-deux à p d.d.l
+           (estimation par intervalle de la variance d'une loi normale)
+
+
+
+
+•     f T = X , =                          p loi de student à p d.d.lµ
+           (estimation par intervalle de l'esperance
+                                          la moyenne d'une loi normale, variance
+            inconnue)
+                              f T ,  suit N(0,1)
+                              (estimation par intervalle d'un paramètre inconnu ,
+                              lorsque E(X)=f() et Var(X)=g() inconnues)
+ Ph. LERAY - A. ROGOZAN                                                                        12
+
+--- PAGE 13 ---
+INSA          Informatique                                              UV Statistique
+Rouen         Technologie
+Normandie     Information                                                  Cours n°8
+
+                                                              2     2
+                  Loi de la fonction pivotale f T =S , = 
+            2
+•          p
+              loi du chi-deux à p degrés de liberté
+                                   2
+                                nS    2                 S ∗2
+                                  2
+                                    ~n−1          n−1 2 ~2n−1
+                                                       
+• Propriétés :
+           E 2p = p
+                      2
+           Var  =2 p
+                      p
+
+           si p>30,          p~N   2 p−1, 1
+                              2 
+                                  2
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                              13
+
+--- PAGE 14 ---
+INSA            Informatique                                           UV Statistique
+Rouen           Technologie
+Normandie       Information                                               Cours n°8
+
+                                        2
+                   Loi du chi-deux     p à p degrés de liberté
+            2                                      p
+•          p = loi de probabilité d'une somme de carrés de v.a.
+    normales centrées réduites indépendantes
+
+                                             2
+                           nS    2
+• Pourquoi d.d.l.=n-1 dans   2
+                               ~n−1 ?
+                           
+                    n                            n       2   n
+             1                         nS
+                                         2
+                                                X i− X 
+          S = ∑  X i − X 2
+            2
+                                           = ∑            = ∑   U
+                                                                  2
+             n i=1                       2
+                                        i=1        2
+                                                            i=1
+                                                                  i
+
+
+
+           les Ui sont des v.a. centrées
+                                  n
+                                          réduites, mais seulement n-1 sont
+            indépendantes car ∑  X i − X =0
+                               i=1
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                             14
+
+--- PAGE 15 ---
+INSA           Informatique                                                        UV Statistique
+Rouen          Technologie
+Normandie      Information                                                            Cours n°8
+
+
+                   Loi de la fonction pivotale f T = X , =
+•  p loi de Student à p degrés de liberté
+
+                              X −                            X −
+                                   ~N 0,1                                ~n−1
+
+                                                              
+                                                  =>
+                                                                  S
+                                                                      ∗2
+
+
+• Propriétés                   n                                     n
+                              une seule inconnue            plusieurs inconnues
+           E  p =0
+                         p                              =E(X)
+           Var  p =     avec p2                    2=Var(X)
+                        p−2
+                                    p                   S*2estimateur de 2
+           si p>30,  p  N 0,        
+                                  p−2
+
+ Ph. LERAY - A. ROGOZAN                                                                         15
+
+--- PAGE 16 ---
+INSA           Informatique                                                    UV Statistique
+Rouen          Technologie
+Normandie      Information                                                        Cours n°8
+
+
+                    Loi de Student           p à p degrés de liberté
+• Soient
+       U une v.a. suivant une loi N(0,1)
+                                    2
+       V une v.a. suivant une loi  p
+                              U
+             alors  p=               suit une loi de Student à p d.d.l
+                                 V
+                                  p
+
+           vérification pour la loi pivotale :
+
+      X −                                S ∗2                        X −
+   U=                             V =n−1 2      d.d.l =n−1                     ~n−1
+       
+                                                                      
+                                                                         S
+                                                                              ∗2
+
+
+       n                                                                     n
+ Ph. LERAY - A. ROGOZAN                                                                     16
+
+--- PAGE 17 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°8
+
+
+                                  Exemples
+• ex1 : soit une v.a. X ~N  , 2  avec µ inconnu et σ connu
+   
+     proposer un estimateur pour le paramètre µ ;
+
+
+           déterminer l'intervalle de confiance bilatéral de niveau de
+            confiance 1-α, puis celui unilatéral
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                      17
+
+--- PAGE 18 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°8
+
+
+                                  Exemples
+• ex2 : soit une v.a. X ~N  , 2  avec µ et σ inconnus
+                                                     2
+   
+     proposer un estimateur pour le paramètre  ;
+
+
+           déterminer l'intervalle de confiance bilatéral de niveau de
+            confiance 1-α
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                      18
+
+--- PAGE 19 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°8
+
+
+                                  Exemples
+• ex3 : soit une v.a. X ~N  , 2  avec µ et σ inconnus
+   
+     proposer un estimateur pour le paramètre µ ;
+
+
+           déterminer l'intervalle de confiance bilatéral de niveau de
+            confiance 1-α
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                      19

@@ -1,0 +1,451 @@
+--- PAGE 1 ---
+DIGITAL
+ ELECTRONICS:
+      AN
+INTRODUCTION
+ H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+WHAT HAVE WE LEARNT?
+• Basic notions on eletrical engineering
+• Understanding and role of semi-conductors in integrated circuits
+How does this relate to digital systems?
+
+--- PAGE 3 ---
+ILO OF THIS SESSION
+
+• Become familiar with digital systems
+• Basic notions of digital electronics
+• Coding the information: different representations of
+  data
+• Logic blocks
+
+--- PAGE 4 ---
+DIGITAL SYSTEMS
+
+• Digital electronics is a branch of electronics which deals with digital format of data and codes
+• The « digital » part is related to a digit standing for low logic 0 and a high logic 1
+• Each digit is a bit and the group of 8 bits stands for a byte
+• A large number of logic gates makes a digital electronic circuit
+• This type of system generates, stores and processes data in terms of both binary states
+
+--- PAGE 5 ---
+ANALOG-DIGITAL CONVERSION
+• In order to convert the digital information on a computer to analog signals for a device and to
+  to convert analog signals to digital information for your computer => A modem is used
+• The conversion is done in two distinguished steps: Temporal sampling and Analog-digital
+  conversion
+
+
+
+
+          Check the explanation https://www.youtube.com/watch?v=Z-sDHDI6FFY
+
+--- PAGE 6 ---
+ANALOG-DIGITAL CONVERSION (ADC)
+
+
+
+
+• The analog signal contains infinite amplitudes => continuous signal
+• The digital signal contains a finite number of values => discrete signal
+
+--- PAGE 7 ---
+ADC PERFORMANCES
+
+• Bandwidth
+  The analog bandwidth of an ADC is that frequency at which
+  the spectral output of the fundamental swept frequency (as
+  determined by the FFT analysis) is reduced by 3 dB.
+
+
+
+• Signal to noise ratio
+ Signal-to-noise ratio is defined as the ratio of the power of
+a signal (meaningful input) to the power of background noise
+
+--- PAGE 8 ---
+ADC PARAMETERS
+• Resolution
+   It is the number of bits it uses to digitize the input samples.
+• Sampling
+   The sampling theorem formulated by Harry Nyquist gives
+   criteria for sampling. According to Nyquist, signals should be
+   sampled with at least twice the bandwidth of the signal to
+   prevent loss of data. The unit of sampling rate is samples per
+   second or Hertz
+• Range
+   Defines the range of the analog signal
+
+--- PAGE 9 ---
+DIGITAL SIGNALS
+• The binary electrical signals can take on different high and low voltage values. These depend on
+  the technology used by the circuit
+• The voltages regularly used in digital systems: 1.2V, 1.8V, 3.3V, 5V, etc.
+• The tolerances are the voltage values for which we always consider that the signal is valid in
+  the high or low state.
+• Real signals do not switch from one state to another in a straightforward manner. There are
+  temporal effects of transitions, as well as parasites which come to disturb the analog signals
+
+--- PAGE 10 ---
+DIGITAL SIGNALS
+
+• An example of a varying signal (from HIGH to LOW state) is the internal clock of a circuit
+• A synchronous circuit is a digital circuit that changes states according to a clock signal
+• The clock signal is a periodic signal which can be characterized by its frequency. The most
+  common one has a duty cycle of 50% and a constant frequency
+• This clock can also be used to toggle the ADC => example in second semester course
+
+--- PAGE 11 ---
+DIGITAL SYSTEMS
+• Examples of digital circuits include integrated circuits, control circuits, conversion circuits,
+  emission/transmission circuits, processors, computing circuits, memory circuits, etc.
+• The following are examples of complex digital circuits:
+
+
+
+
+   Central Processing Unit    Graphics Processing Unit      Microcontroller         Field-Programmable
+   Control Unit, ALU, FPU,    Parallel computing units,                             Gate Array
+   Registers                  RAM, display output
+
+--- PAGE 12 ---
+ADVANTAGES AND DISADVANTAGES
+Advantages:
+• Computer-controlled digital systems can be controlled by software, allowing new functions to be
+  added without changing hardware
+• Information storage is easier and more precise representation of signal can be obtained by using
+  more binary digits to represent it
+• More digital circuitry can be fabricated on IC chips
+Disadvantages:
+• Conversion to digital format and re-conversion to analog format is needed which always includes
+  loss of information
+• Can produce more energy and produce more heat
+• More expensive
+
+--- PAGE 13 ---
+NUMBERING SYSTEMS
+• Many numbering systems are used in digital technology. The most common are:
+
+
+
+
+• The base of each individual number needs to be specified by writing it as a subscript of the
+  number
+
+--- PAGE 14 ---
+NUMBERING SYSTEMS
+
+Decimal Numbering System
+• Uses 10 symbols/digits: 0,1,2,3,4,5,6,7,8,9;
+• Decimal Base (or Base 10)
+
+--- PAGE 15 ---
+NUMBERING SYSTEMS
+
+Binary Numbering System
+• Uses 2 symbols/digits: 0,1
+• Binary Base (or Base 2)
+
+--- PAGE 16 ---
+NUMBERING SYSTEMS
+
+Decimal to binary
+• The decimal to binary conversion is done by a
+  successive division by two and the remainder is
+  the least significant bit (LSB)
+• The process is terminated once the result
+  cannot be divided anymore and the last
+  remainder is the MSB
+
+--- PAGE 17 ---
+NUMBERING SYSTEMS
+
+Fractionary decimals to binary
+• The same method is used for the integer while the
+  fractionary part is multiplied by 2
+• If the fractionary part is not zero, it is once more
+  multiplied by 2 and the integer part of that
+  product is the next significant digit and so on until
+  zero is reached
+
+--- PAGE 18 ---
+NUMBERING SYSTEMS
+
+Octal Numbering System
+• Uses 8 symbols/digits: 0,1,2,3,4,5,6,7
+• Octal Base or (Base 8)
+• This numbering system makes binary
+  numbers with many digits easier since an
+  octal represents 3 digit binary number
+
+
+• For a fractionary number:
+
+--- PAGE 19 ---
+NUMBERING SYSTEMS
+
+Hexadecimal Numbering System
+• Uses a 16 symbol/digits: 0,1,2,3,4,5,6,7,8,9,1,B,C,D,E,F
+• Hexadecimal base or Base-16
+• It represents large binary numbers (4digits)
+
+--- PAGE 20 ---
+NUMBERING SYSTEMS
+
+N base systems:
+• It is possible to generalize to any N base system by applying the same rules
+• A number can be decomposed by its digits (or symbols) as follows:
+      (𝐷 𝑃 − 1 , … 𝐷 1 , 𝐷 0 )𝑁 = 𝐷 𝑃 − 1 × 𝑁 𝑃−1 + ⋯ + 𝐷 1 × 𝑁1 + 𝐷 0 × 𝑁 0
+Where P is the number of digits and 𝐷 𝑃 − 1 is the MSB and N is the base
+• In general, we will stick to common numbering system: binary, octal, decimal and hexadecimal
+
+--- PAGE 21 ---
+SIGNED NUMBERS
+• For an n size, It is also possible to represent a signed number in a binary format between −2𝑛−1
+  and +2𝑛−1 − 1
+• For a 4 bit binary number, it is possible to count from -8 to +7 in a signed format
+• We’ll use the 2’s complement as follows
+• 1’s complement of a number N is denoted C1(N) and can be
+  found by inverting each bit of the number
+Example: 𝑁 = 10010011 2 => C1(𝑁) = 01101100 2
+• 2’s complement of a number N is C2(N) and is found as follows
+C2(N)=C1(N)+1
+
+
+Example: To code −4 10 , we’ll take the positive number 4 10 ‘s
+1’s complement and add 1. Give the result.
+ −4 10 = 11111100 2
+
+--- PAGE 22 ---
+REAL NUMBERS
+
+IEEE754 representation
+• There are two ways to represent real numbers in a digital system
+     – Fixed-point numbers
+     – Floating-point numbers
+• While both unsigned and signed integers are used in digital systems, even a 32-bit integer is not enough to
+  handle all the range of numbers a calculator can handle, and that's not even including fractions. To approximate
+  the greater range and precision of real numbers, we have to abandon signed integers and fixed-point numbers
+  and go to a "floating-point" format.
+• In the decimal system, we are familiar with floating-point numbers of the form (scientific notation):
+           1.1030402 × 105 = 1.1030402 × 100000 = 110304.02
+• or, more compactly:
+           1.1030402E5
+
+--- PAGE 23 ---
+GRAY CODE
+• The reflected binary code (RBC), also known
+  as reflected binary (RB) or Gray code after Frank Gray,
+  is an ordering of the binary numeral system such that two
+  successive values differ in only one bit (binary digit).
+
+
+• For example, the representation of the decimal value "1" in
+  binary would normally be "001" and "2" would be "010". In
+  Gray code, these values are represented as "001" and "011".
+  That way, incrementing a value from 1 to 2 requires only one
+  bit to change, instead of two.
+
+
+• This is the code used for Karnaugh’s table (to be seen later)
+
+--- PAGE 24 ---
+GRAY CODE
+ Decimal     Binary      Gray                   Decimal     Binary      Gray
+ number      Number      Code                   number      Number      Code
+ 0           0000        0000                   8           1000        1100
+ 1           0001        0001                   9           1001        1101
+ 2           0010        0011                   10          1010        1111
+ 3           0011        0010                   11          1011        1110
+ 4           0100        0110                   12          1100        1010
+ 5           0101        0111                   13          1101        1011
+ 6           0110        0101                   14          1110        1001
+ 7           0111        0100                   15          1111        1000
+
+           Binary and Gray code representation of decimal numbers from 0 to 15
+
+--- PAGE 25 ---
+BINARY SYSTEM OPERATIONS
+
+Binary Addition
+• The result is obtained by adding two binary numbers. It is the simplest method to add any of the
+  binary number.
+• When adding binary numbers, there are four points or steps to remember before proceeding
+  through the operation. These are:
+
+
+
+
+• Suppose A = 10010101 and B = 10000110. Give the result of A+B
+• A+B= 100011011
+
+--- PAGE 26 ---
+BINARY SYSTEM OPERATIONS
+
+Binary Subtraction
+• When adding binary numbers, there are four points or steps to remember before proceeding
+  through the operation
+
+
+
+
+• Suppose, A = 10101100 and B = 1010100. Find A-B
+• A-B=1011000
+
+--- PAGE 27 ---
+BINARY SYSTEM OPERATIONS
+
+Binary Multiplication
+• Like in the case of binary addition, in binary multiplication there are also four steps to be
+  followed during a bigger multiplication or we can say these fundamental steps as well. These
+  are:
+
+
+
+
+• Take two binary number A=10111 and B=11, What is AxB?
+• AxB=1000101
+
+--- PAGE 28 ---
+BINARY SYSTEM OPERATIONS
+
+Binary Division
+• Not as trivial as the other operators since it does not have specific rules
+• It relies on multiplication and subtraction                                   Quotient
+
+
+
+
+                                                                                Dividend
+                                                   Divisor
+
+--- PAGE 29 ---
+BOOLEAN ALGEBRA
+
+• A branch of algebra in which the values of the variables are the truth values, i.e., true and false
+• There are different operations of Boolean Algebra: the conjunction (and), the disjunction (or),
+  the negation (not)…
+• Is is the formalism describing logical operations
+• It was introduced by George Boole in 1847 in his book The Mathematical Analysis of Logic
+
+
+
+
+     Venn diagrams for conjunction, disjunction and complement              George Boole 1815-1864
+
+--- PAGE 30 ---
+BOOLEAN ALGEBRA
+
+• The inverse of a Boolean variable 𝑎 is denoted as 𝑎ത and can also be known as a complement
+• The properties related to the complement state that if it is added to the variable it gives one and is it is
+  multiplied with its complement it results in 0:
+                                                  𝑎 + 𝑎ത = 1
+                                                  𝑎. 𝑎ത = 0
+• The annulment law: a variable ANDed with 0 gives 0 and ORed with 1 gives 1
+                                            𝑎. 0 = 0
+                                            𝑎+1=1
+• Identity law: a variable remains unchanged if ORed with 0 and ANDed with 1
+                                                  𝑎. 1 = 𝑎
+                                                  𝑎+0 =𝑎
+• Idempotent law: a variable remains unchanged when it is ORed or ANDed with itself
+                                               𝑎+𝑎 =𝑎
+                                               𝑎. 𝑎 = 𝑎
+
+--- PAGE 31 ---
+BOOLEAN ALGEBRA
+
+• Double negation law: a variable with two negations, its symbol gets cancelled out and original
+  variable is obtained
+                                            𝑎ധ = 𝑎
+• Commutative law: a variable order does not matter in this law:
+                                       𝑎+𝑏 =𝑏+𝑎
+                                       𝑎. 𝑏 = 𝑏. 𝑎
+• Associative law: the order of operation does not matter if the priority of variables are the same
+                                   𝑎 + (𝑏 + 𝑐) = (𝑎 + 𝑏) + 𝑐
+                                   𝑎. (𝑏. 𝑐) = (𝑎. 𝑏). 𝑐
+• Distributive law: this law governs the opening up of brackets
+                                     𝑎. 𝑏 + 𝑐 = 𝑎. 𝑏 + 𝑎. 𝑐
+                                      𝑎 + 𝑏 𝑎 + 𝑐 = 𝑎 + 𝑏𝑐
+
+--- PAGE 32 ---
+BOOLEAN ALGEBRA
+
+• Absroption law: this law involved absorbing similar variables
+                                     𝑎. (𝑎 + 𝑏) = 𝑎
+                                     𝑎 + 𝑎. 𝑏 = 𝑎
+                                     𝑎 + 𝑎.
+                                          ത 𝑏 =𝑎+𝑏
+                                     𝑎 𝑎ത + 𝑏 = 𝑎. 𝑏
+• De Morgan Law: the operation of an AND or OR logic circuit is unchanged if all inputs are
+  inverted, the operator is changed from AND to OR and the output is inverted
+                                        𝑎. 𝑏 = 𝑎ത + 𝑏ത
+                                        𝑎 + 𝑏 = 𝑎ത . 𝑏ത
+
+--- PAGE 33 ---
+LOGIC GATES
+• Traditional combinational functions are called gates,
+• The following logic diagrams contain the AND, OR and NOT gates according to 2 standards of
+  representation. We will use the American standard
+• AND gate : The output is active if the 2 inputs are active. The output is in the high state if the 2
+• inputs are in high state,
+• OR gate: The output is active if at least one of the inputs is active,
+• The circle connected to one of the ports of a gate means that the input/output is active in the low state.
+
+--- PAGE 34 ---
+TRUTH TABLES
+
+
+
+               XOR: stands for Exclusive OR => gives a true
+               output when the number of true inputs is
+               odd
+
+               XNOR: The logical complement of XOR
+
+--- PAGE 35 ---
+SEMI-CONDUCTORS AND DIGITAL
+ELECTRONICS
+• Using transistors as building blocks, we can build larger circuits that perform interesting
+  (logical) operations. This is due to their properties which we have seen in the previous lecture!
+
+
+• Most logic gates are made from Metal Oxide
+  Semi-conductors
+• The NOT gate is a combination of an NMOS
+  and PMOS transistors. If a=1, NMOS is activated
+  and 𝑎ത is connected to VSS (LOW state). If a=0,
+  PMOS is activated and 𝑎=ത VDD = 1
+• The AND gate is a combination of 2 NMOS and
+  1 PMOS transistor.
+                                                                 NOT Gate            AND Gate
+
+--- PAGE 36 ---
+COMPLEMENTARY GATES
+
+
+
+
+   NAND Gate:        NOR Gate
+    𝑎. 𝑏 = 𝑎ത + 𝑏ത   𝑎 + 𝑏 = 𝑎ത . 𝑏ത
+
+--- PAGE 37 ---
+XOR GATE
+
+                             ത 𝑏 + 𝑎. 𝑏ത
+• Is equivalent to : 𝑎 ⊕ 𝑏 = 𝑎.
+• Properties:
+                                           𝑎⊕𝑎 =0
+                                           𝑎⊕0 =𝑎
+                                           𝑎 ⊕ 1 = 𝑎ത
+                                           𝑎 ⊕ 𝑎ത = 1
+• Theorem:
+                                     ത 𝑏ത + 𝑎. 𝑏 = 𝑎 ⊕ 𝑏ത = 𝑎ത ⊕ 𝑏
+                             𝑎 + 𝑏 = 𝑎.
+
+--- PAGE 38 ---
+NEXT SESSIONS
+
+• Combinational circuits analysis: multiplexers, demultiplexers, coders/decoders, comparators,
+  ALU, memory
+• Sequential circuit analysis: synchronous, asynchronous, …

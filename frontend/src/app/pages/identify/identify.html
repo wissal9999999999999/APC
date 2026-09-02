@@ -4,7 +4,7 @@
       <div class="logo">AI</div>
       <div>
         <h1>Identification des AAD</h1>
-        <p>Dépose un cours (PDF) puis lance l’identification.</p>
+        <p>Dépose un ou plusieurs cours PDF puis génère leurs AAD.</p>
       </div>
     </div>
     <span class="badge">v0.1 • Identify</span>
@@ -12,18 +12,19 @@
 
   <div class="card">
     <div class="card-body">
-      <div class="section-title">Téléverser un cours</div>
+      <div class="section-title">Téléverser les cours</div>
 
       <input
         class="input"
         type="file"
         accept="application/pdf"
+        multiple
         (change)="onFileChange($event)"
       />
 
       <div style="margin-top: 12px;">
         <button class="btn btn-primary" (click)="identify()" [disabled]="loading">
-          {{ loading ? 'Analyse...' : 'Identifier les AAD' }}
+          {{ loading ? 'Extraction et génération en cours...' : 'Générer les AAD' }}
         </button>
 
         <button class="btn" style="margin-left: 10px;" (click)="back()" [disabled]="loading">
@@ -40,16 +41,38 @@
         </div>
 
         <div class="grid">
-          <div class="item" *ngFor="let item of aads">
+          <label class="item selectable" *ngFor="let item of aads" [class.selected]="isSelected(item.aad_id)">
+            <input
+              class="aad-checkbox"
+              type="checkbox"
+              [checked]="isSelected(item.aad_id)"
+              (change)="toggleAAD(item.aad_id, $any($event.target).checked)"
+            />
             <div>
-              <p class="item-title">{{ item.text }}</p>
-              <p class="item-sub">Extrait automatiquement du cours.</p>
+              <p class="item-title">{{ item.aad_id }} — {{ item.formulation }}</p>
+              <p class="item-sub">
+                Notion : {{ item.disciplinary_concept }} • Pages : {{ item.source_pages.join(', ') }}
+              </p>
+              <p class="item-sub">{{ item.course_grounding }}</p>
             </div>
-          </div>
+          </label>
         </div>
+
+        <div class="selection-actions">
+          <span class="pill">{{ selectedAadIds.size }} sélectionné(s)</span>
+          <button class="btn btn-primary" (click)="saveSelection()" [disabled]="savingSelection">
+            {{ savingSelection ? 'Enregistrement...' : 'Enregistrer la sélection' }}
+          </button>
+          <button class="btn" *ngIf="selectionSaved" (click)="downloadSelection()">
+            Télécharger le JSON
+          </button>
+        </div>
+
+        <p class="success-message" *ngIf="selectionMessage">✓ {{ selectionMessage }}</p>
+        <p class="hint" *ngIf="selectionError">{{ selectionError }}</p>
       </div>
 
-      <div class="empty" *ngIf="!loading && aads.length === 0 && file && !error">
+      <div class="empty" *ngIf="!loading && aads.length === 0 && files.length > 0 && !error">
         Aucun résultat pour l’instant.
       </div>
     </div>

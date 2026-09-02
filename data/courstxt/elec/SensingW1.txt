@@ -1,0 +1,321 @@
+--- PAGE 1 ---
+SENSORS AND
+C O M M U N I C AT I O N
+ P R O T O C O LS O N
+  RASPBERRY PI
+H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+ILO OF THIS SESSION
+
+• Become familiar with sensors: types, uses, brands, properties..
+• Understand how they work
+• Different types of measures: temperature, sound, light, distance..
+• 1-wire communication bus for temperature sensors
+
+--- PAGE 3 ---
+USE OF SENSORS IN EMBEDDED
+SYSTEMS
+• A sensor is any type of device that produces an output signal for the purpose of sensing a
+  physical phenomenon. The input can be light, heat, motion, moisture, pressure or any number of
+  other environmental phenomena.
+• The output is generally a signal that is converted to a human-readable display at the sensor
+  location or transmitted electronically over a network for reading or further processing.
+• Applications solliciting sensors include aerospace, medicine, cars and robotics
+
+--- PAGE 4 ---
+TYPES OF SENSORS: USEFULNESS
+
+The choice depends on:
+• The type of technology
+• The metrics
+• Wired/wireless connections
+• Appropriate conditions
+
+--- PAGE 5 ---
+SMART SENSORS
+• Smart sensors are devices that take information
+  from a physical environment and use
+  embedded microprocessors and wireless
+  communication to monitor, examine, and
+  maintain various systems.
+• They have the ability to collect environmental
+  data more accurately with less erroneous noise.
+• Though they’re used for a variety of
+  applications, they’re most commonly found in
+  monitoring mechanisms, such as smart grids,
+  science applications, and security systems.
+
+--- PAGE 6 ---
+TYPE OF SENSORS: ENERGY-WISE
+Passive sensors                               Active sensors
+Passive sensors use naturally emitted light   Active sensors have their own source of light or
+from the sun. Without the sun, there          illumination. In particular, it actively sends a pulse
+wouldn’t be passive remote sensing.           and measures the backscatter reflected to the
+                                              sensor.
+
+--- PAGE 7 ---
+TEMPERATURE SENSORS
+
+Temperature sensors allow to measure the temperature according to a property which changes
+in respose to temperature. It is difficult to measure the energy of molecular movement.
+
+
+
+                          Eletrical                               Mechanical
+                        Temperature                              Temperature
+                          Sensors                                  Sensors
+
+
+
+                                               Silicon                     Bi-metallic
+  Thermistor   Thermocouple      Resistance              Thermometer
+                                              Bandgap                         Strip
+
+--- PAGE 8 ---
+ELECTRICAL TEMPERATURE SENORS:
+THERMISTOR
+• What is a thermistor?
+A thermistor is a resistance thermometer, or a resistor whose resistance is dependent on
+temperature. The term is a combination of “thermal” and “resistor”. It is made of metallic oxides,
+pressed into a bead, disk, or cylindrical shape and then encapsulated with an impermeable
+material such as epoxy or glass.
+
+--- PAGE 9 ---
+ELECTRICAL TEMPERATURE SENORS:
+THERMISTOR
+• How does it work?
+When placed on the body whose temperature is to be measured, the resistance changes which
+can be directly indicated by the circuit.
+
+
+You will learn more about this in the second semester !
+
+--- PAGE 10 ---
+ELECTRICAL TEMPERATURE SENORS:
+THERMOCOUPLE
+• What is a thermocouple?
+It is a temperature measuring device that consists of two metallic conductos that conduct each
+other at one or more spots. A voltage is produced when the temperature of one of the spots
+differs from the reference temperature at other parts of the circuit.
+
+--- PAGE 11 ---
+ELECTRICAL TEMPERATURE SENORS:
+RTD
+• Resistance Temperature Detector (RTD)
+The resistance increases as the temperature of the sensor increases. The resistance vs
+temperature relationship is well known and is repeatable over time. An RTD is a passive device. It
+does not produce an output on its own. External electronic devices are used to measure the
+resistance of the sensor by passing a small electrical current through the sensor to generate a
+voltage. Typically 1 mA or less measuring current, 5 mA maximum without the risk of self-heating.
+
+• How it works:
+Based on a correlation between metals and temperature =>
+the more the temperature rises => the more is the increase
+of the metal’s resistance to the flow of elecricity
+
+Commonly, RTD specification is 100 ohms => 0°C
+The mostly used metals is platinum
+
+--- PAGE 12 ---
+ELECTRICAL TEMPERATURE SENORS:
+SILICON BANDGAP TEMPERATURE
+SENSOR
+• A silicon Bandgap:
+ is a type of thermometer or temperature detector commonly employed in electronic devices.
+They have good stability at extreme environmental conditions due to the integral stability of
+crystalline silicon.
+How it works:
+Based on a silicon diode for which the forward voltage is often the base-emitter junction of
+bipolar junction transistor is temperature dependent. The following step is to calculate the
+temperature of the diode.
+
+--- PAGE 13 ---
+SO MANY TEMPERATURE SENSORS..
+
+https://eu.mouser.com/c/sensors/temperature-sensors/
+
+--- PAGE 14 ---
+A TEMPERATURE SENSOR: DS18B20
+The DS18B20 and DS18S20 represents a very simple sensor. These Raspberry Pi sensors are
+addressed via the so-called 1-wire bus. An advantage is that many different 1-wire components can
+be connected in series and read out by a single GPIO. However, these modules can not measure
+additional information such as humidity and / or air pressure. The DS18B20 is particularly suitable
+for outdoor use, as there are also water resistant versions available. With a measuring range of -
+55°C to +125°C it is well suited even for non-everyday applications.
+
+--- PAGE 15 ---
+LIGHT SENSORS
+
+A light sensors is what allows a system (car, robot, camera, phone,..) to detect the current
+ambient light. It can include:
+- Photoresistors (LDR)
+- Photodiodes
+- Phototransistors
+
+--- PAGE 16 ---
+LIGHT SENSORS: PHOTORESISTORS
+
+• A resistor which decreases its resistances when
+  exposed to high levels of ultraviolet light. This
+  device converts light energy into electrical
+  energy
+• How it works?
+They are highly resistant semiconductors that are
+sensitive to high photonic frequences. When
+photons encounter semiconductor => eletrons on
+the metal jump to another piece of semiconductor
+
+--- PAGE 17 ---
+SOUND SENSORS
+
+• Or you could call them microphones!
+• They use induction coil in the magnetic field of a permanent magnet attached to the diaphragm
+• When a sound is made the vibrations move the coil in the magnetic field which produces
+  current
+How it works?
+Might use: eletromagnetic induction, capacitance change or
+Piezoelectricity to poduce eletrical signal from air pressure
+variations. Need amplifiers !
+
+--- PAGE 18 ---
+DISTANCE SENSORS
+
+• Distance sensors are used for determining the distance of an object from another object or
+  obstacle without any physical contact involved (unlike a measuring tape, for example).
+• How do they work?
+Commonly associated with ultrasonic sensors, it functions by outputting a signal (depending on
+technology; ultrasonic waves, IR, LED, etc.) and measuring a change when the signal returns.
+The change measured can be in the form of either:
+• Time it takes for a signal to return,
+• Intensity of a returned signal,
+• or phase change of the returned signal.
+
+--- PAGE 19 ---
+ULTRASONIC SENSOR
+1. The ultrasonic sensor emits high-frequency
+   sound waves towards the target object, and a
+   timer is started
+2. Target object reflects the sound waves back
+   towards the sensor
+3. The receiver picks up the reflected wave and
+   stops the timer
+4. The time taken for the wave’s return is calculated
+   against the speed of sound to determine the
+   distance travelled
+
+--- PAGE 20 ---
+INFRARED DISTANCE SENSORS
+• IR sensors come with two lenses:
+• An IR LED emitter lens that emits a light beam
+• A position-sensible photodetector (PSD) where the reflected beam will fall onto
+
+--- PAGE 21 ---
+IR VS ULTRASONIC
+
+--- PAGE 22 ---
+LASER DISTANCE SENSORS: LIDAR
+• LiDAR, in short for Light Detection and Ranging, can be considered as a laser distance
+  sensor. It measures the range of targets through light waves from a laser instead of radio or
+  sound waves.
+
+--- PAGE 23 ---
+LASER DISTANCE SENSORS: LIDAR
+How it works:
+1. The transmitter on the LiDAR device emits laser light at the target object
+2. The pulse of the laser is reflected by the target object
+3. Distance is then calculated by using the relationship between constant speed of light in air
+   and the time between sending/receiving of the signal
+
+--- PAGE 24 ---
+INTER-SYSTEM COMMUNICATION IN
+EMBEDDED SYSTEMS
+• A field bus is a part of a system which provides the communication between several
+  components in that system (for example an actuator or a sensor). A bus is a cable with
+  an interface on the two ends .
+• Most common inter-system communication components include:
+- Serial lines
+- Controller Area Network
+- Profibus
+- Realtime ethernet
+- Inter-Integrated Circuit (I2C)
+- Serial Peripheral Interface (SPI)
+- …
+
+--- PAGE 25 ---
+1W-GPIO: 1-WIRE INTERFACE
+• One-wire is an asynchronous half-duplex serial connection with a possibility of power supply
+  on data bus (parasitic power supply).
+• This has been developped by Dallas-Semiconductors
+• A 1-Wire master initiates and controls the communication with one or more 1-Wire slave
+  devices on the 1-Wire bus
+
+--- PAGE 26 ---
+1W-GPIO: 1-WIRE INTERFACE
+
+• Advantages: Low power, multi-drop, one-wire for data and power
+• It has one wire + ground that connects to open-drain bus
+
+--- PAGE 27 ---
+1W-GPIO: 1-WIRE INTERFACE
+
+
+- Open-drain: open collector which pulls to
+  the ground
+- Parasite power circuit: allows to turn 1-
+  wire device logic in the network
+- ESD protection: operation in harsh
+  environments
+- Interface control block: bridge between the
+  bus and the device crypto + ROM ID
+- Memory Interface crypto
+
+--- PAGE 28 ---
+1W-GPIO: 1-WIRE INTERFACE
+  - 1-wire data rate: a standard 15.4KBPS and 65 microseconds
+  - Sending a 1 or a 0 by the host => periods with 1 after sending the bits allow the
+  parasite power capacitor to recharge
+
+--- PAGE 29 ---
+1W-GPIO: 1-WIRE INTERFACE
+  - Reading the bit sent by the device starts by the host sending a 1 bit.
+  - If the device was about to send 1 back, it lets the line stay at 1
+  - If the device wants tp send 0, it pulls the drain down to 0
+
+--- PAGE 30 ---
+1W-GPIO: 1-WIRE INTERFACE
+  1-wire transactions: detecting the presence of a device on a 1-wire bus
+
+--- PAGE 31 ---
+1W-GPIO: 1-WIRE INTERFACE
+  1-wire transactions: commands in a multi-device connection
+
+--- PAGE 32 ---
+DS18B20: 1-WIRE SENSOR
+
+--- PAGE 33 ---
+DS18B20: 1-WIRE SENSOR
+
+--- PAGE 34 ---
+1W-GPIO: 1-WIRE INTERFACE
+
+• One-wire is a single-wire communication bus
+  typically used to connect sensors to the Pi.
+  It provides low-speed data, signaling, and power
+  over a single conductor. Raspberry Pi supports
+  one-wire on any GPIO pin, but the default
+  is GPIO 4.
+
+--- PAGE 35 ---
+1W GPIO: NEEDS TO BE ENABLED
+
+--- PAGE 36 ---
+FOR THE TUTORIAL
+
+--- PAGE 37 ---
+REFERENCES
+
+- Gisgeography: Passive vs. Active Sensors in remote sensing
+- TE connectivity: understanding RTDs
+- Maximintegrated: 1-wire technology. Check out the video on Youtube for more details
+https://www.youtube.com/watch?v=lsikcaA7q-c

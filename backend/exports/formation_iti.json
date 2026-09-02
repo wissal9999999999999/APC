@@ -1,0 +1,109 @@
+{
+  "formationId": "iti",
+  "savoirsAgir": [
+    {
+      "name": "specifier",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": []
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    },
+    {
+      "name": "modeliser",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": [
+            "www"
+          ]
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    },
+    {
+      "name": "communiquer",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": []
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    },
+    {
+      "name": "concevoir",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": []
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    },
+    {
+      "name": "developper",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": []
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    },
+    {
+      "name": "gerer",
+      "jalons": [
+        {
+          "name": "jalon1",
+          "acs": []
+        },
+        {
+          "name": "jalon2",
+          "acs": []
+        },
+        {
+          "name": "jalon3",
+          "acs": []
+        }
+      ]
+    }
+  ]
+}

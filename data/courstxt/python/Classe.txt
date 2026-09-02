@@ -1,0 +1,230 @@
+--- PAGE 1 ---
+Python
+                      Les classes
+
+                     Nicolas Delestre
+
+
+
+
+Prog. Objet - v1.2                      1 / 10
+
+--- PAGE 2 ---
+Classe
+
+     Déclaration
+            Syntaxe :
+            class NomClasse[(SuperClasse,SuperClasse2,...)]:
+            """ Documentation """
+                def __init__(self[, param1, param2, ...]):
+                    """ Documentation """
+                    self.attr1 = ...
+                    self.attr2 = ...
+
+                     def m1(self[, param1, param2, ...]):
+                         ...
+
+            On définit une classe dans un module (un module peut contenir plusieurs classes). On importe une classe, comme
+            on importe une fonction
+            L’identifiant d’une classe est en CamelCase
+            La classe au sommet de l’héritage est la classe object qui n’est pas précisée si c’est la superclasse de la classe à
+            définir
+            Il n’y a pas de classe abstraite
+
+Prog. Objet - v1.2                                                                                                                     2 / 10
+
+--- PAGE 3 ---
+Classe
+
+     Attributs, méthodes
+          C’est le faite d’affecter une valeur à un attribut (affectation), que l’attribut est ajouté à
+          l’instance
+            La bonne pratique veut que l’initialiseur a ( init ) initialise tous les attributs
+            d’instance
+            Il n’y a pas de mot clé pour la visibilité des méthodes ou des attributs, mais si
+            l’identifiant commence par un :
+                     alors il doit être considéré comme privé (il n’apparaı̂t pas dans la documentation, help)
+                      alors il est privé et non accessible (sans faire d’introspection)
+            Comme les paramètres formels ne sont pas typés, il n’y a pas de surcharge
+            (polymorphisme)
+      a. très souvent dénommé, à tord, constructeur. Le véritable constructeur est la méthode   new
+     que l’on ne redéfinit que si on fait de la méta-programmation
+
+Prog. Objet - v1.2                                                                                                   3 / 10
+
+--- PAGE 4 ---
+Classe
+     Classe Point2D (sans la documentation) du module point.py
+  5 class Point2D:
+  6     def __init__(self, x: float, y: float, identifiant: str=None):
+  7         self._x = x
+  8         self._y = y
+  9         self._id = identifiant
+ 10
+ 11     def get_x(self) -> float:
+ 12         return self._x
+ 13
+ 14     def set_x(self, x: float):
+ 15         self._x = x
+ 16
+ 17     def get_y(self) -> float:
+ 18         return self._y
+ 19
+ 20     def set_y(self, y: float):
+ 21         self._y = y
+ 22
+ 23     def get_id(self) -> str:
+ 24         return self._id
+
+
+Prog. Objet - v1.2                                                       4 / 10
+
+--- PAGE 5 ---
+Objet
+     Création d’un objet
+            On crée un objet en utilisant l’identifiant de la classe suivi, entre parenthèses, des paramètres effectifs à
+            donner à l’initialiseur (pour les paramètres formels qui suivent le self)
+
+     >>> from point import Point2D
+     >>> pt1 = Point2D(1,2)
+
+
+     Invocation d’une méthode
+            On invoque habituellement une méthode m sur un objet o en utilisant la notation pointée classique :
+            o.m(...)
+            On peut aussi invoquer une méthode comme on appelle une fonction, en préfixant l’identifiant de la
+            méthode par l’identifiant de la classe et en mettant en premier paramètre effectif l’objet
+
+     >>> pt1.get_x()
+     1
+     >>> Point2D.get_x(pt1)
+     1
+Prog. Objet - v1.2                                                                                                              5 / 10
+
+--- PAGE 6 ---
+Héritage
+     Principe
+          Python accepte l’héritage multiple
+            On peut redéfinir le comportement des méthodes (polymorphisme par héritage) : on
+            accède à la méthode de la super classe en l’invoquant à l’aide de la deuxième notation
+            La bonne pratique veut que l’on désigne la super classe à l’aide de la fonction super
+            Cf. https://stackoverflow.com/questions/42413670/whats-the-difference-between-super-and-parent-class-name
+
+
+
+     Classe Point3D (sans la documentation) du module point.py
+ 26 class Point3D(Point2D):
+ 27     def __init__(self, x: float, y: float, z: float, identifiant: str=None):
+ 28         super().__init__(x, y, identifiant)
+ 29         self._z = z
+ 30
+ 31     def get_z(self) -> float:
+ 32         return self._z
+ 33
+ 34     def set_z(self, z: float):
+ 35         self._z = z
+
+Prog. Objet - v1.2                                                                                                      6 / 10
+
+--- PAGE 7 ---
+Liaison dynamique de méthode
+
+     Principe
+          Python réalise la liaison dynamique de méthode : la méthode sélectionnée suite à
+          l’invocation d’une méthode est toujours celle qui est la plus proche (au sens de
+          l’héritage) de la classe de l’objet
+
+
+  3 class A:
+  4     def m1(self):                                >>> b=B()
+  5         print ("m1 de A")                        >>> b.m1()
+  6         self.m2()                                m1 de A
+  7
+  8     def m2(self):
+                                                     m2 de B
+  9         print ("m2 de A")                        >>> a=A()
+ 10                                                  >>> a.m1()
+ 11 class B(A):                                      m1 de A
+ 12     def m2(self):                                m2 de A
+ 13         print ("m2 de B")
+
+
+
+
+Prog. Objet - v1.2                                                                                 7 / 10
+
+--- PAGE 8 ---
+Algorithme de sélection de méthode dans le cas d’un héritage multiple
+            L’algorithme utilise un tri topologique tel que les classes sont étudiées dans l’ordre de déclaration de l’héritage
+            multiple
+            L’attribut     mro   (method resolution order) permet de connaı̂tre la liste issue de ce tri
+
+
+
+     class A1:                        class A1:                        class A:
+         def m(self):                     def m(self):                     def m(self):
+             print ("m de A1")                print ("m de A1")                print ("m de A")
+
+                                                                       class B1(A):
+     class A2:                        class A2:                            pass
+                                                                                                    >>> C().m()
+         def m(self):                     def m(self):                                              m de B2
+             print ("m de A2")                print ("m de A2")        class B2(A):
+                                                                           def m(self):
+     class B(A1, A2):                 class B(A2, A1):                         print ("m de B2")
+         pass                             pass
+                                                                       class C(B1, B2):
+     >>> B().m()                      >>> B().m()                          pass
+     m de A1                          m de A2
+
+
+     >>> C.__mro__
+     (<class ’heritage_multiple_3.C’>, <class ’heritage_multiple_3.B1’>,
+     <class ’heritage_multiple_3.B2’>, <class ’heritage_multiple_3.A’>, <class ’object’>)
+
+
+Prog. Objet - v1.2                                                                                                                    8 / 10
+
+--- PAGE 9 ---
+Retour sur            init
+
+            Le comportement de la méthode   init   est classique
+
+                                        >>> a=A(1)
+     class A:                           >>> a._a
+         def __init__(self, a):         1
+             self._a = a                >>> b=B(1)
+                                        >>> b._a
+     class B(A):                        1
+         pass                           >>> c=C(1)
+     class C(A):
+                                        >>> c._a
+         def __init__(self, c):         Traceback (most recent call last):
+             self._c = c                  File "<stdin>", line 1, in <module>
+                                        AttributeError: ’C’ object has no attribute ’_a’
+     class D(A):                        >>> d=D(1,2)
+         def __init__(self, a, d):      >>> d._a
+             super().__init__(a)
+             self._d = d
+                                        1
+                                        >>> d._d
+                                        2
+
+Prog. Objet - v1.2                                                                         9 / 10
+
+--- PAGE 10 ---
+Conclusion
+
+
+
+
+            Comment on définit une classe
+            Python réalise de la liaison dynamique de méthode
+            Python accepte l’héritage multiple avec une recherche des attributs et méthodes à l’aide
+            d’un tri topologique
+            L’initialiseur   init   est une méthode comme les autres
+
+
+
+
+Prog. Objet - v1.2                                                                                   10 / 10

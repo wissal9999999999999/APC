@@ -1,0 +1,286 @@
+--- PAGE 1 ---
+Python
+                        Modules, scripts, paquets
+
+                              Nicolas Delestre
+
+
+
+
+Modules, . . . - v2.0                               1 / 13
+
+--- PAGE 2 ---
+Organisation générale d’un fichier .py
+
+
+              L’encodage du fichier est obligatoirement utf-8
+              Le fichier est composé de plusieurs parties
+                  1     Le rôle du fichier sous forme de docstring qui sera utilisé par help()
+                  2     Des métadonnées qui seront utilisées par help() : author (str), contact
+                        (sequence de str), credits (sequence de str), maintainer (str) email
+                        (str) version (str), copyright (str), date (str au format ISO 8601)
+                  3     Les déclarations/définitions :
+                            Variables globales (en SNAKE CASE majuscule)
+                            Classes
+                            Fonctions
+                            Le code à exécuter (équivalent du main dans d’autres langages)
+
+
+
+
+Modules, . . . - v2.0                                                                                2 / 13
+
+--- PAGE 3 ---
+Script
+
+              Suite de définitions et d’instructions d’un fichier .py qui représente un programme
+
+
+     $ python3 nom_du_script.py
+
+
+
+              Grâce au shebang (#!) on peut indiquer au système d’exploitation UNIX quel
+              interpréteur exécuté lorsque le script est utilisé avec les droits en exécution. Le première
+              ligne du script doit alors être :
+              #!/usr/bin/env python3
+
+
+
+     $ ./nom_du_script.py
+
+
+Modules, . . . - v2.0                                                                                          3 / 13
+
+--- PAGE 4 ---
+Module 1 / 5
+
+
+
+              Suite de définitions et d’instructions d’un fichier .py qui peuvent être importées (dans
+              un autre module ou dans un script)
+              Les définitions sont propres au module
+              Les instructions en dehors de toute fonction ou classe sont interprétées au premier
+              import (elles servent à initialiser certaines variables globales au module)
+              Un module peut être utilisé en tant que script.
+              if name == " main ": permet de conditionner l’interprétation d’instructions dans
+              ce cas
+
+
+
+
+Modules, . . . - v2.0                                                                                       4 / 13
+
+--- PAGE 5 ---
+Module 2 / 5
+     fibo.py
+  1 #!/usr/bin/env python3                               21          result.append(b)
+  2 """                                                  22          a, b = b, a+b
+  3 Exemple issu du tutoriel de python: https://docs.    23     return result
+          python.org/                                    24
+  4 """                                                  25 if __name__ == "__main__":
+  5                                                      26     import sys
+  6 __author__ = "Nicolas Delestre"                      27      print (fib(int(sys.argv[1])))
+  7 __contact__ = "Nicolas Delestre"
+  8 __copyright__ = "Copyleft"
+  9 __credits__ = ["Nicolas Delestre"]
+ 10 __license__ = "GPL"
+ 11 __version__ = "1.0.1"
+ 12 __maintainer__ = "Nicolas Delestre"
+ 13 __email__ = "nicolas.delestre@insa-rouen.fr"
+ 14 __status__ = "Production"
+ 15
+ 16 def fib(n):
+ 17     """ retourne les nombres de fibonacci jusqu’au
+              rang n """
+ 18     result = []
+ 19     a, b = 0, 1
+ 20     while b < n:
+Modules, . . . - v2.0                                                                            5 / 13
+
+--- PAGE 6 ---
+Module 3 / 5
+
+
+     Comment importer un module ?
+        import nom du module : l’utilisation d’un élément du module nécessite de préfixer cet
+        élément par le nom du module (notation pointée)
+        from nom du module import element : l’utilisation de l’élément est alors direct (sans
+        faire référence au module)
+                        l’utilisation de * en lieu et place de l’élément permet d’importer toutes des définitions d’un
+                        module (à éviter)
+              le suffixe as permet de renommer localement un module importé ou l’élément du
+              module importé
+
+
+
+
+Modules, . . . - v2.0                                                                                                   6 / 13
+
+--- PAGE 7 ---
+Module 4 / 5
+
+     Attention à la casse des caractères dans le nommage des modules !
+              La PEP8 (https://www.python.org/dev/peps/pep-0008/) préconise d’utiliser le
+              snake case pour nommer les modules
+
+     Comment l’interpréteur Python trouve-t-il le fichier .py nécessaire ?
+              Lorsqu’un module est importé (par exemple import un module), l’interpréteur Python
+              recherche le fichier correspondant (pour l’exemple un module.py) dans la liste des
+              répertoires référencés par la variable sys.path
+              sys.path contient
+                  1     le répertoire courant
+                  2     les répertoires présents dans la variable d’environnement PYTHONPATH
+                  3     les répertoires systèmes Python
+
+
+Modules, . . . - v2.0                                                                                7 / 13
+
+--- PAGE 8 ---
+Module 5 / 5
+
+  1 $ python3 fibo.py 10
+  2 [1, 1, 2, 3, 5, 8]
+  3 $ chmod +x fibo.py
+  4 $ ./fibo.py 10
+  5 [1, 1, 2, 3, 5, 8]
+  6 $ python3
+  7 Python 3.5.2 (default, Nov 17 2016, 17:05:23)
+  8 [GCC 5.4.0 20160609] on linux
+  9 Type "help", "copyright", "credits" or "license" for more information.
+ 10 >>> import fibo
+ 11 >>> fibo.fib(10)
+ 12 [1, 1, 2, 3, 5, 8]
+ 13 >>> import fibo as fb
+ 14 >>> fb.fib(10)
+ 15 [1, 1, 2, 3, 5, 8]
+ 16 >>> from fibo import fib as fibonacci
+ 17 >>> fibonacci(10)
+ 18 [1, 1, 2, 3, 5, 8]
+
+
+Modules, . . . - v2.0                                                        8 / 13
+
+--- PAGE 9 ---
+Paquet (ou Package) 1 / 4
+
+              Organisation hiérarchique de paquets et de modules
+              import permet de désigner un module en donnant le chemin des paquets (notation
+              pointée)
+              from..import permet d’importer
+                        un module : entre le from et l’import il n’y a qu’un chemin de paquets
+                        un élément d’un module : entre le from et l’import il y a un chemin de paquets se
+                        terminant par le module
+              Les paquets sont représentés par :
+                        un répertoire, le contenu du paquet (paquet ou module) est dans le répertoire
+                        un fichier init .py (obligatoire) dans le répertoire, qui contient une suite d’instructions qui
+                        permet d’initialiser le paquet (exécutée lors du premier import).
+                        C’est ici qu’est contrôlé le from..import * pour un paquet (initialisation de la variable
+                         all du paquet)
+
+
+Modules, . . . - v2.0                                                                                                  9 / 13
+
+--- PAGE 10 ---
+Paquet (ou Package) 2 / 4
+
+
+     Exemple issu du tutoriel Python
+     sound/                       Top-level package                        $ cat sound/__init__.py
+           __init__.py            Initialize the sound package             $ cat sound/formats/__init__.py
+           formats/               Subpackage for file format conversions   $ cat sound/effects/__init__.py
+                   __init__.py                                             #!/usr/bin/env python3
+                   wavread.py                                              __all__ = ["echo","surround","reverse"]
+                   wavwrite.py                                             $ cat sound/filters/__init__.py
+                   aiffread.py                                             #!/usr/bin/env python3
+                   aiffwrite.py                                            __all__ = ["equalizer"]
+                   auread.py                                               $ cat sound/formats/wavread.py
+                   auwrite.py                                              #!/usr/bin/env python3
+           effects/               Subpackage for sound effects             def wavread():
+                   __init__.py                                                 print("wavread")
+                   echo.py
+                   surround.py
+                   reverse.py
+           filters/               Subpackage for filters
+                   __init__.py
+                   equalizer.py
+                   vocoder.py
+                   karaoke.py
+
+
+
+
+Modules, . . . - v2.0                                                                                                10 / 13
+
+--- PAGE 11 ---
+Paquet (ou Package) 3 / 4
+
+
+     Exemple issu du tutoriel Python
+             1                                                3                                  4
+     >>> import sound.effects.echo              >>> from sound.effects import *   >>> from sound.filters import *
+     >>> sound.effects.echo.echo()              >>> echo.echo()                   >>> equalizer.equalizer()
+     echo                                       echo                              equalizer
+     >>> from sound.effects import echo         >>> surround.surround()           >>> vocoder.vocoder()
+     >>> echo.echo()                            surround                          Traceback (most recent call last):
+     echo                                       >>> reverse.reverse()               File "<stdin>", line 1, in <module>
+     >>> from sound.effects.echo import echo    reverse                           NameError: name ’vocoder’ is not defined
+     >>> echo()
+     echo
+
+                        2
+     >>> from sound.formats import *
+     >>> wavread.wavread()
+     Traceback (most recent call last):
+       File "<stdin>", line 1, in <module>
+     NameError: name ’wavread’ is not defined
+
+
+
+
+Modules, . . . - v2.0                                                                                                        11 / 13
+
+--- PAGE 12 ---
+Paquet (ou Package) 4 / 4
+
+     Import relatif
+         Lorsque le module d’un paquet nécessite l’import d’un paquet ou d’un module d’une
+         autre branche du même procjet, on peut utiliser des imports relatifs (. pour le pauqte
+         courant, .. pour le paquet parent)
+
+     Exemple issu du tutoriel Python
+     sound/                                                  Depuis le module surround.py
+           __init__.py
+           formats/
+                   __init__.py
+                   ...                                  from . import echo
+           effects/
+                   __init__.py                          from .. import formats
+                   echo.py
+                   surround.py                          from ..filters import equalizer
+                   ...
+           filters/
+                   __init__.py
+                   equalizer.py
+                   ...
+
+
+Modules, . . . - v2.0                                                                              12 / 13
+
+--- PAGE 13 ---
+Conclusion
+
+
+
+     Nous avons vu dans ce cours
+              qu’un fichier .py se nomme un module
+              qu’un module peut être un script
+              que l’on peut organiser hiérarchiquement le code en paquet, qui contiennent des paquets ou des modules
+              que l’instruction import permet de charge un module
+              que l’instruction from .. import permet de charger un module d’un packahe ou l’élément d’un module
+              que le suffixe as permet de renommer localelemnt un module ou l’élément d’un module
+
+
+
+
+Modules, . . . - v2.0                                                                                              13 / 13

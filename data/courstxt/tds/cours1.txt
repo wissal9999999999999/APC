@@ -1,0 +1,583 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                    Cours 1
+
+         Introduction au Traitement du
+                     Signal
+      Représentation temporelle des signaux
+                      ASI 3
+
+TdS                                           1
+
+--- PAGE 2 ---
+Traitement du Signal
+Introduction au TS            Continu  Discret
+
+Transformation de Fourier     TF en Discret
+
+Systèmes linéaires continus   Systèmes linéaires Discrets
+
+Filtrage analogique           Filtrage Numérique
+
+                                DSP ?
+
+TdS                                                       2
+
+--- PAGE 3 ---
+Contenu du cours
+
+  Introduction
+       Définition d'un signal
+       Qu'est-ce que le traitement du signal?
+       Chaîne de traitement de l'information
+  Classification des signaux
+  Signaux élémentaires
+  Notions de corrélation
+  Notions de distributions
+       Définition d'une distribution
+       Impulsion de Dirac
+
+
+
+TdS                                              3
+
+--- PAGE 4 ---
+Introduction
+  Signal
+          Représentation physique d'une information à transmettre
+          Entité qui sert à véhiculer une information
+  Exemples
+       Onde acoustique : courant délivré par un microphone (parole, musique, …)
+       Signaux biologiques : EEG, ECG
+       Tension aux bornes d'un condensateur en charge
+       Signaux géophysiques : vibrations sismiques
+       Finances : cours de la bourse
+       Débit de la Seine
+       Images
+       Vidéos
+       etc.
+  Bruit : Tout phénomène perturbateur pouvant géner la perception ou
+      l'interprétation d'un signal
+TdS                                                                                4
+
+--- PAGE 5 ---
+Introduction
+
+ Définitions :
+
+      Traitement du signal
+
+
+          Ensemble de techniques permettant de créer, d'analyser, de
+           transformer les signaux en vue de leur exploitation
+
+
+          Extraction du maximum d'information utile d'un signal
+           perturbé par le bruit
+
+            Notion très importante : le bruit
+
+
+
+
+TdS                                                                     5
+
+--- PAGE 6 ---
+Introduction
+ Fonctions du traitement du signal
+    Créer : Élaboration de signaux
+        Synthèse : création de signaux par combinaison de signaux
+         élémentaires
+
+
+
+
+        Modulation : adaptation du signal au canal de transmission
+
+
+
+
+TdS                                                                   6
+
+--- PAGE 7 ---
+Introduction
+ Fonctions du traitement du signal
+    Analyser : Interprétation des signaux
+        Détection : isoler les composantes utiles d'un signal complexe ,
+         extraction du signal d'un bruit de fond
+
+        Identification : classement du signal (identification d'une pathologie
+         sur un signal ECG, reconnaissance de la parole, etc.)
+
+
+
+
+TdS                                                                               7
+
+--- PAGE 8 ---
+Introduction
+ Fonctions du traitement du signal
+    Transformer : adapter un signal aux besoins
+        Filtrage : élimination de certaines composantes
+             – Détection de craquements sur un enregistrement,
+             – Détection de bruit sur une image,
+             – Annulation d'écho, etc.
+        Codage/compression (Jpeg, mp3, mpeg4, etc.)
+
+
+                  h1             ↓ M       y1      Allocation                   ↑ M             M*h1
+                                                      de bits
+         y        h2            ↓ M        y2           aux                     ↑ M             M*h2
+      Bbc.wav                                        bandes
+                                                                                                                 ∑   yrec
+                 …                …                    selon                     …                …
+                                                    l’énergie
+                 hM                                des signaux                                 M*hM
+                                ↓ M        y8                                   ↑ M
+                                                  Algorithme d’allocation:                    Étage de filtres
+             Étage de filtres                                                                 interpolateurs
+                                                   Taux de compression
+              Anti aliasing      Décimation                                sur-échantillonnage
+TdS                         (sous-échantillonnage)
+                                                                                                                            8
+
+--- PAGE 9 ---
+La chaîne de traitement de l'information et le TS
+
+
+
+
+      Système
+                     Capteur          Transmission      Récepteur        Traitements
+      physique
+
+                                       Bruit
+                      Bruit
+
+
+
+
+                               Extraction       Reco.       Compression
+                 Analyse                                                     etc.
+                               d'information de formes      (mp3, ...)
+
+
+
+
+TdS                                                                                    9
+
+--- PAGE 10 ---
+Objectifs
+
+      Connaissances théoriques élémentaires pour
+
+           • Décrire et représenter les signaux
+
+           • Comprendre le principe et les limites des méthodes de traitement
+
+           • mettre en œuvre des méthodes de traitement simples
+
+
+      Objectifs de ce premier cours :
+
+            • Classification des signaux selon différentes catégories
+                 (leur dimension, leur évolution, leur énergie, leur morphologie)
+
+            • Énergie et puissance
+
+            • Notion de corrélation
+
+
+
+TdS                                                                                 10
+
+--- PAGE 11 ---
+Classification des signaux
+
+  Classification dimensionnelle               2
+
+
+       Signal monodimensionnel 1D             1
+
+
+
+           Fonction d'un seul paramètre,
+                                               0
+
+
+                                               -1
+           pas forcément le temps : une        -2
+
+           concentration, une abscisse, etc.        0   10   20   30   40
+
+
+
+
+       Signal bidimensionnel 2D
+           Exemple : image NG → f ( x, y )
+
+       Signal tridimensionnel 3D
+           Exemple : film NB → f ( x, y, t )
+
+
+
+TdS                                                                         11
+
+--- PAGE 12 ---
+Classification phénoménologique
+  Evolution déterministe ou aléatoire des signaux
+       Signaux déterministes
+            Signaux dont l'évolution en fonction du temps t peut être parfaitement
+            décrite grâce à une description mathématique ou graphique.
+
+          Sous catégories :
+        périodiques                  apériodiques                 transitoire
+
+
+
+
+      ∃ T x(t ) = x(t + kT )         support non borné               support borné
+
+        Signal réel
+       C'est un signal représentant une grandeur physique. Son modèle
+       mathématique est une fonction réelle. Ex. : tension aux bornes d'un C
+TdS                                                                                  12
+
+--- PAGE 13 ---
+Classification phénoménologique
+       Signaux aléatoires (stochastiques)
+             Signaux dont l'évolution temporelle est imprévisible et dont on ne
+             peut pas prédire la valeur à un temps t.
+             La description est basée sur les propriétés statistiques des signaux
+             (moyenne, variance, loi de probabilité, …)
+
+      Exemple résultat d'un jet de dé lancé toutes les secondes (moyenne=3.5, écart type :1.87)
+
+      Signaux aléatoires stationnaires
+       Stationnaire si les caractéristiques statistiques ne varient pas au cours du temps.
+
+                   stationnaires                          Non-stationnaires
+
+
+
+
+TdS                                                                                           13
+
+--- PAGE 14 ---
+Classification énergétique
+  Energie et Puissance des signaux
+
+      Soit un signal x(t) défini sur ] − ∞ , + ∞ [ , et T0 un intervalle de temps
+
+       Energie de x(t)
+                                                        T0
+                                                         2
+           E = ∫ −+ ∞∞ x (t ) dt
+                           2                                       2
+                                       ou   E = lim         ∫ x (t ) dt
+                                               T0 → ∞       T0
+                                                        −
+                                                             2
+       Puissance moyenne de x(t)
+                               T0
+                        1       2  2
+            P = lim       ∫ x (t )   dt
+                To → ∞ T0 T        0
+                               −
+                                   2
+
+           Homogène à E/t
+                                                                                 T
+                                                                               1 2           2
+          Cas des signaux périodiques de période T                        P=           ∫ x (t ) dt
+                                                                               T       T
+                                                                                   −
+TdS                                                                                    2             14
+
+--- PAGE 15 ---
+Classification énergétique
+
+       Remarques :
+
+        Signaux à énergie finie  puissance moyenne nulle
+          Généralement, cas des signaux représentant une grandeur physique.
+          Signaux transitoires à support borné
+
+        Signaux à énergie infinie  puissance moyenne non nulle
+          Cas des signaux périodiques
+
+
+
+
+        Notion valable pour les signaux aléatoires et déterministes
+
+
+
+
+TdS                                                                           15
+
+--- PAGE 16 ---
+Classification morphologique
+
+    1ère partie du   quantification
+        cours
+ échantillonnage
+
+
+
+
+                                      2ème partie du
+                                         cours
+TdS                                                    16
+
+--- PAGE 17 ---
+Retour sur la notion de bruit
+  Bruit
+       Def. : Tout phénomène perturbateur pouvant géner la perception
+        ou l'interprétation d'un signal
+
+       La notion de bruit est relative, elle dépend du contexte
+
+       Exemple classique du technicien en télécom et de l'astronome :
+
+           Pour le technicien en télécom :
+             – Ondes d'un satellite = signal
+             – Signaux provenant d'une source astrophysique = bruit
+           Pour l'astronome :
+             – Ondes d'un satellite = bruit
+             – Signaux provenant d'une source astrophysique = signal
+
+       Tout signal physique comporte du bruit = une composante aléatoire
+
+       Introduction de la notion du rapport signal/bruit
+
+TdS                                                                         17
+
+--- PAGE 18 ---
+Notion de rapport signal sur bruit
+  Objectif
+      Signal = composante déterministe + composante aléatoire.
+
+      Déterminer la qualité d'un signal aléatoire ou déterministe  introduction
+      d'un rapport RS/B quantifiant l'effet du bruit.
+                  Ps
+         RS / B =          ou    R S / B (dB) = 10 log10 ( R S / B )
+                  Pb
+           Ps est la puissance du signal et Pb celle du bruit.
+            RS/B=0 dB                          RS/B=26 dB
+
+
+
+
+                                                                            Signal + bruit
+                                                                            Signal
+
+
+
+
+TdS                                                                                    18
+
+--- PAGE 19 ---
+Signaux élémentaires continus
+
+        Échelon
+                  0 pour t < 0             Signal porte ou rectangle
+        Γ (t ) = 
+                  1 pour t > 0                           1             τ
+          Γ (t )                              Π τ (t ) =        pour t ≤
+                                                                          2
+                                                           0   ailleurs
+         1                                                       Π τ (t )
+
+                                                                   1
+
+
+      permet d'exprimer l'établissement
+       instantané d'un régime continu                  − τ /2        τ /2
+       Exponentielle décroissante                   τ : largeur de la porte
+        y (t ) = Γ (t ) ⋅ e − at    a> 0      Peut aussi être défini comme une
+                                              différence de deux échelons.
+
+
+                                            Signaux périodiques : sin / cos
+
+TdS                                                                              19
+
+--- PAGE 20 ---
+Notion d'autocorrélation
+  Définition
+      L'autocorrélation réalise une comparaison entre un signal x(t) et ses copies
+      retardées (étude de ressemblance d'un signal avec lui-même au cours du temps)
+
+         Pour les signaux à énergie finie
+                        +∞                                 Homogène à une énergie,
+           C xx (τ ) = ∫ x (t ) ⋅ x (t − τ )dt
+                                   *
+                                                           Cxx(0) est l'énergie du signal
+                        −∞
+         Pour les signaux à énergie infinie
+                                                              Homogène à une puissance,
+                              1 T /2
+             C xx (τ ) = lim       ∫ x(t ) x* (t − τ )dt      Cxx(0) est la puissance
+                         T→ ∞ T − T /2
+                                                              moyenne du signal
+         Propriétés
+             C xx (τ ) ≤ C xx (0) : Maximum en 0
+
+             Si x(t) est périodique alors Cxx(t) est périodique de même période
+
+             Cxx(t) est paire pour des signaux réels
+TdS                                                                                         20
+
+--- PAGE 21 ---
+Notion d'intercorrélation
+  Définition
+       L'intercorrélation compare un signal x(t) et un signal y(t) retardée.
+       Elle mesure la similitude entre ces deux signaux
+                                                       +∞
+       Pour les signaux à énergie finie   C xy (τ ) = ∫ x(t ) ⋅ y* (t − τ )dt
+                                                       −∞
+                                                                     T /2
+                                                              1 0
+       Pour les signaux à énergie infinie C xy (τ ) = lim         ∫   x(t ) y* (t − τ )dt
+                                                      T0 → ∞ T0 − T / 2
+                                                                       0
+
+      Exemple d'application      Détection par intercorrélation
+
+
+
+
+       Autres exemples
+            Détection de signal périodique noyé dans le bruit
+            Analyse spectrale
+TdS         Test de "blancheur"                                                         21
+
+--- PAGE 22 ---
+Introduction aux distributions
+                    i(t)
+                                               0       t< 0
+                                      V (t ) = 
+ Eo               V(t)         C                Eo     t> 0
+
+                                         V est discontinue
+
+                                            dV
+      Question : que vaut i(t) ? i (t ) = C
+                                            dt
+      i(t) est nul partout. En 0, on ne connaît pas la valeur de i car V(t) est
+      discontinue en 0 et n'est donc pas dérivable en ce point.
+                                                                                  +∞
+      Et pourtant, i(t) en 0 existe puisque il y a eu transfert de charge q = ∫ i (t )dt = CEo
+                                                                                  −∞
+
+      entre l'alimentation et la capacité. Aire sous i(t) = CE0 ... étrange non ?
+               i(t) serait une fonction qui vaut 0 partout et l'infini en 0
+              impossible car on aurait 2*i(t) = i(t), ou i(t)² = i(t) ...
+
+              i(t) n'est donc pas une fonction, c'est une distribution !
+              On l'appelle distribution de Dirac
+TdS                                                                                         22
+
+--- PAGE 23 ---
+Distribution de Dirac
+  Définition
+       Si φ est une fonction, la distribution de Dirac ou impulsion de Dirac
+        est définie par :                ∞
+                              =∫−∞ t . t dt=0
+        => Dirac appliqué à une fonction = la valeur de la fonction en 0
+        Remarque : il n'existe pas de fonction δ vérifiant cette propriété
+
+       Cependant pour des raisons de commodités, on la note souvent
+        comme une fonction de t : δ(t), qu'on représente :
+                                                                            δ(t)
+
+  Propriétés                                                                      t
+      • Dirac représente un signal de durée théoriquement nulle et d'énergie finie (=1).
+
+      • Notation incorrecte mais commode :         δ (t1 ) = δ (t − t1 )
+      • Une impulsion de Dirac à l'instant t1 donne :   δ (t1 ) (ϕ ) = ϕ (t1 )
+      • Autre propriété :   x (t ) ⋅ δ (t − to) = x(to) ⋅ δ (t − to)
+TdS                                                                                    23
+
+--- PAGE 24 ---
+Distribution de Dirac
+  Autres définitions :
+     Comme une fonction :
+
+                   δ ( x) = 0       x≠ 0   Remarque1 : ceci est impossible : l'aire
+                                           sous le pic ne peut être égale à 1...
+           δ ( x)  + ∞
+                   ∫
+                       δ ( x) dx = 1        Remarque2 : l'énergie du Dirac est donc
+                                            égale à 1
+                  −∞
+                                                             1
+                                                               ∏ τ (t)
+                                                             τ
+
+      À partir du signal porte :
+                                                               τ
+                                                                                  δ(t)
+                        1
+           δ ( x) = lim   Π τ ( x)
+                   τ→ 0 τ
+                                                                   t                     t
+                                                            Mêmes remarques !
+       Peut être vue comme la dérivée d'un échelon
+
+TdS                                                                                      24
+
+--- PAGE 25 ---
+Peigne de Dirac
+  Définition
+      C'est une somme infinie d'impulsions de Dirac régulièrement espacées de To
+                                                            To
+
+
+                  +∞
+          T = ∑ δ ( t − kTo )
+         Ш
+            o
+                 k= − ∞
+
+                                       -2To      -To                                   2To   t
+  Propriété                                           0                To
+
+
+
+                  To = ∑ x(kTo) ⋅ δ (t − kTo)
+         x(t ) ⋅ Ш
+                          k                                       x(t)
+
+                                                                  x ( t ) ⋅  To
+
+
+
+
+                                                                                   t
+                              Echantillonnage de la fonction x(t)
+TdS                                                                                              25
+
+--- PAGE 26 ---
+Qq éléments sur la théorie des Distributions ...
+  Définition
+         On appelle une distribution D, un opérateur sur l'espace vectoriel V de
+         fonctions ϕ(t), indéfiniment dérivable et à support borné.
+                      D:       V → ℂ                     ℂ: ensemble des nombres
+                                                          complexes
+                               ϕ (t ) → D, ϕ ou D(ϕ )
+       Propriétés
+         D(ϕ 1 + ϕ 2 ) = D(ϕ 1 ) + D(ϕ 2 )
+         D (λ ϕ ) = λ D (ϕ )    λ est un scalaire
+
+
+       Dérivation d'une distribution
+           Soit D une distribution alors la dérivée D' de D définit également une
+           distribution telle que D ' (ϕ ) = − D (ϕ ' )
+
+
+      Voir J. Auvray pour plus de précisions
+
+TdS                                                                                  26

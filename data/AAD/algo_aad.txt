@@ -1,0 +1,77 @@
+AAD-ID,AAD-TITLE
+ALGO-AN001,Désigner les choses (identifiant significatif)
+ALGO-AN002,Être précis quant aux types de données utilisés
+ALGO-AN003,Comprendre le rôle de l'analyse
+ALGO-AN004,Comprendre et appliquer des consignes algorithmiques sur un exemple
+ALGO-AN101,Identifier les entrées et sorties d'un problème
+ALGO-AN102,Décomposer logiquement un problème
+ALGO-AN103,Généraliser un problème
+ALGO-AN104,Savoir si un problème doit être décomposé
+ALGO-AN105,Identifier un problème naturellement récursif (directement ou indirectement)
+ALGO-AN106,Formaliser une analyse descendante à l'aide du langage vu en cours
+ALGO-AN201,Identifier les dépendances d'un TAD
+ALGO-AN202,Définir des TAD génériques
+ALGO-AN203,Savoir si une opération identifiée fait partie du TAD à spécifier
+ALGO-AN204,Formaliser des opérations d'un TAD
+ALGO-AN205,Formaliser les préconditions d'une opération d'un TAD
+ALGO-AN206,Formaliser des axiomes ou savoir définir la sémantique d'une opération d'un TAD
+ALGO-AN207,Formaliser un TAD à l'aide le langage vu en cours
+ALGO-AN301,Lister les collections usuelles
+ALGO-AN302,Formaliser sous forme de TAD une collection
+ALGO-AN401,Spécifier les différents types de graphes (étiqueté et/ou valué)
+ALGO-CP001,Comprendre le paradigme de programmation impératif
+ALGO-CP002,Comprendre le paradigme de programmation structuré
+ALGO-CP003,Choisir entre une fonction et une procédure
+ALGO-CP004,Concevoir une signature (préconditions incluses)
+ALGO-CP005,"Choisir un passage de paramètre (E, S, E/S)"
+ALGO-CP006,Comprendre le rôle de l'analyse préliminaire
+ALGO-CD001,Dissocier le rôle de concepteur et utilisateur
+ALGO-CD002,"En tant qu'utilisateur, respecter une signature"
+ALGO-CD003,Utiliser le principe d'encapsulation
+ALGO-CD004,Écrire des algorithmes avec le pseudo code utilisé à l'INSA
+ALGO-CD005,"Écrire un pseudo code lisible (indentation, identifiant significatif)"
+ALGO-CD006,Choisir la bonne itération
+ALGO-CD007,Utiliser les bonnes catégories de paramètres effectifs pour un passage de paramètre donnée
+ALGO-CD009,Écrire un algorithme qui résout le problème
+ALGO-CD010,Comprendre le rôle de la conception détaillée
+ALGO-CD011,"Utiliser les bons types de données (paramètres formels, variables locales)"
+ALGO-CD012,"Reconnaitre la famille d'algorithme (parcourir, rechercher, optimiser, etc.) à utiliser"
+ALGO-CD101,Estimer la taille d'un problème (n)
+ALGO-CD102,Calculer une complexité dans le pire et le meilleur des cas
+ALGO-CD103,Exprimer une complexité en temps et en espace
+ALGO-CD104,Écrire un algorithme d’une complexité donnée
+ALGO-CD201,Identifier et résoudre le problème des cas non récursifs
+ALGO-CD202,Identifier et résoudre le problème des cas récursifs
+ALGO-CD203,Identifier une récursivité terminale et non terminale et ce que cela implique
+ALGO-CD301,Identifier un problème qui se résout à l'aide d'un algorithme dichotomique
+ALGO-CD302,Définir l'espace de recherche d'un algorithmique dichotomique
+ALGO-CD303,Diviser et extraire les bornes de l'espace de recherche d'un algorithme dichotomique (cas discret ou continu)
+ALGO-CD401,Concevoir et utiliser des listes chaînées
+ALGO-CD402,Concevoir et utiliser des listes doublement chaînées
+ALGO-CD403,"Concevoir et utiliser des arbres (binaires, n-aires)"
+ALGO-CD404,Savoir concevoir et utiliser des arbre-B (insertion suppression)
+ALGO-CD501,Comprendre les algorithmes des différents tris et leurs complexités
+ALGO-CD601,Concevoir des collections à l'aide de SDD
+ALGO-CD602,Comprendre les algorithmes d'insertion et de suppression (naïfs et AVL) dans un arbre binaire de recherche
+ALGO-CD701,Définir la programmation dynamique
+ALGO-CD702,Appliquer la programmation dynamique pour des cas simples
+ALGO-CD703,Comprendre et résoudre le problème du sac à dos
+ALGO-CD801,"Concevoir des graphes (matrice d'adjacence, matrice d'incidence, liste d'adjacence)"
+ALGO-CD802,Écrire des algorithmes de parcours en largeur ou en profondeur
+ALGO-CD803,Écrire un algorithme de tri topologique
+ALGO-CD804,Dijkstra et A*
+ALGO-CD901,Concevoir un type de données adapté à la situation en terme d'espace mémoire et d'efficacité
+ALGO-DEV001,Compiler et linker un programme C (options de base de gcc)
+ALGO-DEV002,Débugger un programme
+ALGO-DEV003,Développer des modules C (.h et .c)
+ALGO-DEV004,Écrire un Makefile simple
+ALGO-DEV005,Créer des bibliothèques statiques ou dynamiques
+ALGO-DEV006,Écrire un code C lisible
+ALGO-DEV007,Traduire/adapter un algorithme en fonction C
+ALGO-DEV008,Traduire des passages de paramètre algorithme en passage de paramètre C
+ALGO-DEV009,"Utiliser les pointeurs, tableaux et chaînes de caractères en C"
+ALGO-DEV010,"Utiliser les commandes de base de CVS Git (init, clone, add, commit, push, pull)"
+ALGO-DEV011,Développer des SDD génériques (void*)
+ALGO-DEV012,Utiliser les fonctionnalités de base de la forge GitLab
+ALGO-DEV013,Documenter le code à l'aide de Doxygen
+ALGO-TU001,Écrire des tests unitaires à l'aide du framework Cunit

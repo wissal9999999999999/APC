@@ -1,0 +1,412 @@
+--- PAGE 1 ---
+Introduction aux statistiques pour l’Ingénieur
+
+                  Stéphane Canu
+       asi.insa-rouen.fr/enseignants/~scanu
+                   scanu@insa-rouen.fr
+
+
+
+
+    ITI 3, INSA Rouen Normandie, Janvier 2026
+
+--- PAGE 2 ---
+Statistiques pour l’ingénieur
+Tout est sur moodle (n’oubliez pas de vous inscrire)
+
+
+
+
+     https://moodle.insa-rouen.fr/course/view.php?id=991
+
+--- PAGE 3 ---
+Lecture road map
+
+
+1   Statistiques pour l’ingénieur
+      Mots pour mots
+      Statistiques pour décrire
+      Statistiques pour Inférer
+
+2   Une brève histoire des statistiques
+     Statistiques et état
+     Statistiques et sciences
+
+3   Enjeux actuels des statistiques
+
+
+                                          https://moodle.insa- rouen.fr/course/view.php?id=991
+
+--- PAGE 4 ---
+Statistiques pour l’ingénieur
+
+
+Pour l’ingénieur : aspect utile pour aider à prendre des décisions
+exemple : Le test A/B (ou A/B testing)
+
+--- PAGE 5 ---
+Statistiques pour l’ingénieur
+Statistiques : les statistiques sont partout
+
+COVID : ou en est-on de la pandémie et ou va t’on ?
+
+
+
+
+                            Décrie puis Décider
+
+--- PAGE 6 ---
+Les statistiques pour décrire
+
+--- PAGE 7 ---
+Les statistiques pour décrire
+
+
+
+
+                                https://neilbendle.com/lying- with- statistics/
+
+--- PAGE 8 ---
+Les statistiques pour condamner
+
+
+
+
+Le cas Sally Clark
+
+--- PAGE 9 ---
+Statistiques pour décider
+Applications :
+    Evaluation des risques (assurance, dimensionnement de digues. . . )
+    Statistique Biomédicale - Essais cliniques
+    Détection d’anomalies
+    Validation de Procédés - Fiabilité
+    Enquêtes Sondage marketing
+    Prévision météo (Séries Temporelles)
+    IA . . .
+
+Modèle statistique :
+    choix du modèle                              X suit une loi de Bernouilli
+    identification des paramètres                             p̂ = . . . 51.5%
+    prédiction/décision                  je pense que ce candidat va être élu
+
+--- PAGE 10 ---
+Lecture road map
+
+1   Statistiques pour l’ingénieur
+      Mots pour mots
+      Statistiques pour décrire
+      Statistiques pour Inférer
+
+2   Une brève histoire des statistiques
+     Statistiques et état
+     Statistiques et sciences
+
+3   Enjeux actuels des statistiques
+
+
+
+
+                                          https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 11 ---
+Une brève histoire des statistiques
+   Etymologie : latin classique status (état) → statistique en 1749.
+   Statistik en allemand, political arithmetic en Angleterre jusqu’en 1798
+   Organisation des bureau de statistiques : population (nombre de
+   naissances/nombre de décès, richesse du pays...)
+
+
+
+
+                                                                         .
+
+       L’art de gouverner : bien connaitre pour bien administrer
+
+--- PAGE 12 ---
+Une brève histoire des statistiques
+ Recenssement
+   I L’empereur chinois Yao, organisant le
+     recensement des productions agricoles en
+     2238 avant J.-C.
+   I Cadastre chez les Egyptiens 1700 av J.-C.
+
+
+
+
+ Le premier écrit sur les statistiques :
+ « Manuscrit pour décrypter les messages
+ cryptographiques », du mathématicien
+ Al-Kindi (801-873) : la fréquence
+
+
+ L’idée de médiane apparait dans un livre
+ d’Edward Wright sur la navigation (Erreurs
+ Certaines en navigation, 1599) dans une
+ section concernant la détermination de sa
+ localisation à la boussole.
+
+--- PAGE 13 ---
+Choisir ou combiner ?
+
+
+
+
+  Tycho Brahe (1546-1601) pour le calcul de la position des planètes.
+
+--- PAGE 14 ---
+Utilité et statistique
+Décision rationnelle en présence d’aléa :
+    le pari de pascal
+    gain (croire) > gain (ne pas croire)
+
+
+
+
+Lady Montagu et l’inoculation préventive
+    la variolisation : pré-vaccin de la variole
+    risque = 0,5 à 2 % de mortalité
+    premier débat sur les probabilités
+    Sur quoi raisonner ?
+
+   Résultat : iatrogénie
+
+                  L’utilité est une question de point de vue
+
+--- PAGE 15 ---
+Dérives : de l’homme moyen à l’eugénisme
+  Quételet (1844-1848) : l’homme moyen
+  (physique, social et moral)
+    I   la normalité
+    I   pour lui la moyenne c’est la perfection (???)
+
+  l’eugénisme : déterminer les conditions
+  d’amélioration de soit disant races
+  → donner des bases scientifique au racisme
+    I   mesurer
+    I   définir ce que « mieux » veut dire
+  des statisticiens importants étaient également
+  des défenseurs passionnés de l’eugénisme.
+  ce n’est pas neutre : En termes de statistiques
+  de Pearson et Fisher, il existe un fort biais
+  contre l’explication causale.
+  certaines méthodes statistique et la pensée
+  eugéniste sont, en fait, profondément liées,
+
+--- PAGE 16 ---
+Rationalité des décisions
+Doit-on jouer au loto (ou s’assurer) ?
+    du point de vue de la française des jeux : c’est la moyenne qui permet
+    de fixer les prix
+    de notre point de vue, ce sont les écarts à la moyenne qui nous font
+    acheter un billet
+
+Fumer provoque-t-il le cancer ?
+
+C’est toujours possible, mais est-ce probable ou même plausible ?
+
+                 prouvé > possible > probable > plausible
+
+
+L’astronome et le juge : Probabilité et fréquence objective (liée à un
+phénomène physique) ou degré de certitude subjective ou de croyance
+(l’intime conviction juridique)
+
+--- PAGE 17 ---
+Statistique et probabilité
+Arbuthnot’s (SC, LP) 1710 : test du signe pour prouver que le taux de
+natalité des femmes n’est pas 1/2.
+
+
+La loi des grands nombres (Bernoulli, 1713)
+                 La moyenne     converge vers    l’espérance
+                      n
+                    1X
+              X̄ =      Xi            −→            IE(X )
+                    n                 n→∞
+                      i=1
+
+--- PAGE 18 ---
+le taux de natalité des femmes est il 1/2 ?
+on a observé nf = 342986 naissances de filles sur n = 701819 naissances
+                         p̂ = nnf = 0, 49
+C’est une moyenne avec Bi = 1Ppour une fille et Bi = 0 pour un garçon
+                         p̂ = n1 ni=1 Bi
+Peut-on en déduire raisonnablement que p = 1/2 ?
+L’écart observé entre 0, 49 et 0, 5 est-il dû au hasard ou au fait que p 6= 1/2
+
+Le thèorème central limite (De Moivre, 1733)
+             La moyenne            converge vers       la loi normale
+                 n
+           √ 1 X                         (d)
+            n      Bi − p                 −→              N (0, σ 2 )
+              n                           n→∞
+                   i=1
+
+
+                           √          n
+                                   1 X
+                                                             !
+                               n                   
+       IP −2, 57 ≤ p                 Bi − p ≤ 2, 57 = 0, 99
+                     p(1 − p) n i=1
+     P            
+avec n1 ni=1 Bi − p = −0.011 et 2√2,57
+                                  701819
+                                         = 0.0000018
+
+--- PAGE 19 ---
+18ème siècle : une histoire de convergence
+
+
+
+Soit X une variable aléatoire IE(X ) = 0 et V (X ) = 1
+                            n
+                            X
+                      lim         Xi
+                     n→∞
+                            i=1
+                              n
+                        1X
+                    lim    Xi
+                    n→∞ n
+                             i=1
+                                  n
+                         1 X
+                    lim √    Xi
+                   n→∞    n
+                              i=1
+
+--- PAGE 20 ---
+Physique statistique
+Boltzmann et Gibbs développent la mécanique statistique (1860)
+Perception macroscopique n = 1023
+                                  n
+                                1X
+                         X̄ =      Xi = IE(X )
+                                n
+                                 i=1
+
+Ca marche !
+    Pression = somme des chocs des molécules
+    Déterministe mécanique → distribution probabiliste
+    Pont entre micro et macroscopique : capacité à modéliser
+
+--- PAGE 21 ---
+de la physique statistiques vers les autres sciences
+   Biologie
+     I santé - médecine
+     I génomique
+     I ...
+
+
+
+   Chimie
+     I   PSL
+
+   dans l’industrie
+     I   contrôle qualité
+
+   Sciences sociales
+     I économie
+     I sondages
+     I langage
+     I ...
+
+   ...
+
+--- PAGE 22 ---
+Enjeux actuels des statistiques
+
+  Big data (IA) pour quoi faire : prédiction du
+  jour de sa mort (Don’t look up et Abraham de
+  Moivre)
+
+
+  réduire l’individu à ses propres chiffres (Google)
+  les stat pour décrire le monde Robert C. Camp
+  le père du benchmarking (Xerox). La
+  quantification transforme le monde
+
+
+  Statistiques et IA
+       → ChatGPT
+
+--- PAGE 23 ---
+Enjeux de toujours des statistiques
+
+
+Quelles sont les données justes pour la question que je me pose ?
+
+Produire de la connaissance à partir de données est un problème mal posé.
+
+Pour le résoudre il faut des a priori = Un modèle statistique
+
+
+       Statistique = probabilité−1
+    Proba à partir des loi
+Inférence à partir des données
+
+--- PAGE 24 ---
+Loi de probabilités
+La variable aléatoire X à valeur dans Ω suit une loi P de paramètre(s) θ.
+                                  X ∼ P(θ)
+
+Loi             P             Paramètres θ          Exemple de phénomène
+ Lois Discrètes : Ω dénombrable et probabilité IP(x)
+Bernoulli       B(p)          p ∈ [0, 1] (succès)   Succès ou échec d’un seul lancer de pièce.
+Binomiale       B(n, p)       n ∈ N (essais), p     Nombre de faces obtenues en lançant 10 fois
+                                                    une pièce.
+Poisson         P(λ)          λ > 0 (taux moyen)    Nombre d’appels reçus par un standard en
+                                                    une heure.
+Géométrique     G(p)          p ∈ [0, 1]            Nombre d’essais nécessaires pour obtenir le
+                                                    premier succès.
+ Lois Continues : Ω continu et densité f (x)
+Uniforme        U (a, b)      a, b ∈ R (bornes)     Position d’une cassure aléatoire sur une rè-
+                                                    gle de 30 cm.
+Exponentielle   E(λ)          λ>0                   Temps d’attente entre deux arrivées.
+Normale         N (µ, σ 2 )   µ ∈ R, σ 2 > 0        Taille des individus d’une population.
+Log-normale     LN(µ, σ 2 )   µ, σ 2                Répartition des revenus ou prix des actifs
+                                                    financiers.
+
+--- PAGE 25 ---
+Lois de probabilités, suite...
+Loi                  P                 Paramètres θ   Exemple de phénomène
+ Lois Discrètes
+Uniforme Discrète    U (n)             n ∈ N∗         Résultat d’un dé à 6 faces équilibré.
+Hypergéométrique     H(N, n, p)        N, n, p        Tirage sans remise d’un échantillon dans
+                                                      une population.
+Binomiale Négative   N B(r , p)        r ∈ N∗ , p     Nombre d’essais pour réaliser r ventes.
+Multinomiale         M(n, p1 ...pk )   n, pi          Répartition des votes entre k candidats.
+Rademacher           2B(p) − 1         p = 0.5        Pas à gauche ou à droite dans une
+                                                      marche aléatoire.
+ Lois Continues
+Gamma                Γ(k, θ)           k, θ > 0       Temps d’attente total avant de recevoir
+                                                      k appels.
+Bêta                 Beta(α, β)        α, β > 0       Modélisation d’une proportion ou d’un
+                                                      taux d’intérêt.
+Weibull              W (λ, k)          λ, k > 0       Durée de vie d’un composant soumis à
+                                                      l’usure.
+Chi-deux             χ2 (k)            k ∈ N∗         Tests d’indépendance et d’adéquation
+                                                      statistique.
+Student              t(k)              k ∈ N∗         Estimation d’une moyenne sur de petits
+                                                      échantillons.
+
+...et bien d’autres encore (Pareto, Cauchy, Laplace, Gumbel, Dirichlet... )
+
+--- PAGE 26 ---
+Objectifs du cours de statistiques pour l’ingénieur
+
+Objectifs
+    introduire les principales méthodes statistiques utilisées en ingénierie ;
+    donner une introduction à la théorie mathématique derrière les
+    méthodes statistiques ;
+    donner des garanties théoriques sur les méthodes statistiques que vous
+    pourrez utiliser pour certaines applications.
+
+
+A la fin de ce cours, vous devriez être en mesure de :
+    à partir d’une situation réelle, formuler un problème statistique en
+    termes mathématiques
+    sélectionner les méthodes statistiques appropriées à votre problème
+    comprendre les implications et les limites des différentes méthodes

@@ -1,0 +1,25 @@
+{
+  "historical_counts": {
+    "train": 14060,
+    "validation": 1745,
+    "test": 1860
+  },
+  "extension_added": {
+    "train": 7569,
+    "validation": 713,
+    "test": 1464
+  },
+  "extension_duplicates_removed": {
+    "train": 2069,
+    "validation": 142,
+    "test": 177
+  },
+  "combined_counts": {
+    "train": 21629,
+    "validation": 2458,
+    "test": 3324
+  },
+  "pair_leakage_count": 0,
+  "occupation_leakage_count": 8,
+  "note": "Le split historique de l'article est conservé pour comparabilité; l'audit signale ses éventuelles fuites par métier."
+}

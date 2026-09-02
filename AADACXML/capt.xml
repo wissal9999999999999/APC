@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    id="CAPT" nbMax="56" obligatoire="true"
+    presentDansRecapitulatif="true"
+    url="https://moodle.insa-rouen.fr/course/enrol.php?id=173"
+    detailleSurSiteWeb="true" type="ressource">
+  <!--      <responsable ref="Abdelaziz.Bensrhair@insa-rouenfr"/> -->
+  <responsable ref="HindLaghmara" />
+  <intervenants>
+    <intervenant ref="HindLaghmara" />
+    <!-- <intervenant ref=""/> -->
+  </intervenants>
+  <credits nb="4" />
+  <volume-horaire cm="18h" td="18h" tp="18h" />
+  <attendus-apprentissages-disciplinaires>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt01" code="Capt01">
+      <titre xml:lang="fr">Définir et classer les différents types de capteurs en fonction de leurs caractéristiques : actif/passif, nature du mesurande ou du signal de sortie, analogique/numérique/logique, mesure directe/indirecte</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt02" code="Capt02">
+      <titre xml:lang="fr">Décrire les signaux/données d'entrée/sortie</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt03" code="Capt03">
+      <titre xml:lang="fr">Définir les caractéristiques métrologiques des capteurs</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt04" code="Capt04">
+      <titre xml:lang="fr">Caractériser les erreurs de mesures liées aux capteurs.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt05" code="Capt05">
+      <titre xml:lang="fr">Interpréter la position dans différents repères de référence (géocentrique, terrestre, local, ENU, NED)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt06" code="Capt06">
+      <titre xml:lang="fr">Analyser des trames NMEA pour extraire les données utiles</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt07" code="Capt07">
+      <titre xml:lang="fr">Comparer différentes représentations de l’orientation (angles, matrices)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt08" code="Capt08">
+      <titre xml:lang="fr">Décrire les principes physiques (semi-conducteur, laser) associés à des capteurs de perception</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt09" code="Capt09">
+      <titre xml:lang="fr">Comparer les performances des capteurs (portée, résolution, fréquence)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt10" code="Capt10">
+      <titre xml:lang="fr">Interpréter les résultats de détection ou de mesure de distance</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt11" code="Capt11">
+      <titre xml:lang="fr">Appliquer un filtrage simple pour réduire le bruit sur un signal mesuré</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt12" code="Capt12">
+      <titre xml:lang="fr">Synchroniser les données issues de capteurs différents (IMU, GPS)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt13" code="Capt13">
+      <titre xml:lang="fr">Prétraiter les données pour compenser les dérives ou biais</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt14" code="Capt14">
+      <titre xml:lang="fr">Mettre en œuvre un filtre de Kalman linéaire</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt15" code="Capt15">
+      <titre xml:lang="fr">Présenter les limites du modèle linéaire et expliquer le filtre de Kalman étendu</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt16" code="Capt16">
+      <titre xml:lang="fr">Expliquer les intérêts d’une fusion multi-capteurs pour la robustesse</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt17" code="Capt17">
+      <titre xml:lang="fr">Interpréter les résultats de la fusion dans le contexte de la navigation</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt18" code="Capt18">
+      <titre xml:lang="fr">Utiliser un capteur avec une carte raspberry</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="CAPT-Capt19" code="Capt19">
+      <titre xml:lang="fr">Développer un programme python pour utiliser les capteurs ou pour traiter les données (filtre, kalman…)</titre>
+    </attendu-apprentissage-disciplinaire>
+
+  </attendus-apprentissages-disciplinaires>
+  <alignements>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.1"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt01"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt02"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt03"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt04"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.3"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt19"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-2.1"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt05"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt10"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt17"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-1.2"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt01"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt02"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt03"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt09"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.1"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt05"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt06"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt07"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt10"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.2"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt05"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt06"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt07"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-2.4"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt11"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt12"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt13"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt14"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt19"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.1"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt10"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt16"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt17"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-1.3"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt01"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt08"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt09"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt18"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.2"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt13"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt15"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt156"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.4"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt10"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt17"/>
+      <attendu-apprentissage-disciplinaire ref="CAPT-Capt19"/>
+    </alignement>
+  </alignements>
+  <description xml:lang="fr">
+    <titre>Capteurs</titre>
+    <langue>Français</langue>
+    <objectif>
+      <ul>
+        <li>Acquérir les notions de base concernant les capteurs</li>
+	<li>Connaitre et utiliser des capteurs liés à la navigation</li>
+	<li>Découvrir la gestion multi-capteurs</li>
+      </ul>
+    </objectif>
+    <programme>
+      <ul>
+        <li>Introductions aux capteurs</li>
+	<li>Capteurs de positionnement : système GNSS</li>
+	<li>Capteurs de mouvement : IMU</li>
+	<li>Notion de capteurs de vision + capteurs de distance</li>
+	<li>Traitement et filtrage des données</li>
+	<li>Fusion multi-capteurs : filtre de Kalman</li>
+	<li>Calibration capteurs de vision : calibration intrinsèque, extrinsèque</li>
+	<li>Application à la navigation mobile : planification de trajectoire, contrôle par rétroaction, odométrie par détection de positionnement.</li>
+      </ul>
+    </programme>
+    <pre-requis>
+      <p>aucun</p>
+    </pre-requis>
+    <documentation />
+    <evaluation>
+      <ul>
+        <li>Partie théorique 50% (50% Partiel + 50% Final)</li>
+        <li>Partie pratique 30% </li>
+        <li>Contrôle continu 20% </li>
+      </ul>
+    </evaluation>
+  </description>
+  <description xml:lang="en">
+    <titre>Sensors</titre>
+    <langue>French</langue>
+    <objectif>
+      <ul>
+        <li>understanding the working process of an acquisition
+        chain</li>
+        <li>knowing the different components of an acquisition
+        chain system</li>
+        <li>knowing the different types of sensors (thermal,
+        optical, force,...)</li>
+        <li>learn to implement an acquisition chain system:
+        <ul>
+          <li>information retrieval</li>
+          <li>analog signal processing</li>
+          <li>selecting a signal among several</li>
+          <li>conversion of a signal in digital form</li>
+          <li>coordination of the various operations</li>
+        </ul></li>
+        <li>learn to implement an autonomous instrumented chain
+        (with a processor of type micro-controller MIPS32 core)
+        <ul>
+          <li>System definition</li>
+          <li>program design</li>
+          <li>choice of interfaces (buses, etc)</li>
+          <li>distribution data in memory</li>
+        </ul></li>
+      </ul>
+    </objectif>
+    <programme>
+      <ul>
+        <li>The channel data acquisition, the analog-digital
+        converter and Digital to Analog (ADC / DAC)</li>
+        <li>Overview of Sensors</li>
+        <li>The electronics associated with sensors: The Signal
+        Conditioning and Amplifiers</li>
+        <li>To the digitization of information: Shannon's theorem,
+        filters, sampler / Converters</li>
+        <li>Temperature sensors, power, position and movement,
+        optical</li>
+        <li>Overview of instrumentation systems micro
+        controllers</li>
+        <li>Design and programming an autonomous system</li>
+        <li>Intelligent sensors (Programming Environment, Design
+        and examples)</li>
+        <li>Tools and equipment used and Hands Tutorial
+        <ul>
+          <li>LabVIEW of the National Instruments, a reference tool
+          for the PC-based instrumentation and data
+          acquisition</li>
+          <li>MPLABXIDE, development environment for Microchips
+          microprocessors</li>
+          <li>Acquisition board USB NiDAQ from National
+          Instruments</li>
+          <li>Development board micro controller Explorer 16/32
+          from Microchip</li>
+        </ul></li>
+      </ul>
+    </programme>
+    <pre-requis>
+      <p>aucun</p>
+    </pre-requis>
+    <documentation />
+    <evaluation>
+      <ul>
+        <li>Theoretical part 50% (50% Midterm + 50% Final)</li>
+        <li>Practical part 30%</li>
+        <li>Continuous assessment 20%</li>
+      </ul>
+    </evaluation>
+  </description>
+</ec>

@@ -1,0 +1,236 @@
+--- PAGE 1 ---
+Python
+                              Méthodes spéciales
+
+                                 Nicolas Delestre
+
+
+
+
+Méthodes spéciales - v1.2                          1 / 11
+
+--- PAGE 2 ---
+Les méthodes spéciales
+
+
+
+             Ensemble de méthodes systèmes à définir ou redéfinir pour :
+                      définir le comportement de l’interpéteur au regard des objets (par exemple
+                      comment les représenter textuellement)
+                      de pouvoir utiliser des opérateurs ou fonctions standards avec les objets
+                      définir le comportement des objets dans certaines situations (comme par exemple dans les
+                      dictionnaires)
+             Ces méthodes ont comme identifiant             XX
+                        init   est la méthode spéciale exécutée pour initialiser une nouvelle instance
+
+
+
+
+Méthodes spéciales - v1.2                                                                                       2 / 11
+
+--- PAGE 3 ---
+Les méthodes                  repr    et     str
+     La méthode              repr
+             Appelée par la fonction repr
+             C’est la méthode qui est exécutée lorsque l’interpréteur affiche l’objet
+             Représentation textuelle formelle ( informatique ) d’un objet (pourrait être utilisée pour créer
+             un nouvel objet)
+
+
+
+     Sans redéfinition de           repr                         Classe Point2D du module point.py
+     >>> class A:                                            32      def __repr__(self):
+         ....pass                                            33          if self.id:
+     >>> a=A()                                               34              return f"Point2D({self.x}, {self.y}, ’{self.id}’)"
+     >>> a                                                   35          return f"Point2D({self.x}, {self.y})"
+     <__main__.A object at 0x7f13bbd4d9d0>
+
+
+                                                                  >>> pt=Point2D(1,2,’A’)         >>> pt1=eval(repr(pt))
+                                                                  >>> pt                          >>> pt1
+                                                                  Point2D(1, 2, ’A’)              Point2D(1, 2, ’A’)
+
+Méthodes spéciales - v1.2                                                                                                       3 / 11
+
+--- PAGE 4 ---
+Les méthodes                    repr          et     str
+       La méthode            str
+             Appelée par la fonction str
+             Représentation textuelle informelle ( humaine ) d’un objet
+             C’est la méthode qui est exécutée lorsqu’on affiche l’objet ou que l’on crée une chaı̂ne formatée
+
+       Classe Point2D du module point.py
+   1     def __str__(self):
+   2         prefixe = self.id
+   3         if not prefixe:
+   4             prefixe = ""
+   5         return prefixe + f"({self.x},{self.y})"
+
+
+
+
+       >>> f"{pt}"
+       ’A(1, 2)’
+
+
+             Si    repr       est définie mais non   str   alors la représentation informelle utilise   repr   (inverse non vrai)
+
+Méthodes spéciales - v1.2                                                                                                           4 / 11
+
+--- PAGE 5 ---
+Opérateurs (fonctions) binaires 1 / 4
+
+     Utilisation des opérateurs +, -, etc.
+             Il est possible de créer des classes dont les instances pourront être utilisées comme opérandes des
+             opérateurs  arithmétiques , par exemple des classes : Vecteur, Matrice, Fonction
+             (mathématique), etc.
+
+
+     >>> from vecteur import Vecteur2D
+     >>> u = Vecteur2D(1,2,’u’)
+     >>> v = Vecteur2D(2,3,’v’)
+     >>> u+v
+     Vecteur2D(3, 5, ’u+v’)
+     >>> u-v
+     Vecteur2D(-1, -1, ’u-v’)
+
+
+Méthodes spéciales - v1.2                                                                                        5 / 11
+
+--- PAGE 6 ---
+Opérateurs (fonctions) binaires 2 / 4
+     Méthodes spéciales           add ,      sub , etc.
+             Il faut pour cela définir les méthodes spéciales :
+                        add (self, autre) pour l’opérateur +          mod (self, autre) pour l’opérateur %
+                        sub (self, autre) pour l’opérateur -          divmod (self, autre) pour la fonction
+                                                                      divmod
+                        mul (self, autre) pour l’opérateur *
+                                                                       lshift (self, autre) pour l’opérateur <<
+                        matmul (self, autre) pour l’opérateur @
+                                                                       rshift (self, autre) pour l’opérateur >>
+                        pow (self, autre[, modulo]) pour
+                      l’opérateur ** ou la fonction pow               and (self, autre) pour l’opérateur and
+                        truediv (self, autre) pour l’opérateur /      or (self, autre) pour l’opérateur or
+                        floordiv (self, autre) pour l’opérateur //    xor (self, autre) pour l’opérateur xor
+             Pour interpréter x + y, Python invoque x. add (y)
+
+             Si le type de l’argument (l’opérande droite de l’opérateur) n’est pas compatible avec l’objet, la
+             valeur retournée doit être NotImplemented
+Méthodes spéciales - v1.2                                                                                        6 / 11
+
+--- PAGE 7 ---
+Opérateurs (fonctions) binaires 3 / 4
+
+
+     Classe Vecteur2D du module vecteur.py
+   5 class Vecteur2D:                                               38   def __add__(self, vecteur_2d: Vecteur2D) -> Vecteur2D:
+   6     def __init__(self, x: float, y:float, identifiant: str):   39       if not isinstance(vecteur_2d, Vecteur2D):
+   7         self._x = x                                            40           return NotImplemented
+   8         self._y = y                                            41       return Vecteur2D(self.x + vecteur_2d.x,
+   9         self._id = identifiant                                 42                        self.y + vecteur_2d.y,
+  10                                                                43                        self.id + "+" + vecteur_2d.id)
+  11     @property                                                  44
+  12     def x(self) -> float:                                      45   def __sub__(self, vecteur_2d: Vecteur2D) -> Vecteur2D:
+  13         return self._x                                         46       if not isinstance(vecteur_2d, Vecteur2D):
+  14                                                                47           return NotImplemented
+  15     @property                                                  48       return Vecteur2D(self.x - vecteur_2d.x,
+  16     def y(self) -> float:                                      49                        self.y - vecteur_2d.y,
+  17         return self._y                                         50                        self.id + "-" + vecteur_2d.id)
+  18                                                                51
+  19     @property                                                  52   def __mul__(self, vecteur_2d: Vecteur2D) -> float:
+  20     def id(self) -> str:                                       53       if not isinstance(vecteur_2d, Vecteur2D):
+  21         return self._id                                        54           return NotImplemented
+                                                                    55       return self.x*vecteur_2d.x + self.y*vecteur_2d.y
+
+
+
+
+Méthodes spéciales - v1.2                                                                                                       7 / 11
+
+--- PAGE 8 ---
+Opérateurs (fonctions) binaires 4 / 4
+
+
+     Méthodes spéciales réflexives : radd , rsub , etc.
+          Si x + y est utilisée et que la classe de x ne possède pas la méthode add           ou qu’elle
+          retourne NotImplemented, Python essaye d’interpréter y. radd (x)
+             Si la classe de y ne définit la méthode radd (self, other) ou qu’elle retourne
+             NotImplemented alors une exception TypeError est levée
+
+     Méthodes spéciales pour les opérations arithmétiques augmentées : iadd , isub , etc.
+          Utilisées pour les opérateurs arithmétiques associés à l’affectation : l’objet doit donc être
+          mutable
+             Si x += y (équivalent à x = x + y) est utilisée alors Python interprète x. iadd (y)
+
+
+
+Méthodes spéciales - v1.2                                                                                 8 / 11
+
+--- PAGE 9 ---
+Opérateurs (fonctions) unaires
+
+
+             Pour utiliser les opérateurs unaires +, -, etc. il faut définir les méthodes spéciales :
+                        pos (self) pour l’opérateur +
+                        neg (self) pour l’opérateur -
+                        abs (self) pour la fonction abs
+                        invert (self) pour l’opérateur ~
+
+
+      Classe Point2D du module point.py
+ 43       def __abs__(self):
+ 44           return Point2D(abs(self.x), abs(self.y))
+
+
+
+
+      >>> abs(Point2D(-3,2))
+      Point2D(3,2)
+
+
+
+
+Méthodes spéciales - v1.2                                                                                 9 / 11
+
+--- PAGE 10 ---
+Fonctions de transtypage numériques
+
+      int, float, etc.
+          L’utilisation d’une fonction de transtypage numérique appelle une méthode spéciale
+                        int (self) pour la fonction int
+                        round (self) pour la fonction round
+                        float (self) pour la fonction float
+                        complex (self) pour la fonction complex
+
+
+      Classe Point2D du module point.py
+ 46       def __complex__(self):
+ 47           return complex(self.x, self.y)
+
+
+
+
+      >>> complex(Point2D(-3,2))
+      (-3+2j)
+
+
+
+Méthodes spéciales - v1.2                                                                       10 / 11
+
+--- PAGE 11 ---
+Conclusion
+
+
+
+     Nous avons vu dans ce cours
+         Le rôle des méthodes spéciales
+             Deux représentations des objets sous forme de chaine de caractères
+             Comment permettre l’utilisation des opérateurs et fonctions usuels
+
+     Rappel : principe général de python
+      Le concepteur/développeur d’une API écrit plus de code pour simplifier la vie de l’utilisateur
+
+
+
+
+Méthodes spéciales - v1.2                                                                         11 / 11

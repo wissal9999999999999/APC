@@ -1,0 +1,961 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                     Cours 7
+
+   Signaux discrets et Transformée de Fourier
+De la Transformée de Fourier à temps discret (TFTD) à la
+         Transformée de Fourier Discrète (TFD)
+
+                       ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+
+ Signaux discrets
+    Rappels, définition
+    Propriétés
+ Transformée de Fourier des signaux à temps discret (TFTD)
+    Définition
+    Propriétés
+ Transformée de Fourier discrète
+    Définition
+    Propriétés
+    Application de la TFD à l'analyse spectrale : précision et résolution
+    TFD rapide (Fast FFT)
+
+
+
+
+                                                                             2
+
+--- PAGE 3 ---
+Rappels : Signaux discrets
+ Rappels de base :
+
+      ℝ              Ensemble des réels : 1,234 ; -1 ;  ; etc.
+      ℕ     Ensemble des entiers naturels : 0, 1, 2, 3, 4, etc.
+      ℤ   Ensemble des entiers relatifs : -2, -1, 0, 1, 2, 3, 4, etc.
+      ℚ Ensemble des nombres rationnels (quotient de deux ℤ ). ex :  2∉ℚ
+
+ Signal discret
+
+      Soit un signal x(t) échantillonné à une période Te. Le signal échantillonné s'écrit :
+
+                                   xe (t ) = ∑ x(nTe)δ (t − nTe)
+                                           n
+      En considérant une période d'échantillonnage normalisée ( Te = 1 ) , on a :
+
+       xe (t ) = ∑ x(n)δ (t − n)       On obtient la suite de valeurs {x(n)} appelée signal discret.
+                n
+   Ainsi, un signal discret est une suite {x(n)} représentée par la fonction de ℤ  ℂ: n  x n
+       Remarque : la normalisation permet de considérer la suite de valeurs x(nTe) indépendamment
+      du processus de discrétisation qui l'a générée.
+                                                                                                       3
+
+--- PAGE 4 ---
+Signaux discrets particuliers
+                                                                                           Γ(n)
+ Echelon unité
+                                                        +∞
+           1 pour n ≥ 0
+ Γ ( n) =                      Remarque : Γ ( n) =    ∑ δ (n − r )                                         n
+           0 sinon                                     r= 0
+
+ Impulsion discrète (fonction delta de Kronecker)                                         δ (n)
+
+           1 pour n = 0
+ δ ( n) =                     Remarque : δ ( n) = Γ ( n) − Γ ( n − 1)
+           0 sinon                                                                                      n
+
+ Exponentielle décroissante causale                                          a nΓ (n), (a < 1)
+                                                                          1
+
+    x(n) = a nΓ (n), a < 1 ∀ n ∈ ℤ
+                                 
+ Signal rectangulaire
+                                                                                                                 n
+
+                1 pour − T ≤ n ≤ T   T ∈ ℕ
+    Π T ( n) =                                                                              Π2(n)
+                0 sinon
+    Le signal est de longueur 2T+1
+                                                                                 -2                  2       n
+     Remarque : Π T ( n) = Γ ( n + T ) − Γ ( n − (T + 1))
+                                                                                                                 4
+
+--- PAGE 5 ---
+Signaux discrets périodiques
+ Définition de la périodicité
+    Un signal discret est périodique de période N si :
+
+              ∃ N∈ ℕ
+                    tel que x(n + N ) = x(n) ∀ n ∈ ℤ
+                                                    
+      Remarque : la plus petite valeur de N est la période fondamentale
+
+ Exemples
+    - Signal sinusoïdal : x( n) = A cos(ω 0 n + ϕ )
+
+    - Signal exponentiel complexe : x ( n) = ae jω 0n
+
+        !     En discret, les signaux sinusoïdaux ne sont pas nécessairement périodiques.
+
+       Condition de périodicité : ω 0n = 2π k          avec   n ∈ ℕ et k ∈ ℤ
+                                                                             
+                 2π n
+       soit        =  avec        n∈ 
+                                  k ℚ
+                 ω0 k
+                                                                      2π
+        La période est l'entier naturel N (s'il existe) tel que N =
+                                                                      ω0
+      Remarque : en continu, la condition de périodicité s'énonce 2π = n ∈ ℝ et est moins restrictive.
+                                                                           ω0   k
+                                                                                                           5
+
+--- PAGE 6 ---
+Energie et puissance des signaux discrets
+ Energie
+           +∞         2
+   E = ∑ x ( n)
+          n= − ∞
+
+ Puissance moyenne
+    Si le signal est à énergie infinie, on définit la puissance moyenne
+
+                  1     +∞       2
+   P = lim              ∑ x ( n)
+       N → + ∞ 2 N + 1 n= − ∞
+
+     Exemple : signal échelon discret
+           +∞
+     E=    ∑ 1= + ∞
+          n= 0
+                             N                                  N                        N+1   1
+                     1                2                    1           →   P=
+    P=      lim    2N + 1     ∑ Γ ( n) →   P=    lim     2N + 1 ∑
+                                                                  1              lim 2 N + 1 = 2
+          N→ + ∞            n= − N              N→ + ∞         n= 0             N→ + ∞
+
+ Puissance moyenne d'un signal périodique
+                                                                                                      N−1
+  Si N est la période alors P = lim 1 ∑ x( n) 2
+                                                                                                                 2
+                                                                      Energie sur une période : E =   ∑ x ( n)
+                                N→ + ∞ N N                                                            n= 0
+                                                                                                                     6
+
+--- PAGE 7 ---
+Opération sur les signaux discrets
+Soit { x( n)} = { x( n), n ∈ ℤ
+                              } et   { y (n)} = { y (n), n ∈ ℤ
+                                                               } , des signaux discrets
+ Multiplication par un scalaire                          Somme de signaux discrets
+
+  λ ∈ ℝ , λ { x(n)} = { λ x(n), n ∈ ℤ
+                                     }                      { x(n)} + { y (n)} = { x(n) + y (n), n ∈ ℤ }
+
+ Multiplication de signaux discrets                    Ces opérations sur les signaux discrets
+                                                            donnent des signaux discrets.
+   { x(n)} × { y (n)} = { x(n) × y (n), n ∈ ℤ
+                                            }
+
+
+ Signaux définis par une relation de récurrence :
+  Aux équations différentielles dans le cas continu correspondent des équations de récurrence
+  dans le cas discret. Ces équations permettent de décrire des signaux discrets et des opérations
+  sur ces signaux à l'aide d'additions et multiplications scalaires.
+
+      Exemple : considérons l'équation récurrente :
+          x(n) = ax(n − 1) avec x(0) = c (condition initiale)
+          On montre aisément que la solution à cette équation est : x(n) = c a n Γ (n)
+                                                                                                             7
+
+--- PAGE 8 ---
+Transformée de Fourier des signaux à temps discret
+                      (TFTD)
+ Question : Comment faire l'analyse fréquentielle de signaux discrets ?
+                                                                                 +∞
+    Soit xe(t) un signal issu de l'échantillonnage de x(t) : xe (t ) =           ∑ x(nTe )δ (t − nTe )
+                                                                                n= − ∞
+
+ Que donne la TF “classique” du signal échantillonné ?
+               +∞  +∞                                                           +∞             +∞
+    X e ( f ) = ∫  ∑ x(nTe )δ (t − nTe )  e − j 2π ft dt          Xe( f ) =     ∑      x(nTe ) ∫ δ (t − nTe )e − j 2π ft dt
+                                         
+                − ∞  n= − ∞                                                   n= − ∞           −∞
+                                                                          +∞
+    En utilisant la définition de la distribution de Dirac, on a :         ∫ δ (t − nTe )e− j 2π ft dt = e− j 2π nfTe
+                                                                          −∞
+                                       +∞
+    Par conséquent : X e ( f ) =        ∑ x(nTe )e− j 2π nfTe
+                                      n= − ∞
+
+    La TF d'un signal échantillonné est une combinaison linéaire d'exponentielles complexes
+    pondérées par la valeur des échantillons.
+
+      Normalisation de la période d'échantillonnage :
+           dorénavant et sauf mention contraire, on considerera que Te=1
+                                                    +∞
+                                       X(f ) =      ∑ x(n)e − j 2π nf
+                                                   n= − ∞
+                                                                                                                                8
+
+--- PAGE 9 ---
+TFTD
+ Définition
+    Soit x(n) un signal discret. La TFTD X( f ) de ce signal est donnée par l'expression :
+
+
+                                            +∞
+                             Xe( f ) =      ∑ x(n)e− j 2π nf                f est une variable continue
+                                           n= − ∞
+
+     La TF d'un signal discret est une fonction continue ou non de la variable continue f
+
+   Remarque : idem que la TF d'un signal quelconque, avec une somme à la place de l'intégrale.
+
+ Condition d'existence de la TFTD
+                                               +∞
+   La TF d'un signal discret x(n) existe si    ∑ x(n) < ∞ i.e. si le signal est absolument sommable.
+                                              n= − ∞
+   L'existence de la TFTD est donc liée à la convergence absolue de la série x(n)
+
+
+                                                                        n           n                             n
+                                                                  −1         −1                          −1
+                      (Exemple d'une série semi-convergente : ∑        car ∑          est finie mais pas ∑ ∣        ∣)
+                                                              n1   n      n1   n                       n1   n
+
+                                                                                                                         9
+
+--- PAGE 10 ---
+TFTD
+ Périodicité de la TFTD
+                                                                  +∞
+   Soit X( f ) la TFTD du signal discret x(n) : X ( f ) =         ∑ x(n)e− j 2π nf
+                                                                 n= − ∞
+                                                                  +∞
+                                                 X ( f + 1) =      ∑ x(n)e− j 2π n( f + 1)
+                                                                 n= − ∞
+                                                                  +∞
+                                                  X ( f + 1) =     ∑ x(n)e− j 2π nf e− j 2π n
+                                                                 n= − ∞
+                                                  X ( f + 1) = X ( f )
+              La TF des signaux discrets est périodique de période f=1
+
+      Toute l’information fréquentielle du signal                        f ∈ − , 
+                                                                                 1 1
+     est localisée dans l'intervalle de fréquence :                            2 2            x(n) est caractérisé par
+                                                                                                 ce contenu fréquentiel
+    Remarque                                                                             X(f)
+
+    Si x(n) est réel, |X( f )| est paire et arg(X( f )) est
+    impair. On réduit donc l'analyse de X( f ) sur
+    l'intervalle de fréquence f ∈  0, 1 
+                                   2                                                                           f
+                                                                       -1/2          0           1/2
+                                                                                                                         10
+
+--- PAGE 11 ---
+TFTD
+ Périodicité de la TFTD : généralisation avec Fe ≠ 0
+    Pour un signal échantillonné à la fréquence Fe, sa TFTD Xe( f ) est périodique de période Fe
+                                                                  F F 
+     l'information fréquentielle est contenue dans la bande f ∈  − e , e 
+                                                                  2 2
+
+    On retombe sur un résultat connu, par un calcul différent !
+
+
+ TF inverse des signaux discrets
+
+                                                          +∞
+                             TFTD :           X(f ) =     ∑ x(n)e− j 2π nf
+                                                         n= − ∞
+
+    Comme la TF des signaux discrets est périodique de période 1, l'expression de la TFTD
+    inverse est donnée par :
+
+                                 1
+                                 2
+                  x ( n) =       ∫ X ( f )e j 2π nf df            Remarque : Intégrale car f est une variable continue
+                                 1
+                             −
+                                 2
+
+                                                                                                                     11
+
+--- PAGE 12 ---
+Représentation spectrale
+
+    x(n), signal discret (support discret)
+     En fonction de la nature (périodique ou non) de x(n), on a deux types de
+     représentation spectrale possibles :
+
+       x(n) non périodique                            x(n) périodique
+
+                      TFTD                                          TFTD
+
+       X( f ) est à support continu                       X( f ) est à support discret
+
+                 1 n ∈ [ − N , N − 1]
+Ex. : x ( n ) =                                  Ex. :    x (n) = A. cos(2π f 0 n)
+                 0 ailleurs
+                                                                 |X(f) |
+            |X(f) |
+                                                                      A
+                                                                        δ ( f − fo )
+                                                                      2
+
+
+
+
+                                         f                                                   f
+        0             1/2       1                            0                1/2        1
+                                                                                                 12
+
+--- PAGE 13 ---
+Exemple de TFTD
+
+                        1 n ≤ N 2
+  Soit         x ( n) = 
+                         0 ailleurs
+                         +∞                                                 N /2
+On a       X(f ) =        ∑ x(n)e− j 2π nf                      X(f ) =      ∑ e − j 2π nf
+                        n= − ∞                                            n= − N / 2
+
+
+X(f) est la somme de N+1 termes d'une suite                                                  X( f )
+géométrique de raison e-j2πf et de premier terme ejπN f
+                              − j2N 1 f
+            j  Nf    1−e
+X  f =e
+                       1−e− j2 f
+            − j f        j  N1  f    − j N 1 f
+           e          e               −e                  sin  f  N 1
+X  f =                                                   =
+                     e− j  f e j  f −e− j  f               sin  f
+
+Remarques (pour Te = 1)
+-Toute l'info est contenue dans [-½ , ½]
+- Périodique de période 1
+
+                                                                                                      13
+
+--- PAGE 14 ---
+Propriétés de la TFTD
+Globalement, la TFTD possède les mêmes propriétés que la TF :
+
+   X( f ) est une fonction complexe. Si x(n) est réel :
+
+                                                                         Etude sur l'intervalle de fréquence
+     X ( f ) : spectre d'amplitude est une fonction paire
+                                                                          f ∈  0, 
+                                                                                  1
+   arg( X ( f ) ) : spectre de phase est une fonction impaire                  2 
+
+
+  ♦ Linéarité                          a.x(n) + b. y (n) → aX ( f ) + bY ( f )
+
+
+  ♦ Décalage temporel                  x(n − n0 ) → X ( f )e− j 2π fn0
+
+
+  ♦ Décalage fréquentiel
+                                       x(n)e j 2π f0n → X ( f − f 0 )
+     (ou modulation)
+
+
+
+
+                                                                                                               14
+
+--- PAGE 15 ---
+Propriétés de la TFTD
+
+ ♦ TF de la dérivée du signal       dx(n)
+                                          → j 2π f X ( f )
+                                     dn
+                                     +∞                    1/ 2
+ ♦ Relation de Parseval                               22
+ (conservation de l'énergie)         ∑ x(n) = ∫ X ( f ) df
+                                    n= − ∞                − 1/ 2
+
+
+ ♦ Relations de Plancherel          x(n) ∗ y (n) → X ( f ).Y ( f )
+                                                                              1/ 2
+                                    x(n). y (n) → X ( f ) ∗ Y ( f ) =           ∫ X (u )Y ( f − u )du
+                                                                              − 1/ 2
+                                             1/ 2                                      1
+  ♦ TFTD Inverse
+                                  x ( n) =     ∫   X ( f )e j 2π nf df   ou x( n) = ∫ X ( f )e j 2π nf df
+                                             − 1/ 2                                    0
+
+Bilan sur la TFTD :
+ - La TF fonctionne sur un signal à temps discret
+ - Mais en fréquence, on repasse en continu
+                   = on perd l'avantage du numérique !
+
+
+                                                                                                            15
+
+--- PAGE 16 ---
+De la TFTD à la Transformée de Fourier Discrète (TFD)
+                                          +∞
+             TFTD de x(n) : X ( f ) =     ∑ x(n)e− j 2π nf
+                                         n= − ∞
+  Objectif : On veut calculer la TF d'un signal discret à l'aide d'un calculateur
+
+  Difficultés
+        Le calcul de la TF nécessite une infinité de points de mesures x(n) (pas toujours possible dans la
+       pratique : contraintes temps réel, etc.)
+        Le calculateur ne peut calculer une TFTD car sa réponse fréquentielle est forcément
+         discrète = un nombre fini de points fréquentiel fn, alors que f varie continûment ...
+
+  Solution : Transformée de Fourier Discrète (TFD)
+        Limiter la durée de x(n) i.e. considérer un nombre fini N de points temporels
+
+        Discrétiser la fréquence (considérer un nombre fini L de points fréquentiels)
+
+        A un nombre fini de valeurs x(1) , …, x(N), on fait correspondre un nombre fini de valeurs
+        X(f1), …, X(fL) telle que la TFD de x soit une approximation aussi bonne que possible de X( f )
+
+  Question
+      Quelle est l'influence du nombre de points temporels N et du nombre de points
+     fréquentiels L sur l'observation spectrale ?
+                                                                                                          16
+
+--- PAGE 17 ---
+Détermination de la TFD
+
+        Soit {x(0), x(1), …, x(N-1)} un signal discret de durée finie N. Sa TFTD est :
+
+                                    N−1
+                        X ( f ) = ∑ x(n)e− j 2π nf
+                                    n= 0
+                                                                                X( f ) est périodique de période 1, donc :
+     Discrétisation de la fréquence sur L points :                                                     1
+                                                                                f = k∆ f avec ∆ f =            et k = 0,..., L − 1
+                                                                                                        L
+        L'approximation discrète de la TFTD de ce signal est :
+                                                               k et n ne jouent pas le même rôle :
+F=k/L                                N−1                  k
+                                                    − j 2π n
+                        X   = ∑
+                             k                                 n : variable temporelle n = 0, …, N−1
+                                           x ( n )e       L
+                            L  n= 0                          k : variable fréquentielle k = 0, …, L−1
+
+
+
+          Notation : X  k  = X ( k ) avec k = 0,..., L − 1
+                                  L
+
+   La TFTD inverse de x(n) est                                         L'approximation discrète de la TFTD inverse est
+                 1                                                                  L− 1          k
+                                                                                               j 2π n
+    x ( n) = ∫     X ( f )e j 2π nf df                                    ~       1
+                 0
+                                                                          x ( n) = ∑ X ( k ) e     L
+                                                                                                            c'est la TFD inverse.
+                                                                                  L
+                                                                                    k= 0
+    car X( f ) est périodique de période 1
+                                                                                                                                     17
+
+--- PAGE 18 ---
+Transformée de Fourier Discrète (TFD)
+ Définition
+     La TFD évaluée sur un nombre L de points fréquentiels d'un signal discret est définie par :
+                                                            N : nombre de points temporels
+                  N −1         − j 2π
+                                        k
+        X ( k ) = ∑ x ( n)e
+                                          n
+                                        L                   n : variable temporelle n = 0, …, N−1
+                  n= 0                                      L : Nombre de points fréquentiels
+                                                            k : variable fréquentielle k = 0, …, L−1
+
+        Remarque : X (k ) est périodique de période L
+
+      La TFD inverse est :
+                                               Remarque
+                L− 1            k
+      ~        1          j 2π n               ~
+      x ( n ) = ∑ X ( k )e L                   x (n) est une suite périodique de période L.
+               L k= 0                          La discrétisation de x(k) a entrainé une périodisation de x(n)
+
+      Dans la suite, sans perte de généralités et sauf mention contraire, on considérera           L=N
+       Remarque
+
+On a vu avec la TFTD que : Discrétisation en temporel            Périodisation en fréquentiel
+
+     Ici avec la TFD :        Discrétisation en fréquentiel  Périodisation en temporel
+                                                                                                                18
+
+--- PAGE 19 ---
+TFD d'un signal périodique
+
+ Que se passe t'il si l'on applique la TFD à un signal périodique ?
+
+   Soit xp(n) , un signal périodique de période N. Pour calculer sa TFD, on se restreint à une période
+
+
+                                  N−1            − j 2π
+                                                          k
+                       X p ( k ) = ∑ x p ( n)e
+                                                            n
+     La TFD                                              N
+                                  n= 0
+
+
+                            1 N−1                k
+                                             j 2π n
+     La TFD inverse x(n) =   ∑
+                            N k= 0
+                                   X p ( k )e N                 Si x(n) est une suite périodique de période
+                                                                N et x(n) coincide exactement avec xp(n)
+
+                                                                Ce n'est pas le cas pour un signal quelconque !
+                                                   TFD
+
+  Suite x(n) périodique de période N                               Suite X(k) périodique de période N
+                                             TFD inverse
+
+
+
+
+                                                                                                                  19
+
+--- PAGE 20 ---
+Propriétés de la TFD
+    La TFD possède les propriétés classiques de la TFTD mais tous les calculs
+    d'indice k et n se font modulo N
+
+ ♦ Périodicité                  X (k ) est périodique de période N
+
+ ♦ Linéarité                    a.x(n) + b. y (n) → aX (k ) + bY (k )
+
+                                                                     k
+                                                            − j 2π     n
+ ♦ Décalage temporel            x(n − n0 ) → X (k )e                 N 0
+
+
+
+
+ ♦Décalage fréquentiel                     j 2π
+                                                  k0
+                                                     n
+  ou modulation                 x ( n )e          N →    X ( (k − k0 ) mod N )
+
+
+
+                                N−1
+  ♦ Relation de Parseval :                 1 N−1  2    2
+                                ∑ x ( n) = N ∑ X ( k )
+   conservation de l'énergie    n= 0         k= 0
+
+                                                                                 20
+
+--- PAGE 21 ---
+TFD et convolution circulaire
+ Produit de convolution circulaire
+      Soit x(n) et y(n) deux signaux discrets de durée finie N. Leur produit de convolution circulaire
+      est défini par                                N−1                           c(n) est donc périodique
+               c(n) = x(n) ⊗ y (n) avec c(n) = ∑ x(i ). y ( (n − i ) mod N )             de période N
+                                                            i= 0
+          On peut voir la convolution circulaire comme la rotation d'une séquence autour d'une autre.
+
+  Exemple : Soit x(n)=1 pour n∈{0, 1, ..., 7}
+
+            convolution linéaire : x(n) ∗ x(n) = {1, 2, ..., 7, 8, 7, ..., 2, 1} pour n∈{0, 1, ..., 15}
+                           x(0) = somme des x(i).x(0-i) = 1*1+1*0+1*0+...=1
+                           x(1) = somme des x(i).x(1-i) = 1*1+1*1+1*0+...=2
+                           ...
+
+            convolution. circulaire : x(n) ⊗ x(n) = 8 pour n ∈ {0, 1, ..., 7}
+                           x(0) = somme des x(i).[x(0-i) mod 8] = 1*1+1*1+1*1+...=8
+                           x(1) = somme des x(i).[x(1-i) mod 8] = 1*1+1*1+1*1+...=8
+                           ...
+ TFD et convolution circulaire
+
+                                   TFD
+                     x(n) ⊗ y (n) → X (k ).Y (k )
+                                TFD-1
+                                        1
+                      x(n). y (n) →       X (k ) ⊗ Y (k )
+                                        N                                                                  21
+
+--- PAGE 22 ---
+Analyse spectrale et TFD
+ Introduction
+
+  On veut utiliser la TFD pour analyser le contenu fréquentiel d'un signal continu x(t). Ceci impose les
+  opérations suivantes :
+
+     Echantillonnage de x(t)
+          choix de la fréquence d'échantillonnage Fe
+             (fixé par le th de Shannon)                    Numérisation : OK
+
+     Quantification pour générer le signal discret x(n)
+
+     Troncature de x(n) à N échantillons
+                                                            TFD          Quelle est l'influence de ces 2
+                                                                         opérations sur le spectre
+     Discrétisation du domaine fréquentiel en L points                  donné par la TFD?
+
+
+
+
+                                                                                                           22
+
+--- PAGE 23 ---
+Analyse spectrale et TFD
+ Troncature du signal discret (fenêtrage temporel)
+    Opération dans le domaine temporel
+
+     Soit x(n) un signal discret. Le signal résultant de la troncature de x(n) à N d'échantillons est :
+
+     xN (n) = x(n).h(n)                       1 0 ≤ n ≤ N − 1 h(n) : fenêtre rectangulaire de largeur N
+                            avec     h( n) = 
+                                              0 ailleurs       N : durée d'observation du signal x(n)
+
+     Note : si x(n) est issu de la discrétisation d'un signal à une période Te, la durée d'observation est NTe
+
+
+
+    Influence de la troncature dans le domaine fréquentiel :
+
+         Calculons la TFTD du signal tronqué.
+
+                                Théorème de
+         xN (n) = x(n).h(n)                        XN ( f ) = X ( f )∗ H( f )
+                                Plancherel
+
+           Remarque : La TFTD du signal tronqué xN(n) est obtenue par filtrage de la
+          TFD de x(n) à travers un filtre de réponse impulsionnelle H( f ).
+
+
+                                                                                                            23
+
+--- PAGE 24 ---
+Analyse spectrale et TFD
+
+
+ Echantillonnage de XN( f )
+
+
+   La TFD XN(k) est obtenue par discrétisation du domaine fréquentiel de XN( f )
+                          1
+    f = k∆ f avec ∆ f =        et k = 0,..., L − 1
+                          L
+
+
+                                                               1 (ou Fe)
+
+                                       Δf 2Δf 3Δf ….                  (L-1) Δf
+                                                       F(Hz)
+
+
+
+
+  La distance entre 2 points fréquentiels est 1 (ou : Fe prise en compte fréquence d'échantillonnage)
+                                                       L          L
+
+   Avec l'opération de fenêtrage, on obtient : X N (k ) = X ( f ) ∗ H ( f ) f = k
+                                                                                   L
+      Remarque : XN(k) est constitué d'échantillons de X( f ) filtré à travers le filtre H( f ).
+
+
+                                                                                                    24
+
+--- PAGE 25 ---
+Analyse spectrale et TFD
+ Influences du fenêtrage temporel et de la discrétisation fréquentielle
+
+  TFD du signal tronqué xN(n) : X N (k ) = X ( f ) ∗ H ( f ) f = k
+                                                                  L
+                                                                                  |X( f )|
+                                      avec k = 0,..., L − 1
+Remarque :
+                                                                                             |X(k)|
+Le choix du pas fréquentiel 1/L (ou Fe /L ) aura une influence sur la précision
+de l'analyse spectrale (précision de mesure d'une fréquence particulière)
+                                                                                                      f
+                                                                                     Fe /L
+  TFTD de la fenêtre rectangulaire
+
+
+                              sin  f  N 1
+                   H  f =
+                                  sin  f
+
+
+      Remarque
+     La convolution fréquentielle de X( f ) par H( f ) aura pour conséquence l'apparition
+     d'ondulations dans le spectre XN( f ) et donc dans XN(k) : c'est le problème de résolution.
+
+                                                                                                      25
+
+--- PAGE 26 ---
+Précision de la TFD
+ Problématique :                                                                 X N (k ) = X ( f ) ∗ H ( f ) f = k
+                                                                                                                                        L
+- Fenêtrage -> le spectre de la sinusoïde apparaît sous
+forme de plusieurs raies non nulles                                 Correspond à l'estimation par la TFD de f0
+
+- La plus importante en module est proche de la vraie                   8
+
+
+fréquence f0                                                            7
+
+
+                                                                        6
+
+- L'erreur maximale commise sur cette estimation est 1/L
+                                                                        5
+
+
+                                                                        4
+
+ 2objectifs :                                                          3
+
+
+                                                                        2                                                        1/L
+      Résolution en fréquence (largeur du lobe)
+                                                                        1
+
+        permet de distinguer 2 fréquences proches                       0
+                                                                            0   0 .1   0 .2   0 .3   0 .4   0 .5   0 .6   0 .7              1
+                                                                                                     f0
+Exemple : soit un signal contenant 2 fréquences f1 et f2.                                                                         1/N
+                                                                                                     2/N
+Si |f1−f2|<1/N, les lobes principaux seront trop proches pour les distinguer
+ la résolution en fréquence est de l'ordre de 1/N (ou Fe /N ).
+
+      Résolution en amplitude (atténuation des lobes secondaires)
+        permet de distinguer des raies spectrales de faibles amplitudes ou une raie de
+        faible amplitude proche d'une raie d'amplitude élevée.
+                                                                                                                                                26
+
+--- PAGE 27 ---
+Précision de la TFD
+ Amélioration de la précision
+    Diminuer Fe = augmenterTe
+        Suppression des hautes fréquences
+        Amélioration de la précision sur les fréquences restantes
+        Altération du signal ...
+
+    Augmentation du nombre de points fréquentiel L
+        Pas toujours possible ...
+
+    Augmentation du nombre de points temporels N
+        Ajout d'échantillons nuls
+        Interpolation fréquentielle : ”zéro padding”
+        Ajout de K-1 zéros entre les échantillons
+        Précision de 1/KN au lieu de 1/N
+        Exemple en 1D :
+
+            [1 , 2, 3] -> [1 ,0,0,2,0,0,3]
+
+        Application : zoom sur une image :
+            (voir http://perso.enst.fr/~maitre/BETI/zero_pad2/projet.html)
+
+
+
+
+                                                                             27
+
+--- PAGE 28 ---
+TFD et fenêtrage temporel
+ Objectif
+    Amélioration de l ’analyse spectrale par pondération des échantillons avant filtrage
+
+ Réalisation
+
+       Remplacement de la fenêtre rectangulaire h(n) par une fenêtre dont la TF présente des
+       ondulations plus faibles.
+
+
+      Exemples de fenêtre
+       Fenêtre de Hanning                                      Fenêtre de Hamming
+                                                                         0.54 − 0.46 cos 2π n  , n = 0,, N − 1
+                                n                                                     
+               0.5 1 + cos 2π         , n = 0,, N − 1      h( n) =                       N 
+      h( n) =                  N                                                   
+                                                                          0 ailleurs
+               0 ailleurs
+
+
+       Chaque type de fenêtre a une réponse en fréquence particulière (largeur du lobe principale, amplitude
+       des lobes secondaires, …) qui permet de choisir au mieux la « bonne » en fonction des applications
+
+
+       En général les résolutions en fréquence et en amplitude sont d'autant meilleures que le
+       lobe principal est étroit et les lobes secondaires sont de faibles amplitudes
+
+                                                                                                                      28
+
+--- PAGE 29 ---
+Choix de la fenêtre
+                        |H( f )|                                    Critères de sélection
+                                                    - rapport A entre les maximum du lobe central et des lobes
+                                                          secondaires de la TFD des fenêtres.
+                                   A
+                   ∆F                               - atténuation des lobes secondaires de la TFD des fenêtres S.
+                                         S
+                                                    - largeur du lobe central ∆F
+
+                                                f
+                                    Rectangle
+                                                                                   Rapport d’amplitude       Largeur     du   lobe
+                                                             Type de fenêtre       entre le lobe principal   principal
+                                   Triangle                                        et le lobe secondaire
+                                   Hamming
+
+                                   Hanning                   Rectangulaire         -13dB                     2/N
+
+                                    Blackman                 Triangulaire          -25dB                     4/N
+
+                                                             Hanning               -31dB                     4/N
+
+                                                             Hamming               -41dB                     4/N
+
+                                                             Blackman              -57dB                     6/N
+
+
+
+
+ Remarque : diminution de la largeur du lobe principal  augmentation de l'amplitude des lobes secondaires
+               d'où un compromis à trouver
+                                                                                                                                     29
+
+--- PAGE 30 ---
+Transformée de Fourier Rapide (FFT)
+
+
+                             N−1             − j 2π
+                                                      k
+                   X p ( k ) = ∑ x p ( n)e
+                                                        n
+                                                      N
+                             n= 0
+
+
+   D’après la définition ci-dessus, il faut, pour calculer 1 valeur en
+    fréquence de la TFD d’un signal de N points :
+      N-1 sommes complexes et N produits complexes
+
+
+   Pour calculer une TFD à N points , il faudra donc :
+      N(N-1) sommes complexes N2 produits complexes
+
+
+   Sur un signal son wav de 6 secondes qui a 6*44100 = 264 600
+    points, on arrive à :
+      1011 opérations complexes !!!
+
+
+   La FFT va permettre de diminuer cela
+
+
+                                                                          30
+
+--- PAGE 31 ---
+Transformée de Fourier Rapide
+ Objectif : trouver un algorithme de calcul efficace de la TFD de {x(n)}
+                                                      N−1
+                                                                  − j 2π
+                                                                           k                            N−1
+                                                                                                                                                        2π
+ La TFD de {x(n)} s'écrit : X ( k ) = ∑ x(n)e
+                                                                             n
+                                                                           N               X k = ∑ x(n)WNn.k               avec WN = e            − j
+                                                                                                                                                        N
+                                                      n= 0                                              n= 0
+
+   Propriétés de WN
+      WNk + l = WNk .WNl                                WNl + kN = WNl                  WN2.n.k = WNn./k2
+
+  Ecriture matricielle (avec N pair)
+          1    1              1                     1  
+  X0                                                    x0   1
+                                                  2 − 1 
+                                                      N                                        1            1               1       x
+  X  1    W2                  W                 2 
+                                                           x2   W                          W3               W                  1 
+                                                                                                                             ( N − 1)
+     1
+                                                                                                                                x3 
+                                        4 − 1                                                                 W 2( N − 1)   x 
+                                            N
+    X
+  2  =                                                      x 4       +  W2             W4            
+                                                                                                                                     5 
+                                           2 
+    1    W4                  W
+                                                            
+                                                                                                                                      
+                                                                                                                      
+                                                                     N                                  N − 1  ( N − 1) 
+                                                                                               3 − 1                             x 
+                                                                                                   N
+   X
+  N − 1      N                2  − 1   − 1  
+                                       N         N          x2 N − 1    2 − 1          2 
+                                                                                                                  
+                                                                                                                   2 
+                                                                                                                          
+                                                                                                                                        N − 1
+  2   1 W 2 2 − 1                                                       W           W                    W
+                                 W  2   2     2                                                                        
+
+ X0       x0   1 0               0                     0     x 
+ X        x             1 W                                 1                         X          = TN x pair + DTN ximpair
+                   2
+                                                                 x3                              N
+   1
+                                                                                                   0 − 1
+  X
+ 2  = TN       x 4      + 0 0   W2                         T  x                              2       2            2
+      2
+                                                            N2  5                     XN                = TN x pair − DTN ximpair
+                                                                        
+                                                      N − 1                                     N − 1
+ X        x             0 0                              
+                                                                        x                           2                2                  2
+               2 − 1 
+                  N
+                                                                   N − 1
+    N                                                    2 
+ 2             2                      0       W
+                                                                                                                                                             31
+
+--- PAGE 32 ---
+Conclusion
+ TFTD
+    Idem TF mais avec une somme.
+
+     Signal non périodique -> support en fréquence continu.
+
+     Signal périodique -> support discret.
+
+     La TFTD d'un signal est Périodique de période Fe.
+
+     Mais impossible à exploiter par un calculateur ...
+
+ TFD
+    Limitation de la durée du signal par fenêtrage.
+
+     Discrétisation de la fréquence ...
+
+     ... d'où une périodisation dans le temps.
+
+     Le fenêtrage implique des déformations du spectre fréquentiel.
+
+     Gourmand en calcul => FFT !
+
+
+                                                                       32

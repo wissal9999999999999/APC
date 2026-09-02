@@ -1,0 +1,60 @@
+--- PAGE 1 ---
+INSA          Informatique                                     UV Statistique
+Rouen         Technologie
+Normandie     Information                                         Cours n°6
+
+
+                             UV Statistique pour l'Ingénieur
+
+
+                                     Cours n° 6+
+
+                          Statistique inférentielle :
+            lien statistique exhaustive et estimateur efficace
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                1
+
+--- PAGE 2 ---
+INSA         Informatique                               UV Statistique
+Rouen        Technologie
+Normandie    Information                                   Cours n°6
+
+
+                            Quelques théorèmes
+• Théorème 1 :
+    S'il existe une statistique exhaustive U
+
+     alors l'estimateur T sans biais de θ, de variance minimale,
+     ne dépend que de U
+• Définition :
+   Statistique complète :
+
+    U est complète si E[h(U)]=0 ∀θ ⇒ h=0 (presque sûrement)
+• Théorème 2 :
+   
+     Si T* estimateur sans biais de variance minimale de θ
+     dépend d'une statistique exhaustive complète U, alors,
+     alors T* est l'unique estimateur sans biais de variance
+     minimale de θ
+Ph. LERAY - A. ROGOZAN
+                                                                         2
+
+--- PAGE 3 ---
+INSA         Informatique                                  UV Statistique
+Rouen        Technologie
+Normandie    Information                                      Cours n°6
+
+
+                            Conclusion
+• Si on dispose d'un estimateur sans biais, fonction d'une
+   statistique exhaustive complète, c'est le meilleur possible !
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                            3

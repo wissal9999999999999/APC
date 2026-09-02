@@ -1,0 +1,232 @@
+--- PAGE 1 ---
+Python
+                         Les annotations (ou Type hints)
+
+
+                                  Nicolas Delestre
+
+
+
+
+Les annotations - v1.0                                     1 / 11
+
+--- PAGE 2 ---
+Rappels 1 / 3
+
+
+
+     Typage statique, typage dynamique
+            Typage statique : un paramètre formel ou une variable (pour une portée donnée) est
+            associé à un type. Le compilateur peut vérifier si les paramètres effectifs ou les
+            affectations, respectent cette déclaration
+            Typage dynamique : le type d’un paramètre formel ou d’une variable, n’est pas associé à
+            un type, son type peut varier au cours du temps
+
+                                  Le Python adopte de typage dynamique
+
+
+
+
+Les annotations - v1.0                                                                               2 / 11
+
+--- PAGE 3 ---
+Rappels 2 / 3
+
+     Documentation formelle et informelle
+         Documentation : information sur le code non prise en compte par le compilateur ou
+         l’interpréteur
+            Dans la plupart des langages, la documentation est présente dans des commentaires en
+            suivant une certaine syntaxe (javadoc, doxygen, robotdoc, etc.)
+
+                            Ne pas confondre documentation et commentaire
+
+     Cas de Python
+            Documentation informelle : les docstring (cf. PEP 257)
+            Documentation formelle : les annotations (cf. PEP 484)
+
+
+Les annotations - v1.0                                                                              3 / 11
+
+--- PAGE 4 ---
+Rappels 3 / 3
+     Annotation
+         Disponible depuis la version 3.5
+            Documentation formelle associée à une entité (paramètre formelle, variable, valeur
+            retournée par une fonction, etc.) qui spécifie le type de cette entité
+            Elle peut être utilisée par :
+                    l’IDE pour aider le développeur lors du développement
+                    des programmes de vérification comme pyright et mypy
+            Elle n’est pas utilisée par l’interpréteur Python
+
+     Exemple
+
+  1 def hello_world(ch: str) -> str:
+  2     return "Bonjour " + ch
+
+Les annotations - v1.0                                                                               4 / 11
+
+--- PAGE 5 ---
+Collections de base
+
+
+            Il est possible de spécifier le type des objets que doit contenir une collection (tuple,
+             list , set, dict)
+                    avant la version 3.9, utilisation des déclarations Tuple, List, Set, Dict du module
+                    typing (deprecated)
+                    après la version 3.9 directement les types tuple, list , set, dict
+
+     Exemple
+
+  1 def somme_des_nombres_pairs(nombres: list[int]) -> int:
+  2     return sum([nombre for nombre in nombres if nombre % 2 == 0])
+
+
+
+
+Les annotations - v1.0                                                                                     5 / 11
+
+--- PAGE 6 ---
+Union et Optional
+            Union (ou, à partir de la version 3.10, l’opérateur barre |) permet de déclarer plusieurs
+            types possibles pour une annotation
+
+            Optional permet d’indiquer que le type de l’entité peut être aussi None
+
+     Exemple
+  1 from typing import Union, Optional
+  2
+  3 def somme(data: Union[list[int], np.ndarray]) -> Optional[int]:
+  4     If isinstance (data, list ):
+  5         return sum(data)
+  6     if isinstance (data, np.ndarray):
+  7         return int(np.sum(data))
+  8     return None
+  9
+ 10 def somme(data: list[int]|np.ndarray]) -> Optional[int]:
+ 11     ...
+
+Les annotations - v1.0                                                                                     6 / 11
+
+--- PAGE 7 ---
+Self
+            Lorsque l’on déclare une méthode de classe qui prend en paramètre ou qui retourne un
+            objet du type de la classe que l’on est en train de définir, on ne peut pas utiliser son
+            identifiant :
+                    Avant Python 3.10, on utilisait la chaı̂ne de caractères identique à l’identifiant de la classe
+                    À partir de Python 3.10, on utilise Self du module typing
+
+     Exemple (extrait de la documentation de Python)
+  1 class Foo:
+  2     def return_self(self) -> "Foo":
+  3         ...
+  4         return self
+  5
+  6 from typing import Self
+  7 class Foo:
+  8     def return_self(self) -> Self:
+  9         ...
+ 10         return self
+
+Les annotations - v1.0                                                                                                  7 / 11
+
+--- PAGE 8 ---
+Des types génériques
+            Plutôt que de spécifier que le paramètre formel d’une fonction doit être un tuple, une list , un set, etc. on peut
+            aussi spécifier que l’on a juste besoin d’itérer sur ce paramètre et donc qu’il est du type Iterable
+
+
+     Des types génériques proposés par le module typing (issus de collection.abc)
+                                                      Container          Sized      Iterable           Hashable    Callable
+
+                                                     __contains__      __len__     __iter__        __hash__       __call__
+
+
+
+
+                                                                                     Iterator
+                                                                      Collection
+                                                                                   __next__
+
+
+
+
+                                                Sequence
+                                                                         Set          Mapping
+                                               __getitem__
+
+
+
+
+                                        MutableSequence              MutableSet       MutableMapping
+
+                                       __setitem__                  add             __setitem__
+                                       __delitem__                  discard         __delitem__
+
+
+
+
+Les annotations - v1.0                                                                                                               8 / 11
+
+--- PAGE 9 ---
+Les alias
+        Un alias de type permet d’alléger et donner du sens à des annotations complexes
+        Créé à l’aide de l’instruction type (à partir de 3.12)
+        Un alias est une instance de la classe TypeAliasType
+
+   Exemple (extrait de la documentation de Python)
+   Plutôt que d’avoir :
+ 1 def broadcast_message(
+ 2         message: str,
+ 3         servers: Sequence[tuple[tuple[str, int], dict[str, str]]]) -> None:
+ 4     ...
+
+   On utilise les alias :
+   1 type ConnectionOptions = dict[str, str]
+   2 type Address = tuple[str, int]
+   3 type Server = tuple[Address, ConnectionOptions]
+   4
+   5 def broadcast_message(message: str, servers: Sequence[Server]) -> None:
+Les6annotations
+          ... - v1.0                                                                        9 / 11
+
+--- PAGE 10 ---
+La généricité
+            Lorsqu’une classe stocke des éléments de même type, il est possible de paramétrer cette
+            classe
+
+  1 class File[T]:
+  2     def __init__(self, *args: T):
+  3         self._elements = list(args)
+  4
+  5     def defiler(self) -> T:
+  6         return self._elements.pop(0)
+  7
+  8     def enfiler(self, element: T) -> None:
+  9         self._elements.append(element)
+ 10 ...
+
+
+
+            Avant la version 3.11, il fallait déclarer T :
+
+     T = TypeVar(’T’)
+
+
+Les annotations - v1.0                                                                               10 / 11
+
+--- PAGE 11 ---
+Conclusion
+
+
+
+            À partir de la version 3.5, Python propose d’annoter classes, paramètres formels,
+            variable et valeur de retour de fonction
+            Ces informations formelles sont utilisées par les IDE et des programmes de vérification
+            de type statique (par exemple pyright et mypy)
+            Ces informations ne sont pas utilisées par l’interpréteur Python
+            L’utilisation des annotations permet d’améliorer la qualité du code
+
+
+
+
+Les annotations - v1.0                                                                                  11 / 11

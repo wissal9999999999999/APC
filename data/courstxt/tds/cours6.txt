@@ -1,0 +1,672 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                  Cours 6
+
+ Du signal continu au signal numérique
+Échantillonnage, reconstruction et quantification
+
+
+                    ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+       Introduction
+           Pourquoi numériser ?
+           Chaîne de numérisation
+       Echantillonnage idéal
+           Définition
+           TF du signal échantillonné – Analyse du spectre
+           Théorème de Shannon
+       Echantillonnage réel
+           Définition
+           Influence sur le spectre du signal échantillonné
+       Filtrage anti-repliement
+       Reconstruction du signal
+       Quantification
+
+
+
+TdS                                                            2
+
+--- PAGE 3 ---
+Du signal analogique au signal numérique
+      échantillonnage                              quantification
+
+
+
+
+                        • Donc un signal numérique est une suite de valeurs
+                        • Ces valeurs sont codées sur un certain nombre de bits
+                        • C'est donc une suite de 0 et de 1 ...
+
+TdS                                                                               3
+
+--- PAGE 4 ---
+Introduction
+  Propriétés du numérique, c'est à dire du codage en 0/1
+
+
+       La numérisation d'un signal est une perte d'information...
+
+       Permet d'effectuer les traitements sur des machines informatiques,
+        spécialisées dans le TS ou non (DSP, PC)
+           Puissance, rapidité, coût
+           Flexibilité (système numérique = logiciel : facile à modifier, ex. : modems
+            numériques), contrairement aux montages électroniques ...
+
+       Codage interne des 0 et des 1 souvent en 0/5V : A priori pas d'altération
+        du signal, robuste au bruit une fois numérisé
+           Exemple : un 0 codé sur 0V parasité par un bruit de 0.5V sera toujours un 0 ...
+           Précision insensible au temps, à la température, à l'usure du système, etc.
+           Pas d'erreur lors de la transmission, la recopie, le stockage, etc.
+
+
+       Adéquation entre simulation et traitement : simuler du numérique, c'est en
+        faire !
+TdS                                                                                           4
+
+--- PAGE 5 ---
+Introduction
+  Applications
+
+       TV numérique
+       Enregistrement audio, vidéo
+       Téléphonie mobile.
+       ...
+
+  Attention : on ne peut pas dire que Numérique > analogique
+       Dépend de la qualité de l'échantillonnage et de la quantification
+       Certains disent que le signal perd une partie de son âme ...
+
+  On ne peut pas dire l'inverse non plus !
+
+
+      Il est nécessaire de comprendre comment se fait le passage du monde analogique à
+      celui du numérique. Dans ce cours, on se placera dans le contexte de signaux réels.
+
+
+TdS                                                                                         5
+
+--- PAGE 6 ---
+Introduction
+  Chaîne de numérisation
+
+
+               Système continu               Echantillonnage       Quantification     Calculateur
+       u(t)                           x(t)
+
+               - support continu                                                    - données discrètes
+               - amplitude continue                                                 - codage en mot binaire
+
+  Echantillonnage
+      Prélèvement de la valeur du signal continu x(t) à des intervalles de temps tn. Généralement
+      les tn sont régulièrement espacés ; Te = tn+1–tn est appelé période d'échantillonnage. On
+      obtient la suite de valeurs xe(t) = {x(tn)} avec tn = nTe.
+
+  Quantification
+      Approximation de chaque valeur xe(t) par un multiple entier d'une quantité élémentaire
+      q appelée échelon de quantification.
+
+  Codage binaire
+      Transformation de la valeur quantifiée en mot binaire exploitable par le calculateur
+TdS                                                                                                       6
+
+--- PAGE 7 ---
+Échantillonnage idéal
+                                         Te : période d'échantillonnage
+                                                                                                       Te
+                                                            Signal numérique
+ Signal original x(t)         Échantillonneur                                                                       xe(t)
+                                                            xe(t) = {x(nTe)}           x(t)
+
+
+          Échantillonnage idéal : prélèvement pendant un temps infiniment court des valeurs
+          de x(t) à t = nTe (multiple entier de Te ).
+
+  Modélisation mathématique
+                      x(t)                                    Ш
+                                                               Te (t )                                     xe(t)
+
+
+
+                                     t    ×                                      t =                                        t
+                                                 −2Te −Te           Te 2Te 3Te          −2Te −Te              Te 2Te 3Te
+
+
+                                                                                       Te (t )
+      L'échantillonnage correspond à la multiplication de x(t) par un peigne de Dirac Ш
+                                                 +∞
+  xe (t ) = x(t ). 
+                   ШTe (t )       xe (t ) = x(t ). ∑ δ (t − nTe )
+                                                n= − ∞
+                                                                                               +∞
+  En utilisant la propriété x(t ).δ (t − t0 ) = x(t0 ).δ (t − t0 ), on obtient : xe (t ) =     ∑ x(nTe )δ (t − nTe )
+                                                                                              n= − ∞
+TdS                                                                                                                             7
+
+--- PAGE 8 ---
+TF du signal échantillonné
+
+      Question : que devient le spectre du signal x(t) après échantillonnage idéal?
+
+                      [
+      F [ xe (t )] = F x(t ).           ]
+                              ШTe (t ) . D'après le théorème de Plancherel, on a :
+
+                                  [
+      F [ xe (t )] = F [ x(t )] ∗ F Ш
+                                     Te (t )   ]
+                                                     [      ]
+                                                                      +∞
+                                          ШTe (t ) = Fe ∑ δ ( f − nFe ) . On en déduit :
+      Or la TF du peigne de Dirac est : F 
+                                                                  n= − ∞
+                                       +∞
+       F [ xe (t )] = X ( f ) ∗ Fe ∑ δ ( f − nFe )
+                                      n= − ∞
+
+       Comme le produit de convolution est distributif et que y (t ) ∗ δ (t − t0 ) = y (t − t0 ) , on a alors :
+                                 +∞                              1
+            X e ( f ) = Fe . ∑ X ( f − nFe )         avec Fe =
+                                                                 Te
+                                                                           Fe : fréquence d'échantillonnage
+                                n= − ∞
+
+
+              Le spectre de Xe( f ) est celui de X( f ) "périodisé" avec une période fréquentielle Fe.
+
+                                 L'échantillonnage dans le domaine temporel se traduit par une
+TdS                              "périodisation" de période Fe dans le domaine fréquentiel.
+                                                                                                                  8
+
+--- PAGE 9 ---
+Analyse du spectre de xe(t)
+                                                                                             |X ( f )|
+      On considère que x(t) est un signal réel dont le spectre est
+      borné en fréquence, de fréquence maximale Fmax i.e.
+
+                                                                                                            f
+       ∀ f > Fmax , X ( f ) = 0                                                 − Fmax   0        Fmax
+
+
+  Question : que devient le spectre Xe( f ) en fonction de Fe ?
+                                        +∞
+                       X e ( f ) = Fe. ∑ X ( f − nFe)
+                                    n= − ∞
+
+
+       Cas 1 : Fe ≥ 2Fmax              |Xe ( f )|
+
+                                        Fe                                      Les motifs élémentaires de
+                    n=−1                         n=0              n=1           |Xe( f )| sont disjoints (pas de
+                                                                                recouvrement des motifs)
+                                                                         f
+             − Fe              − Fmax        0    Fmax       Fe
+
+
+           Le motif principal (n = 0) est égal au spectre de x(t). Comme les motifs sont disjoints, on
+           peut extraire X( f ) grâce à un filtre passe-bas idéal et donc reconstituer intégralement le
+           signal x(t) à partir de la connaissance de son échantillonné xe(t).
+TdS                                                                                                                9
+
+--- PAGE 10 ---
+Analyse du spectre de xe(t)
+
+   Cas 2 : Fe < 2Fmax
+
+                                     |Xe ( f )|                         Spectre résultant du recouvrement
+                                          Fe
+
+
+                                                                                f
+                 − Fe − Fmax            0             Fmax Fe
+
+                                                           Recouvrement de motifs (repliement de spectre)
+
+
+      Les motifs élémentaires de |Xe( f )| se recouvrent. On parle de repliement de spectres.
+
+
+      A cause du chevauchement des motifs élémentaires constituant le spectre Xe( f ) du signal
+      échantillonné, il n'est pas possible de récupérer le spectre X( f ) par un filtrage approprié. Il
+      n'est donc pas possible de reconstruire le signal initial x(t) à partir de la connaissance de son
+      échantillonné xe(t).
+
+
+
+TdS                                                                                                         10
+
+--- PAGE 11 ---
+Théorème de Shannon
+  Question : quelle est la condition sur Fe pour qu'à partir du signal échantillonné xe(t) , on
+  puisse reconstruire intégralement x(t) ?
+
+       Fe ≥ 2Fmax : pas de recouvrement de spectre  extraction de X( f ) par filtrage passe-bas idéal
+       Fe < 2Fmax : repliement de spectre  impossibilité de récupérer X( f ) par filtrage
+
+         Par conséquent, pour que la répétition périodique du spectre de xe(t) ne déforme pas le
+         spectre X( f ) répété, il faut et il suffit que Fe ≥ 2Fmax
+
+  Enoncé du théorème de Shannon
+
+           La condition nécessaire et suffisante pour échantillonner un signal sans perte
+           d'information est que la fréquence d'échantillonnage Fe soit supérieure ou égale au
+           double de la fréquence maximale du signal. Plus précisément, si on note Fmax la
+           fréquence maximale du signal, il faut et il suffit que : Fe ≥ 2Fmax .
+
+                                 Fe
+                  Pour Fe fixée,
+                                 2 est appelée fréquence de Nyquist : c'est la fréquence
+                  maximale admissible du signal pour éviter les distorsions de spectre
+TdS                                                                                                       11
+
+--- PAGE 12 ---
+Exemples
+      Exemple 1
+                                                                          x(t ) = sin( 2π t )
+                                                                              Fmax = 1
+
+
+                                                                       Te= 0.2 s => Fe = 5 > 2*Fmax => OK
+                                                                       Te= 0.65 s => Fe = 1/0.65 < 2*Fmax
+
+
+
+
+      Exemple 2
+               Soit un "La" dont la Fréquence est 440Hz. Ce signal s'écrit : xt=sin 2  440t
+               Sous matlab, on est en numérique, donc le temps est discret = échantillonnage à Fe.
+
+                                                                   Fe= ????;
+      Echantillonnage d'un "La" à une fréquence Fe donnée :        t= 0:1/Fe:2;
+      (essayer avec Fe = 10000, 5000, 2000, 1000, 881, 600, etc)   x=sin(2*pi*440*t);
+                                                                   sound(x,Fe);
+      Exemple 3
+           Quelle est la fréquence d'échantillonnage du CD ? ...
+TdS                                                                                                         12
+
+--- PAGE 13 ---
+Échantillonnage réel
+  Echantillonnage idéal                                                                           x(t)
+                                                                                                           x(nTe )
+
+      L'échantillonnage idéal suppose l'utilisation d'une impulsion infiniment
+                                                                                                                δ(t−nTe)
+      brève permettant d'extraire la valeur instantanée x(nTe) à l'instant nTe.
+                                                                                                                                t
+      C'est donc l'application de la distribution δ (t − nTe ) au signal continu x(t) :                     nTe
+                                             +∞
+         xe Par ) = x(nTe ): → xe ( nTe ) = ∫ x(τ ).δ (τ − nTe ) dτ
+            (nTedéfinition
+                                             −∞
+                                             +∞
+      On remarque que : x(t ) ∗ δ (− t ) =   ∫ x(τ ).δ (τ − t )dτ . On en déduit alors xe (nTe ) = x(t ) ∗ δ (− t ) t = nTe
+                                             −∞
+      L'échantillonneur est assimilable à un filtre de réponse impulsionnelle δ (-t)
+
+  Echantillonnage réel
+      En pratique, on n'a pas une impulsion infiniment brève et l'échantillonneur est assimilable à un filtre
+      de réponse impulsionnelle h(−t).
+                                                                                       x(t)
+Expression d'un échantillon réel : xe  nT e = x t ∗h−t |t=nT                                                  h(t−nTe)
+                                                                                   e
+
+
+                                                  xe  nT e =[x t ∗h−t ]t−nT e 
+D'où l'expression du signal échantillonné réel :                                                                                    t
+                                                                                                          nTe
+                                                                              ∞                                 ∆Τ
+                                                  xe  t=[ x t∗h−t] ∑  t−nT e 
+TdS                                                                         n=−∞
+                                                                                                                                13
+
+--- PAGE 14 ---
+Échantillonnage réel
+   Exemple : échantillonnage réel par moyennage simple
+                                                                                              x(t)
+                                                                                                           h(t−nTe)
+      L'échantillonneur moyenneur donne des échantillons correspondant à
+      la valeur moyenne de x(t) prise sur un intervalle de durée ∆T.
+                                                                                                            ∆Τ
+                                                                                                                                 t
+                                                                                                     nTe              (n+1)Te
+                                                                ∆T
+                                                   Π ∆ T  t −
+                                                 1
+                                     h(t ) =
+       On prend h(t) comme
+                                                ∆T              2 
+                                                                                                            Te
+
+      Expression du signal échantillonné                                                   x(t)                         xe(t)
+                                     +∞
+                            ~           ~
+                                        x (nT ).δ (t − nT )
+                            x (t ) =e           ∑       e   e           e                             Échantillonneur
+                                               n= − ∞
+
+
+ Avec :         xe  nT e =[x t ∗h−t ]t−nT e 
+
+                xe  nT e =...                                  1 seul échantillon :
+                                                                  valeur moyenne de x(t) prise sur un intervalle de durée ∆T
+                                   nT e T                       (temps de fermeture de l'interrupteur)
+                               1
+                xe  nT e =
+                              T
+                                     ∫ xt dt                                                    nTe + ∆ T
+                                     nT e                                       ~           1
+TdS                                                                             xe (nTe ) =            ∫ x(t )dt                14
+
+--- PAGE 15 ---
+TF d'un signal échantillonné
+
+      Question : que devient le spectre du signal x(t) après échantillonnage réel?
+
+         L'expression du signal échantillonné                                  +∞
+                                                    xe (t ) = [ x(t ) ∗ h(− t )]. ∑ δ (t − nTe )
+                                                    ~
+             avec un échantillonneur réel est :
+                                                                              n= − ∞
+
+                                                   ~                                     +∞
+                    D'après Plancherel, on a :     X e ( f ) = [ X ( f ).H ( − f )] ∗ Fe ∑ δ ( f − nFe )
+                                                                                       n= − ∞
+
+          Or H (− f ) = H * ( f ) pour une réponse impulsionnelle h réelle
+                                                   ~              +∞
+                                         D'où :    X e ( f ) = Fe ∑ X ( f − nFe ).H * ( f − nFe )
+                                                                 n= − ∞
+                                                                  +∞
+        Rappel : pour un ech. Idéal, on avait :    X e ( f ) = Fe. ∑ X ( f − nFe)
+                                                                 n= − ∞
+
+   Interprétation
+                            ~
+         L'expression de X e ( f ) est identique à Xe( f ) à un terme de pondération H * ( f ) près.
+               Le terme de pondération n'influe pas sur la condition de Shannon.
+
+               Le terme H*( f ) introduit une distorsion sur le spectre par rapport au cas idéal. Cette
+
+TdS               distorsion est d'autant plus faible que H( f ) est constante dans la bande [−Fe/2, Fe/2].
+                                                                                                              15
+
+--- PAGE 16 ---
+Exemple d'échantillonnage réel
+  Soit x(t) un signal dont le spectre est à support borné
+
+  On réalise un échantillonnage réel par moyennage simple
+
+                                ∆T
+                   Π ∆ T  t −
+                 1
+      h(t ) =
+                ∆T               2 
+                                         donc     H ( f ) = sinc(π f∆ T ) e − jπ f∆ T
+                          
+
+                                    ~              +∞
+      D'après le résultat           X e ( f ) = Fe ∑ X ( f − nFe ).H * ( f − nFe )
+      précédent, on a                            n= − ∞
+
+      ~                                                   ~
+      X e ( f ) en fonction de ∆T                         Xe( f )                       X( f )   |H( f )|
+
+
+
+
+      Fe=20 Hz          ∆T =0.5                                      ∆T =0.1                     ∆T =0.01
+TdS                                                                                                         16
+
+--- PAGE 17 ---
+Cas des signaux à support fréquentiel non borné
+  Problème des signaux à large bande
+       Dans le cas des signaux à support fréquentiel infini, il est impossible de définir une notion de fréquence
+      maximale. Quelque soit la fréquence d'échantillonnage Fe , il y a toujours repliement de spectre.
+
+       Les signaux réels comportent souvent une composante fréquentielle à large bande due à la présence
+      de bruit (perturbations aléatoires), ce qui imposerait une fréquence Fe importante.
+
+
+  Solution : filtrage anti-repliement
+
+      On va numériser un signal x1(t), qui sera le résultat d'un filtrage passe-bas idéal du signal x(t) à support
+      fréquentiel infini ou à large bande.
+
+         D'une manière générale, afin de garantir la condition de Shannon, il faut utiliser un
+         filtre passe-bas anti-repliement de fréquence de coupure fc inférieure à Fe /2.
+
+                                                                     Te
+
+                       x(t)                            x1(t)
+                                                                                   xe(t)
+                                             fc
+                                                                 Échantillonneur
+                              Filtre passe-bas anti-repliement
+
+TdS                                                                                                                  17
+
+--- PAGE 18 ---
+La reconstruction
+  Problématique
+
+                                                                                                 échantillonnage
+       On a échantillonné un signal x(t) en respectant le théorème de
+       Shannon, comment fait-on pour le reconstruire à partir des                         x(t)                         xe(t)
+                                                                                                           ?
+       échantillons?                                                                                  reconstruction
+
+
+      Hypothèses :  La condition de Shannon a été respectée lors de l'échantillonnage
+                          ( x(t) est à support borné en fréquence ou filtrage anti-repliement)
+                      Echantillonnage idéal
+      Solution :   pour reconstruire le signal, il suffit de prendre la TF inverse du motif de base de Xe( f ).
+
+
+
+
+             Filtrage passe bas idéal                                      |X ( f )|
+             Diviser par Fe                                           Fe
+             Puis TF inverse
+
+
+                                                                                                                f
+                                                 − Fe            − Fmax      0    Fmax           Fe
+
+
+
+TdS                                                                                                                            18
+
+--- PAGE 19 ---
+La reconstruction
+  Illustration
+      x(t)                                                                            |X ( f )|
+
+                                               TF
+                                                                                                       f
+                             t                                           − Fmax   0        Fmax
+
+                    Echantillonnage                                                   |X e( f )|
+      xe(t)
+
+
+                                          TF
+                                     t                                                                              f
+      0       Te 2Te                                          − Fe       − Fmax   0        Fmax        Fe
+
+                                                                                         Filtrage passe-bas idéal
+             x(t)
+                                         TF inverse                                      1/Fe
+
+                                 t                                                                     f
+                                                                         − Fmax   0        Fmax
+
+ Problème :
+        Filtre idéal => la connaissance de tous les échantillons x(nTe) est nécessaire pour reconstruire le signal
+        Reconstruction mathématiquement possible, mais physiquement irréalisable car le filtre passe-bas
+TdS       idéal n'est pas causal  interpolation physiquement non réalisable.
+                                                                                                                        19
+
+--- PAGE 20 ---
+La reconstruction
+  Extrapoleur d'ordre 0 (bloqueur d'ordre zéro, BOZ)
+       On se propose ici d'étudier une méthode de reconstruction causale.
+         Principe
+      L'idée est simplement de maintenir l'échantillon x(nTe) jusqu'à l'apparition de l'échantillon x(nTe+Te).
+
+      x0 (t ) = x(nTe ) pour nTe ≤ t < (n + 1)Te et ∀ n
+                                           +∞
+      On peut encore l'écrire x0 (t ) =    ∑ x(nTe )Π Te (t − Te 2 − nTe )
+                                          n= − ∞
+
+
+
+
+      Conséquences en fréquence ? => Calcul de la TF de x0(t).
+
+       En remarquant qu'on peut écrire aussi :
+                                                                                                                       +∞
+                   +∞                                                                                   − jπ fTe                 
+        x0 (t ) =  ∑ x(nTe )δ (t − nTe ) ∗ Π Te (t − Te 2)   on obtient   X 0 ( f ) = sinc(π fTe) ⋅ e            ∑ X ( f − nFe ) 
+                   n= − ∞                                                                                        n= − ∞          
+                           xe t                                                                 1
+                                                                                                    X f
+                                                                                                  Fe e
+            Le spectre d'amplitude du signal reconstruit par le BOZ est celui du signal échantillonné
+            déformé par le terme sinc(π fTe). (rmq : l'expo est strictement complexe : pas de modif
+TdS         d'amplitude, mais une modification de la phase due au décalage temporel de Te/2)                                        20
+
+--- PAGE 21 ---
+La reconstruction
+  Interprétation de l'extrapoleur d'ordre 0
+      La TF du signal reconstruit par l'extrapolateur d'ordre 0 s'écrit                                           F           = 3 Hz et F            = 6 Hz
+                                                                                                                      m ax                       e
+                                                                                           3                                                                            |X ( f ) |
+
+                                                +∞             
+                                                                                                                                                                        |s in c ( πf T e ) |
+
+            ( f ) = sinc(π fTe) ⋅ e − jπ fTe 
+                                              ∑ X ( f − nFe ) 
+                                                                                                                                                                        |X o ( f ) |
+       X0                                                                               2 .5
+
+                                              n= − ∞           
+                                                                                           2
+
+       X0( f ) = spectre du signal échantillonné pondéré par la
+
+
+
+
+                                                                      A m p lit u d e
+                                                                                        1 .5
+       TF du signal porte de reconstruction
+                                                                                           1
+
+
+
+       Constats                                                                        0 .5
+
+
+                                                                                           0
+       1- Déformation de la bande centrale entre [−Fe/2, Fe/2].                            -1 0          -5                             0
+                                                                                                                                F ré q u e n c e
+                                                                                                                                                               5         10
+
+
+
+
+       2- Présence de composantes hautes fréquences.
+                                                                                                              F              = 3 H z et F            = 10 Hz
+                                                                                                                  m ax                       e
+                                                                                           3                                                                            |X ( f ) |
+                                                                                                                                                                        |s in c ( πf T e ) |
+       Atténuation des distorsions                                                     2 .5
+                                                                                                                                                                        |X o ( f ) |
+
+
+
+       1- Augmentation de Fe.                                                              2
+
+
+
+
+                                                                     A m p lit u d e
+       2- On peut ainsi choisir pour                                                    1 .5
+
+
+          le filtre passe-bas une fc < Fe/2                                                1
+
+
+                                                                                        0 .5
+
+
+                                                                                           0
+                                                                                           -1 5   -1 0                -5                0                5         10   15
+TdS                                                                                                                             F ré q u e n c e
+                                                                                                                                                                                               21
+
+--- PAGE 22 ---
+La quantification
+  Rôle
+
+      Approximer chaque valeur du signal échantillonné xe(t) par un multiple entier d'une
+      quantité élémentaire q appelée "pas de quantification" ou quantum.
+      Si q est constant quelle que soit l'amplitude du signal, on parle de quantification uniforme.
+      Dans tous les cas, la quantification est une perte d'information.
+
+  Principe
+                  Il existe principalement deux modes de quantification
+
+           - par arrondi : si  N −  ⋅ q ≤ xe (t ) < ( N + ) ⋅ q
+                                         1                     1
+                                   2                       2
+                                                     alors à xe(t) on associe le code N ou la valeur Nq
+
+           - par troncature : si Nq ≤ xe (t ) < ( N + 1) ⋅ q
+                                                      alors à xe(t) on associe le code N ou la valeur Nq
+
+
+            La quantification introduit une erreur modélisable mathématiquement, et
+            que l'on peut considérer comme une variable aléatoire.
+TdS                                                                                                        22
+
+--- PAGE 23 ---
+La quantification
+
+
+
+
+              Piano enregistré sur 16 bits
+                             décimation
+
+               Piano enregistré sur 8 bits
+TdS                                          23
+
+--- PAGE 24 ---
+ Conclusions :
+
+       La condition de Shannon garantit la non perte d'information, dans le cas idéal!
+
+
+
+       Dans le cas pratique, il y a des distorsions dans le signal échantillonné
+
+                - échantillonnage réel
+
+                - reconstruction par extrapolation
+
+       Des précautions sont à prendre afin que le signal échantillonné et le signal reconstruit
+        à partir des échantillons soient les plus fidèles possibles au signal original.
+  Bibliographie :
+
+           - Bellanger M, Traitement numérique du signal, Dunod, 1998.
+
+           - Picinbono B, Théorie des signaux et des systèmes, Dunod, 1993
+
+           - Cottet F, Traitement des signaux et acquisition de données, Dunod, 1997
+
+
+TdS                                                                                                24

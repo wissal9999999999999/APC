@@ -1,0 +1,152 @@
+--- PAGE 1 ---
+Python
+                         Les classes abstraites et les protocoles
+
+                                      Nicolas Delestre
+
+
+
+
+ABC et Protocol - v1.0                                              1/7
+
+--- PAGE 2 ---
+Rappels 1 / 2
+    Classe abstraite (CA), pourquoi ?
+            Créer une classe dont certaines méthodes sont déclarées mais non définies, mais qui peuvent être utilisées dans
+            des méthodes déclarées et définies
+            Créer une classe qui est conceptuelle, qui factorise des attributs ou des méthodes, évitant de les copier/coller dans
+            différentes classes
+
+    Conséquences                                                                                      IOTCommunication
+
+                                                                                                      connexion()
+            Classe qui ne peut pas avoir d’instance (d’où le                                         envoyer(string)
+                                                                                                      recevoir() : string
+                                                                                                      deconnexion()
+            terme abstrait)
+            Classe qui peut avoir des méthodes abstraites :             IOTCommunicationMQTT     IOTCommunicationBluetooth
+
+            méthodes déclarées mais non définies                    connexion()             connexion()
+                                                                                                                                         envoyer et recevoir utilisent connexion et deconnexion
+                                                                        deconnexion()           deconnexion()
+
+            Couplage fort : une classe C est de type CA si elle
+            est sous-classe de CA
+                                                                                                                                    Entite
+                                                                                                      Monde
+
+                                                                                                                             getNom() : string
+                                                                                                getNom() : string
+                                                                                                                             getMonde() : Monde
+
+
+
+
+                                                                                                                    Vivant                          Objet
+
+                                                                                                          estVivant() : boolean          estDeplacable() : boolean
+
+
+
+ABC et Protocol - v1.0                                                                                                                                                                            2/7
+
+--- PAGE 3 ---
+Rappels 2 / 2
+
+
+
+    Interface (I)
+            Pourquoi ?
+                   Définir un type avec uniquement des déclarations de méthodes
+            Conséquence
+                   Il n’est pas possible de définir des méthodes, juste les déclarer
+                   Couplage faible : une classe C est de type I si elle implémente I en définissant les méthodes
+                   déclarées par I
+
+
+
+
+ABC et Protocol - v1.0                                                                                                3/7
+
+--- PAGE 4 ---
+Classe abstraite en Python
+    Comment ?
+       Déclarer une classe abstraite :
+                   hériter de la classe ABC (pour Abstract Base Class) proposé par le module abc
+                   posséder au moins une méthode abstraite (utilisation du décorateur abstractmethod). Ce
+                   décorateur peut être associé aux décorateurs classmethod, staticmethod et property
+            S’assurer que les sous-classes implémentent ces méthodes
+
+    Exemple
+    from abc import ABC, abstractmethod                  class Cercle(Forme):
+                                                             def __init__(self, rayon: float):
+     class Forme(ABC):                                           self.rayon = rayon
+         @abstractmethod
+         def aire(self) -> float:                           def aire(self) -> float:
+             pass                                               return 3.14 * self.rayon**2
+
+        @abstractmethod                                     def perimetre(self) -> float:
+        def perimetre(self) -> float:                           return 2 * 3.14 * self.rayon
+            pass
+
+
+
+ABC et Protocol - v1.0                                                                                         4/7
+
+--- PAGE 5 ---
+Les (Protocol)
+    Constat
+        Grâce au Duck Typing, le concept d’Interface n’est pas utile en python
+            Mais ce n’est qu’à l’exécution que l’on peut se rendre compte des problèmes ⇒ besoin
+            de formaliser des dépendances, des attentes
+
+    Les protocoles : les interfaces de Python
+         Améliorer le typage statique en spécifiant des méthodes requises
+                            Équivalent aux interfaces d’autres langages comme Java
+
+    Comment ?
+       Déclarer un protocole : sous classe de la classe Protocol du module typing
+            Être du même type qu’un protocole : juste posséder les méthodes définies par le
+            protocole
+
+ABC et Protocol - v1.0                                                                                5/7
+
+--- PAGE 6 ---
+Exemple
+
+
+    from typing import Protocol                       def effectuer_vol(entite: PeutVoler) -> None:
+                                                          entite.voler()
+     class PeutVoler(Protocol):
+         def voler(self) -> None:                     oiseau_instance = Oiseau()
+             pass                                     avion_instance = Avion()
+
+     class Oiseau:                                    effectuer_vol(oiseau_instance)
+         def voler(self) -> None:                     effectuer_vol(avion_instance)
+             print ("Battre des ailes et voler!")
+
+     class Avion:
+         def voler(self) -> None:
+             print ("Planer àtravers les nuages!")
+
+
+
+
+ABC et Protocol - v1.0                                                                                6/7
+
+--- PAGE 7 ---
+Conclusion
+
+
+
+            Les classes ABC et Protocol offrent des mécanismes puissants pour améliorer la
+            structure et la fiabilité du code en renforçant les contrats
+            Les classes abstraites garantissent l’implémentation de méthodes spécifiques dans les
+            sous-classes, renforçant la hiérarchie des classes
+            Les protocoles offrent une flexibilité accrue en spécifiant des contrats moins rigides,
+            adaptés à des situations où une hiérarchie stricte n’est pas nécessaire
+
+
+
+
+ABC et Protocol - v1.0                                                                                  7/7

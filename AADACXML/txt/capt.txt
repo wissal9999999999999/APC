@@ -1,0 +1,57 @@
+AAD-ID,AAD-TITLE
+CAPT-Capt01,"Définir et classer les différents types de capteurs en fonction de leurs caractéristiques : actif/passif, nature du mesurande ou du signal de sortie, analogique/numérique/logique, mesure directe/indirecte"
+CAPT-Capt02,Décrire les signaux/données d'entrée/sortie
+CAPT-Capt03,Définir les caractéristiques métrologiques des capteurs
+CAPT-Capt04,Caractériser les erreurs de mesures liées aux capteurs.
+CAPT-Capt05,"Interpréter la position dans différents repères de référence (géocentrique, terrestre, local, ENU, NED)"
+CAPT-Capt06,Analyser des trames NMEA pour extraire les données utiles
+CAPT-Capt07,"Comparer différentes représentations de l’orientation (angles, matrices)"
+CAPT-Capt08,"Décrire les principes physiques (semi-conducteur, laser) associés à des capteurs de perception"
+CAPT-Capt09,"Comparer les performances des capteurs (portée, résolution, fréquence)"
+CAPT-Capt10,Interpréter les résultats de détection ou de mesure de distance
+CAPT-Capt11,Appliquer un filtrage simple pour réduire le bruit sur un signal mesuré
+CAPT-Capt12,"Synchroniser les données issues de capteurs différents (IMU, GPS)"
+CAPT-Capt13,Prétraiter les données pour compenser les dérives ou biais
+CAPT-Capt14,Mettre en œuvre un filtre de Kalman linéaire
+CAPT-Capt15,Présenter les limites du modèle linéaire et expliquer le filtre de Kalman étendu
+CAPT-Capt16,Expliquer les intérêts d’une fusion multi-capteurs pour la robustesse
+CAPT-Capt17,Interpréter les résultats de la fusion dans le contexte de la navigation
+CAPT-Capt18,Utiliser un capteur avec une carte raspberry
+CAPT-Capt19,"Développer un programme python pour utiliser les capteurs ou pour traiter les données (filtre, kalman…)"
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,

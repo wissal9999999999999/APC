@@ -1,0 +1,41 @@
+AAD-ID,AAD-TITLE
+PROGAV-33-1,Implémenter un design pattern MVC
+PROGAV-33-2,Utiliser la délégation d’événement
+PROGAV-40-1,Sérialiser et désérialiser des objets
+PROGAV-40-2,Prendre en compte la sensibilité des données
+PROGAV-51-1,Choisir les types
+PROGAV-51-2,Définir des types
+PROGAV-51-3,Créer une classe
+PROGAV-51-4,Gérer l’instanciation/destruction d’un objet
+PROGAV-51-5,Gérer la visibilité des membres
+PROGAV-51-6,Utiliser l’attribut this et les constructeurs this
+PROGAV-51-7,Créer/Utiliser des membres d’instances/classes
+PROGAV-51-8,Organiser le développement
+PROGAV-51-9,Compiler du code java avec et sans bibliothèques
+PROGAV-51-10,Exécuter du code java avec et sans bibliothèque
+PROGAV-51-11,Créer et manipuler des types énumérés
+PROGAV-51-12,Gestion de l’héritage
+PROGAV-51-13,Choisir la composition ou l’héritage
+PROGAV-51-14,Gérer le polymorphisme
+PROGAV-51-15,Manipuler super en attribut et en constructeur
+PROGAV-51-16,Utiliser des classes abstraites ou des interfaces
+PROGAV-51-17,Créer des classes de données simple
+PROGAV-51-18,Mettre en place une gestion/nomenclature d’erreur
+PROGAV-51-19,Lancer/Propager/Attraper des exceptions
+PROGAV-51-20,Expliciter les exceptions
+PROGAV-51-21,Comprendre l’introspection
+PROGAV-51-22,Utiliser l’introspection
+PROGAV-51-23,Concevoir une interface graphique
+PROGAV-52-1,Choisir le bon type de collection
+PROGAV-53-1,Utiliser la Généricité
+PROGAV-53-2,Créer des types génériques
+PROGAV-53-3,Créer des méthodes génériques
+PROGAV-53-4,Utiliser des lambdas expressions
+PROGAV-53-5,Comprendre le fct des Stream de données
+PROGAV-53-22,Créer des classes/interfaces incomplètes
+PROGAV-54-3,Utiliser les IO
+PROGAV-54-4,Utiliser les flux standards
+PROGAV-61-1,Création de tests unitaires
+PROGAV-61-2,Utiliser la notion de contrats simples et combinés
+PROGAV-61-3,Créer des fixtures
+PROGAV-61-4,Créer et utiliser les suites de tests

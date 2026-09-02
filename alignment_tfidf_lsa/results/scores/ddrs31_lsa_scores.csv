@@ -1,0 +1,396 @@
+AC-ID,AC-TITLE,AAD-ID,AAD-TITLE,LABEL,SCORE
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0916494680
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0298862651
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0847510311
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,DDRS-004,Analyser et comprendre une ACV,0,0.0432921275
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0860315220
+specifier-1.2,Décomposer et organiser un processus,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0398338553
+specifier-1.2,Décomposer et organiser un processus,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,1,-0.0000001728
+specifier-1.2,Décomposer et organiser un processus,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,1,0.1067283115
+specifier-1.2,Décomposer et organiser un processus,DDRS-004,Analyser et comprendre une ACV,0,0.0666173633
+specifier-1.2,Décomposer et organiser un processus,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000002371
+specifier-1.3,Utiliser un langage formel,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000033642
+specifier-1.3,Utiliser un langage formel,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000010509
+specifier-1.3,Utiliser un langage formel,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0694171313
+specifier-1.3,Utiliser un langage formel,DDRS-004,Analyser et comprendre une ACV,0,0.0000004263
+specifier-1.3,Utiliser un langage formel,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000014417
+specifier-2.1,Analyser la demande,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,-0.0000001175
+specifier-2.1,Analyser la demande,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000000367
+specifier-2.1,Analyser la demande,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000000296
+specifier-2.1,Analyser la demande,DDRS-004,Analyser et comprendre une ACV,0,0.2933106859
+specifier-2.1,Analyser la demande,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000000504
+specifier-2.2,Définir des cas d’utilisation,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0441479716
+specifier-2.2,Définir des cas d’utilisation,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0564743620
+specifier-2.2,Définir des cas d’utilisation,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1823141356
+specifier-2.2,Définir des cas d’utilisation,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001023
+specifier-2.2,Définir des cas d’utilisation,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000003459
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1073752592
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0438840269
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000000380
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD,DDRS-004,Analyser et comprendre une ACV,0,0.0000000191
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.1013222432
+specifier-3.1,Discriminer et hiérarchiser les demandes,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0751647558
+specifier-3.1,Discriminer et hiérarchiser les demandes,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0456117194
+specifier-3.1,Discriminer et hiérarchiser les demandes,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0490336371
+specifier-3.1,Discriminer et hiérarchiser les demandes,DDRS-004,Analyser et comprendre une ACV,0,0.0660710742
+specifier-3.1,Discriminer et hiérarchiser les demandes,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0515022679
+specifier-3.2,Définir la recette,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000003907
+specifier-3.2,Définir la recette,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000001220
+specifier-3.2,Définir la recette,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.2091047532
+specifier-3.2,Définir la recette,DDRS-004,Analyser et comprendre une ACV,0,0.0000000495
+specifier-3.2,Définir la recette,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000001674
+specifier-3.3,Lister les tests fonctionnels,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0375487060
+specifier-3.3,Lister les tests fonctionnels,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0480351281
+specifier-3.3,Lister les tests fonctionnels,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000008484
+specifier-3.3,Lister les tests fonctionnels,DDRS-004,Analyser et comprendre une ACV,0,-0.0000004262
+specifier-3.3,Lister les tests fonctionnels,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0542416249
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0877617689
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0198294732
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0426344606
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS,DDRS-004,Analyser et comprendre une ACV,0,0.0574485720
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0367649342
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0301432696
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0385601223
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000003119
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001567
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000005300
+specifier-4.3,Respecter un référentiel qualité,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,-0.0000003448
+specifier-4.3,Respecter un référentiel qualité,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000001077
+specifier-4.3,Respecter un référentiel qualité,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0567659144
+specifier-4.3,Respecter un référentiel qualité,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000437
+specifier-4.3,Respecter un référentiel qualité,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000001477
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0262013051
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000001601
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1053082276
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement,DDRS-004,Analyser et comprendre une ACV,0,0.0980820267
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0880529427
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0505509237
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0646643679
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0374993267
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000266
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0339903513
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0255441064
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0326751778
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000001439
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter,DDRS-004,Analyser et comprendre une ACV,0,0.0000000723
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0754420098
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0559576770
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0715818909
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0388326614
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001925
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000006511
+modeliser-2.1,Analyser les données numériques et symboliques du problème,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1469477515
+modeliser-2.1,Analyser les données numériques et symboliques du problème,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0412816453
+modeliser-2.1,Analyser les données numériques et symboliques du problème,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0443786806
+modeliser-2.1,Analyser les données numériques et symboliques du problème,DDRS-004,Analyser et comprendre une ACV,0,0.2659740519
+modeliser-2.1,Analyser les données numériques et symboliques du problème,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0765369185
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0919666954
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0776115917
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0388400876
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,DDRS-004,Analyser et comprendre une ACV,0,0.0523358403
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0669859855
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1025247581
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0490013717
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0215699271
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème,DDRS-004,Analyser et comprendre une ACV,0,0.0000001186
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.1284473057
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0933170618
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0893394594
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0628993354
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,DDRS-004,Analyser et comprendre une ACV,0,0.0392602967
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0306031914
+modeliser-3.1,Normaliser des données pour appliquer un modèle,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0372940103
+modeliser-3.1,Normaliser des données pour appliquer un modèle,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0477070005
+modeliser-3.1,Normaliser des données pour appliquer un modèle,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0517616608
+modeliser-3.1,Normaliser des données pour appliquer un modèle,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001216
+modeliser-3.1,Normaliser des données pour appliquer un modèle,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0301204721
+modeliser-3.2,Caractériser les données pour en déduire le modèle,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0322889263
+modeliser-3.2,Caractériser les données pour en déduire le modèle,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0413040474
+modeliser-3.2,Caractériser les données pour en déduire le modèle,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000001099
+modeliser-3.2,Caractériser les données pour en déduire le modèle,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000552
+modeliser-3.2,Caractériser les données pour en déduire le modèle,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0765796178
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000024891
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000007775
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0707426912
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable,DDRS-004,Analyser et comprendre une ACV,0,0.0953228485
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0411634795
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0295605947
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0378154023
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0745222900
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable,DDRS-004,Analyser et comprendre une ACV,0,0.1004166632
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.1134775337
+modeliser-4.3,Construire les modèles statistiques adaptés aux données,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0288571977
+modeliser-4.3,Construire les modèles statistiques adaptés aux données,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0369125055
+modeliser-4.3,Construire les modèles statistiques adaptés aux données,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000003372
+modeliser-4.3,Construire les modèles statistiques adaptés aux données,DDRS-004,Analyser et comprendre une ACV,0,0.0000001694
+modeliser-4.3,Construire les modèles statistiques adaptés aux données,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0684357560
+modeliser-4.4,Évaluer les besoins en ressources,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0369459856
+modeliser-4.4,Évaluer les besoins en ressources,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0472611039
+modeliser-4.4,Évaluer les besoins en ressources,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000000576
+modeliser-4.4,Évaluer les besoins en ressources,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000289
+modeliser-4.4,Évaluer les besoins en ressources,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0533651840
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0286731803
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000000785
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1008228592
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,DDRS-004,Analyser et comprendre une ACV,0,0.1358554398
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0379606526
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0498495354
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000001416
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1242220168
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa,DDRS-004,Analyser et comprendre une ACV,0,0.1298508418
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0754274528
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1064505233
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0368490724
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0399809339
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001321
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000004468
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0619615230
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0262854410
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0513988666
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,DDRS-004,Analyser et comprendre une ACV,0,0.0380762741
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.1272206212
+concevoir-2.2,Choisir les patrons de conception,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0770877982
+concevoir-2.2,Choisir les patrons de conception,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0516998231
+concevoir-2.2,Choisir les patrons de conception,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0455153445
+concevoir-2.2,Choisir les patrons de conception,DDRS-004,Analyser et comprendre une ACV,0,-0.0000002948
+concevoir-2.2,Choisir les patrons de conception,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0848643683
+concevoir-2.3,Choisir le framework,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000023956
+concevoir-2.3,Choisir le framework,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000007483
+concevoir-2.3,Choisir le framework,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000006043
+concevoir-2.3,Choisir le framework,DDRS-004,Analyser et comprendre une ACV,0,0.0000003035
+concevoir-2.3,Choisir le framework,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000010266
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1061644133
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000449079
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1151267875
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",DDRS-004,Analyser et comprendre une ACV,0,0.0467633403
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000616058
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0553421313
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000001058
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0686855586
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,DDRS-004,Analyser et comprendre une ACV,0,0.0000000429
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0682447558
+concevoir-3.1,Évaluer la complexité du traitement,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0884193200
+concevoir-3.1,Évaluer la complexité du traitement,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000002060
+concevoir-3.1,Évaluer la complexité du traitement,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000001663
+concevoir-3.1,Évaluer la complexité du traitement,DDRS-004,Analyser et comprendre une ACV,0,0.0000000836
+concevoir-3.1,Évaluer la complexité du traitement,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000002826
+concevoir-3.2,Intégrer des patrons de conception,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0789010284
+concevoir-3.2,Intégrer des patrons de conception,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0563754963
+concevoir-3.2,Intégrer des patrons de conception,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0432276639
+concevoir-3.2,Intégrer des patrons de conception,DDRS-004,Analyser et comprendre une ACV,0,0.0000000013
+concevoir-3.2,Intégrer des patrons de conception,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0251540127
+concevoir-3.3,Adapter le framework,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000015988
+concevoir-3.3,Adapter le framework,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000004994
+concevoir-3.3,Adapter le framework,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000004033
+concevoir-3.3,Adapter le framework,DDRS-004,Analyser et comprendre une ACV,0,0.0000002026
+concevoir-3.3,Adapter le framework,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000006851
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0973307769
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0412894276
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0807364666
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,DDRS-004,Analyser et comprendre une ACV,0,0.0598093339
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0977013101
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0776621597
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0384966446
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0590371007
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000579
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0586587266
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0217165480
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000002896
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0269536283
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,DDRS-004,Analyser et comprendre une ACV,0,-0.0000001175
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0156847504
+concevoir-4.3,Choisir les patrons d'architecture,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0418845498
+concevoir-4.3,Choisir les patrons d'architecture,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0535752718
+concevoir-4.3,Choisir les patrons d'architecture,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000007739
+concevoir-4.3,Choisir les patrons d'architecture,DDRS-004,Analyser et comprendre une ACV,0,0.0000003888
+concevoir-4.3,Choisir les patrons d'architecture,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0604922686
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire",DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0997472352
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire",DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000448390
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire",DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1084000386
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire",DDRS-004,Analyser et comprendre une ACV,0,0.0440242379
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire",DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000615112
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0779855930
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0330833245
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0646919159
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,DDRS-004,Analyser et comprendre une ACV,0,0.0479238282
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0782884252
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0650262607
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000005303
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1516141788
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances,DDRS-004,Analyser et comprendre une ACV,0,0.0412262140
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0497908815
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0218394272
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000002060
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1038155257
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000836
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0695671326
+developper-1.2,Utiliser un logiciel de suivi de version,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0574817419
+developper-1.2,Utiliser un logiciel de suivi de version,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000000235
+developper-1.2,Utiliser un logiciel de suivi de version,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1218152877
+developper-1.2,Utiliser un logiciel de suivi de version,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000095
+developper-1.2,Utiliser un logiciel de suivi de version,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0415133810
+developper-1.3,Caractériser le matériel et le système au regard des besoins,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1445876597
+developper-1.3,Caractériser le matériel et le système au regard des besoins,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0396864874
+developper-1.3,Caractériser le matériel et le système au regard des besoins,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0371590391
+developper-1.3,Caractériser le matériel et le système au regard des besoins,DDRS-004,Analyser et comprendre une ACV,0,0.0500708730
+developper-1.3,Caractériser le matériel et le système au regard des besoins,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0665762028
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0390525198
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000001177
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0827606945
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000477
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0762994133
+developper-2.2,Exploiter une documentation,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,-0.0000000159
+developper-2.2,Exploiter une documentation,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000000050
+developper-2.2,Exploiter une documentation,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1046879136
+developper-2.2,Exploiter une documentation,DDRS-004,Analyser et comprendre une ACV,0,0.1410634194
+developper-2.2,Exploiter une documentation,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0609175206
+developper-3.1,Caractériser et représenter l’information,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0453919631
+developper-3.1,Caractériser et représenter l’information,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000003175
+developper-3.1,Caractériser et représenter l’information,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0563355953
+developper-3.1,Caractériser et représenter l’information,DDRS-004,Analyser et comprendre une ACV,0,0.0759100890
+developper-3.1,Caractériser et représenter l’information,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000004356
+developper-3.2,Optimiser et sécuriser l’échange de données,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0678824075
+developper-3.2,Optimiser et sécuriser l’échange de données,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000000446
+developper-3.2,Optimiser et sécuriser l’échange de données,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0842496644
+developper-3.2,Optimiser et sécuriser l’échange de données,DDRS-004,Analyser et comprendre une ACV,0,0.0624120438
+developper-3.2,Optimiser et sécuriser l’échange de données,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0533042136
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0752235418
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0489687159
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0458500643
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,DDRS-004,Analyser et comprendre une ACV,0,0.0617814867
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000001583
+developper-4.1,Automatiser les tâches de validation et de déploiement,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1133515719
+developper-4.1,Automatiser les tâches de validation et de déploiement,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0369631669
+developper-4.1,Automatiser les tâches de validation et de déploiement,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1048193321
+developper-4.1,Automatiser les tâches de validation et de déploiement,DDRS-004,Analyser et comprendre une ACV,0,0.0535433227
+developper-4.1,Automatiser les tâches de validation et de déploiement,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0796087404
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0310210762
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000020127
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0385070628
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,DDRS-004,Analyser et comprendre une ACV,0,0.0518883358
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000027610
+gerer-1.1,Utiliser une forge pour la gestion des tickets,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0330365431
+gerer-1.1,Utiliser une forge pour la gestion des tickets,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0422598674
+gerer-1.1,Utiliser une forge pour la gestion des tickets,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0725344850
+gerer-1.1,Utiliser une forge pour la gestion des tickets,DDRS-004,Analyser et comprendre une ACV,0,0.0977377381
+gerer-1.1,Utiliser une forge pour la gestion des tickets,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0422074892
+gerer-1.2,Utiliser le cycle de développement en V,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0345176955
+gerer-1.2,Utiliser le cycle de développement en V,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000009390
+gerer-1.2,Utiliser le cycle de développement en V,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0428433671
+gerer-1.2,Utiliser le cycle de développement en V,DDRS-004,Analyser et comprendre une ACV,0,-0.0000003808
+gerer-1.2,Utiliser le cycle de développement en V,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0249321268
+gerer-2.1,Utiliser un framework de tests unitaires,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0323619889
+gerer-2.1,Utiliser un framework de tests unitaires,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000021442
+gerer-2.1,Utiliser un framework de tests unitaires,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0970167986
+gerer-2.1,Utiliser un framework de tests unitaires,DDRS-004,Analyser et comprendre une ACV,0,-0.0000008697
+gerer-2.1,Utiliser un framework de tests unitaires,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0233797162
+gerer-2.2,Utiliser un logiciel d’audit de code statique,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0276924909
+gerer-2.2,Utiliser un logiciel d’audit de code statique,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000001040
+gerer-2.2,Utiliser un logiciel d’audit de code statique,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0830012476
+gerer-2.2,Utiliser un logiciel d’audit de code statique,DDRS-004,Analyser et comprendre une ACV,0,0.0000000422
+gerer-2.2,Utiliser un logiciel d’audit de code statique,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0199991245
+gerer-2.3,Mettre en place des tests de non régression,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0581048104
+gerer-2.3,Mettre en place des tests de non régression,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0415060045
+gerer-2.3,Mettre en place des tests de non régression,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0318263479
+gerer-2.3,Mettre en place des tests de non régression,DDRS-004,Analyser et comprendre une ACV,0,0.0000032799
+gerer-2.3,Mettre en place des tests de non régression,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0185047420
+gerer-3.1,Utiliser un cycle de développement Agile,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0314822600
+gerer-3.1,Utiliser un cycle de développement Agile,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000007006
+gerer-3.1,Utiliser un cycle de développement Agile,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0943550057
+gerer-3.1,Utiliser un cycle de développement Agile,DDRS-004,Analyser et comprendre une ACV,0,0.0000002842
+gerer-3.1,Utiliser un cycle de développement Agile,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0227338967
+gerer-3.2,Suivre des procédures,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0513869524
+gerer-3.2,Suivre des procédures,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0657342521
+gerer-3.2,Suivre des procédures,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000001693
+gerer-3.2,Suivre des procédures,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000850
+gerer-3.2,Suivre des procédures,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000002876
+gerer-3.3,Rédiger des procédures,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0551444234
+gerer-3.3,Rédiger des procédures,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0705403946
+gerer-3.3,Rédiger des procédures,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000000724
+gerer-3.3,Rédiger des procédures,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000363
+gerer-3.3,Rédiger des procédures,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000001229
+gerer-4.1,Auditer des projets,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0494582349
+gerer-4.1,Auditer des projets,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0632671649
+gerer-4.1,Auditer des projets,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000001970
+gerer-4.1,Auditer des projets,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000989
+gerer-4.1,Auditer des projets,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000003346
+gerer-4.2,Passer des audits,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0494582349
+gerer-4.2,Passer des audits,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0632671649
+gerer-4.2,Passer des audits,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000001970
+gerer-4.2,Passer des audits,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000989
+gerer-4.2,Passer des audits,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000003346
+gerer-4.3,Organiser les rôles et les tâches,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1059875762
+gerer-4.3,Organiser les rôles et les tâches,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0872440319
+gerer-4.3,Organiser les rôles et les tâches,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0468947739
+gerer-4.3,Organiser les rôles et les tâches,DDRS-004,Analyser et comprendre une ACV,0,0.0631889179
+gerer-4.3,Organiser les rôles et les tâches,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0985111031
+communiquer-1.1,Documenter le code à l’aide d’un framework,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,-0.0000007327
+communiquer-1.1,Documenter le code à l’aide d’un framework,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000002289
+communiquer-1.1,Documenter le code à l’aide d’un framework,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0532609736
+communiquer-1.1,Documenter le code à l’aide d’un framework,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000928
+communiquer-1.1,Documenter le code à l’aide d’un framework,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000003140
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1319232354
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0248231356
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0527765101
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000018
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0407457108
+communiquer-1.3,Représenter les modèles à l’aide de langage formel,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0617331666
+communiquer-1.3,Représenter les modèles à l’aide de langage formel,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0414026522
+communiquer-1.3,Représenter les modèles à l’aide de langage formel,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0364499878
+communiquer-1.3,Représenter les modèles à l’aide de langage formel,DDRS-004,Analyser et comprendre une ACV,0,-0.0000004449
+communiquer-1.3,Représenter les modèles à l’aide de langage formel,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0679632910
+communiquer-2.1,Rédiger des supports de présentation,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0746551525
+communiquer-2.1,Rédiger des supports de présentation,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0533420585
+communiquer-2.1,Rédiger des supports de présentation,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0409016724
+communiquer-2.1,Rédiger des supports de présentation,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000866
+communiquer-2.1,Rédiger des supports de présentation,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0238009259
+communiquer-2.2,Restituer oralement le travail réalisé,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000000200
+communiquer-2.2,Restituer oralement le travail réalisé,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000000063
+communiquer-2.2,Restituer oralement le travail réalisé,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000000051
+communiquer-2.2,Restituer oralement le travail réalisé,DDRS-004,Analyser et comprendre une ACV,0,0.0000000025
+communiquer-2.2,Restituer oralement le travail réalisé,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000000086
+communiquer-2.3,Synthétiser le travail réalisé,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000000364
+communiquer-2.3,Synthétiser le travail réalisé,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000000114
+communiquer-2.3,Synthétiser le travail réalisé,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000000092
+communiquer-2.3,Synthétiser le travail réalisé,DDRS-004,Analyser et comprendre une ACV,0,0.0000000046
+communiquer-2.3,Synthétiser le travail réalisé,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000000156
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.1020969796
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0379054534
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000000251
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,DDRS-004,Analyser et comprendre une ACV,1,-0.0000000126
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.2757978124
+communiquer-3.2,Critiquer les résultats,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0472792402
+communiquer-3.2,Critiquer les résultats,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0604787690
+communiquer-3.2,Critiquer les résultats,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000000772
+communiquer-3.2,Critiquer les résultats,DDRS-004,Analyser et comprendre une ACV,0,0.0000000388
+communiquer-3.2,Critiquer les résultats,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",1,0.1847734481
+communiquer-3.3,Proposer des perspectives,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0494582349
+communiquer-3.3,Proposer des perspectives,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0632671649
+communiquer-3.3,Proposer des perspectives,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000001970
+communiquer-3.3,Proposer des perspectives,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000989
+communiquer-3.3,Proposer des perspectives,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000003346
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0529889784
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0355370646
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0312859822
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,DDRS-004,Analyser et comprendre une ACV,0,0.0000000118
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.1267773874
+communiquer-4.1,Résumer une méthode de l’état de l’art,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0516655625
+communiquer-4.1,Résumer une méthode de l’état de l’art,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000000655
+communiquer-4.1,Résumer une méthode de l’état de l’art,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.1358908860
+communiquer-4.1,Résumer une méthode de l’état de l’art,DDRS-004,Analyser et comprendre une ACV,0,0.0967046875
+communiquer-4.1,Résumer une méthode de l’état de l’art,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0790745268
+communiquer-4.2,Adapter son discours au public,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,-0.0000003268
+communiquer-4.2,Adapter son discours au public,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,-0.0000001021
+communiquer-4.2,Adapter son discours au public,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,-0.0000000824
+communiquer-4.2,Adapter son discours au public,DDRS-004,Analyser et comprendre une ACV,0,-0.0000000414
+communiquer-4.2,Adapter son discours au public,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,0.0000001400
+communiquer-4.3,Organiser la parole au sein d’un groupe,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000001027
+communiquer-4.3,Organiser la parole au sein d’un groupe,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000000321
+communiquer-4.3,Organiser la parole au sein d’un groupe,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0469647884
+communiquer-4.3,Organiser la parole au sein d’un groupe,DDRS-004,Analyser et comprendre une ACV,0,0.0000000130
+communiquer-4.3,Organiser la parole au sein d’un groupe,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000000440
+communiquer-4.4,Convaincre son interlocuteur,DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci,0,0.0000000828
+communiquer-4.4,Convaincre son interlocuteur,DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques,0,0.0000000259
+communiquer-4.4,Convaincre son interlocuteur,DDRS-003,Définir une Unité Fonctionnelle et un flux de référence,0,0.0000000209
+communiquer-4.4,Convaincre son interlocuteur,DDRS-004,Analyser et comprendre une ACV,0,0.0000000105
+communiquer-4.4,Convaincre son interlocuteur,DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)",0,-0.0000000355

@@ -1,0 +1,405 @@
+--- PAGE 1 ---
+Plan Composition Systèmes d’exploitation
+
+
+
+
+                    Système d’exploitation
+                        - Introduction -
+
+                              Nicolas Malandain
+
+
+
+
+                                                               as
+                                                       Architecture des Systèmes d’Information
+
+
+
+
+            Système d’exploitation - Introduction -                          1 / 18
+
+--- PAGE 2 ---
+Plan Composition Systèmes d’exploitation
+
+
+
+
+1   Composition
+      Éléments de base
+      Architectures de Noyaux
+
+
+2   Systèmes d’exploitation
+      Apple
+      IBM
+      Microsoft
+      Unix
+
+
+
+                                                                         as
+                                                                 Architecture des Systèmes d’Information
+
+
+
+
+                      Système d’exploitation - Introduction -                          2 / 18
+
+--- PAGE 3 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Différents éléments
+
+
+Base
+       Noyau
+       Bibliothèques
+       Système de fichiers
+       Outils systèmes
+
+Applicatif
+    Interface graphique
+       Applications de base
+
+
+
+
+                       Système d’exploitation - Introduction -                                          3 / 18
+
+--- PAGE 4 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Description du Noyau
+
+                              Élément central du système
+
+Fonctions de base
+    gestion des processus
+         allocations mémoire
+         ordonnancement/répartition du temps
+         communication/synchronisation
+    gestion des fichiers (Système de Gestion des Fichiers)
+    gestion des protocoles réseaux (TCP/IP, . . . )
+
+Fonctionnement
+    couche principale chargée en tout premier
+    permet d’accéder aux fonctions de base et à tous les périphériques
+    partitionnement de la mémoire (sécurité : noyau, espace utilisateur)
+    le noyau masque le matériel et fournit une interface aux applications
+                    Système d’exploitation - Introduction -                                          4 / 18
+
+--- PAGE 5 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+L’ordonnanceur
+
+      Hep vous là-bas ! Faut faire la queue comme tout le monde !
+
+Fonctions
+    utile dans un système d’exploitation multi-tâches
+     décide la tâche à exécuter en priorité et le cas échéant sur quel
+     processeur
+     sur des grappes de serveurs (cluster), il décide de la machine qui
+     exécutera la tâche
+
+Deux grandes familles
+    collaboratif : les applications collaborent et décident entre elles
+    quand elles passent la main.
+     préemptif : l’ordonnanceur est responsable de l’interruption des
+     tâches et du choix de la prochaine.
+                     Système d’exploitation - Introduction -                                          5 / 18
+
+--- PAGE 6 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Gestionnaire de mémoire
+
+                       Allouer de la mémoire aux processus
+
+Fonctions
+    masque l’accès à la mémoire physique (RAM ou disque)
+     accès à une mémoire virtuelle avec pagination
+
+Du point de vue du processus :
+    il fait une demande d’allocation au noyau qui délègue à l’unité de
+    gestion de la mémoire a
+     il a accès à un espace mémoire commençant à l’adresse 0
+     il ne peut accéder qu’à son espace alloué
+                              accès fautif = segmentation fault
+ a. MMU : Memory Management Unit
+
+                     Système d’exploitation - Introduction -                                          6 / 18
+
+--- PAGE 7 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Système de Gestion des Fichiers
+        Permet le stockage sur un support de mémoire (secondaire)
+Fonctions
+    création/destruction/modification d’un fichier
+    allocation d’espace (affectation d’un nombre de blocs de la mémoire
+    secondaire)
+    identification des fichiers (nom, adresse, créateur, date, . . . )
+    contrôle des accès
+    masque le support quelqu’il soit (physique, réseau, . . . )
+    garantie la récupération des données après panne
+    peut inclure la compression ou le chiffrement à la volée
+
+Exemple de systèmes de fichiers
+FAT32, ext3, ext4 (1 exa-octets a ), ReiserFS, NTFS (16 exa-octets,
+pilote limité à 256 tera-octets), HFS, ZFS (16 exa-octets), NFS, SAMBA
+ a. exa(1018 ),péta(1015 ),téra(1012 ), giga(109 )
+                       Système d’exploitation - Introduction -                                          7 / 18
+
+--- PAGE 8 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Bibliothèques (libraries)
+
+                                Fournir des fonctionnalités
+
+Des librairies de base
+    bas niveau
+          gestion entrées/sorties : fichiers, clavier, écran, . . .
+          gestion de structures de données
+     haut niveau
+          fonctionnalités graphiques (X11, openGL, . . . )
+          bibliothèques mathématiques
+
+Types
+    statiques : incluses à l’édition des liens dans les programmes
+     dynamiques : partagées et chargées dynamiquement
+
+                     Système d’exploitation - Introduction -                                          8 / 18
+
+--- PAGE 9 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Différentes architectures de noyaux
+
+
+Types de systèmes/noyaux
+    mono / multi-plateforme
+    mono / multi-utilisateurs
+    mono / multi-tâches
+    temps réels
+
+Deux familles d’architectures
+    Noyaux Monolithiques
+    Micro-noyaux
+
+
+
+
+                     Système d’exploitation - Introduction -                                          9 / 18
+
+--- PAGE 10 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Noyaux Monolithiques
+                        Caractéristiques
+     Logiciels
+                                un unique bloc de code (simplicité de conception)
+                                grande vitesse d’exécution
+                                le code est devenu trop imposant (pb de portage)
+      services
+      Noyau             Noyaux monolithiques modulaires
+                            les fonctions systèmes sont au cœur du noyau
+                            des modules spécifiques au matériel
+     Matériel               les modules sont chargés dynamiquement
+                            noyau instable s’il y a une erreur dans un module
+
+OS avec noyau monolithique modulaire
+GNU/Linux, AIX, Irix, Solaris, OS/2, . . .
+
+   En théorie, difficilement portables, mais en pratique les plus portés.
+                     Système d’exploitation - Introduction -                                          10 / 18
+
+--- PAGE 11 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Micro-Noyaux
+                                    Caractéristiques
+                 Logiciels
+                                        services fondamentaux dans le noyau
+                                        services non critiques dans l’espace utilisateur
+µNoyau enrichi
+
+
+
+
+                                        seuls les services utiles sont lancés
+                                        pas de perturbation au retrait/ajout de services
+                       µNoyau
+                                        services extérieurs : appels systèmes importants
+                                        interface de com entre les services complexe et
+                 Matériel
+                                        lourde : amélioration par délégation de
+                                        vérifications aux services externes
+
+Services de µNoyau                                                    Services espace utilisateur
+ordonnanceur, memoire physique,                                       système de fichiers, interface
+communications inter-services, . . .                                  réseau, mémoire virtuelle, . . .
+
+OS avec µNoyau
+GNU/Hurd, Minix, . . .
+                                 Système d’exploitation - Introduction -                                          11 / 18
+
+--- PAGE 12 ---
+Plan Composition Systèmes d’exploitation        Éléments de base Architectures de Noyaux
+
+Noyaux Hybrides
+              Dans les années 90, abandon des µNoyaux purs
+Caractéristiques
+    architecture identiques aux µNoyaux
+    intégration de services non critiques mais coûteux en appels systèmes
+    exemples d’OS : Windows NT, MacOS X, Be OS, NextStep
+Le noyau hybride  XNU’s Not  Unix de MacOS X
+    µNoyau Mach 3.0 (premier µNoyau de l’Université Carnegie Mellon)
+         communication inter-processus
+         gestionnaire de mémoire
+         ordonnancement
+         entrées/sorties
+    inclusion de code du noyau BSD (Berkeley Software Distribution)
+         gestion des utilisateurs et des permissions
+         gestion du réseau
+         gestion des systèmes de fichiers
+         assure la compatibilité POSIX
+                     Système d’exploitation - Introduction -                                          12 / 18
+
+--- PAGE 13 ---
+Plan Composition Systèmes d’exploitation           Éléments de base Architectures de Noyaux
+
+Noyaux temps réel
+
+  Logiciels
+                      Logiciels
+ temps réels
+                                       Caractéristiques
+                      Noyau                     noyau léger (fonctionne sur des plateformes
+                                                limitées, dédié à l’embarqué)
+           µNoyau                               garantie des temps d’exécution
+         temps réel
+                                                µNoyau temps réel dédié avec en service un
+                                                noyau non spécialisé
+           Matériel
+
+
+
+
+OS avec noyau temps-réel
+VxWorks a , QNX, GNU/RTAI b . . .
+a. missions Mars Pathfinder, Stardust, les rovers Spirit et Opportunity, . . .
+b. Real Time Application Interface, extension du noyau Linux
+
+
+
+                              Système d’exploitation - Introduction -                                          13 / 18
+
+--- PAGE 14 ---
+Plan Composition Systèmes d’exploitation        Apple IBM Microsoft Unix
+
+Apple
+
+
+
+
+   Lisa OS (1978-1983)
+   MacOS (1984) (Motorola 680x0, PowerPC)
+   MacOS X (Serveur 1999, grand public 2001) (PowerPC, Intel x86)
+
+
+
+
+                    Système d’exploitation - Introduction -                        14 / 18
+
+--- PAGE 15 ---
+Plan Composition Systèmes d’exploitation        Apple IBM Microsoft Unix
+
+IBM
+
+
+  OS/2 1.0 (1987 pas d’interface graphique, avec Microsoft)
+  OS/2 1.1 (1988 interface graphique et disques>32Mo supportés)
+  OS/2 1.3 (1989 rupture avec Microsoft)
+
+
+      0S/2 2.0 (1992, émule                            OS/2 3.0 développé par
+      Windows 3.0)                                      Microsoft deviendra Windows
+      OS/2 2.1 (1993)                                   NT
+      OS/2 Warp 3.0 (1994)
+      IBM annonce l’arrêt (2005)
+
+
+
+
+                   Système d’exploitation - Introduction -                           15 / 18
+
+--- PAGE 16 ---
+Plan Composition Systèmes d’exploitation        Apple IBM Microsoft Unix
+
+Microsoft
+
+
+   MS-DOS (1981 Quick and Dirty OS acheté et revendu à IBM)
+   Windows 3.0 (1990), Windows 3.1 (1992)
+   Windows 95 (1995), Windows 98 (1998), Windows ME (2000)
+   Windows NT (1993-1999), Windows 2000 (2000)
+   Windows XP (2001)
+   Windows Vista (2006)
+   Windows 7 (2009)
+   Windows 8 (2012)
+   Windows 10 (2015)
+
+
+
+
+                  Système d’exploitation - Introduction -                        16 / 18
+
+--- PAGE 17 ---
+Plan Composition Systèmes d’exploitation        Apple IBM Microsoft Unix
+
+La famille Unix
+
+
+   Multics (1965 MIT, Bell, General Electric)
+   Unix propriétaires
+   AIX, Irix, HP-UX, SunOS/Solaris
+   BSD (Berkeley Software Distribution)
+   FreeBSD (fiabilité), OpenBSD (sécurité), NetBSD (portabilité)
+   SunOS
+   GNU/Linux
+       Linux 0.0.2 (1991, projet loisir de Linus Torvalds étudiant finlandais)
+       Linux 1.0 stable (1994 des développeurs du monde entier)
+       Linux 2.0 (1996 Noyau monolithique modulaire)
+       Linux 2.6 (2003)
+       Linux 3.0 (2011)
+
+
+
+                   Système d’exploitation - Introduction -                        17 / 18
+
+--- PAGE 18 ---
+Plan Composition Systèmes d’exploitation        Apple IBM Microsoft Unix
+
+GNU/Linux
+
+
+Distributions
+Debian, Ubuntu, Kubuntu, Mandriva, Fedora, . . .
+
+Outils/Applicatifs de base
+    outils de développement, compilateurs, debogueurs
+    C, C++, Java, Lisp, Smalltalk, fortran, Pascal, Ada, Perl, Python,
+    ...
+    interface graphique
+         le serveur : X Window
+         les gestionnaires de fenêtres : fvwm, metacity, kwm, . . .
+         les gestionnaires d’environnements : KDE, Gnome, . . .
+
+
+
+
+                     Système d’exploitation - Introduction -                        18 / 18

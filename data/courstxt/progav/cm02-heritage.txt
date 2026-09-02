@@ -1,0 +1,1258 @@
+--- PAGE 1 ---
+Plan Quelques spécificateurs Types énumérés Héritage
+
+
+
+
+                                       Programmation
+                                    - Classes et Héritage -
+
+                                            Nicolas Malandain
+
+
+                                             January 19, 2026
+
+
+
+
+                           Programmation - Classes et Héritage -   1 / 45
+
+--- PAGE 2 ---
+Plan Quelques spécificateurs Types énumérés Héritage
+
+
+
+
+1     Quelques spécificateurs
+        static
+        final
+
+2     Types énumérés
+        Présentation
+        Exemples
+
+3     Héritage
+        Réutilisation
+        En Java
+        Polymorphisme
+        La classe Object
+
+                                                                        co-écrit avec IA
+
+
+                               Programmation - Classes et Héritage -                  2 / 45
+
+--- PAGE 3 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Attributs et Méthodes de classe
+Propriétés
+Les membres static :
+      ne sont pas attachés à une instance
+      ont une existence avant instanciation
+      ne peuvent pas accéder aux membres d’instances (non static)
+      sont partagés par toutes les instances
+
+Syntaxe
+
+        class NomClasse {
+
+            accès static type attribut;
+
+            accès static type methode(...) {
+
+            }
+        }
+                            Programmation - Classes et Héritage -             3 / 45
+
+--- PAGE 4 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+
+
+Attributs de classe
+     initialisés dans la classe (au chargement)
+      accès par la classe ou une instance
+Utilisation : information commune à des instances (constantes),
+compteur, . . .
+
+Méthodes de classe
+     ne peuvent accéder qu’aux membres de classe (static)
+      accès par la classe ou une instance
+Utilisation : boite à outils (Math), manipulation d’instances de la classe,
+...
+
+
+
+
+                            Programmation - Classes et Héritage -             4 / 45
+
+--- PAGE 5 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Initialisateur static
+
+
+
+                Permet l’initialisation complexe de membres static
+
+Syntaxe
+
+        class NomClasse {
+          static {
+            // instructions
+          }
+        }
+
+
+
+
+                            Programmation - Classes et Héritage -             5 / 45
+
+--- PAGE 6 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Exemples
+
+ClasseCompteur.java
+package fr.insarouen.iti.cours2;
+
+public class ClasseCompteur {
+
+    private static int compteur=0;
+
+    public ClasseCompteur() {
+      compteur++;
+    }
+
+    public static int getNbObjetConstruits() {
+      return compteur;
+    }
+
+    public static void main(String[] args) {
+      System.out.println(String.format("Nb␣objets␣construits␣:␣%d",ClasseCompteur.getNbObjetConstruits()));
+      ClasseCompteur[] cc=new ClasseCompteur[10];
+      for (int i=0;i<10;i++)
+        cc[i]=new ClasseCompteur();
+      System.out.println(String.format("Nb␣objets␣construits␣:␣%d",ClasseCompteur.getNbObjetConstruits()));
+    }
+}
+
+
+
+
+                               Programmation - Classes et Héritage -                                     6 / 45
+
+--- PAGE 7 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+
+Hasard.java
+package fr.insarouen.iti.prog.cours2;
+
+import java.util.Random;
+
+public class Hasard {
+
+    private final static int[] sequenceAleatoireCirculaire = new int[20];
+    private final Random aleatoire;
+
+    static {
+      Random alea=new Random();
+      for (int i=0; i<sequenceAleatoireCirculaire.length; i++)
+        sequenceAleatoireCirculaire[i]=alea.nextInt()%100;
+    }
+
+    public Hasard() {
+      aleatoire = new Random(System.currentTimeMillis());
+    }
+
+    public int getNombre() {
+      return sequenceAleatoireCirculaire[aleatoire.nextInt()%sequenceAleatoireCirculaire.length];
+    }
+}
+
+
+
+                               Programmation - Classes et Héritage -                      7 / 45
+
+--- PAGE 8 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Les significations de final
+
+                                        final = non modifiable
+
+En fonction du contexte
+    final type attribut
+    type simple : valeur constante
+    type classe : référence constante
+      type nomMethode(final type param, ...)
+      le paramètre est constant (cf. ci-dessus)
+      final type nomMethode(...)
+      la méthode ne peut être redéfinie lors d’un héritage
+      private → final
+      final class NomClasse ...
+      la classe ne peut être dérivée
+
+
+                            Programmation - Classes et Héritage -             8 / 45
+
+--- PAGE 9 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Constantes
+Initialisation
+Toute constante doit être initialisée :
+      soit à la déclaration
+      soit dans le constructeur (ou initialisateur static)
+l’initialisation peut être :
+      à la compilation : la valeur est disponible et elle est placée en dur
+      à l’exécution : la constante est initialisée à l’exécution
+
+Deux “types” de constantes
+    constante d’instance
+    initialisée à l’instanciation, une constante par instance
+      constante de classe
+      déclarée static (init au chargement), une constante unique
+
+Si un attribut n’a jamais d’affectation il est conseillé d’indiquer final
+                            Programmation - Classes et Héritage -              9 / 45
+
+--- PAGE 10 ---
+Plan Quelques spécificateurs Types énumérés Héritage      static final
+
+
+Exemples
+
+Constantes.java
+package fr.insarouen.iti.cours2;
+
+public class Constantes {
+  public final int valeurentiere=42;
+  public final int valeurAleatoire=(int)(Math.random()*100);
+  public static final int VALEUR_PLANCHER=200;
+  public final int[] tableau={1,2,3};
+  public final int valeurentiere2;
+
+    public Constantes(int valent) {
+      valeurentiere2=valent;
+      //    valeurentiere=valent;
+      //    VALEUR_PLANCHER=13;
+    }
+    public static void main(String[] args) {
+      Constantes cnsts=new Constantes(4);
+      //    cnsts.valeurentiere2=3;
+      //    cnsts.tableau=new int[5];
+      cnsts.tableau[0]=5;
+    }
+}
+
+
+
+                               Programmation - Classes et Héritage -             10 / 45
+
+--- PAGE 11 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Présentation Exemples
+
+
+Définition et syntaxe
+
+
+
+Définition
+Un type énuméré permet de définir explicitement un ensemble ordonné
+de valeurs.
+
+Syntaxe
+
+        enum NomTypeEnum {VAL1,VAL2, ..., VALn};
+
+Définition interne à une classe (inline) ou externe (public ou non)
+
+
+
+
+                            Programmation - Classes et Héritage -                       11 / 45
+
+--- PAGE 12 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Présentation Exemples
+
+
+
+
+Syntaxe et fonctionnalités
+        un enum est une classe (dérive de java.lang.Enum)
+        les valeurs sont public static final
+        comparaison via == ou equals()
+        implémente l’interface java.lang.Comparable
+        dispose des méthodes toString() et valueOf()a
+        ordinal() ⇒ position, values() ⇒ itération
+   a
+       à la redéfinition de l’une, l’autre doit toujours avoir la fonctionnalité inverse
+
+
+
+
+                            Programmation - Classes et Héritage -                            12 / 45
+
+--- PAGE 13 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Présentation Exemples
+
+
+Genre.java
+        package fr.insarouen.iti.cours2;
+        public enum Genre {MASCULIN, FEMININ};
+
+
+
+
+Informaticien.java
+package fr.insarouen.iti.cours2;
+public class Informaticien {
+
+    // un enum dans une classe est static
+    public enum Type {NOUVEAU, DEBUTANT, CONFIRME, GOUROU};
+     private final Type type;
+    private final Genre genre;
+
+    public Informaticien(Type type, Genre genre) {
+      this .type=type;
+      this .genre=genre;
+    }
+    public Informaticien(String strType, String strGenre) {
+        this (Type.valueOf(strType), Genre.valueOf(strGenre));
+    }
+
+    public String toString() {
+      return String.format("Informaticien␣%s␣%s",genre.toString().toLowerCase(),type.toString().toLowerCase());
+    }
+}
+
+                               Programmation - Classes et Héritage -                                    13 / 45
+
+--- PAGE 14 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Présentation Exemples
+
+
+
+
+EnumTest.java
+
+package fr.insarouen.iti.cours2;
+
+public class EnumTest {
+  public static void main(String[] args) {
+    Informaticien inf1 = new Informaticien(Informaticien.Type.NOUVEAU,
+                                         Genre.MASCULIN);
+    Informaticien inf2 = new Informaticien("GOUROU","FEMININ");
+    System.out.println(inf1);
+    System.out.println(inf2);
+  }
+}
+
+
+
+
+                            Programmation - Classes et Héritage -                       14 / 45
+
+--- PAGE 15 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La réutilisation des classes
+
+
+
+                                      La réutilisation de classes
+
+La relation “a un” : l’association (composition/agrégation)
+      une classe à pour attribut une classe.
+Par exemple : une personne à une adresse
+
+La relation “est un” : l’héritage
+      une classe (dérivée) est définie à partir d’une autre classe (base)
+Par exemple : un homme est un mammifère
+
+
+
+
+                            Programmation - Classes et Héritage -                                                15 / 45
+
+--- PAGE 16 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Vocabulaire de l’héritage
+    hériter ⇔ étendre ⇔ dériver
+      super-classe ⇔ classe de base ⇔ classe mère
+      sous-classe ⇔ classe dérivée ⇔ classe fille
+
+Caractéristiques de l’héritage
+    création d’un nouveau type
+      contenant les membres du type de base (méthodes + attributs)
+      les objets acceptent les messages des objets de la classe de base
+      la classe dérivée est du type de la classe de base
+
+Comment différencier la nouvelle classe
+   ajouter des nouveaux comportements
+      redéfinir (changer) des comportements
+
+                            Programmation - Classes et Héritage -                                                16 / 45
+
+--- PAGE 17 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Utilisation en Java
+
+Héritage
+
+        class ClasseFille extends ClasseMere {
+          // attributs
+          // constructeurs et méthodes
+        }
+
+
+super et super(...)
+      super accède aux attributs (en cas de masquage) et méthodes de la
+      classe mère
+      super(...) appelle un contructeur de la classe mère
+
+Remarque
+Java ne permet pas l’héritage multiple
+
+                            Programmation - Classes et Héritage -                                                17 / 45
+
+--- PAGE 18 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Trois types de polymorphisme
+
+ad-hoc (surcharge)
+méthodes de même nom aux fonctionnalités similaires dans une même
+classe ou dans des classes différentes
+
+par héritage (spécialisation)
+      redéfinition d’une méthode d’une classe mère dans une classe fille
+      possibilité d’envoyer un message à un objet sans se soucier de son
+      type
+exemple : classes piece,pion,fou,roi,... et une méthode deplacer
+
+paramétrique (généricité)                                                                        cf. cours suivants
+
+possibilité de définir des méthodes génériques (abstraction des types)
+exemple : méthode de tri quelque soit le type des objets à trier
+
+                            Programmation - Classes et Héritage -                                                  18 / 45
+
+--- PAGE 19 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Surcharge & Redéfinition
+Surcharge (technique non liée à l’héritage)
+Créer une méthode de même nom qu’une autre mais avec une signature
+différente (ordre, type et nombre de paramètres).
+Lors de l’envoi de message, le choix de la méthode à appeler se fait à la
+compilation (invocation statique).
+
+Redéfinition
+Créer une méthode de même signature qu’une méthode de la classe
+mère, ce qui modifie le comportement pour un même envoi de message.
+Dans ce cas, le choix de la méthode à appeler se fait à l’exécution
+(invocation dynamique)
+
+Masquage
+Dans une classe fille un membre de même nom que dans la classe mère
+masque ce dernier (accès via super)
+                            Programmation - Classes et Héritage -                                                19 / 45
+
+--- PAGE 20 ---
+Plan Quelques spécificateurs Types énumérés Héritage          Réutilisation En Java Polymorphisme La classe Object
+
+
+Le Polymorphisme (par surcharge)
+Utilité
+Décliner un comportement différent en fonction des paramètres
+
+Personne.java
+public class Personne {                                 public void manger() {
+  private final Genre genre;                              System.out.println("je␣mange");
+                                                        }
+ public Personne(Genre genre) {
+   this .genre=genre;                                   public void manger(String aliment) {
+ }                                                        System.out.println(String.format("je␣mange␣%s", aliment));
+                                                        }
+ public Personne(String strGenre) {
+   this .genre=Genre.valueOf(strGenre);                 public void sortir() {
+ }                                                        System.out.println("ouais␣super,␣on␣va␣en␣boite");
+                                                        }
+ public void cycleVie() {
+   manger();                                            public void dormir() {
+   sortir();                                              System.out.println("Rrrrrrr␣zzzzzzz␣Rrrrrrr␣zzzzzzzz");
+   dormir();                                            }
+ }
+                                                        public String toString() {
+ public void cycleVie(int nbcycles) {                     return String.format("Personne␣%s",this.genre.toString().toLowerCase());
+   for (int i=0; i<nbcycles; i++)                       }
+     cycleVie();                                    }
+ }
+
+
+
+                               Programmation - Classes et Héritage -                                                          20 / 45
+
+--- PAGE 21 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Surcharge.java
+package fr.insarouen.iti.prog.cours2;
+
+public class Surcharge {
+  public static void main(String[] args) {
+    Personne p=new Personne(Genre.MASCULIN);
+    p.manger();
+    p.manger("des␣peummes"); // accent à la Delestre
+  }
+}
+
+
+
+
+                            Programmation - Classes et Héritage -                                                21 / 45
+
+--- PAGE 22 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Le Polymorphisme (par héritage)
+
+
+
+
+Utilité
+      Définir un comportement commun dans une classe de base
+      Décliner un comportement différent dans des sous-classes
+      Ne pas se soucier du type manipulé (via la classe de base)
+
+
+
+
+                            Programmation - Classes et Héritage -                                                22 / 45
+
+--- PAGE 23 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Exemple
+Entreprise.java
+package fr.insarouen.iti.cours2;
+
+public class Entreprise {
+  private final Personne[] equipe;
+  private int place=0;
+
+    public Entreprise(int tailleEquipe) {
+      equipe = new Personne[tailleEquipe];
+    }
+
+    public boolean recrute(Personne p) {
+      if (place < equipe.length) {
+        equipe[place++]=p;
+        return true;
+      }
+      return false ;
+    }
+
+    public void execute() {
+      for (int i=0; i<place; i++) {
+        System.out.println(String.format("---␣%s␣---", equipe[i]));
+        equipe[i].cycleVie();
+      }
+    }
+}
+
+                               Programmation - Classes et Héritage -                                                23 / 45
+
+--- PAGE 24 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Mathematicien.java
+
+package fr.insarouen.iti.cours2;                                                   public Type getType() {
+                                                                                     return this .type;
+public class Mathematicien extends Personne {                                      }
+
+ public enum Type {NOUVEAU, DEBUTANT, CONFIRME, GOUROU};                           public void cycleVie() {
+ private final Type type;                                                            manger();
+                                                                                     resoudreEquations();
+ public Mathematicien(Type type) {                                                   dormir();
+   super(Genre.MASCULIN);                                                          }
+   this .type=type;                                                            }
+ }
+ public Mathematicien(Type type, Genre genre) {
+   super(genre);
+   this .type=type;
+ }
+
+ public void resoudreEquations() {
+   System.out.println("x=...");
+ }
+ public String toString() {
+   return String.format("%s␣:␣mathematicien␣(%s)", super.toString(), this.getType());
+ }
+
+
+
+
+                            Programmation - Classes et Héritage -                                                24 / 45
+
+--- PAGE 25 ---
+Plan Quelques spécificateurs Types énumérés Héritage       Réutilisation En Java Polymorphisme La classe Object
+
+
+
+Informaticien2.java
+
+package fr.insarouen.iti.cours2;                                                    public void cycleVie() {
+                                                                                      manger();
+public class Informaticien2 extends Personne {                                        developper();
+                                                                                      sortir();
+ // un enum dans une classe est static                                                dormir();
+ public enum Type {NOUVEAU, DEBUTANT, CONFIRME, GOUROU};                            }
+                                                                                    public Type getType() {
+  private final Type type;                                                            return this .type;
+                                                                                    }
+ public Informaticien2(Type type) {                                             }
+   super(Genre.FEMININ);
+   this .type=type;
+ }
+ public Informaticien2(Type type, Genre genre) {
+   super(genre);
+   this .type=type;
+ }
+
+ public void developper() {
+   System.out.println("je␣développe,␣tu␣développes,␣il␣développe,␣...");
+ }
+ public String toString() {
+   return String.format("%s:␣informaticien␣(%s)",super.toString(), this.getType());
+ }
+
+
+
+
+                             Programmation - Classes et Héritage -                                                25 / 45
+
+--- PAGE 26 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+Geek.java
+package fr.insarouen.iti.cours2;
+
+public class Geek extends Informaticien2 {
+
+    public Geek() {
+      super(Type.GOUROU,Genre.MASCULIN);
+    }
+    public Geek(Type type, Genre genre) {
+      super(type,genre);
+    }
+
+    public void developper() {
+      System.out.println("je␣script␣à␣mort␣un␣truc␣révolutionnaire");
+    }
+    public void dormir() {
+      System.out.println("Rrrrrrr␣zzzz;␣make␣bzImage␣;␣Rrrrrrr␣zzzzz");
+    }
+    public void sortir() {
+      System.out.println("je␣participe␣à␣une␣bug␣squash␣party");
+    }
+    public String toString() {
+      return String.format("%s␣avec␣comportement␣de␣geek",super.toString()) ;
+    }
+}
+
+
+
+
+                               Programmation - Classes et Héritage -                                                26 / 45
+
+--- PAGE 27 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Redefinition.java
+     package fr.insarouen.iti.cours2;
+
+     public class Redefinition {
+
+         public static void main(String[] args) {
+           Personne p1=new Personne(Genre.MASCULIN);
+           Personne p2=new Informaticien2(Informaticien2.Type.DEBUTANT);
+           Personne p3=new Mathematicien(Mathematicien.Type.CONFIRME);
+           Personne p4=new Geek();
+
+             Entreprise entreprise=new Entreprise(5);
+             entreprise.recrute(p1);
+             entreprise.recrute(p2);
+             entreprise.recrute(p3);
+             entreprise.recrute(p4);
+             entreprise.execute();
+         }
+     }
+
+
+
+
+                            Programmation - Classes et Héritage -                                                27 / 45
+
+--- PAGE 28 ---
+Plan Quelques spécificateurs Types énumérés Héritage             Réutilisation En Java Polymorphisme La classe Object
+
+
+Covariance
+                                                          A                          A                          A
+                               T
+                                            // Attributs et méthodes   // Attributs et méthodes   // Attributs et méthodes
+                 // Attributs et méthodes
+                                              méthode(): T               méthode(): T               méthode(T : t)
+
+
+
+
+                                                          B                          B                          B
+                              Th
+                                            // Attributs et méthodes   // Attributs et méthodes   // Attributs et méthodes
+                 // Attributs et méthodes
+                                              méthode(): T               méthode(): Th              méthode(Th : t)
+
+
+
+
+Définition
+Fait référence à la possibilité d’utiliser un type plus spécifique que celui
+initialement spécififié.
+remarque: il existe aussi la notion de contravariance qui est le fait de
+pouvoir utiliser un type moins spécifique
+
+Covariance en Java
+Java accepte la covariance sur les types de retours lors des redéfinitions
+de méthodes
+                               Programmation - Classes et Héritage -                                                        28 / 45
+
+--- PAGE 29 ---
+Plan Quelques spécificateurs Types énumérés Héritage        Réutilisation En Java Polymorphisme La classe Object
+
+
+Sans covariance sur le type retour
+
+    SansCovarianceAnimal.java
+public class SansCovarianceAnimal {                                            class Animal {
+                                                                                   Animal reproduire() {
+     public static void main(String[] args) {                                          return new Animal();
+                                                                                   }
+         Chien chien = new Chien();                                            }
+         Chat chat = new Chat();
+                                                                               class Chien extends Animal {
+         Chien chiot = (Chien)chien.reproduire();                                  @Override
+                                                                                   Animal reproduire() {
+         Chat chaton = (Chat)chat.reproduire();                                        return new Chien();
+                                                                                   }
+         Chien chioton = (Chien)chat.reproduire(); // exécution KO            }
+     }
+}                                                                              class Chat extends Animal {
+                                                                                   @Override
+                                                                                   Animal reproduire() {
+                                                                                       return new Chat();
+                                                                                   }
+                                                                               }
+
+
+
+
+    Compilation OK, Exécution KO
+
+
+                                 Programmation - Classes et Héritage -                                                 29 / 45
+
+--- PAGE 30 ---
+Plan Quelques spécificateurs Types énumérés Héritage        Réutilisation En Java Polymorphisme La classe Object
+
+
+    Avec covariance sur le type retour
+
+    AvecCovarianceAnimal.java
+public class AvecCovarianceAnimal {                                          class Animal {
+                                                                                 Animal reproduire() {
+     public static void main(String[] args) {                                        return new Animal();
+                                                                                 }
+         Chien chien = new Chien();                                          }
+         Chat chat = new Chat();
+                                                                             class Chien extends Animal {
+         Chien chiot = chien.reproduire();                                       @Override
+                                                                                 Chien reproduire() {
+         Chat chaton = chat.reproduire();                                            return new Chien();
+                                                                                 }
+         // Chien chioton = (Chien)chat.reproduire(); // ne compile pas      }
+
+     }                                                                       class Chat extends Animal {
+}                                                                                @Override
+                                                                                 Chat reproduire() {
+                                                                                     return new Chat();
+                                                                                 }
+                                                                             }
+
+
+
+
+    Suppression des transtypages inutiles, et vérification à la compilation
+
+
+                                  Programmation - Classes et Héritage -                                                30 / 45
+
+--- PAGE 31 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Constructeur
+Héritage & Constructeurs
+      pas d’héritage des constructeurs
+      appel des constructeurs des classes de base en premier
+
+Fonctionnement
+Le contructeur appelle par défaut le constructeur par défaut de la classe
+mère.
+Modification du comportement :
+Appel explicite à un constructeur de la classe mère via super(...)
+
+Syntaxe
+
+     ConstructeurClassFille( [paramètres] ) {
+       super( [paramètres] ); // appel au constructeur de la classe mère
+       // code du constructeur
+     }
+
+                            Programmation - Classes et Héritage -                                                31 / 45
+
+--- PAGE 32 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Constructeurs & méthodes polymorphes
+Explication du problème
+Si un constructeur d’une classe mère appelle une méthode redéfinie dans
+une classe fille, c’est cette méthode redéfinie qui est appellée.
+
+ConstructeurEtPolymorphisme.java
+   package fr.insarouen.iti.cours2;
+   public class ConstructeurEtPolymorphisme {
+     public static void main(String[] args) {                        class B extends A {
+       B b=new B();                                                    private int varb;
+       System.out.println(b);
+     }                                                                public B() {
+   }                                                                    varb=10;
+   class A {                                                          }
+     private int vara;
+     public A() {                                                     public void methode() {
+       methode();                                                       varb++;
+     }                                                                }
+     public void methode() {
+       vara=3;                                                        public String toString() {
+     }                                                                  return String.format("%s␣B(varb:%d)",
+     public String toString() {                                                             super.toString(),
+       return String.format("A(vara:%d)",vara);                                             varb);
+     }                                                                }
+   }                                                             }
+
+
+                            Programmation - Classes et Héritage -                                                32 / 45
+
+--- PAGE 33 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Object
+Description
+Object est la super classe de toutes les classes (java.lang.object)son
+héritage est implicite.
+
+Quelques méthodes
+    public String toString()
+      protected Object clone()
+      public boolean equals(Object)
+      public int hashCode()
+      protected void finalize()
+      public final Class getClass()
+      void notify(), void notifyAll()
+      void wait() , void wait(long), void wait(long, int)
+
+                            Programmation - Classes et Héritage -                                                33 / 45
+
+--- PAGE 34 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode toString
+
+
+
+Fonction
+Retourne une chaı̂ne de caractères décrivant l’objet (par défaut le nom de
+la classe ainsi que le hashCode).
+Appelée automatiquement si il y a besoin d’une chaı̂ne de caractères.
+
+Utilisation
+Redéfinir la méthode pour retourner les informations souhaitées (état de
+l’objet, valeurs, . . . )
+
+
+
+
+                            Programmation - Classes et Héritage -                                                34 / 45
+
+--- PAGE 35 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode equals 1 / 4
+La méthode équals par défaut
+
+           public boolean equals(Object o) {
+             return o==this;
+           }
+
+
+Règles à respecter pour equals
+      non null x.equals(null)==false
+      réflexive x.equals(x)==true
+ symétrique x.equals(y)==y.equals(x)
+    transitive x.equals(y)==true et y.equals(z)==true →
+                     x.equals(z)==true
+          stable tant que x ou y ne sont pas modifiés x.equals(y) donne la
+                 même valeur
+    hashcode x.equals(y) ⇒ x.hashCode()==y.hashCode()
+                            Programmation - Classes et Héritage -                                                35 / 45
+
+--- PAGE 36 ---
+Plan Quelques spécificateurs Types énumérés Héritage   Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode equals 2 / 4
+Redéfinition (squelette classique)
+
+        class Demo {
+          ...
+          public boolean equals(Object o) {
+            // ------- VERSION LOURDE ---------
+             if (o==this) // pas indispensable
+               return true;
+             if (o==null || this.getClass() != o.getClass())
+                                         // éviter instanceof => pb symétrie
+               return false ;
+            // test des attributs puis retour du résultat
+            return ;
+            // ------ VERSION SIMPLIFIÉE ---------
+            return test type && exprBool1 && exprBool2...
+          }
+          public int hashCode() {
+            // combinaison des hashCode des attributs
+            return 13 * att1.hashCode() + 17 * att2.hashCode();
+          }
+        }             Programmation - Classes et Héritage -                                                   36 / 45
+
+--- PAGE 37 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode equals 3 / 4
+
+equals et instanceof
+   class Mere {
+       private int a;
+       public Mere(int a) {
+            this .a=a;
+       }
+       public boolean equals(Object o) {
+                                                                     public class TestEquals {
+           return o instanceof Mere && this.a==((Mere)o).a;              public static void main(String[] args) {
+       }                                                                     Mere m = new Mere(42);
+   }                                                                         Fille f = new Fille(42,666);
+                                                                             System.out.println(m.equals(f));
+   class Fille extends Mere {                                                System.out.println(f.equals(m));
+       private int b;                                                    }
+       public Fille(int a,int b) {                                   }
+           super(a);
+            this .b=b;
+       }
+       public boolean equals(Object o) {
+           return super.equals(o) && o instanceof Fille && this.b == ((Fille) o).b;
+       }
+   }
+
+
+
+
+                            Programmation - Classes et Héritage -                                                  37 / 45
+
+--- PAGE 38 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode equals 4 / 4
+equals et instanceof : “ solution ”
+   class Mere {
+       private int a;
+       public Mere(int a) {
+            this .a=a;
+       }
+       public final boolean equals(Object o) {
+                                                                     public class TestEquals {
+           return o instanceof Mere && this.a==((Mere)o).a;              public static void main(String[] args) {
+       }                                                                     Mere m = new Mere(42);
+   }                                                                         Fille f = new Fille(42,666);
+                                                                             System.out.println(m.equals(f));
+   class Fille extends Mere {                                                System.out.println(f.equals(m));
+       private int b;                                                    }
+       public Fille(int a,int b) {                                   }
+           super(a);
+            this .b=b;
+       }
+   }
+
+
+
+
+Remarque
+Valable si l’égalite des objets de la classe fille ne dépend que du contenu
+de la classe mère
+                            Programmation - Classes et Héritage -                                                  38 / 45
+
+--- PAGE 39 ---
+Plan Quelques spécificateurs Types énumérés Héritage   Réutilisation En Java Polymorphisme La classe Object
+
+
+Pattern matching et l’opérateur instanceof (Java 16)
+Assignation de l’objet à une variable à la vérification
+
+   obj instanceof UneClasse objClasse                           if (obj instanceof UneClasse)
+                                                                      objClasse=(UneClasse)o;
+
+
+Différentes versions de equals avec 2 attributs dans Mere
+   // ----- AVANT -------
+     public final boolean equals(Object o) {         // -------------- Remarques -----------
+      if (!(o instanceof Mere))                           if (o instanceof Mere m1 )
+          return false ;                                       return false ;
+      Mere m = (Mere) o;                                  return this .a==m1.a && this.b==m1.b; // pas OK
+      return this .a==m.a && this.b==m.b;
+   }                                                      if (!(o instanceof Mere m2)) {
+   public boolean equals(Object o) {                           m2.a = 42;                       // pas OK
+      return o instanceof Mere                                return false ;
+              && this.a==((Mere)o).a                      }
+              && this.b==((Mere)o).b;                     m2.a=666;                             // OK
+   }                                                      return true;
+   // ------ MAINTENANT --------
+   public boolean equals(Object o) {                      if (o instanceof Mere m3 || m3.a==42) // pas OK
+      return o instanceof Mere m                               return false ;
+              && this.a==m.a                         }
+              && this.b==m.b;
+   }
+                           Programmation - Classes et Héritage -                                              39 / 45
+
+--- PAGE 40 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+La méthode clone
+
+
+
+Fonctionnement
+    méthode d’Object = copie bit à bit
+      copie de surface
+      méthode protected dans Object
+      nécessite une redéfinition public
+      utilisation de la covariance dans le type de retour
+      doit implémenter l’interface Cloneable
+
+
+
+
+                            Programmation - Classes et Héritage -                                                40 / 45
+
+--- PAGE 41 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Squelette de clone
+
+        class Demo implements Cloneable {
+          // attributs
+          public Demo clone() {
+            Object copie=null;
+            try {
+              copie=super.clone();
+            }
+            catch (CloneNotSupportedException e) {
+              e.printStackTrace(System.err);
+            }
+            // code de copie spécifique du contenu de l’objet
+            return (Demo)copie;
+          }
+        }
+
+
+
+
+                            Programmation - Classes et Héritage -                                                41 / 45
+
+--- PAGE 42 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+Exemple
+EqualsClone.java
+
+package fr.insarouen.iti.cours2;
+
+public class EqualsClone {
+  public static void main(String[] args) {
+    PersonneEC p1 = new PersonneEC("Hoposte␣Fidèle",194092890,10,01,1938);
+    PersonneEC p2 = new PersonneEC("Dipachair␣Deborah",294092890,12,8,1980);
+    PersonneEC p3;
+
+        System.out.println(String.format("p1.equals(p2)␣:␣%b",p1.equals(p2)));
+        System.out.println(String.format("p1.equals(p1)␣:␣%b",p1.equals(p1)));
+
+        p3 = p1.clone();
+        System.out.println(String.format("p1.equals(p3)␣:␣%b",p1.equals(p3)));
+        p3.setDateNaissance(12, 01, 1944);
+        System.out.println(String.format("p1.equals(p3)␣:␣%b",p1.equals(p3)));
+    }
+}
+
+
+
+                               Programmation - Classes et Héritage -                                                42 / 45
+
+--- PAGE 43 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+EqualsClone.java
+class PersonneEC implements Cloneable { // code de classe incomplet
+   private final String nomComplet;
+   private final int numSecu;
+   private DateNaissance dateNaissance; // final impossible cf. si clone en profondeur
+  public boolean equals(Object o) { // ne tient pas compte du numSecu
+     if (o==null || o.getClass() != this.getClass())
+       return false ;
+     PersonneEC p = (PersonneEC) o;
+     return nomComplet.equals(p.nomComplet) && dateNaissance.equals(p.dateNaissance);
+  }
+  public int hashCode() { // ne doit pas tenir compte de numSecu (cf equals)
+         return nomComplet.hashCode()*5+dateNaissance.hashCode()*13;
+  }
+  public PersonneEC clone() {
+     PersonneEC copie=null;
+     try {
+       copie=(PersonneEC)super.clone();
+     }
+     catch (CloneNotSupportedException e) {
+       e.printStackTrace(System.err);
+     }
+//      copie.dateNaissance = dateNaissance.clone(); // copie en profondeur
+     return copie;
+  }
+  public String toString() {
+     return String.format("%s(%s)␣:␣%s",nomComplet,dateNaissance,numSecu);
+  }
+}
+                            Programmation - Classes et Héritage -                                                43 / 45
+
+--- PAGE 44 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+EqualsClone.java
+class DateNaissance implements Cloneable {
+  private int jour, mois, annee;
+
+    public DateNaissance(int jour, int mois, int annee) {
+      set(jour, mois, annee);              // attention : set est redéfinnissable => final
+    }
+    public final void set(int jour, int mois, int annee) {
+      this .jour = jour;
+      this .mois = mois;
+      this .annee = annee;
+    }
+
+    public boolean equals(Object o) {
+      if (o==null || o.getClass() != this.getClass()) //(!(o instanceof DateNaissance))
+        return false ;
+      DateNaissance dn=(DateNaissance)o;
+      return jour==dn.jour && mois==dn.mois && annee==dn.annee;
+    }
+    public int hashCode() {
+      return jour*5+mois*7+annee*11;
+    }
+    public DateNaissance clone() {
+      DateNaissance copie=null;
+      try {
+        copie=(DateNaissance)super.clone();
+      }
+      catch (CloneNotSupportedException e) {
+        e.printStackTrace(System.err);
+      }
+      return copie;
+    }
+}
+                               Programmation - Classes et Héritage -                                                44 / 45
+
+--- PAGE 45 ---
+Plan Quelques spécificateurs Types énumérés Héritage      Réutilisation En Java Polymorphisme La classe Object
+
+
+
+
+Exécution
+      p1.equals(p2) : false
+      p1.equals(p1) : true
+      p1.equals(p3) : true
+      p1.equals(p3) : true
+
+
+Exécution avec retrait des commentaires
+     p1.equals(p2) : false
+     p1.equals(p1) : true
+     p1.equals(p3) : true
+     p1.equals(p3) : false
+
+
+
+
+                            Programmation - Classes et Héritage -                                                45 / 45

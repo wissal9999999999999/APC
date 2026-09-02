@@ -1,0 +1,598 @@
+--- PAGE 1 ---
+Implantation des TAD en C
+                              Exemple utilisant la SDD liste chaı̂née
+
+
+                                         Nicolas Delestre
+
+
+
+
+Implantation des SDD C v7.5                                              1 / 24
+
+--- PAGE 2 ---
+Plan
+
+
+
+    1    TAD polynôme
+           Analyse
+           Conception
+
+
+    2    Développement : première proposition
+
+
+    3    Développement : deuxième proposition
+
+
+    4    Conclusion
+
+
+
+
+Implantation des SDD C v7.5                       2 / 24
+
+--- PAGE 3 ---
+TAD Polynome
+
+    Contexte
+
+
+
+
+    Cahier des charges
+        Développez une bibliothèque proposant le type Polynome
+
+
+
+
+Implantation des SDD C v7.5                                        3 / 24
+
+--- PAGE 4 ---
+TAD Polynome                                       Analyse
+
+    Analyse
+
+
+
+    Le TAD
+    Nom:              Polynome
+    Utilise:          Naturel,Reel
+    Opérations:      polynome:            → Polynome
+                      obtenirDegre:        Polynome → Naturel
+                      obtenirCoefficient: Polynome × Naturel → Reel
+                      modifierCoefficient: Polynome × Reel × Naturel → Polynome
+    Axiomes:        - obtenirCoefficient(polynome(),i)=0
+                    - obtenirDegre(polynome())=0
+                    - obtenirDegre(p)=d tel que ∀i > d, obtenirCoefficient(p, i) = 0
+                    - obtenirCoefficient(modifierCoefficient(p,v,i),i)=v
+
+
+
+
+Implantation des SDD C v7.5                                                            4 / 24
+
+--- PAGE 5 ---
+TAD Polynome                                Conception
+
+    Conception préliminaire
+
+
+
+    Les signatures de fonctions procédures
+           fonction polynome () : Polynome
+           fonction obtenirDegre (p : Polynome) : Naturel
+           fonction obtenirCoefficient (p : Polynome, degre : Naturel) : Reel
+           procédure modifierCoefficient (E/S p : Polynome,E coef : Reel, degre :
+           Naturel)
+    Nous pouvons aussi ajouter les fonctions (liées au choix du paradigme) suivantes :
+           fonction sontEgaux (p1,p2 : Polynome) : Booleen
+           fonction copier (p : Polynome) : Polynome
+
+
+
+
+Implantation des SDD C v7.5                                                               5 / 24
+
+--- PAGE 6 ---
+TAD Polynome                        Conception
+
+    Conception détaillée
+
+    Représentation
+         Type Polynome = Structure
+              monomes : ListeChainee<Monome>
+              degres : Naturel
+         finstructure
+
+
+    Attention
+    Il va donc falloir ajouter une opération de suppression
+
+    Exercice
+    Spécifier et concevoir le TAD Monome
+
+    Il faut donc posséder la SDD ListeChainee, or par défaut le C ne la
+    propose pas
+
+
+Implantation des SDD C v7.5                                                 6 / 24
+
+--- PAGE 7 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 1 / 8
+           Cela implique :
+                   Deux fichiers : ListeChaineeDeMonomes.c,
+                   ListeChaineeDeMonomes.h
+                   Le choix du préfixe : LCDM
+                   Le type LCDM ListeChaine
+                   L’ajout trois fonctions :
+                           de copie d’une liste
+                           de comparaison de deux listes
+                           de suppression d’une liste
+
+    Exemple : x 3 + 3x + 1
+                                         3
+
+
+
+                                          1,0        3,1   1,3 NIL
+
+Implantation des SDD C v7.5                                          7 / 24
+
+--- PAGE 8 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 2 / 8
+    ListeChaineeDeMonomes.h
+  1 #ifndef LISTE CHAINEE DE MONOMES
+  2 #define LISTE CHAINEE DE MONOMES
+  3 #include <errno.h>
+  4 #include ”Monome.h”
+  5
+  6 typedef struct LCDM Noeud* LCDM ListeChainee;
+  7 typedef struct LCDM Noeud {
+  8         M Monome lElement;
+  9         LCDM ListeChainee listeSuivante;
+ 10 } LCDM Noeud;
+ 11
+ 12 #define LCDM ERREUR MEMOIRE 1
+ 13
+ 14 LCDM ListeChainee LCDM listeChainee();
+ 15 int LCDM estVide(LCDM ListeChainee);
+ 16 void LCDM ajouter(LCDM ListeChainee*,M Monome); /* errno=LCDM ERREUR MEMOIRE si pas assez de mémoire */
+ 17 M Monome LCDM obtenirElement(LCDM ListeChainee); /* assertion : liste non vide */
+ 18 LCDM ListeChainee LCDM obtenirListeSuivante(LCDM ListeChainee); /* assertion : liste non vide */
+ 19 void LCDM fixerListeSuivante(LCDM ListeChainee*, LCDM ListeChainee); /* assertion : liste non vide */
+ 20 void LCDM fixerElement(LCDM ListeChainee*,M Monome); /* assertion : liste non vide */
+ 21 void LCDM supprimerTete(LCDM ListeChainee*); /* assertion : liste non vide */
+ 22 void LCDM supprimer(LCDM ListeChainee*);
+ 23 LCDM ListeChainee LCDM copier(LCDM ListeChainee);
+ 24 int LCDM egale(LCDM ListeChainee,LCDM ListeChainee);
+ 25 #endif
+
+
+
+Implantation des SDD C v7.5                                                                                    8 / 24
+
+--- PAGE 9 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 3 / 8
+
+    ListeChaineeDeMonomes.c
+ 1 #include <stdlib.h>
+ 2 #include <string.h>
+ 3 #include <stdio.h>
+ 4 #include <assert.h>
+ 5 #include <stdbool.h>
+ 6 #include ”ListeChaineeDeMonomes.h”
+ 7
+ 8 LCDM ListeChainee LCDM listeChainee(){
+ 9 errno=0;
+10 return NULL;
+11 }
+12
+13 int LCDM estVide(LCDM ListeChainee l) {
+14 errno=0;
+15 return ( l ==NULL);
+16 }
+
+
+Implantation des SDD C v7.5                                      9 / 24
+
+--- PAGE 10 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 4 / 8
+    ListeChaineeDeMonomes.c
+18 void LCDM ajouter(LCDM ListeChainee* pl, M Monome m) {
+19 LCDM ListeChainee pNoeud=(LCDM ListeChainee)malloc(sizeof(LCDM Noeud));
+20 if (pNoeud!=NULL) {
+21       errno=0;
+22       pNoeud−>lElement=m;
+23       pNoeud−>listeSuivante=*pl;
+24       * pl=pNoeud;
+25 } else {
+26     errno=LCDM ERREUR MEMOIRE;
+27 }
+28 }
+29
+30 M Monome LCDM obtenirElement(LCDM ListeChainee l) {
+31 assert (!LCDM estVide(l));
+32 errno=0;
+33 return l −>lElement;
+34 }
+
+Implantation des SDD C v7.5                                              10 / 24
+
+--- PAGE 11 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 5 / 8
+    ListeChaineeDeMonomes.c
+36 LCDM ListeChainee LCDM obtenirListeSuivante(LCDM ListeChainee l) {
+37 assert (!LCDM estVide(l));
+38 errno=0;
+39 return l −>listeSuivante;
+40 }
+41
+42 void LCDM fixerElement(LCDM ListeChainee* pl, M Monome m) {
+43 assert (!LCDM estVide(*pl));
+44 errno=0;
+45 (* pl)−>lElement=m;
+46 }
+47
+48 void LCDM fixerListeSuivante(LCDM ListeChainee* pl, LCDM ListeChainee suivant) {
+49 assert (!LCDM estVide(*pl));
+50 errno=0;
+51 (* pl)−>listeSuivante=suivant;
+52 }
+
+Implantation des SDD C v7.5                                                     11 / 24
+
+--- PAGE 12 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 6 / 8
+
+    ListeChaineeDeMonomes.c
+54 void LCDM supprimerTete(LCDM ListeChainee* pl){
+55 LCDM ListeChainee temp;
+56 assert (!LCDM estVide(*pl));
+57 errno=0;
+58 temp=*pl;
+59 * pl=LCDM obtenirListeSuivante(*pl);
+60 free (temp);
+61 }
+62
+63 void LCDM supprimer(LCDM ListeChainee* pl){
+64 errno=0;
+65 if (!LCDM estVide(*pl)) {
+66     LCDM supprimerTete(pl);
+67     LCDM supprimer(pl);
+68 }
+69 }
+
+
+Implantation des SDD C v7.5                                      12 / 24
+
+--- PAGE 13 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 7 / 8
+
+
+    ListeChaineeDeMonomes.c
+71 LCDM ListeChainee LCDM copier(LCDM ListeChainee l) {
+72 LCDM ListeChainee temp;
+73 errno=0;
+74 if (LCDM estVide(l))
+75    return LCDM listeChainee();
+76 else {
+77    temp=LCDM copier(LCDM obtenirListeSuivante(l));
+78    LCDM ajouter(&temp,LCDM obtenirElement(l));
+79    return temp;
+80 }
+81 }
+
+
+
+
+Implantation des SDD C v7.5                                      13 / 24
+
+--- PAGE 14 ---
+Développement : première proposition
+
+    Première proposition : Développer une liste chaı̂née de
+    monomes 8 / 8
+
+    ListeChaineeDeMonomes.c
+83 int LCDM egale(LCDM ListeChainee l1,LCDM ListeChainee l2) {
+84 errno=0;
+85 if (LCDM estVide(l1) && LCDM estVide(l2))
+86     return true ;
+87 else {
+88     if (LCDM estVide(l1) || LCDM estVide(l2))
+89       return false ;
+90     else {
+91        if (M egal(LCDM obtenirElement(l1),LCDM obtenirElement(l2)))
+92          return LCDM egale(LCDM obtenirListeSuivante(l1),LCDM obtenirListeSuivante(l2))
+                 ;
+93       else
+94          return false ;
+95     }
+96 }
+97 }
+
+
+
+
+Implantation des SDD C v7.5                                                             14 / 24
+
+--- PAGE 15 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 1 / 9
+
+
+
+    Même exemple : x 3 + 3x + 1
+                                         3
+
+
+
+                                                           NIL
+
+
+
+                                              1,0    3,1   1,3
+
+
+
+
+Implantation des SDD C v7.5                                      15 / 24
+
+--- PAGE 16 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 2 / 9
+
+
+           Utiliser les pointeurs de fonction et pointeur générique void*
+           Cela implique :
+                   De définir les types de fonctions permettant de copier, supprimer, et
+                   comparer des éléments (void*) d’une collection
+                   (copieLiberationComparaison.h)
+                   De créer la liste chaı̂née générique (listeChainee.c,
+                   listeChainee.h)
+                   De créer les fonctions permettant de copier, supprimer, et comparer
+                   des monomes d’une collection (monomeAllocationDynamique.h,
+                   monomeAllocationDynamique.c)
+
+
+    Les deux premiers points sont indépendants du projet (donc réutilisable)
+
+
+
+Implantation des SDD C v7.5                                                             16 / 24
+
+--- PAGE 17 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 3 / 9
+
+
+
+
+    copieLiberationComparaison.h
+  1 #ifndef COPIE LIBERATION COMPARAISON
+  2 #define COPIE LIBERATION COMPARAISON
+  3
+  4 typedef void* (*CLC FonctionCopier) (void*);
+  5 typedef void (*CLC FonctionLiberer) (void*);
+  6 typedef int (*CLC FonctionComparer) (void*,void*);
+  7 #endif
+
+
+
+
+Implantation des SDD C v7.5                                    17 / 24
+
+--- PAGE 18 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 4 / 9
+
+    listeChainee.h
+ 11 #ifndef LISTE CHAINEE
+ 12 #define LISTE CHAINEE
+ 13 #include <errno.h>
+ 14 #include ”copieLiberationComparaison.h”
+ 15
+ 16 /* Partie privee */
+ 17 typedef struct LC Noeud* LC ListeChainee;
+ 18 typedef struct LC Noeud {
+ 19 void* lElement;
+ 20 LC ListeChainee listeSuivante ;
+ 21 } LC Noeud;
+
+ 22 #define LC ERREUR MEMOIRE 1
+ 23 LC ListeChainee LC listeChainee () ;
+ 24 int LC estVide(LC ListeChainee);
+ 25 void LC ajouter(LC ListeChainee*,void *,CLC FonctionCopier);
+ 26 void* LC obtenirElement(LC ListeChainee);
+ 27 LC ListeChainee LC obtenirListeSuivante (LC ListeChainee) ;
+ 28 void LC fixerListeSuivante (LC ListeChainee*, LC ListeChainee) ;
+ 29 void LC fixerElement(LC ListeChainee*,void *,CLC FonctionCopier,CLC FonctionLiberer);
+ 30 void LC supprimerTete(LC ListeChainee*, CLC FonctionLiberer);
+ 31 void LC supprimer(LC ListeChainee*, CLC FonctionLiberer);
+ 32 LC ListeChainee LC copier(LC ListeChainee,CLC FonctionCopier);
+ 33 int LC egales(LC ListeChainee,LC ListeChainee,CLC FonctionComparer);
+
+
+
+
+Implantation des SDD C v7.5                                                                 18 / 24
+
+--- PAGE 19 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 5 / 9
+
+
+
+    une extrait de listeChainee.c
+18 void LC ajouter(LC ListeChainee* pl , void* source , CLC FonctionCopier copierElement) {
+19 LC ListeChainee pNoeud=(LC ListeChainee)malloc(sizeof(LC Noeud));
+20 void* donnee=copierElement(source);
+21 if ((pNoeud!=NULL) && (donnee!=NULL)) {
+22       errno=0;
+23       pNoeud−>lElement=donnee;
+24       pNoeud−>listeSuivante=*pl;
+25       * pl=pNoeud;
+26 } else {
+27     errno=LC ERREUR MEMOIRE;
+28 }
+29 }
+
+
+
+
+Implantation des SDD C v7.5                                                               19 / 24
+
+--- PAGE 20 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 6 / 9
+
+
+
+    monomeAllocationDynamique.h
+  1 #ifndef MONOME ALLOCATION DYNAMIQUE
+  2 #define MONOME ALLOCATION DYNAMIQUE
+  3 #include ”Monome.h”
+  4
+  5 void* MAD copierMonome(void*);
+  6 void MAD desallouerMonome(void*);
+  7 int MAD comparerMonome(void*,void*);
+  8 #endif
+
+
+
+
+Implantation des SDD C v7.5                                    20 / 24
+
+--- PAGE 21 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 7 / 9
+
+    monomeAllocationDynamique.c
+ 1 #include <stdlib.h>
+ 2 #include <string.h>
+ 3 #include ”Monome.h”
+ 4 #include ”monomeAllocationDynamique.h”
+ 5
+ 6 void* MAD copierMonome(void* m) {
+ 7 M Monome* resultat=(M Monome*)malloc(sizeof(M Monome));
+ 8 memcpy((void*)resultat,m,sizeof(M Monome));
+ 9 return (void*) resultat ;
+10 }
+11
+12 void MAD desallouerMonome(void* m) {
+13 free (m);
+14 }
+15
+16 int MAD comparerMonome(void* m1,void* m2) {
+17 return M egal(*(M Monome*)m1,*(M Monome*)m2);
+18 }
+
+
+Implantation des SDD C v7.5                                    21 / 24
+
+--- PAGE 22 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 8 / 9
+
+
+
+    extrait de Polynome.c
+ 4 P Polynome P polynome() {
+ 5 P Polynome resultat ;
+ 6 M Monome m = M monome(0,0);
+ 7
+ 8 resultat .monomes = LC listeChainee();
+ 9 LC ajouter(&( resultat .monomes),&m,MAD copierMonome);
+10 resultat . degres=0;
+11 return resultat ;
+12 }
+
+
+
+
+Implantation des SDD C v7.5                                    22 / 24
+
+--- PAGE 23 ---
+Développement : deuxième proposition
+
+     Deuxième proposition : une liste chaı̂née générique 9 / 9
+
+    extrait de Polynome.c
+18 float P obtenirCoefficient (P Polynome p,unsigned int d) {
+19 float resultat =0.0;
+20 LC ListeChainee l =p.monomes;
+21 int trouve=0;
+22 M Monome *monomeCourant;
+23
+24 while (!LC estVide(l ) && !trouve) {
+25     monomeCourant=(M Monome*)LC obtenirElement(l);
+26      if (M degre(*monomeCourant)==d) {
+27         resultat =M coef(*monomeCourant);
+28        trouve=1;
+29     } else
+30        l =LC obtenirListeSuivante( l ) ;
+31 }
+32 return resultat ;
+33 }
+
+
+
+Implantation des SDD C v7.5                                     23 / 24
+
+--- PAGE 24 ---
+Conclusion
+
+    Conclusion
+
+           Le C ne propose pas par défaut la généricité
+           Lorsque l’on est utilisateur d’une SDD, trois possibilités :
+               1   Développer autant de SDD spécifiques
+               2   Développer des SDD génériques (utilisation du void*)
+               3   Utilisez des bibliothèques externes, par exemple GLib du projet
+                   GTK+, QT, etc.
+
+    Exemple : extrait de la doc de GTK
+    struct GSList {
+       gpointer data;
+       GSList *next;
+    };
+    GSList * g slist alloc (void) ;
+    GSList * g slist append (GSList * list , gpointer data) ;
+    GSList * g slist prepend (GSList * list , gpointer data) ;
+    GSList * g slist insert (GSList * list , gpointer data, gint position ) ;
+    GSList * g slist insert before (GSList * slist , GSList * sibling , gpointer data) ;
+    GSList * g slist insert sorted (GSList * list , gpointer data, GCompareFunc func);
+
+
+Implantation des SDD C v7.5                                                                24 / 24

@@ -1,0 +1,1131 @@
+--- PAGE 1 ---
+Statistiques pour l’Ingénieur
+        Description monovariable
+
+              Stéphane Canu
+   asi.insa-rouen.fr/enseignants/~scanu
+               scanu@insa-rouen.fr
+
+
+
+
+ITI 3, INSA Rouen Normandie, Janvier 2026
+
+--- PAGE 2 ---
+Lecture road map
+   Variables et individus
+      Les trois distinctions
+      Variables qualitatives
+      Variables quantitatives
+          Variables quantitatives discrètes
+          Variables quantitatives continues
+          Tendance centrale
+          Dispersion
+          Résumé robuste
+          Autres moments
+      Résumé graphique des données
+          Cas des variables qualitatives
+          Boite à moustache
+          Histogramme
+
+   Conclusion
+
+
+
+                                              https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 3 ---
+Questions informatiques
+    1. Quelle page d’accueil (A/B) génère le meilleur taux de conversion ?
+    2. Combien de serveurs sont actifs dans ce cluster de n serveurs ?
+    3. Comment détecter une attaque DoS : Combien de paquets arrivent
+       à ce switch en une mili seconde ?
+    4. Quelles stratégie de reconnection à un service : Combien dois-je
+       faire de tentatives de connection avant de réussir ?
+    5. Quelle stratégie pour relancer un système après un incident réseau
+       Au bout de combien de temps dois-je relancer les services ?
+    6. Comment dimentionner un load balanceur ? Quel ve être le temps
+       entre deux arrivées de requêtes réseau ?
+    7. Entraînement d’un modèle de Deep Learning sur GPU : Quel va être
+       le temps d’exécution d’un algorithme complexe
+    8. Comment gérer les sessions utilisateur et les cache : au bout de
+       combien de temps déconnecter une utilisateur Combien de temps un
+       utilisateur va rester connecté à un service WEB ?
+
+--- PAGE 4 ---
+L’exemple du Titanic
+
+
+
+    I Survived: Outcome of survival (0 = No; 1 = Yes)
+    I Pclass: Socio-economic class (1 = Upper; 2 = Middle; 3 = Lower)
+    I Name: Name of passenger
+    I Sex: Sex of the passenger
+    I Age: Age of the passenger (Some entries contain NaN)
+    I SibSp: Number of siblings and spouses of the passenger aboard
+    I Parch: Number of parents and children of the passenger aboard
+    I Ticket: Ticket number of the passenger
+    I Fare: Fare paid by the passenger
+    I Cabin Cabin number of the passenger (Some entries contain NaN)
+    I Embarked: Port of embarkation of the passenger (C = Cherbourg;
+      Q = Queenstown; S = Southampton)
+                                                    https://www.kaggle.com/c/titanic
+
+--- PAGE 5 ---
+Les trois distinctions
+
+   Definition (Domaine d’une variable)
+   Le domaine d’une variable est l’ensemble des valeurs que cette
+   variable peut prendre
+   Ωgenre = {M, F }
+   Definition (Variable discrète)
+   une variable est discrète si le cardinal de son domaine est
+   dénombrable
+   genre, département, PCS, nombre de visites...
+   Definition (Variable quantitative)
+   une variable discrète est quantitative si l’ensemble de ses modalités
+   est comparable 1 . Toutes les variables continues sont quantitatives.
+   age, nombre de visites...
+
+      1
+          ∀x, y deux modalités quelconques, soit x < y soit x ≥ y
+
+--- PAGE 6 ---
+Variables qualitatives
+   Une variable qualitative peut être observée mais non mesurée
+   Definition (Modalités)
+   On appelle modalités l’ensemble des valeurs distinctes que peut
+   prendre la variable observée. C’est le domaine d’une variable
+   discrète. On note:
+
+                       Ω = {m1 , m2 , ..., mi , ..., mr }
+
+   avec r = card(Ω).
+   Exemples de modalités:
+    I oui / non (variable binaire)
+     I un ensemble de variétés de maïs (variable qualitative)
+     I un peu / moyen / beaucoup (qualitative ordinale)
+     I nombre des personnes à la caisse d’un supermarché
+       (quantitative)
+     I nombre de mois de chômage entre deux empois (quantitative)
+
+--- PAGE 7 ---
+Definition (Effectif)
+On appelle effectif d’une modalité mi le nombre de fois ni où cette
+modalité est apparue dans l’échantillon.
+
+Definition (Fréquence)
+On appelle fréquence d’une modalité le rapport dans un
+échantillon du nombre de fois où cette modalité est apparue (le
+rapport de l’effectif, ni ) divisé par la taille de l’échantillon, n. Pour
+la modalité mi , la fréquence fi = nni .
+
+Definition (Probabilité – OPM)
+La probabilité IP(mi ) d’une modalité mi est la limite de la
+fréquence observée lorsque la taille de l’échantillon tend vers
+l’infini2 .
+
+    2
+      Rigoureusement, il faudrait définir les probabilités à priori et considérer que
+l’on observe un échantillon d’une variable aléatoire tirée selon cette loi de
+manière indépendante et identiquement distribué (pour plus de détails voir par
+exemple http://fr.wikipedia.org/wiki/Probabilité).
+
+--- PAGE 8 ---
+Variables quantitatives discrètes
+
+
+
+
+   Exemples :
+    I nombre de produits achetés par un client
+     I l’appréciation donnée par un spectateur à un film (1:5)3
+     I intervalle (transformation d’une variable continue)
+     I nombre des personnes à la caisse d’un supermarché
+
+
+      3
+          http://www.netflixprize.com/
+
+--- PAGE 9 ---
+Variables quantitatives discrètes
+   Modalités ordonnées : effectif, effectif cumulé, fréquence et
+   probabilité
+
+          Modalité (mi )    effectifs ni   Ni   fbj = nni   100 × Fbj (%)
+                                                    1
+              24                 1         1       38          2,63 %
+                                                    2
+              26                 2         3       38          7,89 %
+                                                    3
+              29                 3         6       38         15,79 %
+                                                    2
+              31                 2         8       38         21,05 %
+                                                    4
+              33                 4         12      38         31,58 %
+                                                    3
+              35                 3         15      38         39,47 %
+                                                    3
+              37                 3         18      38         47,37 %
+                                                    1
+              38                 1         19      38          50,5 %
+                                                    6
+              41                 6         25      38         69,79 %
+                                                    3
+              43                 3         28      38         73,68 %
+                                                    1
+              45                 1         29      38         76,32 %
+                                                    4
+              46                 4         33      38         86,84 %
+                                                    5
+              49                 5         38      38          100 %
+             Total              38          -       1             -
+
+   La notion d’effectif cumulé n’a pas de sens pour les variables qualititives
+
+--- PAGE 10 ---
+Fréquence cumulée
+
+   Definition (Effectif cumulé)                                 X
+   On appelle effectif cumulé d’une modalité : Ni =                      nj
+                                                              j,mj ≤mi
+
+   Definition (Fréquence cumulée)               X
+   On appelle fréquence cumulée : Fbi =                  fj
+                                              j,mj ≤mi
+
+
+   Propiétés:
+    I On a Nr = n et Fbr = 1.
+    I Les Fbi définissent la loi cumulative empirique
+                       ˆ
+      Fbi = Fb(mi ) = IP(X  ≤ mi )
+    I On appelle hi = ni+1 − ni la distance inter modalités.
+    I Ces quantités ont un sens lorsque la variable est quantitative.
+
+--- PAGE 11 ---
+Exemple
+
+                                   nom       age
+                                   louis     13
+                                   paul      35
+                                joséphine    24
+                                                     ⇒
+                                  lucien     43
+                                   mike      56
+                                  pedro      27
+                                     ..       ...
+          modalité   effectif    fréquence     eff. cumulé   fréq. cumulée
+            13         381           2, 06          381            2,05
+            14         576           3, 11          957            5,17
+            15         441           2, 38         1398            7,55
+            16         744           4, 02         2142           11,57
+            17         553           2, 99         2695           14,56
+            ...         ...           ...           ...            ...
+            68         441           2, 38        18509          100,00
+           total     18509           100
+
+  Dans le cas continu on peut toujours définir la fonction de
+                                         ˆ
+  répartition empirique Fbi = Fb(mi ) = IP(X ≤ mi )
+
+--- PAGE 12 ---
+Variables quantitatives continues
+
+
+
+
+    Graphe des variations de températures annuelles du globe terrestre par rapport à la
+   période de référence 1951-1980 (Air and ocean data from weather stations, ships and
+                                       satellites)4 .
+
+   Exemples :
+    I la température (Ω = [−273.15, +∞])
+    I concentration, intensité, prix, poids, taille, distance...
+    I rapport, proportion (Ω = [0, 1])
+     4
+         http://www.nasa.gov/topics/earth/features/earth_temp.html
+
+--- PAGE 13 ---
+Fonction de répartition empirique
+   Définition : Fréquences corrigées : Fbic = Fbi − 12 (Fbi − Fbi−1 ) :
+                                   → c’est le centre de l’intervalle [Fbi−1 , Fbi ]
+
+   Exemple : n = 3 observations → (6,4, ; 2,3 ; 8,9)
+                                                               1
+
+
+         xi    2,3    6,4      8,9                            0.8
+                                                                        Fréquences cumulées
+                                                                        Fréquences corrigées
+
+
+
+         fi    1/3    1/3      1/3                            0.6
+
+
+
+
+         Fi    1/3    2/3    3/3 = 1                          0.4
+
+
+
+
+         Fic   1/6    1/2      5/6                            0.2
+
+
+                                                               0
+                                                                2   3         4       5        6   7   8   9
+
+
+
+
+   Definition (fonction de répartition empirique)
+   On appelle fonction de répartition empirique d’un échantillon pour
+   la variable X la fonction FbX définie sur l’intervalle [x1 , xn ] par :
+             
+             
+              0                                si x < x1
+                     bc    bc
+               bc + Fi − Fi−1 (x − xi−1 )
+             
+   FbX (x) =   F i−1                            si xi−1 ≤ x < xi ,                        i = 2, n
+             
+                    xi − xi−1
+               1                                si x ≥ xn
+             
+
+--- PAGE 14 ---
+Exemples de fonctions de répartition empirique
+
+
+
+
+   Figure: Fréquences cumulées (en bleue) et de fonction de répartition
+   empirique (courbe verte) pour 10 observations (à gauche) et 11
+   observations (à droite).
+
+   x = np.array([-1.14, -1.05, -0.66, -0.31, -0.28, 0.16, 0.64, 0.67, 1.15, 1.51, 1.76])
+   n = x.shape[0]
+   F = np.arange(1, n+1, 1, dtype=int)/n # frequences cumulees
+   Fc = F - 1/2*(F - np.append(0, F[1:n])) # fonct. de repartition empirique
+   plt.plot(x,Fc)
+
+--- PAGE 15 ---
+Fonctions de répartition : discret vs. continue
+modalité          eff.          fb      e. c.    Fb            xi         eff. ni   Ni    fbj = nni   100 × Fbj
+                                                                                              1
+ ]0, 18]         1405          7, 59    1405     7,59          24            1      1         6
+                                                                                                      16,67 %
+                                                                                              1
+]18, 29]         1875         10, 13    3280    17,72          26            1      2         6
+                                                                                                       33,33%
+                                                                                              1
+]30, 39]         1172          6, 33   4452     24,05          29            1      3         6
+                                                                                                        50 %
+]40, 49]         3047         16, 46   7499     40,51                                         1
+                                                               31            1      4         6
+                                                                                                       66,67%
+]50, 59]         4920         26, 58   12419    67,09                                         1
+                                                               33            1      5         6
+                                                                                                       83,33%
+  60 ≤           4920         32, 91   18510    1000           35            1      6         1
+                                                                                                       100 %
+                                                                                              6
+  total         18509          100                            Total          6      -         1           -
+
+          Definition (Fonction de répartition (l’OPM))
+          La fonction de répartition de la variable aléatoire réelle X est la
+          fonction FX qui à tout réel x associe
+
+                                            FX (x) = IP(X ≤ x)
+ 1                                                       1
+
+0.9                                                     0.9
+
+0.8                                                     0.8
+
+0.7                                                     0.7
+
+0.6                                                     0.6
+
+0.5                                                     0.5
+
+0.4                                                     0.4
+
+0.3                                                     0.3
+
+0.2                                                     0.2
+
+0.1                                                     0.1
+
+ 0
+  0   2     4   6   8    10    12   FX (x) discret       0
+                                                         −5           0             5    FX (x) continu
+
+--- PAGE 16 ---
+Quel est le meilleur résumé d’une variable quantitative ?
+
+    I S5 = {1, 5, 2, 4, 3}     x = (1, 5, 2, 4, 3)> ∈ IR5
+
+
+   quelle est la valeur c qui « résume » au mieux les observations
+   Nous pouvons poser un principe variationnel :
+
+    min J(c) avec
+    c∈IR
+                      n
+                      X
+               J(c) =   (xi − c)2 = kx − c 1k2
+                         i=1
+
+
+               min       (1 − c)2 + (5 − c)2 + (2 − c)2 + (4 − c)2 + (3 − c
+               c∈IR      |                        {z
+                                             J5 (c)=5c 2 −30c+55
+
+--- PAGE 17 ---
+Quel est le meilleur résumé d’une variable quantitative ?
+
+    I S5 = {1, 5, 2, 4, 3}        x = (1, 5, 2, 4, 3)> ∈ IR5
+
+
+   quelle est la valeur c qui « résume » au mieux les observations
+   Nous pouvons poser un principe variationnel :
+
+    min J(c) avec
+    c∈IR
+                      n
+                      X
+               J(c) =   (xi − c)2 = kx − c 1k2
+                          i=1
+
+
+               min       (1 − c)2 + (5 − c)2 + (2 − c)2 + (4 − c)2 + (3 − c
+               c∈IR      |                        {z
+                                                J5 (c)=5c 2 −30c+55
+
+
+    I S6 = {1, 5, 2, 4, 3, 100}             J6 (c) = 6c 2 − 230c + 10055
+
+--- PAGE 18 ---
+Quel est le meilleur résumé ?
+   Comment synthétiser un échantillon Sn = {x1 , x2 , . . . , xi , . . . , xn }
+   .          −→ par une seule information c ?
+   Nous pouvons poser un principe variationnel :
+                                                       n
+                                                       X
+                     min J(c) avec J(c) =                (xi − c)2
+                     c∈IR
+                                                       i=1
+
+   Solution
+                                             n                                n
+                     dJ(c)          X                   1X
+      min J(c) ⇔           = 0 ⇔ −2  (xi − c) = 0 ⇔ c =    xi
+      c∈IR            dc                                n
+                                           i=1                               i=1
+
+                                                  n           n          n
+                                    1X      X1      X
+   C’est la moyenne empirique : c =    xi =    xi =   fˆi xi
+                                    n        n
+                                                 i=1         i=1        i=1
+   Remarque : pratiquement il est recommandé d’éliminer les valeurs extrêmes lorsque
+   l’on calcule une moyenne empirique (typiquement 2 à chaque extrême).
+
+--- PAGE 19 ---
+Interprétation géométrique de la moyenne
+
+               n
+               X
+        J(c) =   (xi − c)2
+                  i=1
+                                                           1
+               = kx − c 1k2
+                                               x
+    I x = (x1 , x2 , ..., xn )> ∈ IRn
+    I
+        1 = (1, 1, ..., 1)>       ∈ IRn    0
+   c ? , la moyenne est aussi la projection orthogonale du vecteur
+   des observations sur le vecteur 1
+                                          Pn
+                              ?  x> 1      i=1 xi
+                              c = > =
+                                 1 1       n
+
+--- PAGE 20 ---
+Interprétation géométrique de la moyenne
+
+               n
+               X
+        J(c) =   (xi − c)2
+                  i=1
+                                                            1
+               = kx − c 1k2                            c?
+                                               x
+    I x = (x1 , x2 , ..., xn )> ∈ IRn
+    I
+        1 = (1, 1, ..., 1)>       ∈ IRn    0
+   c ? , la moyenne est aussi la projection orthogonale du vecteur
+   des observations sur le vecteur 1
+                                          Pn
+                              ?  x> 1      i=1 xi
+                              c = > =
+                                 1 1       n
+
+--- PAGE 21 ---
+La moyenne théorique c’est l’espérance : IE(X ) = lim x̄
+                                                              n→∞
+
+Moyenne
+On appelle moyenne d’un échantillon x1 , x2 , ..., xn .
+                                              n
+                                        1X
+                                   x̄ =    xi
+                                        n
+                                             i=1
+
+Dans le cas d’une variable qualitative ca n’a pas de sens.
+
+Propriété : si xi sont regroupées en modalités mi on a aussi
+     r
+     X
+x̄ =    mi fi où mi :
+      i=1
+ I est la valeur de la modalité mi si la variable est discrète
+    comme un age,
+ I est la moyenne des valeurs de la modalité,
+                                                   1 X
+    .              mi = [20 − 30] → mi =                    xj
+                                                  ni
+                                                     j∈mi
+                     R
+Propriété : IE(X ) = xIP(x)dx. L’exemple de pile ou face illustre bien la
+différence entre moyenne théorique (espérance) et moyenne empirique.
+
+--- PAGE 22 ---
+Existe t’il autre chose que la moyenne
+pour parler d’un ensemble de valeurs ?
+
+
+Surtout quand la moyenne dit des bêtises !
+Moyenne : {1, 5, 2, 4, 3, 100} = 115/6 = 19, 17
+
+--- PAGE 23 ---
+Mediane (le point milieu)
+
+   Definition (Mediane)
+   C’est le valeur M
+                   b telle que :               FbX (M)   ˆ
+                                                    b = IP(X   b =1
+                                                             ≤ M)
+                                                                  2
+   où FbX (x) est la fonction de répartition empirique de l’échantillon
+   si on tire une valeur au hasard dans l’échantillon, on a autant de chance d’être au
+   dessous que au dessus.
+                       xi     ni    fi    Fi     FbX
+                                     1     1     1
+                       1      1      6     6     12
+                                     1     2     3
+                       2      1      6     6     12
+                                     1     3     5
+   Exemple             3      1      6     6     12      FbX (3) = 0, 42           b = 3, 5
+                                                                                   M
+                                     1     4     7
+                       4      1      6     6     12      FbX (4) = 0, 58
+                                     1     5     9
+                       5      1      6     6     12
+                                     1           11
+                      100     1      6     1     12
+
+
+
+   Si la variable est continue (ni = 1), il suffit de trier les observations et de prendre la
+   valeur centrale (n impair) où la moyenne des deux valeurs centrales (n pair)
+
+--- PAGE 24 ---
+Mediane
+
+
+  La médiane théorique est : min Jt (c) avec Jt (c) = IE (|X − c|)
+                                   c∈IR
+  Pour la médiane empirique on remplace l’espérance par la moyenne,
+                                                   n
+                                                   X
+                    min J(c) avec J(c) =                 |xi − c|
+                    c∈IR
+                                                   i=1
+
+                                          n
+                        ∂J(c) X
+  à l’optimum on a :           =     signe(xi − c) = 0
+                         ∂c
+                                 i=1
+  Et pour avoir autant de signes − que de signes +, il faut prendre c
+  au milieu.
+
+  Remarque : La médiane est plus robuste aux valeurs extrêmes
+
+--- PAGE 25 ---
+Definition (Mode)
+C’est Argmax x∈Ω {IP(x)}
+ I Dans le cas discret, c’est la valeur la plus fréquente
+
+                            ba = Argmax fˆi
+                            M
+                                    i=1,...,r
+
+ I Dans le cas continu, c’est le Pic de la distribution par une
+   variable continue.
+La définition du mode n’exige pas de la variable qu’elle soit
+quantitative.
+
+Remarque: A ces objets empiriques (moyenne, médiane, mode) on
+peut associer des objets théoriques (OPM). Dans le cas une loi
+normale : moyenne théorique = médiane théorique = mode
+théorique, i.e. si X suit une loi normale, X ∼ N(µ, σ 2 ), alors, on
+a:
+                moyenne = médiane = mode = µ
+
+--- PAGE 26 ---
+Résumé central
+   On considère l’échantillon Sn = {x1 , x2 , . . . , xi , . . . , xn }.
+
+     I moyenne : la moyenne empirique / l’espérance
+             n
+             X                           n
+                                         X                                 Z
+         min   (xi −c)2 ;           c=         fi xi          IE(X ) =         xIP(x)dx
+         c∈IR
+                i=1                      i=1
+
+     I médiane : les fréquences cumulées / la fonction de répartition
+                n
+                X
+                                      ˆ          1                                    1
+         min          |xi −M|;       IP(X ≤ M) =                    IP(X ≤ M) =
+         M∈IR                                    2                                    2
+                i=1
+
+     I mode : les fréquences / les probabilités
+
+                           Argmax fi                   Argmax IP(x)
+                           i∈{1,...,n}                  x∈Ω
+
+--- PAGE 27 ---
+Et une fois que l’on dispose d’une
+valeur centrale ?
+
+
+Surtout quand c’est la même !
+Moyenne : {1, 5, 2, 4, 3} = 15/5 = 3
+Moyenne : {3.1, 3, 2.9, 2.8, 3.2} = 3
+
+--- PAGE 28 ---
+La moyenne des écarts à la moyenne : la variance
+
+
+                                             b2
+                                 La variance σ
+                                          b2 = n1 kx − c 1k2
+                                          σ
+   y                 1           Pour deux échantillons x et y de
+                 c               même moyenne, la variance traduit
+       x                         leur proximité avec le vecteur 1.
+                                                     √
+                                 L’Écart type : σ
+                                                b=    σb2
+                                 C’est la norme du vecteur x − c 1
+                                             √
+   0                             (divisée par n)
+
+
+
+        Et Pythagore nous dit que : kxk2 = nc 2 + kx − c 1k2         .
+
+--- PAGE 29 ---
+Calcul d’un paramètre de dispersion
+   On considère l’échantillon Sn = {x1 , x2 , . . . , xi , . . . , xn } de moyenne x̄ = c
+   Definition (Variance)
+   C’est la moyenne des carrées des écarts :
+                                            n
+                                        1X
+                                 b2 =
+                                 σ        (xi − x)2
+                                        n
+                                           i=1
+
+
+     I Écart: ei = (xi − x)                           Écart carré: ei2 = (xi − x)2
+                                 n           n
+                             1X 2 X 2
+                 b2 =
+     I Variance: σ             ei = fi ei
+                             n
+                                i=1         i=1
+
+   Note pour les calculs :
+                 n
+             1X
+    b2 =
+    σ              (xi − x)2
+             n i=1
+                 n                         n
+             1X 2                     1X
+         =           xi − 2xi x + x 2 =       (xi )2 − x 2
+             n i=1                      n i=1
+
+--- PAGE 30 ---
+Usage de la variance : donner une idée du domaine des
+observations
+                            IP (|X − x| < kσ) ≥ α
+
+Pire des cas : Tchebychev
+                                          Cas Gaussien
+
+                 σ2           1                                   
+                                                IP |X − x| ≥ uα/2 σ = α
+  IP |X − x| ≥ ε ≤ 2        k=√
+                   ε            α
+
+
+   Si on fixe α = 0, 05 (5%) =⇒ √1α = 4, 47
+      =⇒ plus de 95% des observations ∈ [x − 4, 47b
+                                                  σ , x + 4, 47b
+                                                               σ]
+      =⇒ plus de 95% des observations ∈ [x − 1, 96b
+                                                  σ , x + 1, 96b
+                                                               σ]
+
+   Si maintenant on fixe k : c’est l’approche « Six sigma » α = k12
+      =⇒ plus de 89% des observations ∈ [x − 3b    σ , x + 3bσ]
+      =⇒ plus de 99, 7% des observations ∈ [x − 3b    σ , x + 3bσ]
+
+--- PAGE 31 ---
+MAD
+
+
+
+ la médiane des écarts absolus
+
+                      MAD = médiane(|xi − M|)
+                                          b
+
+
+
+
+ http://en.wikipedia.org/wiki/Median_absolute_deviation
+
+--- PAGE 32 ---
+Les fractiles
+   Definition (Fractiles)
+   On appelle fractiles à l’ordre p, ∀p ∈ [0, 1], Φ
+                                                  bp
+
+                                P(X ≤ Φ
+                               Ib     bp) = p
+
+   ou de manière équivalente,
+                          b p telle que FbX (Φ
+                          Φ                  bp) = p
+
+
+   Cas particuliers : les quartiles.
+    I Φ b1 = Q b1 , telle que Fb(Qb1 ) = 1 ,
+          4                              4
+     I Φ
+       b1 = Q                   b = 1,
+                 b telle que Fb(M)
+            b2 = M,
+          2                         2
+     I Φ                      b2 ) = 3 .
+            b3 , telle que Fb(Q
+       b3 = Q
+          4                          4
+
+   Definition (Distance inter quartile (DIQ))
+
+                                     b3 − Q
+                               DIQ = Q    b1
+
+--- PAGE 33 ---
+Boite à moustache
+  0.5300
+  0.2841
+  0.4361
+  0.1869
+  0.8340
+  0.1406
+  0.6683
+  0.8088
+  0.3240
+  0.3618
+  0.3096
+  0.5754
+  0.2800
+  -0.720
+  0.6135
+  0.5610
+  0.4228
+  0.1138
+  0.8681
+  0.8665
+  0.5023
+  0.6334
+  0.8877
+
+--- PAGE 34 ---
+Boite à moustache
+
+   Definition (DIQ)
+   La Distance InterQuartile est définie de la manière suivante :
+                                    b3 − Q
+                              DIQ = Q    b1
+
+   L’épure d’un échantillon est l’intervalle :
+
+                         b1 − 3 DIQ; Q
+                        [Q           b3 + 3 DIQ].
+                              2           2
+
+    I Les moustaches de la boite, seront données par la plus petite
+      et la plus grande observation dans l’épure.
+    I Les points hors épure vont être représentes par une étoile ou
+      un ◦.
+
+--- PAGE 35 ---
+Taille des moustache et taille de l’échantillon
+
+
+
+
+n petit   I min–max
+          I
+            Tukey(1969)
+
+
+n grand   I 9% – 91 %
+          I 2% – 98 %
+
+
+
+
+                                             https://plot.ly/r/box- plots/
+
+--- PAGE 36 ---
+Boxplot in python
+
+
+   import pandas as pd
+   import numpy as np
+   import matplotlib.pyplot as plt
+   import seaborn as sns
+
+   url="https://fxjollois.github.io/cours-2016-2017/donnees/tips.csv"
+   dataframe=pd.read_csv(url)
+
+
+   avec Pandas
+   boxplot = dataframe.boxplot()
+
+
+   avec matplotlib
+   x = dataframe.tip
+   fig1, ax1 = plt.subplots()
+   ax1.boxplot(x)
+
+
+   avec seaborn
+   ax = sns.boxplot(x=x)
+
+--- PAGE 37 ---
+Résumé robuste
+
+   Considérons l’échantillon suivant : 4, 1, 6, 2, 72, 4, 6, 5, 1, 3, 7
+
+          statistique         échantillon complet   sans la valeur 72
+           moyenne                   10,09                  3,9
+           médiane                      4                    4
+           variance                 425,69                 4,54
+     distance interquartile           3,37                   4
+
+
+
+   en admettant une hypothèse gaussiène, 95 % des observations (soit
+   dix neuf sur vingt) sont dans l’intervalle
+              √                     √
+       [3, 9 − 4.54 × 1.96 , 4 + 4.54 × 1.96] = [−0, 28 , 9, 08]
+
+--- PAGE 38 ---
+Les moments d’ordre supérieur
+                          n             X
+   Moments :                  mk = n1         xik ,                  k = 1, . . . , ∞
+                                        i=1
+                                        Xn
+   Moments centrées : µk = n1                 (xi − x)k ,            k = 1, . . . , ∞
+                                        i=1
+
+   Le coefficient d’asymétrie (skewness en anglais) correspond à une
+   mesure de l’asymétrie de la distribution
+                            n
+                            X
+                        1
+                        n     (xi − x)3                         "                3 #
+             µ3              i=1                                     X − IE(X )
+      γ
+      b1 =          =                                 γ1 = IE
+              3/2
+             µ2                    b3
+                                   σ                                     σ
+
+   Le coefficient d’aplatissement (Kurtosis en anglais)
+                            n
+                            X
+                        1
+                        n     (xi − x)4                     "                  4 #
+            µ4              i=1                                  X − IE(X )
+       βb2 = 2 =                                  β2 = IE
+            µ2                    b4
+                                  σ                                  σ
+
+--- PAGE 39 ---
+Asymétrie et aplatissement
+                             Asymétrie
+
+
+
+
+     Aplatissement (Kurtosis normalisé = excès d’aplatissement =
+                               β2 − 3)
+
+--- PAGE 40 ---
+Plan
+
+   Variables et individus
+      Les trois distinctions
+      Variables qualitatives
+      Variables quantitatives
+          Variables quantitatives discrètes
+          Variables quantitatives continues
+          Tendance centrale
+          Dispersion
+          Résumé robuste
+          Autres moments
+       Résumé graphique des données
+          Cas des variables qualitatives
+          Boite à moustache
+          Histogramme
+
+   Conclusion
+
+--- PAGE 41 ---
+Résumé graphique des données
+
+
+
+ I Qualitatives : camemberts
+
+
+
+ I Quantitatives
+
+     I Continues : boite à moustache
+
+
+     I Discrètes : histogramme
+
+--- PAGE 42 ---
+Cas des variables qualitatives
+
+   Camemberts (diagramme en secteurs)
+
+
+
+
+   http://euclid.psych.yorku.ca/SCS/Gallery/images/playfair1805-pie2.jpg
+
+--- PAGE 43 ---
+Cas des variables qualitatives
+
+
+
+
+   Figure: Diagramme des causes de mortalité au sein de l’armée en Orient
+   par Florence Nightingale (1856).
+
+   https://www.sciencemuseum.org.uk/objects-and-stories/florence-nightingale-pioneer-statistician
+
+--- PAGE 44 ---
+Variables qualitatives : boite à moustache
+
+   Un point hors de l’intervalle extrême est un point aberrant et on le
+   représente par un plus où une double étoile. Un exemple de boite à
+   moustache est donné figure 3.
+
+
+
+
+                   Figure: Exemple de boite à moustache
+
+--- PAGE 45 ---
+Variables discrètes : Histogramme
+
+
+
+
+    I abscisse : intervalle de valeurs
+    I ordonnée : hauteur
+    I surface : nombre d’individu ou fréquence
+
+--- PAGE 46 ---
+Variables discrètes : Histogramme
+
+     I variable discrète, on compte le nombre de fois ou la modalité est
+       apparue.
+     I Dans le cas d’une variables continues : on discrétise le domaine.
+
+   Discrétiser un domaine se donner une suite ordonnée de valeurs
+   {bi }i=0,...,p qui couvrent le domaine.
+
+   À chaque intervalle [bi−1 , bi [ on associe une hauteur hi telle que la
+   surface du rectangle ainsi créé soit proportionnelle au nombre
+   d’observations incluses dans l’intervalle si = hi (bi − bi−1 ). On
+   résume la situation en rappelant que l’on dispose :
+     I des bornes : p + 1 bornes pour p classes {bi }i=0,p
+    I des intervalles bi − bi−1
+    I des effectifs et des surfaces si
+    I des hauteurs si = hi (bi − bi−1 )                     si
+                                             ⇔     hi = bi −b  i−1
+
+--- PAGE 47 ---
+Détail de la construction d’histogrammes
+   Comment choisir p le nombre d’intervalles ?
+    I trouver p par équi-répartition des valeurs telle que le min
+                                                             10
+      si ≥ 5. p ≥ 1 + log n       par exemple,     p =1+        log10 n
+                                                              3
+                              3, 5bσ
+    I la règle de Scott: p =
+                               n 1/3
+                                                 DIQ
+    I la règle de Freedman Diaconis        p = 2 1/3
+                                                 n
+   Comment choisir les {bi }i=0,...,p ?
+    I équirépartition des individus par classe :
+
+       b0 = min       bi calculé tel qu’il y ai θ observations entre bi et bi+1
+
+    I équirépartition des intervalles :
+                                                                                
+                 max − min                                           max − min
+       largeur =           ;        b0 = min;       bi = b0 +i
+                     p                                                   p
+
+--- PAGE 48 ---
+Comment construire une histogramme (variable continue)
+
+   Construction d’un histogramme équiréparti :
+    1. choisir p le nombre de classes,
+    2. calculer les {bi }i=0,...,p , les bornes des intervalles,
+    3. en déduire les si le nombre d’individus par classe. Si ce nombre
+       est inférieur à cinq, on fusionne des classes.
+                                   si
+    4. calculer enfin les hi = bi −b  i−1
+                                          les hauteurs.
+   Par exemple pour 32 observations entre 0 et 15. On en déduit
+   p = 6 et les valeurs suivantes :
+
+
+    b0 = 0 b1 = 2 b2 = 3 b3 = 4 b4 = 8 b5 = 10 b6 = 15
+       s1 = 6 s2 = 5 s3 = 6 s4 = 5 s4 = 5 s5 = 5
+       h1 = 26 h2 = 5 h3 = 6 h4 = 54 h5 = 25 h6 = 55
+
+--- PAGE 49 ---
+Histogramme et traitement d’images
+                                                                  
+  Redressement (où égalisation) d’histogramme5 : bn (i) = Fb−1    i
+                                                                  p
+
+
+
+
+    5
+        http://en.wikipedia.org/wiki/Histogram_equalization
+
+--- PAGE 50 ---
+Histogramme et traitement d’images
+
+
+
+
+  Figure: Exemple d’histogrammes http://www.llvj.com/tutorials/
+  understanding-series/understanding-histograms.shtml.
+
+--- PAGE 51 ---
+Plan
+
+   Variables et individus
+      Les trois distinctions
+      Variables qualitatives
+      Variables quantitatives
+          Variables quantitatives discrètes
+          Variables quantitatives continues
+          Tendance centrale
+          Dispersion
+          Résumé robuste
+          Autres moments
+       Résumé graphique des données
+          Cas des variables qualitatives
+          Boite à moustache
+          Histogramme
+
+   Conclusion
+
+--- PAGE 52 ---
+Empirique vs. OPM
+
+  Cas d’une variable X discrète :
+
+      Nom           Empirique                    Théorique              Nom
+    Empirique                                                         Théorique
+                           ni
+    Fréquence        fˆi =                      IP(X = mi )           Probabilité
+                           n
+   Fonction de       F̂i = NNi           IP(X < ai ) = F (mi )        Fonction de
+    répartition                                                        répartition
+                          n
+                          X                         n
+                                                    X
+    Moyenne        x̄ =         fi xi   IE(X ) =          IP(mi )mi   Espérance
+                          i=1                       i=1
+                               1
+     Médiane        F̂ (M̂) =                 IP(X < M) = 12           Médiane
+                       n
+                               2        n
+                  1X                    X
+     Variance            (xi − x̄)2           IP(mi )(mi − IE[X ])2    Variance
+                  n
+                    i=1                 i=1
+
+  Cas d’une variable X continue : l’empirique ne change pas (avec ni = 1)
+
+--- PAGE 53 ---
+Conclusion
+
+
+
+    I Résumé quantitatif
+        I ordre 1 : centrage
+        I ordre 2 : dispersion
+        I ordres supérieurs : asymétrie, aplatissement...
+
+
+    I Résumé qualitatif (graphique)
+        I qualitative : camembert
+        I quantitative (continue) : boite à moustache.
+        I quantitative discrète : histogramme
+
+
+    I Méthode exploratrice
+        I pour une exploration interactive des données

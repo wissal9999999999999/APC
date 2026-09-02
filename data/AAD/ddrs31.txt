@@ -1,0 +1,14 @@
+AAD-ID,AAD-TITLE
+DDRS-001,Connaître les évolutions récentes du système terre et des causes de celles-ci
+DDRS-002,Catégoriser les impacts environnementaux des activités anthropiques
+DDRS-003,Définir une Unité Fonctionnelle et un flux de référence
+DDRS-004,Analyser et comprendre une ACV
+DDRS-005,"Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)"
+,
+,
+,
+,
+,
+,
+,
+,

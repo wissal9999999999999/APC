@@ -1,0 +1,711 @@
+--- PAGE 1 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+
+
+
+
+                              Programmation
+                 - Records, Classes abstraites et Interfaces -
+
+                                                Nicolas Malandain
+
+
+
+
+                              Records, Classes abstraites et Interfaces   1 / 24
+
+--- PAGE 2 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+
+
+
+  1   Classes de données
+  2   Classes abstraites
+        Principe
+        En Java
+        Exemple
+  3   Interface
+         Principe
+         En Java
+         Exemple 1
+         Exemple 2
+         Exemple 3
+  4   Classes/Interfaces internes
+        Principes
+        Exemple : interne static
+        Exemple : interne
+
+                              Records, Classes abstraites et Interfaces   2 / 24
+
+--- PAGE 3 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+
+
+      Classes de données 1 / 2
+  Principe
+       classe de données immuables
+          classe final et attributs private final
+          définition automatique de l’initialisation (constructeur)
+          toString et getters disponibles
+
+  LesRecords.java (...)                                                        classe basique immuable
+  class PersonneDeBase {
+      private final String nom;
+      private final String prenom;
+
+      public PersonneDeBase(String nom, String prenom) {
+          this .nom = nom;
+          this .prenom = prenom;
+      }
+      public String nom() {
+          return nom;
+      }
+      public String prenom() {
+          return prenom;
+      }
+      public String toString() {
+          return String.format("PersonneDeBase{nom=%s,␣prenom=%s}",nom(), prenom());
+      }
+  }                              Records, Classes abstraites et Interfaces                           3 / 24
+
+--- PAGE 4 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+
+
+   Classes de données 2 / 2
+  LesRecords.java                                                                                         avec les record
+  record Personne(String nom, String prenom) {}                                // version simple
+
+  record PersonneAutre(String nom, String prenom, int num) {                   // version évoluée
+      public static int compteur=0;
+
+  //    public PersonneAutre(String nom, String prenom, int num) {             // l’un
+  //        this.nom=nom.trim();
+  //        this.prenom=prenom.trim();
+  //        this.num=num;
+  //        if (nom.trim().equals("") || prenom.trim().equals("")) {
+  //           throw new java.lang.IllegalArgumentException("Nom ou Prénom ne peuvent ^
+                                                                                       etre vides");
+  //        }
+  //        compteur++;
+  //    }
+
+       public PersonneAutre {                                                  // ou l’autre
+           if (nom.trim().equals("") || prenom.trim().equals("")) {
+                throw new java.lang.IllegalArgumentException("Nom␣ou␣Prénom␣ne␣peuvent␣^
+                                                                                        etre␣vides");
+           }
+           compteur++;
+       }
+       public PersonneAutre(String nom, String prenom) {                       // possible si appel au constructeur "canonique"
+           this (nom, prenom, 0);
+
+       }
+       public String nomTotal() {
+           return String.format("%s␣%s", nom(), prenom());
+       }
+
+       public static int getNbInstancesCrees() {
+           return compteur;
+       }
+                                  Records, Classes abstraites et Interfaces                                                       4 / 24
+
+--- PAGE 5 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+ Classes abstraites
+
+
+
+ Principe
+ Permet la définition de types incomplets
+         le comportement est connu mais non défini
+         (méthode abstraite ⇒ classe abstraite)
+         le comportement est incomplet
+         (classe abstraite)
+ Permet de définir un type commun à plusieurs classes concrètes
+
+
+
+
+                             Records, Classes abstraites et Interfaces                      5 / 24
+
+--- PAGE 6 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+ Classe abstraite
+
+
+
+
+ Définition
+ Classe considérée incomplète donc non instanciable
+
+ Syntaxe
+          abstract class ClasseAbstraite {
+            ...
+          }
+
+
+
+
+                             Records, Classes abstraites et Interfaces                      6 / 24
+
+--- PAGE 7 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+ Méthode abstraite
+
+
+ Définition
+ Méthode incomplète : déclarée mais non définie (pas de corps)
+ ⇒ classe abstraite
+
+ Syntaxe
+          abstract class ClasseAbstraite {
+            abstract void methodeAbstraite(...);
+          }
+
+
+ Remarque
+ Toute classe héritant d’une classe contenant des méthodes abstraites est
+ abstraite si elle ne définit pas toutes les méthodes abstraites
+
+
+
+                             Records, Classes abstraites et Interfaces                      7 / 24
+
+--- PAGE 8 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+
+
+ Figure.java
+ package fr.insarouen.iti.prog.cours3;
+ public abstract class Figure {
+     private static int compteurIdentifiant;
+     private final int identifiant;
+
+       public Figure() {
+           this .identifiant=compteurIdentifiant++;
+       }
+
+        public abstract double surface();
+
+       public String toString() {
+           return String.format("%s␣(%d)␣:␣%4.2f",getClass().getSimpleName(),
+                                                  this .identifiant,
+                                                  this .surface());
+       }
+ }
+
+
+
+                             Records, Classes abstraites et Interfaces                      8 / 24
+
+--- PAGE 9 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+
+ Rectangle.java
+ package fr.insarouen.iti.prog.cours3;
+ public class Rectangle extends Figure {
+   private final double longueur, largeur;
+   public Rectangle(double longueur, double largeur) {
+     this .longueur = longueur;
+     this .largeur = largeur;
+   }
+   public double surface() {
+     return this .longueur*this.largeur;
+   }
+ }
+
+
+ Carre.java                                                        Cercle.java
+ package fr.insarouen.iti.prog.cours3;                             package fr.insarouen.iti.prog.cours3;
+ public class Carre extends Rectangle {                            public class Cercle extends Figure {
+   public Carre(double cote) {                                       private final double rayon;
+     super(cote,cote);                                               public Cercle(double rayon) {
+   }                                                                   this .rayon = rayon;
+ }                                                                   }
+                                                                     public double surface() {
+                                                                       return Math.PI*this.rayon*this.rayon;
+                                                                     }
+                                                                   }
+
+
+                             Records, Classes abstraites et Interfaces                                         9 / 24
+
+--- PAGE 10 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple
+
+
+
+
+ ClassesAbstraites.java
+ package fr.insarouen.iti.prog.cours3;
+
+ import java.util.Arrays;
+
+  public class ClassesAbstraites {
+
+     public static void main(String[] args) {
+       Figure[] figures={ new Carre(20), new Rectangle(15,10),
+                           new Cercle(10)};
+       System.out.println(Arrays.toString(figures));
+     }
+ }
+
+
+
+
+                             Records, Classes abstraites et Interfaces                      10 / 24
+
+--- PAGE 11 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+ Interface
+
+ Métaphore
+ “Les interfaces sont un peu comme les décorations des scouts. Lorsqu’un
+ scout a appris à construire une cabane, il peut se promener avec une
+ petite décoration sur l’une de ses manches. Cela indique à tout le monde
+ : je sais comment construire une cabane”
+ “Java par la pratique”(O’Reilly) P. Niemeyer & J. Peck.
+
+ Principe
+      Une interface est quasi équivalente à une “classe abstraite pure”
+         Son utilisation peut être vue comme un “héritage comportementale”
+         Elle permet la déclaration de comportements identiques dans des
+         arbres de classes différents
+
+
+                            Records, Classes abstraites et Interfaces                                             11 / 24
+
+--- PAGE 12 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+ Propriétés :
+         les attributs sont public static final (⇔constantes)
+         par défaut les méthodes sont toutes abstract public
+         les interfaces acceptent l’héritage multiple entre elles
+         une seule interface public par fichier (idem class)
+         non instanciable (ce n’est pas une classe !)
+
+ Syntaxe
+ Déclaration
+         interface NomInterface {
+           // attributs (par défaut public, static, final)
+
+             // méthodes (par défaut abstract, public)
+         }
+ Utilisation
+         class LaClasse implements NomInterface1, ... {
+
+         }
+                            Records, Classes abstraites et Interfaces                                             12 / 24
+
+--- PAGE 13 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+
+ Rotation.java
+ package fr.insarouen.iti.prog.cours3;
+ public interface Rotation {
+   void tourner(int px, int py, int angle);
+ }
+
+
+ Translation.java
+ package fr.insarouen.iti.prog.cours3;
+ public interface Translation {
+   void translater(int vx, int vy);
+ }
+
+
+ Transformation.java
+ package fr.insarouen.iti.prog.cours3;
+ public interface Transformation extends Rotation, Translation {
+ }
+
+ Toute classe peut maintenant implémenter une ou plusieurs de ces
+ interfaces
+                            Records, Classes abstraites et Interfaces                                             13 / 24
+
+--- PAGE 14 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+
+ ClassesAbstraitesInterfaces.java
+ package fr.insarouen.iti.prog.cours3;
+
+ import java.util.Arrays;
+
+ public class ClassesAbstraitesInterfaces {
+   public static void main(String[] args) {
+     Figure[] figures={ new Carre(20), new Rectangle(15,10), new Cercle(10)};
+     Ordre.trier(figures);
+     System.out.println(Arrays.toString(figures));
+     Voiture[] voitures={ new Voiture("1234SZ76",6), new Voiture("5678AZ27",10),
+                         new Voiture("910XE61",2)};
+     Ordre.trier(voitures);
+     System.out.println(Arrays.toString(voitures));
+   }
+ }
+
+
+ InterfaceComparable
+ package fr.insarouen.iti.prog.cours3;
+
+ public interface InterfaceComparable {
+   int compareA(InterfaceComparable comparable);
+ }
+
+
+
+                            Records, Classes abstraites et Interfaces                                             14 / 24
+
+--- PAGE 15 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+ Ordre.java
+ package fr.insarouen.iti.prog.cours3;
+ public class Ordre {
+   private static void echanger(InterfaceComparable[] tableau, int a, int b) {
+     InterfaceComparable tmp;
+     tmp=tableau[a];
+     tableau[a]=tableau[b];
+     tableau[b]=tmp;
+   }
+   private static int trouverIndiceDuMax(InterfaceComparable[] tableau, int debut, int fin) {
+     if (debut<0 || fin>=tableau.length || debut>fin)
+       return -1;
+     int indiceDuMax=debut;
+     for (int i=debut; i<=fin; i++)
+        if (tableau[indiceDuMax].compareA(tableau[i])<0)
+          indiceDuMax = i;
+     return indiceDuMax;
+   }
+   public static void trier(InterfaceComparable[] tableau) {
+     if (tableau.length<=1)
+       return;
+     int indiceDuMax;
+     for (int dernierePlace=tableau.length-1; dernierePlace>0; dernierePlace--) {
+       indiceDuMax=trouverIndiceDuMax(tableau,0,dernierePlace);
+       echanger(tableau,indiceDuMax,dernierePlace);
+     }
+   }
+ }
+
+                            Records, Classes abstraites et Interfaces                                             15 / 24
+
+--- PAGE 16 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+
+
+ reprise de Figure.java
+ package fr.insarouen.iti.prog.cours3;
+ public abstract class Figure implements InterfaceComparable {
+   ...
+   public abstract double surface();
+
+     public int compareA(InterfaceComparable c) {
+       //attention devrait lancer une exception si les types sont différents
+       if (c instanceof Figure fig)
+          if (this.surface() > fig.surface())
+            return 1;
+         else
+             if (this.surface() < fig.surface())
+               return -1;
+       return 0;
+     }
+     ...
+ }
+
+
+
+
+                            Records, Classes abstraites et Interfaces                                             16 / 24
+
+--- PAGE 17 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+ Voiture.java
+ package fr.insarouen.iti.prog.cours3;
+
+  public class Voiture implements InterfaceComparable {
+      private final String immatriculation;
+      private final int puissance;
+
+      public Voiture(String immatriculation, int puissance) {
+          this .immatriculation = immatriculation;
+          this .puissance = puissance;
+      }
+      public int getPuissance() {
+          return this .puissance;
+      }
+      public String getImmatriculation() {
+          return this .immatriculation;
+      }
+      public int compareA(InterfaceComparable c) {
+          if (c instanceof Voiture voit)
+               if (this.puissance > voit.getPuissance())
+                    return 1;
+               else
+                    if (this.puissance < voit.getPuissance())
+                        return -1;
+          return 0;
+      }
+      public String toString() {
+          return String.format("%s(%d)",this.immatriculation,this.puissance);
+      }
+ }                          Records, Classes abstraites et Interfaces                                             17 / 24
+
+--- PAGE 18 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principe En Java Exemple 1 Exemple 2 Exemple 3
+
+
+ DefaultEtStaticInterfaceMethod.java
+ public class DefaultEtStaticInterfaceMethod {
+     public static void main(String[] args) {
+         Moto m1 = new Moto();
+         m1.setVitesse(150);
+         System.out.println(m1.getVitesseMilesParHeure());
+         System.out.println(Mobile.convertKmH2Ms(m1.getVitesse()));
+     }
+ }
+ class Moto implements Mobile {
+     private double vitesse;
+
+      public void setVitesse(double vitesseKmH) {
+          this .vitesse = vitesseKmH;
+      }
+      public double getVitesse() {
+          return this .vitesse;
+      }
+ }
+ interface Mobile {
+     double getVitesse();
+
+      default double getVitesseMilesParHeure() {
+          return this .getVitesse()/1.609344;
+      }
+
+      static double convertKmH2Ms(double kmH) {
+          return 1000*kmH/3600;
+      }
+ }                          Records, Classes abstraites et Interfaces                                             18 / 24
+
+--- PAGE 19 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+ Description
+
+
+
+  Principe
+  Déclaration d’une classe dans une autre
+  Les classes internes permettent de renforcer les relations entre deux
+  classes.
+  Par exemple :
+         un curseur texte n’a de sens que dans un composant texte (tutoriel
+         java)
+         une paire {clé,valeur} n’a de sens que dans un dictionnaire
+         (Map.Entry<K,V> /Map)
+
+
+
+
+                              Records, Classes abstraites et Interfaces                                                 19 / 24
+
+--- PAGE 20 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+ Quatre types de classes internes. . .
+
+
+
+  classe interne (inner class)
+  Une instance n’existe que dans une instance englobante. Tous les
+  membres de classe englobante lui sont accessibles (références : this et
+  ClasseEnglobante.this).
+  Une interface ne peut être de ce type car non instanciable
+
+  classe interne static (nested class)
+  Elle accède aux membres statiques de la classe englobante. Elle ne
+  possède pas de référence sur l’objet englobant l’ayant créé
+
+
+
+
+                              Records, Classes abstraites et Interfaces                                                 20 / 24
+
+--- PAGE 21 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+
+  classe locale
+  Ce type de classe est déclaré dans une méthode et a le même
+  comportement qu’une classe interne. Sa portée est locale au bloc, elle
+  peut accéder aux membres de la classe englobante et uniquement aux
+  variables locales final du bloc.
+
+  classe anonyme
+  Il s’agit d’une classe locale ne portant pas de nom (hérite d’une classe
+  abstraite ou non, ou implémente une interface). Elle est instanciée au
+  moment de sa déclaration.
+  Elle est utilisée lors d’un besoin unique.
+
+  Figure de surface 0
+     Figure figureVide = new Figure() {
+       public double surface() {
+         return 0;
+       }
+     }
+
+
+                              Records, Classes abstraites et Interfaces                                                 21 / 24
+
+--- PAGE 22 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+  ListeChainee.java
+  package fr.insarouen.asi.prog.cours3;                               public ListeChainee() {
+  public class ListeChainee {                                         }
+    private Noeud tete;                                               public ListeChainee(Object valeur) {
+                                                                        this .tete = new Noeud(valeur);
+    public static class Noeud {                                       }
+      private Object valeur;                                          public Noeud getTete() {
+      private Noeud suivant;                                             return this .tete;
+      public Noeud(Object valeur) {                                   }
+        this .valeur = valeur;                                        public void ajouterEnTete(Object valeur) {
+      }                                                                 this .tete = new Noeud(valeur, this.tete);
+      public Noeud(Object valeur, Noeud suivant) {                    }
+        this .valeur = valeur;                                        public Object retirerTete() {
+        this .suivant = suivant;                                        Object obj=this.tete.getValeur();
+      }                                                                 this .tete=this.tete.getNoeudSuivant();
+      public void setValeur(Object valeur) {                            return obj;
+        this .valeur = valeur;                                        }
+      }                                                               public String toString() {
+      public Object getValeur() {                                       StringBuffer sb = new StringBuffer();
+        return this .valeur;                                            sb.append("ListeChainee␣:␣");
+      }                                                                 Noeud courant = this.tete;
+      public Noeud getNoeudSuivant() {                                  while (courant != null) {
+        return this .suivant;                                             sb.append(courant.getValeur());
+      }                                                                   sb.append("␣/␣");
+      public void setNoeudSuivant(Noeud suivant) {                        courant = courant.getNoeudSuivant();
+        this .suivant = suivant;                                        }
+      }                                                                 return sb.toString();
+    }                                                                 }
+                                                                  }
+                              Records, Classes abstraites et Interfaces                                                 22 / 24
+
+--- PAGE 23 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+  Jeu.java ...
+  public class Jeu {                                             private class Monstre extends Personnage
+    private final Plateau plateau;                                                     implements Joueur {
+    private final Personnage[] personnages;                        public Monstre() {
+    private int nbPersonnages;                                       super(5, 10);
+                                                                   }
+    private interface Joueur {                                     public void jouer() {
+      public void jouer();                                           System.out.println("Gnark␣gnark␣gnark␣!!!");
+    }                                                              }
+                                                                 }
+    public abstract class Personnage {
+      // pourrait e ^tre externe                                     private class Humain extends Personnage
+      protected int pv;                                                                    implements Joueur {
+      protected int vitesse;                                            public Humain() {
+      public Personnage(int pv, int vitesse) {                            super(10, 4);
+        this .pv = pv;                                                 }
+        this .vitesse = vitesse;                                        public void setVitesse(int vitesse) {
+      }                                                                   if (Jeu.this.plateau.auBord(this))
+      public void setVitesse(int vitesse) {                                 super.setVitesse(0);
+        this .vitesse = vitesse;                                          else
+      }                                                                     super.setVitesse(vitesse);
+      public int getVitesse() {                                        }
+        return this .vitesse;                                           public void jouer() {
+      }                                                                   System.out.println("Je␣me␣promène");
+      public void setPointVie(int pv) {                                }
+        this .pv = pv;                                               }
+      }
+      public int getPointVie() {
+        return this .pv;
+      }
+    }
+                              Records, Classes abstraites et Interfaces                                                 23 / 24
+
+--- PAGE 24 ---
+Plan Records Classes abstraites Interface Classes/Interfaces internes
+                                                                 Principes Exemple : interne static Exemple : interne
+
+
+
+  Jeu.java (fin)
+      public Jeu(int nbPersonnagesMax) {
+        this .personnages=new Personnage[nbPersonnagesMax];                     Le maı̂tre du jeu peut :
+        this .plateau= new Plateau();
+      }                                                                                créer des Personnage
+      // l’objet utilisant cette méthode ne pourra
+      // manipuler que Personnage                                                      modifier vitesse et vie
+      public Personnage creerPersonnage() {
+        if ( this.nbPersonnages < this.personnages.length)                             tous les faire jouer
+           if ((Math.random()*2) >= 1)
+             return this .personnages[nbPersonnages++]=new Monstre();           Il ne peut pas :
+          else
+             return this .personnages[nbPersonnages++]=new Humain();                   savoir le type de
+        return null ;                                                                  personnage
+      }
+      public void effectuerTourJeu() {                                                 décider qui joue
+        for (int i=0; i<this.nbPersonnages; i++)
+          ((Joueur)this.personnages[i]).jouer();
+      }
+  }
+
+
+  Plateau.java
+  package fr.insarouen.asi.prog.cours3;
+  public class Plateau { // classe incomplète
+    // méthodes et attributs permettant de gérer un plateau de jeu
+    public boolean auBord(Jeu.Personnage p) {
+      return (Math.random()*2)>=1; // devrait tester la case
+    }
+  }                         Records, Classes abstraites et Interfaces                                                   24 / 24

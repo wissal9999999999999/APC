@@ -1,0 +1,840 @@
+--- PAGE 1 ---
+Introduction Gestion des événements Custom Painting
+
+
+
+
+                                       Programmation
+                                          - Swing -
+
+                                         Nicolas Malandain
+
+
+
+
+                                        Swing                1 / 29
+
+--- PAGE 2 ---
+Introduction Gestion des événements Custom Painting
+
+
+
+
+1    Introduction
+        Programmation événementielle
+
+2    Gestion des événements
+       Listener
+       Exemples
+       Adapter
+       Exemples de Listener
+
+3    Custom Painting
+       Introduction
+       Contexte graphique
+       Exemple
+
+
+
+                                            Swing           2 / 29
+
+--- PAGE 3 ---
+Introduction Gestion des événements Custom Painting   Programmation événementielle
+
+
+Scénarios de gestion des événements
+
+
+Le maı̂tre mot : délégation
+
+
+                                                         Émetteur
+  Émetteur            événement              Récepteur                         événement          Récepteur
+                                                           1
+
+                                                                                       ent
+                                                                                   nem
+                                                                                évé
+                                             Récepteur   Émetteur
+  Émetteur     événement                        1          2
+
+
+                                                                                              événement
+                                             Récepteur
+                                                2                                 Émetteur
+                                                                                  Récepteur
+
+
+
+
+                                         Swing                                                                3 / 29
+
+--- PAGE 4 ---
+Introduction Gestion des événements Custom Painting   Programmation événementielle
+
+
+Programmation événementielle
+
+
+Événement
+      généré par une action sur un objet graphique
+      généré par du code
+      un événement est un objet de la classe Event
+
+Contraintes
+    exécution non séquentielle
+      exécution dirigée par les événements
+      obligation de prévoir tous les cas d’utilisation d’une interface
+
+
+
+
+                                          Swing                                            4 / 29
+
+--- PAGE 5 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Listener
+
+
+
+Caractéristiques des Listener
+    Interface
+      adaptés aux composants graphiques
+      adaptés aux types d’événements
+
+Packages
+javax.swing.event
+java.awt.event
+
+
+
+
+                                          Swing                                                            5 / 29
+
+--- PAGE 6 ---
+Introduction Gestion des événements Custom Painting     Listener Exemples Adapter Exemples de Listener
+
+
+Quelques exemples de Listener 1 / 2
+
+Interfaces Listener      Classes Adapter       Methodes
+ActionListener                 none            actionPerformed(ActionEvent)
+CellEditorListener             none            editingStopped(ChangeEvent)
+                                               editingCanceled(ChangeEvent)
+ChangeListener               none              stateChanged(ChangeEvent)
+ComponentListener       ComponentAdapter       componentHidden(ComponentEvent)
+                                               componentMoved(ComponentEvent)
+                                               componentResized(ComponentEvent)
+                                               componentShown(ComponentEvent)
+ContainerListener       ContainerAdapter       componentAdded(ContainerEvent)
+                                               componentRemoved(ContainerEvent)
+FocusListener             FocusAdapter         focusGained(FocusEvent)
+                                               focusLost(FocusEvent)
+ItemListener                  none             itemStateChanged(ItemEvent)
+KeyListener                KeyAdapter          keyPressed(KeyEvent)
+                                               keyReleased(KeyEvent)
+                                               keyTyped(KeyEvent)
+ListDataListener              none             contentsChanged(ListDataEvent)
+                                               intervalAdded(ListDataEvent)
+                                               intervalRemoved(ListDataEvent)
+ListSelectionListener         none             valueChanged(ListSelectionEvent)
+MenuKeyListener               none             menuKeyPressed(MenuKeyEvent)
+                                               menuKeyReleased(MenuKeyEvent)
+                                               menuKeyTyped(MenuKeyEvent)
+MenuListener                  none             menuCanceled(MenuEvent)
+                                               menuDeselected(MenuEvent)
+                                               menuSelected(MenuEvent)
+
+
+
+                                           Swing                                                            6 / 29
+
+--- PAGE 7 ---
+Introduction Gestion des événements Custom Painting        Listener Exemples Adapter Exemples de Listener
+
+
+Quelques exemples de Listener 2 / 2
+Interfaces Listener             Classes Adapter          Methodes
+MouseListener                    MouseAdapter            mouseClicked(MouseEvent)
+                                                         mouseEntered(MouseEvent)
+                                                         mouseExited(MouseEvent)
+                                                         mousePressed(MouseEvent)
+                                                         mouseReleased(MouseEvent)
+MouseMotionListener          MouseMotionAdapter          mouseDragged(MouseEvent)
+                                                         mouseMoved(MouseEvent)
+TableColumnModelListener             none                columnAdded(TableColumnModelEvent)
+                                                         columnMoved(TableColumnModelEvent)
+                                                         columnRemoved(TableColumnModelEvent)
+                                                         columnMarginChanged(ChangeEvent)
+                                                         columnSelectionChanged(ListSelectionEvent)
+TableModelListener                   none                tableChanged(TableModelEvent)
+TreeExpansionListener                none                treeCollapsed(TreeExpansionEvent)
+                                                         treeExpanded(TreeExpansionEvent)
+TreeModelListener                    none                treeNodesChanged(TreeModelEvent)
+                                                         treeNodesInserted(TreeModelEvent)
+                                                         treeNodesRemoved(TreeModelEvent)
+                                                         treeStructureChanged(TreeModelEvent)
+TreeSelectionListener               none                 valueChanged(TreeSelectionEvent)
+WindowListener                  WindowAdapter            windowActivated(WindowEvent)
+                                                         windowClosed(WindowEvent)
+                                                         windowClosing(WindowEvent)
+                                                         windowDeactivated(WindowEvent)
+                                                         windowDeiconified(WindowEvent)
+                                                         windowIconified(WindowEvent)
+                                                         windowOpened(WindowEvent)
+
+
+
+                                         Swing                                                                 7 / 29
+
+--- PAGE 8 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Gestion des événements 1 / 2
+
+Qui gère ?
+Une classe qui implémente un Listener pourra gérer les événements liés
+à ce Listener
+
+Quatre possibilités
+    une classe gère elle même des événements qu’elle génère
+      une classe externe gère des événements
+      une classe interne gère des événements
+      une classe anonyme gère des événements
+
+Délégation
+        emetteur.add<Type d’Événement >Listener(recepteur)
+
+
+                                          Swing                                                            8 / 29
+
+--- PAGE 9 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Gestion des événements 2 / 2
+Type d’événements
+Une classe propre à chaque type d’événement :
+      ActionEvent
+      MouseEvent
+      FocusEvent
+      ...
+Chaque classe possède ces méthodes propres à l’événement.
+
+Méthodes
+Méthodes communes :
+      getSource() retourne l’objet émettant l’événement
+      paramString() retourne une String décrivant l’événement
+Méthodes de MouseEvent
+getX()/getY() retournent l’abscisse et l’ordonnée de la souris lors de
+l’événement
+                                          Swing                                                            9 / 29
+
+--- PAGE 10 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+ Exemples de gestion des événements 1 / 5
+Méthode 1
+public class EvtMeth1 {
+  public static void main(String[] param) {
+    JFrame       f = new JFrame("Methode1");
+    MonBouton mb = new MonBouton();
+    f.getContentPane().add(BorderLayout.CENTER,mb);
+    f.pack();
+    f.setVisible(true);
+  }
+}
+class MonBouton extends JButton implements ActionListener {
+  private boolean etat = true;
+  MonBouton() {
+    super("Bonjour");
+     this .addActionListener(this); // se gère lui m^
+                                                     eme
+  }
+  public void actionPerformed(ActionEvent e) {
+     this .changeEtat();
+  }
+  void changeEtat() {
+     if (this.etat)
+       this .setText("Salut");
+    else
+       this .setText("Bonjour");
+     this .etat = !this.etat;
+  }
+                                          Swing                                                            10 / 29
+
+--- PAGE 11 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+    Exemples de gestion des événements 2 / 5
+Méthode 2
+public class EvtMeth2 {
+  public static void main(String[] param) {
+    MaJFrame     f = new MaJFrame();
+    JButton b = new JButton("Bonjour␣-␣Salut");
+    b.addActionListener(f);
+    f.getContentPane().add(BorderLayout.CENTER,b);
+    f.pack();
+    f.setVisible(true);
+  }
+}
+class MaJFrame extends JFrame implements ActionListener {
+  private boolean etat = true;
+
+    public MaJFrame() {
+      super("Bonjour");
+    }
+    private void changeEtat() {
+      if (this.etat)
+         this .setTitle("Salut");
+      else
+         this .setTitle("Bonjour");
+      this .etat = !this.etat;
+    }
+    public void actionPerformed(ActionEvent e) {
+         if (e.getSource() instanceOf JButton)
+              this .changeEtat();
+    }
+}
+                                            Swing                                                            11 / 29
+
+--- PAGE 12 ---
+Introduction Gestion des événements Custom Painting           Listener Exemples Adapter Exemples de Listener
+
+
+ Exemples de gestion des événements 3 / 5
+Méthode 3
+public class EvtMeth3 {
+  public static void main(String[] param) {
+    JFrame       f = new JFrame("Methode3");
+    MonBouton mb = new MonBouton();
+    f.getContentPane().add(BorderLayout.CENTER, mb);
+    f.pack();
+    f.setVisible(true);
+  }
+}
+class MonBouton extends JButton {
+  boolean etat = true;
+  class GereEvt implements ActionListener { // classe interne (inner)
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof MonBouton)
+       ((MonBouton)e.getSource()).changeEtat();
+    }
+  }
+  MonBouton() {
+    super("Bonjour");
+     this .addActionListener(new GereEvt()); // délègue la gestion
+  }
+  void changeEtat() {
+     if (this.etat)
+       this .setText("Salut");
+    else
+       this .setText("Bonjour");
+     this .etat = !this.etat;
+  }
+}
+
+
+                                               Swing                                                                12 / 29
+
+--- PAGE 13 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Exemples de gestion des événements 4 / 5
+
+Méthode 4
+public class EvtMeth4 {
+
+    public static void main(String[] param) {
+      final JFrame     f = new JFrame("Bonjour");
+      JButton mb = new JButton("bonjour");
+      f.getContentPane().add(BorderLayout.CENTER, mb);
+      mb.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            if (f.getTitle().equals("Bonjour"))
+              f.setTitle("Salut");
+            else
+              f.setTitle("Bonjour");
+          }
+        });
+
+        f.pack();
+        f.setVisible(true);
+    }
+
+}
+
+
+
+
+                                            Swing                                                            13 / 29
+
+--- PAGE 14 ---
+Introduction Gestion des événements Custom Painting             Listener Exemples Adapter Exemples de Listener
+
+
+ Exemples de gestion des événements 5 / 5
+
+Exemple de WindowListener
+public class EvtWindow {
+  public static void main(String[] param) {
+    MaFrame f = new MaFrame("WindowListener");
+    f.setSize(150,100);
+    f.setVisible(true);
+  }
+}
+class MaFrame extends JFrame implements WindowListener {
+  MaFrame(String s) {
+    super(s);
+     this .setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+     this .addWindowListener(this);
+  }
+  public void windowClosed(WindowEvent e) {
+    System.out.println("Destruction␣et␣Fin␣du␣programme");
+    System.exit(0);
+  }
+  public void windowClosing(WindowEvent e) {
+    System.out.println("Je␣vais␣etre␣detruite");
+  }
+  public void windowActivated(WindowEvent e) { }
+  public void windowDeactivated(WindowEvent e) { }
+  public void windowIconified(WindowEvent e) { }
+  public void windowDeiconified(WindowEvent e) { }
+  public void windowOpened(WindowEvent e) { }
+}
+
+
+
+
+                                                Swing                                                                 14 / 29
+
+--- PAGE 15 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Utilisation d’un Adapter
+
+
+Adapter vs Listener
+Une classe Adapter par rapport à une interface Listener n’oblige pas la
+redéfinition de toutes les méthodes.
+
+Utilisation d’un Adapter
+Nécessite un héritage, mais ce n’est pas toujours possible :
+      classe externe
+      classe interne
+      classe anonyme
+
+
+
+
+                                          Swing                                                            15 / 29
+
+--- PAGE 16 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Exemple
+Exemple de WindowAdapter
+public class EvtWindowAdapter {
+  public static void main(String[] param) {
+    MaFrame f = new MaFrame("WindowListener");
+    f.setSize(150,100);
+    f.setVisible(true);
+  }
+}
+
+class MaFrame extends JFrame {
+  class GereEvt extends WindowAdapter {
+    public void windowClosed(WindowEvent e) {
+      System.out.println("Destruction␣et␣Fin␣du␣programme");
+      System.exit(0);
+    }
+    public void windowClosing(WindowEvent e) {
+      System.out.println("Je␣vais␣etre␣detruite");
+    }
+  }
+
+    MaFrame(String s) {
+      super(s);
+      setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+      addWindowListener(new GereEvt());
+    }
+}
+                                            Swing                                                            16 / 29
+
+--- PAGE 17 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+ Suite de GestionListe 1 / 6
+Exemple45.java                                                                                         (. . . )
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Exemple45 {
+
+    public static void main(String[] args) {
+      JFrame frame = new JFrame("Gestion␣de␣Liste");
+      frame.setContentPane(new GestionListe());
+
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+              // on quitte l’application
+              // en regle generale, on appellera une methode quitter qui s’occupera de tout fermer
+              // correctement et de demander des confirmations si necessaire
+              System.exit(0);
+            }});
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
+
+
+                                            Swing                                                            17 / 29
+
+--- PAGE 18 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Suite de GestionListe 2 / 6
+GestionListe.java                                                                                    (. . . )
+public class GestionListe extends JPanel {
+  private JList<String> list;
+  private DefaultListModel<String> listModel;
+
+ private JTextField nomPersonne;
+ private JButton enlever;
+
+ public GestionListe() {
+   setBorder(BorderFactory.createTitledBorder("Personnel"));
+   setLayout(new BorderLayout(5,5));
+
+   // création de la liste et de ses barres de défilement
+   listModel = new DefaultListModel<String>();
+   listModel.addElement("Nicolas");
+   listModel.addElement("Maurice");
+   listModel.addElement("Jacques");
+   listModel.addElement("Mauro");
+   list = new JList<String>(listModel);
+   list.setSelectedIndex(0);
+   list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+   list.addListSelectionListener(new GestionSelection());
+   JScrollPane listScrollPane = new JScrollPane(list);
+   add(listScrollPane, BorderLayout.CENTER);
+
+
+                                          Swing                                                            18 / 29
+
+--- PAGE 19 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+ Suite de GestionListe 3 / 6
+
+
+GestionListe.java                                                                                    (. . . )
+// panneau contenant le textfield et les 2 boutons
+    // (FlowLayout par defaut)
+    JPanel panneauBouton = new JPanel();
+    add(panneauBouton, BorderLayout.SOUTH);
+
+     // création des boutons et du champs de saisie
+     nomPersonne = new JTextField(10);
+     panneauBouton.add(nomPersonne);
+     nomPersonne.setText(list.getSelectedValue().toString());
+
+     JButton ajout = new JButton("Ajouter");
+     panneauBouton.add(ajout);
+     ajout.addActionListener(new AjoutListener());
+
+     enlever = new JButton("Enlever");
+     panneauBouton.add(enlever);
+     enlever.addActionListener(new EnleveListener());
+ }
+
+
+
+
+                                          Swing                                                            19 / 29
+
+--- PAGE 20 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Suite de GestionListe 4 / 6
+
+
+GestionListe.java classes internes                                                                  (. . . )
+ // gestion de la selection de la liste
+ private class GestionSelection implements ListSelectionListener {
+   public void valueChanged(ListSelectionEvent e) {
+     // une fois la selection fixe
+      if (!e.getValueIsAdjusting()) {
+        Object item = list.getSelectedValue();
+         if (item != null) {
+           enlever.setEnabled(true);
+           nomPersonne.setText(item.toString());
+        }
+        else {
+           enlever.setEnabled(false);
+           nomPersonne.setText("");
+        }
+     }
+   }
+ }
+
+
+
+
+                                         Swing                                                            20 / 29
+
+--- PAGE 21 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Suite de GestionListe 5 / 6
+GestionListe.java classes internes                                                                  (. . . )
+// gestion du bouton "enlever"
+ private class EnleveListener implements ActionListener {
+   public void actionPerformed(ActionEvent e) {
+     // retrait de l’element selectionne
+     int index = list.getSelectedIndex();
+      if (index != -1) {
+        listModel.remove(index);
+
+
+             int size = listModel.getSize();
+             // si la liste est vide on desactive le bouton "enlever"
+             if (size == 0) {
+               enlever.setEnabled(false);
+               nomPersonne.setText("");
+             }
+             else {
+               // reajustement de la selection
+                if (index == size)
+                  index--;
+               list.setSelectedIndex(index);
+             }
+         }
+     }
+ }
+
+                                         Swing                                                            21 / 29
+
+--- PAGE 22 ---
+Introduction Gestion des événements Custom Painting   Listener Exemples Adapter Exemples de Listener
+
+
+Suite de GestionListe 6 / 6
+GestionListe.java classes internes
+ // gestion du bouton "ajout"
+ private class AjoutListener implements ActionListener {
+   public void actionPerformed(ActionEvent e) {
+     String contenuChampsPersonne = nomPersonne.getText().trim();
+     // si on rentre un nom vide : Beeeeeeeeeeeeeeeeeeeeeeeeeep
+      if (contenuChampsPersonne.equals("")) {
+        Toolkit.getDefaultToolkit().beep();
+        return;
+     }
+
+         int index = list.getSelectedIndex();
+         int size = listModel.getSize();
+
+         // si on ajoute en fin de liste ou dans une liste vide
+         if ( index == -1 || (index+1 == size) ) {
+           listModel.addElement(contenuChampsPersonne);
+           list.setSelectedIndex(size);
+         }
+         // si on ajoute en milieu de liste
+         else {
+           listModel.insertElementAt(contenuChampsPersonne, index+1);
+           list.setSelectedIndex(index+1);
+         }
+     }
+ }
+                                         Swing                                                            22 / 29
+
+--- PAGE 23 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+Présentation
+
+
+       Possibilité de définir la façon dont les composants se dessinent
+
+Rafraı̂chissement
+Le dessin d’un composant se fait quand :
+      il est affiché,
+      dès que l’objet subit une modification (taille),
+      quand il est de nouveau visible
+Le rafraı̂chissement se fait à partir de l’élément graphique de plus haut
+niveau, puis par ses composants...
+
+
+
+
+                                          Swing                                                     23 / 29
+
+--- PAGE 24 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+Painting du JComponent                                    1/2
+
+
+Étapes
+  1   dessin du fond,
+  2   personnalisation (customPainting),
+  3   dessin du bord,
+  4   dessin de ses enfants
+
+Méthodes
+     paintComponent(Graphics)
+      paintBorder(Graphics)
+      paintChildren(Graphics)
+
+
+
+                                          Swing                                                     24 / 29
+
+--- PAGE 25 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+Painting du JComponent                                    2/2
+
+
+
+Double-buffering
+Les éléments graphiques sont dessinés en mémoire et affichés après
+
+Appel du rafraı̂chissement
+    repaint() : lance le rafraı̂chissement dès que possible
+      repaint(long n) : lance le rafraı̂chissement dès que possible après
+      les n millisecondes
+
+
+
+
+                                          Swing                                                     25 / 29
+
+--- PAGE 26 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+Le contexte graphique
+
+
+
+Graphics
+Zone d’un élément graphique où il est possible de dessiner (texte, dessin,
+. . . ). Graphics2D fournit des méthodes plus élaborées.
+
+Quelques méthodes
+    setColor(Color)
+      drawRect(int, int, int, int), fillRect(int, int, int, int)
+      drawString(String, int, int)
+
+
+
+
+                                          Swing                                                     26 / 29
+
+--- PAGE 27 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+Custom Painting
+Objectif du Custom Painting (Personnalisation)
+      ajout de dessins à un composant existant
+      création d’un nouveau composant
+
+Comment personnaliser ?
+      spécialisation d’un composant existant (JButton, JLabel, ...)
+      création d’un nouveau composant (conseil : à partir d’un JPanel)
+Avec redéfinition de :
+
+                     public void paintComponent(Graphics)
+
+Remarque :
+Si vous souhaitez conserver le dessin original d’un composant, vous devez
+commencer par appeler super.paintComponent(Graphics)
+
+                                          Swing                                                     27 / 29
+
+--- PAGE 28 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+ Personnalisation d’étiquette 1 / 2
+
+JLabelBarre.java
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+
+public class JLabelBarre extends JLabel{
+
+    public JLabelBarre(String titre, int horizontalAlignment) {
+      super(titre, horizontalAlignment);
+    }
+    public void paintComponent(Graphics g) {
+      super.paintComponent(g);
+
+        Insets insets = getInsets();
+
+        g.setColor(Color.black);
+        g.drawLine(insets.left, insets.top,
+                  getWidth()-insets.right-1, getHeight()-insets.bottom-1);
+        g.drawLine(insets.left, getHeight()-insets.bottom-1,
+                  getWidth()-insets.right-1, insets.top);
+    }
+}
+
+
+
+                                            Swing                                                     28 / 29
+
+--- PAGE 29 ---
+Introduction Gestion des événements Custom Painting   Introduction Contexte graphique Exemple
+
+
+ Personnalisation d’étiquette 2 / 2
+MainJLabelBarre.java
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+
+public class MainJLabelBarre {
+
+    public static void main(String[] args) {
+      JFrame frame = new JFrame("Étiquettes␣barrées");
+      frame.    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        frame.setContentPane(panel);
+
+        JLabelBarre jlb = new JLabelBarre("Étiquette␣barrée", SwingConstants.CENTER);
+        CompoundBorder bord = BorderFactory.createCompoundBorder(
+                                                 BorderFactory.createEmptyBorder(10,10,10,10),
+                                                 BorderFactory.createLineBorder(Color.red));
+        jlb.setBorder(bord);
+        panel.add(jlb);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
+
+                                            Swing                                                     29 / 29

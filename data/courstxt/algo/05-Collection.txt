@@ -1,0 +1,855 @@
+--- PAGE 1 ---
+Collections
+
+                    Nicolas Delestre - Michel Mainguenaud
+
+
+
+
+Collection - v3.1                                           1 / 36
+
+--- PAGE 2 ---
+Plan
+     1    Introduction
+     2    Les TAD linéaires
+            Pile
+            File
+            Liste
+            ListeOrdonnee
+            Ensemble
+     3    Le TAD associatif Dictionnaire
+     4    Les TAD hiérarchiques
+            Le TAD Arbre Binaire
+            Le TAD Tas
+            Le TAD Arbre Binaire de Recherche
+            Le TAD Arbre n-aire
+     5    Conclusion
+
+Collection - v3.1                               2 / 36
+
+--- PAGE 3 ---
+Introduction
+
+    Introduction
+
+
+             Quelque soit le domaine, on a souvent besoin de stocker des éléments
+             Les TAD collections proposent différentes façons de stocker des éléments
+             Ces TAD sont souvent implantés dans les langages de dernières générations
+             À la fin de ce cours, ces TAD seront des types de base de l’algorithmique
+             (comme les booléens, les naturels, etc.)
+
+
+     Rappel
+             Le champ paramètre d’un TAD permet de désigner les types des éléments à
+             stocker sans les connaitre au moment de la spécification de ce TAD
+             L’identifiant utilisé dans ce champ paramètre doit être générique, sans
+             signification particulière (nous utiliserons ici l’identifiant Element)
+             S’il il y a des contraintes sur le type qui sera utilisé, celles ci sont exprimés
+             formellement
+
+
+
+
+Collection - v3.1                                                                                  3 / 36
+
+--- PAGE 4 ---
+Les TAD linéaires                       Pile
+
+      TAD Pile 1 / 4
+
+
+
+
+     Définition
+     Collection avec une gestion des éléments du type LIFO (Last In First
+     Out)
+     Deux actions possibles :
+             empiler un élément
+             dépiler un élément
+
+
+
+
+Collection - v3.1                                                             4 / 36
+
+--- PAGE 5 ---
+Les TAD linéaires                        Pile
+
+      TAD Pile 2 / 4
+
+
+     Nom:            Pile
+     Paramètre:     Element
+     Utilise:        Booleen
+     Opérations:    pile:            → Pile
+                     estVide:         Pile → Booleen
+                     empiler:         Pile × Element → Pile
+                     dépiler:        Pile ↛ Pile
+                     obtenirElement: Pile ↛ Element
+     Axiomes:      - estVide(pile())
+                   - non estVide(empiler(p,e))
+                   - depiler(empiler(p,e))=p
+                   - obtenirElement(empiler(p,e))=e
+     Préconditions: depiler(p):          non(estVide(p))
+                     obtenirElement(p): non(estVide(p))
+
+
+
+
+Collection - v3.1                                                    5 / 36
+
+--- PAGE 6 ---
+Les TAD linéaires                             Pile
+
+      TAD Pile 3 / 4
+
+
+     Exemple d’utilisation des piles
+             Évaluation des expréssions arithmétiques (notation préfixe, ou
+             polonaise inversée)
+             Gestion des appels de fonctions
+
+     Vérification du fonctionnement du TAD Pile
+     Les axiomes permettent de vérifier le bon fonctionnement du TAD Pile
+
+     Exercice
+     Que vaut obtenirElement(dépiler(empiler(empiler(pile(),e1),e2))) ?
+
+
+
+
+Collection - v3.1                                                                 6 / 36
+
+--- PAGE 7 ---
+Les TAD linéaires                           Pile
+
+      TAD Pile 4 / 4
+
+
+     Que vaut obtenirElement(dépiler(empiler(empiler(pile(),e1),e2))) ?
+     Démonstration :
+             D’après Le 3ème axiome :
+             dépiler(empiler(empiler(pile(),e1),e2)) = empiler(pile(),e1)
+             Donc :
+             obtenirElement(dépiler(empiler(empiler(pile(),e1),e2))) =
+             obtenirElement(empiler(pile(),e1))
+             D’après Le 4ème axiome :
+             obtenirElement(empiler(pile(),e1)) = e1
+             Donc : obtenirElement(dépiler(empiler(empiler(pile(),e1),e2))) = e1
+
+
+
+
+Collection - v3.1                                                               7 / 36
+
+--- PAGE 8 ---
+Les TAD linéaires                       File
+
+      TAD File 1 / 3
+
+
+
+
+     Définition
+     Collection avec une gestion des éléments du type FIFO (First In First
+     Out)
+             enfiler un élément
+             défiler un élément
+
+
+
+
+Collection - v3.1                                                              8 / 36
+
+--- PAGE 9 ---
+Les TAD linéaires                                File
+
+      TAD File 2 / 3
+
+     Nom:            File
+     Paramètre:     Element
+     Utilise:        Booleen
+     Opérations:    file:               → File
+                     estVide:            File → Booleen
+                     enfiler:            File × Element → File
+                     défiler:           File ↛ File
+                     obtenirElement: File ↛ Element
+     Axiomes:      - estVide(file())
+                   - non estVide(enfiler(f ,e))
+                   - defiler(enfiler(file(),e))=file()
+                   - non estVide(f ) et defiler(enfiler(f ,e))=enfiler(defiler(f ),e) a
+                   - obtenirElement(enfiler(file(),e))=e
+                   - non estVide(f ) et obtenirElement(enfiler(f ,e))=obtenirElement(f )
+     Préconditions: defiler(f):             non(estVide(f ))
+                     obtenirElement(f): non(estVide(f ))
+
+       a. Cf. le cours de B. Duval http://www.info.univ-angers.fr/pub/bd/
+
+Collection - v3.1                                                                          9 / 36
+
+--- PAGE 10 ---
+Les TAD linéaires                             File
+
+      TAD File 3 / 3
+
+
+
+     Exemple d’utilisation des files
+         Programmation système
+                    Gestion d’une imprimante partagée
+                    Allocation du processeur aux programmes en exécution
+             Parcours en largeur d’arbres, de treillis, de graphes
+
+     Exercice
+     Que vaut obtenirElement(défiler(enfiler(enfiler(file(),e1),e2))) ?
+
+
+
+
+Collection - v3.1                                                           10 / 36
+
+--- PAGE 11 ---
+Les TAD linéaires                        Liste
+
+      TAD Liste 1 / 2
+
+
+
+
+     Définition
+     Collection avec une gestion des éléments avec accès par position
+             insérer un élément à une position
+             supprimer un élément à une position
+
+
+
+
+Collection - v3.1                                                          11 / 36
+
+--- PAGE 12 ---
+Les TAD linéaires                           Liste
+
+      TAD Liste 2 / 2
+
+     Nom:            Liste
+     Paramètre:     Element
+     Utilise:        Booleen, NaturelNonNul, Naturel
+     Opérations:    liste:            → Liste
+                     estVide:          Liste → Booleen
+                     insérer:         Liste × NaturelNonNul × Element ↛ Liste
+                     supprimer:        Liste × NaturelNonNul ↛ Liste
+                     obtenirElement: Liste × NaturelNonNul ↛ Element
+                     longueur:         Liste → Naturel
+     Axiomes:      - estVide(liste())
+                   - non estVide(insérer(l,i,e))
+                   - suprimer(insérer(l,i,e),i)=l
+                   - obtenirElement(insérer(insérer(l,i,e1),i,e2),i + 1)=e1
+                   - longueur(liste())=0
+                   - longueur(insérer(l,i,e))=1+longueur(l)
+     Préconditions: inserer(l,i,e):        i ≤ longueur (l) + 1
+                     supprimer(l,i):        i ≤ longueur (l)
+                     obtenirElement(l,i): i ≤ longueur (l)
+
+Collection - v3.1                                                                12 / 36
+
+--- PAGE 13 ---
+Les TAD linéaires                   ListeOrdonnee
+
+      TAD ListeOrdonnee 1 / 2
+
+
+
+
+     Définition
+     Collection (d’un type de données possédant un ordre total) avec une
+     gestion des éléments avec accès par position
+             insérer un élément
+             supprimer un élément à une position
+
+
+
+
+Collection - v3.1                                                            13 / 36
+
+--- PAGE 14 ---
+Les TAD linéaires                                       ListeOrdonnee
+
+      TAD ListeOrdonnee 2 / 2
+
+     Nom:            ListeOrdonnee
+     Paramètre:     Element (∀e1 ∈ Element, e2 ∈ Element, e1 ̸= e2 ⇒ e1 < e2 ou e1 > e2 )
+     Utilise:        Booleen, NaturelNonNul, Naturel
+     Opérations:    listeOrdonnée: → ListeOrdonnee
+                     estVide:           ListeOrdonnee → Booleen
+                     insérer:          ListeOrdonnee × Element → ListeOrdonnee
+                     supprimer:         ListeOrdonnee × NaturelNonNul ↛ ListeOrdonnee
+                     obtenirElement: ListeOrdonnee × NaturelNonNul ↛ Element
+                     longueur:          ListeOrdonnee → Naturel
+     Axiomes:      - estVide(listeOrdonnee())
+                   - non estVide(insérer(l,e))
+                   - supprimer(insérer(l,e),i)=l et obtenirElement(insérer(l,e),i)=e
+                   - obtenirElement(insérer(insérer(l,e ′ ),e),i)=e et
+                     obtenirElement(insérer(insérer(l,e ′ ),e),j)=e ′ et ((e ′ < e et j < i) ou (e ′ > e
+                     et j > i))
+                   - longueur(liste())=0
+                   - longueur(insérer(l,e))=1+longueur(l)
+     Préconditions: supprimer(l,i):        i ≤ longueur (l)
+                     obtenirElement(l,i): i ≤ longueur (l)
+
+
+
+Collection - v3.1                                                                                        14 / 36
+
+--- PAGE 15 ---
+Les TAD linéaires                            Ensemble
+
+      TAD Ensemble 1 / 2
+
+
+
+     Définition
+     Collection d’éléments n’apparaissant qu’une seule fois
+             ajouter un élément (pas de notion d’ordre, et si déjà présent alors
+             pas d’ajout)
+             retirer un élément
+             rechercher un élément
+             parcourir les éléments présents (nouvelle instruction)
+
+
+
+
+Collection - v3.1                                                                       15 / 36
+
+--- PAGE 16 ---
+Les TAD linéaires                                     Ensemble
+
+      TAD Ensemble 2 / 2
+
+     Nom:             Ensemble
+     Paramètre:      Element
+     Utilise:         Booleen,Naturel
+     Opérations:     ensemble:          → Ensemble
+                      ajouter:           Ensemble × Element → Ensemble
+                      retirer:           Ensemble × Element → Ensemble
+                      estPresent:        Ensemble × Element → Booleen
+                      cardinalite:       Ensemble → Naturel
+                      union:             Ensemble × Ensemble → Ensemble
+                      intersection:      Ensemble × Ensemble → Ensemble
+                      soustraction:      Ensemble × Ensemble → Ensemble
+     Axiomes:       - ajouter(ajouter(s,e),e)=ajouter(s,e)
+                    - retirer(ajouter(s,e),e)=s
+                    - estPresent(ajouter(s,e),e)
+                    - non estPresent(retirer(s,e),e)
+                    - cardinalite(ensemble())=0
+                    - cardinalite(ajouter(s,e))=1+cardinalite(s) et non estPresent(s,e)
+                    - cardinalite(ajouter(s,e))=cardinalite(s) et estPresent(s,e)
+                      ...
+
+
+
+Collection - v3.1                                                                         16 / 36
+
+--- PAGE 17 ---
+Les TAD linéaires                                     Ensemble
+
+    Une nouvelle instruction
+     Pour chaque
+     Afin de permettre le parcours d’un ensemble ou de faciliter le parcours d’une liste (ordonnée
+     ou pas), nous pouvons maintenant utiliser l’instruction pour chaque :
+     pour chaque element de liste
+         actions utilisant element
+     finpour
+
+
+     Exemple
+     fonction compter (l : Liste<Entier>, unEntier : Entier) : Naturel
+         Déclaration somme : Naturel
+                       e : Entier
+     debut
+         somme ← 0
+         pour chaque e de l
+             si unEntier = e alors
+                   somme ← somme + 1
+             finsi
+         finpour
+         retourner somme
+     fin
+
+Collection - v3.1                                                                                     17 / 36
+
+--- PAGE 18 ---
+Le TAD associatif Dictionnaire
+
+      TAD Dictionnaire 1 / 2
+
+
+     Définition
+     Collection où les éléments sont constitués de deux parties : une clé et une
+     valeur. Chaque valeur est identifiée par la clé.
+             ajouter un couple (clé,valeur)
+             retirer un élément (clé)
+             tester la présence (clé)
+             obtenir les clés
+             obtenir les valeurs
+             obtenir une valeur (clé)
+
+
+
+
+Collection - v3.1                                                                  18 / 36
+
+--- PAGE 19 ---
+Le TAD associatif Dictionnaire
+
+      TAD Dictionnaire 2 / 2
+
+     Nom:            Dictionnaire
+     Paramètre:     Cle,Valeur
+     Utilise:        Booleen,Liste
+     Opérations:    dictionnaire:    → Dictionnaire
+                     ajouter:         Dictionnaire × Cle × Valeur → Dictionnaire
+                     retirer:         Dictionnaire × Cle → Dictionnaire
+                     estPresent:      Dictionnaire × Cle → Booleen
+                     obtenirValeur: Dictionnaire × Cle ↛ Valeur
+                     obtenirCles:     Dictionnaire → Liste<Cle>
+                     obtenirValeurs: Dictionnaire → Liste<Valeur>
+     Axiomes:      - ajouter(ajouter(d,c,v2 ),c,v1 )=ajouter(d,c,v1 )
+                   - retirer(ajouter(d,c,v ),c)=d
+                   - rechercher(ajouter(d,c,v ),c)=v
+                   - estPresent(ajouter(d,c,v ),c)
+                   - estPresent(d,obtenirElement(obtenirCles(d),i)) et
+                     0 < i ≤ longueur(obtenirCles(d))
+                   - non estPresent(retirer(d,c),c)
+                   - ...
+     Préconditions: obtenirValeur(d,c): estPresent(d, c)
+
+
+
+Collection - v3.1                                                                  19 / 36
+
+--- PAGE 20 ---
+Les TAD hiérarchiques
+
+    TAD hiérarchiques ou arbre
+
+
+     Un arbre sur un ensemble E est une imbrication de suites finies
+     d’éléments de E , où chaque élément de cette suite permet d’accéder à
+     une nouvelle suite finie
+             un arbre vide est notée ()
+             un arbre non vide est noté (e, A1 , A2 , . . . , An ) où e ∈ E et Ai , i ∈ [1..n] sont des arbres
+
+     On le représente souvent graphiquement :
+                                        A                A
+
+                                                                 e
+
+                                                    A1 A2 A3                An
+
+
+
+
+Collection - v3.1                                                                                              20 / 36
+
+--- PAGE 21 ---
+Les TAD hiérarchiques
+
+      Vocabulaire 1 / 2
+     Arité d’un noeud
+     Nombre de sous-arbres non vide
+     Une feuille est un noeud d’arité 0
+
+     Chemin
+     Une séquence de noeuds (n0 , n1 , . . . , np ) ou ni−1 est le père de ni
+     (0 < i ≤ p)
+     La longueur d’un chemin (n0 , . . . , np ) vaut p
+             p = nombre d’arcs
+             p + 1 = nombre de noeuds
+
+     Niveau d’un noeud
+     Le niveau (la hauteur) d’un noeud est la longueur de l’unique chemin de
+     la racine à ce noeud
+     Le niveau de la racine vaut 0
+Collection - v3.1                                                                 21 / 36
+
+--- PAGE 22 ---
+Les TAD hiérarchiques
+
+          Vocabulaire 2 / 2
+
+     Hauteur d’un arbre
+     Le maximum des hauteurs de tous les noeuds
+     La hauteur d’un arbre vide vaut -1 par définition
+
+     Un exemple
+                                                                              Racine
+                        niveau 0                                          a
+     Hauteur de a = 3
+
+
+
+
+                                                                                                   Père de g
+                        niveau 1                       b                  c             d
+
+                        niveau 2        e                  f                  g        Fils de d
+
+                        niveau 3               h
+                                                               Feuilles
+
+                                        Fils de e
+
+Collection - v3.1                                                                                          22 / 36
+
+--- PAGE 23 ---
+Les TAD hiérarchiques                  Le TAD Arbre Binaire
+
+      TAD Arbre Binaire 1 / 3
+
+
+     Définition
+           Un arbre binaire est un arbre
+             Si cet arbre n’est pas vide alors il a exactement deux fils (nommé fils
+             gauche et fils droit)
+
+
+                                     A        A
+
+                                                     e
+
+                                              Ag           Ad
+
+
+
+Collection - v3.1                                                                  23 / 36
+
+--- PAGE 24 ---
+Les TAD hiérarchiques                        Le TAD Arbre Binaire
+
+      TAD Arbre Binaire 2 / 3
+
+
+     Nom:            ArbreBinaire
+     Paramètre:     Element
+     Utilise:        Booleen
+     Opérations:    arbreBinaire:        → ArbreBinaire
+                     ajouterRacine:       Element × ArbreBinaire × ArbreBinaire → ArbreBinaire
+                     estVide:             ArbreBinaire → Booleen
+                     obtenirElement:      ArbreBinaire ↛ Element
+                     obtenirFilsGauche: ArbreBinaire ↛ ArbreBinaire
+                     obtenirFilsDroit:    ArbreBinaire ↛ ArbreBinaire
+     Axiomes:      - estVide(arbreBinaire())
+                   - non estVide(ajouterRacine(e,ag ,ad ))
+                   - obtenirElement(ajouterRacine(e,ag ,ad ))=e
+                   - obtenirFilsGauche(ajouterRacine(e,ag ,ad ))=ag
+                   - obtenirFilsDroit(ajouterRacine(e,ag ,ad ))=ad
+     Préconditions: obtenirElement(a):      non(estVide(a))
+                     obtenirFilsGauche(a): non(estVide(a))
+                     obtenirFilsDroit(a):    non(estVide(a))
+
+
+
+
+Collection - v3.1                                                                                24 / 36
+
+--- PAGE 25 ---
+Les TAD hiérarchiques                                 Le TAD Arbre Binaire
+
+      TAD Arbre Binaire 3 / 3
+
+
+     Algorithmes sur les arbres
+     De part leur définition récursive, les algorithmes appliqués aux arbres sont
+     naturellement récursifs
+
+     Méthode : recherche d’un élément
+                                                    FAUX
+                                          ()
+
+
+
+                    rechercher(A,e)                        VRAI
+                                                       e
+                                       (r,
+
+
+
+                                                    r=
+                                          A
+                                           g,
+                                              A
+                                               d)
+                                                    r=
+                                                     e
+
+
+
+
+                                                           rechercher(Ag,e) ou rechercher(Ad,e)
+
+
+
+
+Collection - v3.1                                                                                    25 / 36
+
+--- PAGE 26 ---
+Les TAD hiérarchiques              Le TAD Arbre Binaire
+
+      Parcours en profondeur 1 / 2
+
+     Il y a trois types de parcours
+
+
+             parcoursRGD                                         r
+                    1   Traiter la racine r
+                    2   parcoursRGD Ag
+                                                      Ag                      Ad
+                    3   parcoursRGD Ad
+
+
+             parcoursGRD                         parcoursGDR
+                    1   parcoursGRD Ag            1   parcoursGDR Ag
+                    2   Traiter la racine r       2   parcoursGDR Ad
+                    3   parcoursGRD Ad            3   Traiter la racine r
+
+
+Collection - v3.1                                                                  26 / 36
+
+--- PAGE 27 ---
+Les TAD hiérarchiques                       Le TAD Arbre Binaire
+
+      Parcours en profondeur 2 / 2
+     Un exemple
+                                                         a
+
+                                                 b               c
+
+                                      d              e       f
+
+                                             g
+
+
+
+     parcoursRGD a,b,d,g,e,c,f
+     parcoursGRD d,g,b,e,a,f,c
+     parcoursGDR g,d,e,b,f,c,a
+
+     Théorème
+     Il faut au moins deux parcours différents pour reconstruire un arbre
+
+Collection - v3.1                                                                       27 / 36
+
+--- PAGE 28 ---
+Les TAD hiérarchiques                     Le TAD Tas
+
+      TAD Tas 1 / 2
+
+
+
+     Définition
+     Un tas est un arbre binaire tel que :
+             la valeur se trouvant à la racine est plus petite (ou plus grande) que
+             celles contenues dans les sous arbres
+             le nombre d’éléments du sous arbre gauche moins le nombre
+             d’éléments du sous arbre droit vaut 0 ou 1
+             le sous arbre gauche et sous arbre droit sont des tas
+
+
+
+
+Collection - v3.1                                                                 28 / 36
+
+--- PAGE 29 ---
+Les TAD hiérarchiques                                                 Le TAD Tas
+
+      TAD Tas 2 / 2
+
+     Nom:               Tas
+     Paramètre:        Element (∀e1 ∈ Element, e2 ∈ Element, e1 ̸= e2 ⇒ e1 < e2 ou e1 > e2 )
+     Utilise:           Booleen, Naturel
+     Opérations:       tas:                 → Tas
+                        estVide:             Tas → Booleen
+                        estPresent:          Tas × Element → Booleen
+                        nbElements:          Tas → Naturel
+                        inserer:            Tas × Element ↛ Tas
+                        supprimer:          Tas × Element → Tas
+                        obtenirElement:      Tas ↛ Element
+                        obtenirFilsGauche: Tas ↛ Tas
+                        obtenirFilsDroit:   Tas ↛ Tas
+     Axiomes:       -   estVide(tas())
+                    -   non estVide(inserer(t,e))
+                    -   nbElements(inserer(t,e)) = 1 + nbElements(t,e)
+                    -   non estVide(t) et nbElements(obtenirFilsGauche(t))-nbElements(obtenirFilsDroit(t)) ∈ {0, 1}
+                    -   obtenirElement(inserer(t,e)) ≤ e
+                    -   obtenirElement(inserer(t,e))=e ou estPresent(obtenirFilsGauche(inserer(t,e))) ou
+                        estPresent(obtenirFilsDroit(inserer(t,e)))
+                   -    non estPresent(t,e) ⇒ supprimer(t,e) = t
+                   -    estPresent(t,e) ⇒ nbElements(supprimer(t,e)) = nbElements(t) - 1
+                   -    hauteur(obtenirFilsGauche(t)) - hauteur(obtenirFilsDroit(t)) ∈ {0, 1}
+                   -    ...
+                   -    estUnTas(obtenirFilsGauche(t))
+                   -    estUnTas(obtenirFilsDroit(t))
+     Préconditions:    obtenirElement(a): non(estVide(a))
+                        . . .:               ...
+
+
+
+
+Collection - v3.1                                                                                                     29 / 36
+
+--- PAGE 30 ---
+Les TAD hiérarchiques             Le TAD Arbre Binaire de Recherche
+
+      TAD arbres binaires de recherche 1 / 3
+
+     Définition
+     Un arbre binaire de recherche est un arbre binaire tel que :
+             le sous-arbre gauche et le sous-arbre droit sont des arbres binaires de
+             recherche
+             tous les éléments du sous-arbre gauche sont (strictement) plus petits
+             que l’élément de la racine
+             tous les éléments du sous-arbre droit sont strictement plus grands
+             que l’élément de la racine
+
+             Dans la spécification suivante nous prenons le cas où un élément ne
+             peut pas être présent plus d’une fois dans un aBR (tous les éléments
+             du sous-arbre gauche sont strictement plus petits que l’élément de la
+             racine)
+
+
+Collection - v3.1                                                                          30 / 36
+
+--- PAGE 31 ---
+Les TAD hiérarchiques                    Le TAD Arbre Binaire de Recherche
+
+      TAD arbres binaires de recherche 2 / 3
+
+     Nom:            ABR (ArbreBinaireDeRecherche)
+     Paramètre:     Element (∀e1 ∈ Element, e2 ∈ Element, e1 ̸= e2 ⇒ e1 < e2 ou e1 > e2 )
+     Utilise:        Booleen
+     Opérations:    aBR:                → ABR
+                     estVide:            ABR → Booleen
+                     inserer:            ABR × Element ↛ ABR
+                     supprimer:          ABR × Element → ABR
+                     estPresent:         ABR × Element → Booleen
+                     obtenirElement:     ABR ↛ Element
+                     obtenirFilsGauche: ABR ↛ ABR
+                     obtenirFilsDroit:   ABR ↛ ABR
+     Axiomes:      - estVide(aBR())
+                   - non estVide(inserer(a,e))
+                   - obtenirElement(inserer(aBR(), e))=e
+                   - estPresent(inserer(a, e), e)
+                   - non estPresent(supprimer(a, e))
+                   - estPresent(obtenirFilsGauche(a,e)) ⇒ e < obtenirElement(a)
+                   - estPresent(obtenirFilsDroit(a,e)) ⇒ e > obtenirElement(a)
+     Préconditions: obtenirElement(a): non(estVide(a))
+                     . . .:               ...
+
+
+Collection - v3.1                                                                                 31 / 36
+
+--- PAGE 32 ---
+Les TAD hiérarchiques        Le TAD Arbre Binaire de Recherche
+
+      TAD arbres binaires de recherche 3 / 3
+
+
+
+
+     Remarque
+        Suivant les algorithmes qui seront utilisés pour implanter les
+        opérations d’insertion et de suppression (qui auront un impact sur la
+        complexité de l’opération estPrésent), les arbres binaires de
+        recherche peuvent changer de nom (AVL, arbre coloré, etc.)
+
+
+
+
+Collection - v3.1                                                                     32 / 36
+
+--- PAGE 33 ---
+Les TAD hiérarchiques              Le TAD Arbre n-aire
+
+      TAD Arbre n-aire (nommé aussi Arbre tout court) 1 / 2
+
+
+
+     Définition
+     Un arbre n-aire est un arbre avec n fils
+
+                                  A            A
+
+                                                   e
+
+                                             A1 A2 A3    An
+
+
+
+
+Collection - v3.1                                                             33 / 36
+
+--- PAGE 34 ---
+Les TAD hiérarchiques                    Le TAD Arbre n-aire
+
+      TAD Arbre n-aire (nommé aussi Arbre tout court) 2 / 2
+
+
+     Nom:            Arbre
+     Paramètre:     Element
+     Utilise:        Booleen,Liste
+     Opérations:    arbre:            → Arbre
+                     ajouterRacine: Element × Liste<Arbre> → Arbre
+                     estVide:          Arbre → Booleen
+                     obtenirElement: Arbre ↛ Element
+                     obtenirFils:      Arbre ↛ Liste<Arbre>
+     Axiomes:      - estVide(arbre())
+                   - non estVide(ajouterRacine(e,l))
+                   - obtenirElement(ajouterRacine(e,l))=e
+                   - obtenirFils(ajouterRacine(e,l))=l
+     Préconditions: obtenirElement(a): non(estVide(a))
+                     . . .:               ...
+
+
+
+
+Collection - v3.1                                                                   34 / 36
+
+--- PAGE 35 ---
+Conclusion
+
+    Conclusion
+
+
+
+     Analyse - Conception - Développement
+         Dans ce cours nous avons listé un ensemble de TAD collections
+             À partir de maintenant, nous considérerons que l’on possède ces
+             types lors de la conception détaillée
+             Cependant certains langages ne proposent pas des implantations de
+             ces TAD : il faut les développer
+                    Nous allons voir dans les prochains cours comment nous pouvons les
+                    concevoir et les implanter en C
+
+
+
+
+Collection - v3.1                                                                    35 / 36
+
+--- PAGE 36 ---
+Conclusion
+
+    Références. . .
+
+
+
+
+             Cours “Structure de données linéaires” de Christophe Hancart de
+             l’Université de Rouen
+             Conception et Programmation Objet de Bertrand Meyer
+             Eyrolles ISBN : 2-212-09111-7
+
+
+
+
+Collection - v3.1                                                                36 / 36

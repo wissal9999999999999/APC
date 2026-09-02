@@ -1,0 +1,53 @@
+{
+  "esco_version": "1.2.0",
+  "seed": 42,
+  "courses": {
+    "auto": {
+      "isco_codes": [
+        "2144",
+        "2151",
+        "2152",
+        "3113",
+        "3114"
+      ],
+      "occupations": 70,
+      "pairs": 4722
+    },
+    "capt": {
+      "isco_codes": [
+        "2152",
+        "3114",
+        "3115"
+      ],
+      "occupations": 53,
+      "pairs": 3106
+    },
+    "bigdata": {
+      "isco_codes": [
+        "2120",
+        "2511",
+        "2521",
+        "2529"
+      ],
+      "occupations": 42,
+      "pairs": 2829
+    },
+    "ddrs31": {
+      "isco_codes": [
+        "2133",
+        "2143",
+        "3257"
+      ],
+      "occupations": 31,
+      "pairs": 1477
+    }
+  },
+  "splits": {
+    "train": 9638,
+    "validation": 855,
+    "test": 1641
+  },
+  "unique_occupations": 168,
+  "unique_skills": 2402,
+  "pairs": 12134
+}

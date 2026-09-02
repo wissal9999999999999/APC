@@ -1,0 +1,789 @@
+--- PAGE 1 ---
+INSA        Informatique                                     UV Statistiques
+Rouen       Technologie
+Normandie   Information                                          Cours n°1
+
+
+                           UV Statistique pour l'ingénieur
+
+
+                                 Cours n° 1
+
+                                  Introduction
+                           Rappels de probabilités
+                              Variables aléatoires
+     Principales lois discrètes et distributions continues
+
+ A. ROGOZAN – Ph. LERAY                                                    1
+
+--- PAGE 2 ---
+INSA          Informatique                                            UV Statistiques
+Rouen         Technologie
+Normandie     Information                                                 Cours n°1
+
+
+                             Statistique pour l'ingénieur
+ Objectif :
+       Prise en compte de l'aléatoire pour aider à prendre une décision
+       « Comment prévoir en présence du hasard »
+ Domaine d'application :
+           Médecine, qualité, environnement, assurance, jeux, informatique, ...
+ Signification ambigüe du terme :
+       La Statistique = ensemble de méthodes permettant d'analyser
+        (de traiter) des ensembles d'observations (des données)
+       Une statistique = une donnée statistique (exemple : statistique du
+        commerce extérieur français)
+
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                             2
+
+--- PAGE 3 ---
+INSA          Informatique                                                        UV Statistiques
+Rouen         Technologie
+Normandie     Information                                                             Cours n°1
+
+
+                                 Statistique pour l'ingénieur
+ Vocabulaire :
+       Population (limitée ou de très grande taille)
+       Individus appartenant à la population
+       Recensement = Interroger toute la population
+       Sondage = Interroger une partie de la population (un échantillon)
+           Variable = caractéristique définie sur la population
+              quantitative :
+                  Discrète (exemple : age)
+                  continue (exemple : taille)
+
+              qualitative :
+                  Nominale (exemple : couleur des yeux = marron | vert | bleu )
+                  ordinale (exemple : type de voiture = aucune | petite | moyenne | grande )
+
+
+ A. ROGOZAN – Ph. LERAY                                                                         3
+
+--- PAGE 4 ---
+INSA           Informatique                                UV Statistiques
+Rouen          Technologie
+Normandie      Information                                     Cours n°1
+
+
+                                  Démarche statistique
+ Les méthodes statistiques peuvent se séparer (approx.)
+  en deux familles :
+
+
+           Statistique descriptive (ou exploratoire)
+
+           Statistique inférentielle (ou décisionnelle)
+
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                  4
+
+--- PAGE 5 ---
+INSA           Informatique                                                UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                     Cours n°1
+
+
+                                  Démarche statistique
+ Statistique descriptive (ou exploratoire)
+           Rôle :
+              ressortir des propriétés de l'échantillon étudié,
+              suggérer des hypothèses
+
+            Méthodes d'analyse de données :
+              représentation des données
+              classification pour réduire la taille de l'ensemble d'individus
+               (i.e. regrouper ceux qui se ressemblent en « classes »)
+              factorielles pour réduire le nombre de variables
+               (i.e. analyse en composantes principales, analyse de
+               correspondances)
+
+
+ A. ROGOZAN – Ph. LERAY                                                                  5
+
+--- PAGE 6 ---
+INSA           Informatique                                             UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                  Cours n°1
+
+
+                                 Démarche statistique
+ Statistique inférentielle (ou décisionnelle)
+           Rôle :
+              étendre les propriétés constatées sur un échantillon à toute la
+               population
+              Vérifier l'adéquation des hypothèses a priori ou issues d'une
+               phase exploratoire
+
+           Méthodes :
+              estimation d'une moyenne
+              vérification d'une hypothèse (ou test)
+              modélisation et prévision statistique
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                               6
+
+--- PAGE 7 ---
+INSA        Informatique                                UV Statistiques
+Rouen       Technologie
+Normandie   Information                                     Cours n°1
+
+
+                           Rappels de Probabilité
+ Expérience aléatoire :
+  expérience dont le résultat ne peut pas être prévu a priori
+
+ Espace fondamental  : ensemble des résultats possibles
+
+ Événement élémentaire  : élément de l'espace
+  fondamental
+
+ Événement aléatoire () pouvant être VRAI ou FAUX
+  suivant le résultat de l'expérience aléatoire
+
+
+
+ A. ROGOZAN – Ph. LERAY                                               7
+
+--- PAGE 8 ---
+INSA            Informatique                                                 UV Statistiques
+Rouen           Technologie
+Normandie       Information                                                      Cours n°1
+
+
+                                        Rappels de probabilité
+   Liens entre ensembles et probabilités
+                         point de                  événement élémentaire
+            A             sous-ensemble de          événement aléatoire
+        ∈ A              appartient à A            réalise A
+        A⊂B               A est contenu dans B       A implique B
+        A∪B               réunion de A et B          A ou B
+        A∩B               intersection de A et B     A et B
+            A             complémentaire de A        contraire de A
+            Ø            ensemble vide               événement impossible
+                        ensemble plein             événement certain
+     A∩B= A et B disjoints                          A et B incompatibles
+
+ A. ROGOZAN – Ph. LERAY                                                                    8
+
+--- PAGE 9 ---
+INSA         Informatique                                     UV Statistiques
+Rouen        Technologie
+Normandie    Information                                          Cours n°1
+
+
+                             Rappels de probabilité
+ A1,...,An est un système complet d'événements ,
+      si les parties A1,...,An de Ω constituent une partition de Ω
+            (par exemple A et A forment un système complet)
+
+
+ A est une tribu sur Ω
+    si c'est un ensemble de parties de Ω
+    stable par intersection et par union et dénombrable
+
+ (Ω, A) est un espace probabilisable,
+      avec A est une tribu de parties de Ω
+
+ A. ROGOZAN – Ph. LERAY                                                     9
+
+--- PAGE 10 ---
+INSA            Informatique                                              UV Statistiques
+Rouen           Technologie
+Normandie       Information                                                   Cours n°1
+
+
+                                  Rappels de probabilité
+ Définition d'une loi de probabilité sur (,A) :
+    C'est une application P : A -> [0, 1] telle que
+      
+
+
+                  P =1
+                  P ∪ Ai =∑ P  Ai  , pour tout ensemble dénombrable
+                             i∈I
+                                         d'événements incompatibles A1,...,An
+
+ (Ω, A, P) est un espace probabilisé
+ Propriétés :                   P =0
+                                 P  A=1−P  A
+                                 P  AP  B si A⊂B
+                                 P  A∪B=P  AP  B−P  A∩B
+                                 P ∪ Ai ∑ P  Ai 
+ A. ROGOZAN – Ph. LERAY          0 P  Ai 1                                         10
+
+--- PAGE 11 ---
+INSA          Informatique                                          UV Statistiques
+Rouen         Technologie
+Normandie     Information                                               Cours n°1
+
+
+                              Rappels de probabilité
+ Probabilité conditionnelle                                 P  A∩B
+                                                   P  A∣B=
+  de l'événement A sachant B :                                 P  B
+ Indépendance de 2 événements A et B :            P  A∩B=P  A P  B
+                                                   P  A∣B=P  A
+                                                   P  B∣A=P  B
+
+ Indépendance mutuelle des événements : P ∩ Ai =∏ P  Ai 
+                                                              i∈I
+           Indépendance 2 à 2 des événements,
+            mais la réciproque est fausse !
+
+ Théorème de Bayes                                          P  B∣A P  A
+    pour 2 événements A et B quelconques :         P  A∣B=
+                                                                  P  B
+ A. ROGOZAN – Ph. LERAY                                                          11
+
+--- PAGE 12 ---
+INSA          Informatique                                        UV Statistiques
+Rouen         Technologie
+Normandie     Information                                             Cours n°1
+
+
+                             Conditionnement et indépendance
+ Exemple :
+   La législation de la marijuana aux USA
+                                                               Pour Contre
+                                                         Est   0.078 0.222
+       P(Est)=0.300                                     Autre 0.182 0.518
+       P(Autres)=0.700
+
+
+
+           P(Pour)=0.260
+      
+            P(Pour|Est) = P(PourEst) / P(Est) = 0.078 / 0.300 = 0.260
+             Pour et Est sont deux événements indépendants
+
+
+ A. ROGOZAN – Ph. LERAY                                                        12
+
+--- PAGE 13 ---
+INSA           Informatique                                      UV Statistiques
+Rouen          Technologie
+Normandie      Information                                           Cours n°1
+
+
+                                 Variables aléatoires
+ Variable aléatoire :
+     application (fonction) mesurable X : (Ω, A , P)  (Ω', A' )
+     telle queA'A', X-1(A') A
+
+
+ Classification :
+      
+            Variable aléatoire réelle si '
+      
+            Variable aléatoire discrète réelle si '=V,
+            où V est un sous-ensemble fini ou dénombrable de 
+ Remarque:
+           ne pas confondre une variable aléatoire, notée X,
+             avec la valeur prise par cette variable, notée x.
+
+
+ A. ROGOZAN – Ph. LERAY                                                       13
+
+--- PAGE 14 ---
+INSA        Informatique                                              UV Statistiques
+Rouen       Technologie
+Normandie   Information                                                   Cours n°1
+
+
+                                Variables aléatoires
+ Expérience  = tirer une carte...
+
+     Ω= {A§, 2§, ... ,R§,A¨, 2¨, ... ,R¨,A, 2, ... ,R,A, 2, ... ,R}
+
+ Exemple de variables aléatoires:
+  
+    H() = vrai si  est un       ,faux sinon                 Ω'={vrai, faux}
+  
+    N() = n    si  est un n       , 0 sinon                    Ω'={0, 1, ...10}
+  
+    F() = 1    si est une figure , 0 sinon                    Ω'={0, 1}
+                           Ω                 Ω'
+                                       H       ω'
+
+                                ω
+ A. ROGOZAN – Ph. LERAY                                                            14
+
+--- PAGE 15 ---
+INSA           Informatique                                                 UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                      Cours n°1
+
+
+                                       Variables aléatoires
+ Loi de probabilité de la variable aléatoire X :
+      mesure image de P par X
+                              P X  B=P  {∈∣X ∈B }=P  X −1  B
+
+
+ Notations :
+           P  X ∈B pour P X  B
+      
+            P  X  x pour P  X ∈ ]−∞ , x ] 
+
+
+ Exemple :
+   P(H = vrai) = ?
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                                  15
+
+--- PAGE 16 ---
+INSA              Informatique                                              UV Statistiques
+Rouen             Technologie
+Normandie         Information                                                   Cours n°1
+
+
+                                       Variable aléatoire discrète
+ Loi d'une variable aléatoire discrète X :
+                                 p  x= P  { ; X = x } pour x∈V
+                                 X
+
+
+
+ Propriétés :
+      
+            0  p x1, pour tout x∈V
+      
+            ∑ p  x=1
+            x∈V
+           Valeur de la probabilité de toute partie de V : P  X ∈ A= ∑ p  x
+                                                                         x∈ A
+
+
+ Exemple :
+   P(N) = ?
+
+
+ A. ROGOZAN – Ph. LERAY                                                                  16
+
+--- PAGE 17 ---
+INSA            Informatique                                                         UV Statistiques
+Rouen           Technologie
+Normandie       Information                                                              Cours n°1
+
+
+                                      Variable aléatoire continue
+ Densité de probabilité d'une variable aléatoire continue X : f(x)
+                                                                                              X
+
+                               P  X ∈ I =∫ f  x dx pour tout intervalle I de ℝ
+                                           I
+
+ Propriétés :
+      
+             fX x0 , pour tout x
+      
+            ∫ fX x dx=1
+            ℝ
+           Valeur approx. de la probabilité : P  x X  x x= f  x xo x
+
+ Remarque : la densité de probabilité f(x) peut être supérieure à 1
+    (contrairement à la probabilité p(x))
+
+
+ A. ROGOZAN – Ph. LERAY                                                                           17
+
+--- PAGE 18 ---
+INSA           Informatique                                                 UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                      Cours n°1
+
+
+                                     Variables aléatoires
+ Fonction de répartition d'une variable aléatoire réelle X :
+                        F :ℝ [0,1] définie par ∀ x∈ℝ , F  x=P  X  x
+                                                         X
+
+ Propriétés :                              x
+           si X est continue : FX x= ∫ f t  dt      F’(x)=f(x)
+                                          −∞
+                                                X
+           F est une fonction croissante, continue à gauche
+           lim F  x=0        lim F  x=1
+            x −∞                   x ∞
+
+            P a X b=F b−F a
+                                X     X
+              P(X>x)=1-F(x)
+
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                                  18
+
+--- PAGE 19 ---
+INSA        Informatique                                                                UV Statistiques
+Rouen       Technologie
+Normandie   Information                                                                     Cours n°1
+
+
+                           Variables aléatoires
+
+                                                                             0.4
+
+
+ Exemple de densité de
+
+
+
+
+                                            f(x) : fonction densitée
+                                                                             0.3
+
+  probabilité                                                                0.2
+
+
+                                                                             0.1
+
+
+                                                                              0
+                                                                               -5   0     5
+
+
+
+                                                                              1
+
+
+
+
+                                            F(x) : fonction de répartition
+                                                                             0.8
+
+ Exemple de fonction                                                        0.6
+
+  de répartition                                                             0.4
+
+
+                                                                             0.2
+
+
+                                                                              0
+                                                                               -5   0     5
+                                                                                    x
+
+ A. ROGOZAN – Ph. LERAY                                                                              19
+
+--- PAGE 20 ---
+INSA           Informatique                                                                    UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                                         Cours n°1
+
+
+                              Fonction d'une variable aléatoire
+ Loi d'une fonction d'une variable aléatoire réelle Y = X 
+           Variable aléatoire discrète
+                                P Y =a=      ∑          P  X = x=      ∑          p  x
+                                            {x∣ x=a}                 {x∣ x=a}
+
+
+           Variable aléatoire continue
+            Supposons
+            - X continue avec une densité f et une fonction de répartition F
+            -  dérivable
+            Si  bijective et strictement croissante
+                                                                    −1                  −1
+                               P Y  y=P  X  y=P  X   y=F   y
+                                                                                  X
+            Si  bijective et strictement décroissante
+                               P Y  y=1−F −1  y
+                                              X
+ A. ROGOZAN – Ph. LERAY                                                                                     20
+
+--- PAGE 21 ---
+INSA        Informatique                                        UV Statistiques
+Rouen       Technologie
+Normandie   Information                                             Cours n°1
+
+
+                           Moments des variables aléatoires
+ Espérance mathématique d'une variable aléatoire discrète :
+                            E  X = ∑ xP  X = x= ∑ xp  x
+                                   x∈V                 x∈V
+
+
+
+ Espérance math. d'une variable aléatoire continue :
+                               E  X =∫ xf  x dx
+                                              X
+                                         ℝ
+
+
+    Espérance math. d'une fonction d'une variable aléatoire :
+                            E  X =∫  x f  x dx
+                                                   X
+                                         ℝ
+
+
+                            E(X^2)=?         E(XY)=?
+
+ A. ROGOZAN – Ph. LERAY                                                      21
+
+--- PAGE 22 ---
+INSA           Informatique                                                           UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                                Cours n°1
+
+
+                                 Moments des variables aléatoires
+ Remarques sur l'Espérance Mathématique :
+           L'espérance peut ne pas exister !!!
+           Valeur de l'espérance mathématique issue d'un calcul :
+              ponctuel pour f connue
+              théorique pour f inconnue !!!
+ Propriétés :
+                              E a=a
+                              E aX =aE  X 
+                              E aX bY =aE  X bE Y 
+                              E  XY =E  X  E Y  si X et Y v. a. indépendantes
+
+ A. ROGOZAN – Ph. LERAY                                                                            22
+
+--- PAGE 23 ---
+INSA        Informatique                                                 UV Statistiques
+Rouen       Technologie
+Normandie   Information                                                      Cours n°1
+
+
+                           Moments des variables aléatoires
+                                                     2                     2
+ Variance d'une variable aléatoire :    var  X =X
+                                                       =E   [ X −E  X  ]  
+     où  est l'écart type de la v. a. X var  X =E  X 2 − E  X 2
+
+ Propriétés :
+             E  X −a2 =var  X  E  X −a2  Konig −Huyghens
+             var  X a=var  X 
+                            2
+             var aX =a var  X 
+             var  X =0 ⇔ X =a  presque sûrement 
+                                    1
+              P ∣X −E  X ∣k   2
+                                    k
+             var  X Y =var  X var Y 2 cov  X ,Y 
+             cov  X ,Y =E  XY −E  X  E Y =E  X −E  X Y −E Y 
+             var  X Y =var  X var Y  si X et Y v. a. indépendantes
+ A. ROGOZAN – Ph. LERAY                                                               23
+
+--- PAGE 24 ---
+INSA           Informatique                                               UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                    Cours n°1
+
+
+                              Moments des variables aléatoires
+ Moment centré d'ordre k:                                         k
+                                               k =E [ X −E  X ] 
+
+           1=0 et 2=var  X 
+           Pour une loi symétrique: 2 k 1=0 ∀ k
+
+
+ Moment non-centré d'ordre k:                  mk =E  X k 
+
+ Remarques :
+           Variance Var(X) = moment centré d'ordre 2
+           Espérance E(X) = moment non-centré d'ordre 1
+       Coefficient d'asymétrie :         Coefficient d'aplatissement :
+        skewness            3                   kurtosis       4
+                        1 = 3                             2= 4
+ A. ROGOZAN – Ph. LERAY
+                                                                                     24
+
+--- PAGE 25 ---
+INSA           Informatique                                              UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                   Cours n°1
+
+
+                          Principales lois DISCRETES de probabilité
+ Loi uniforme U(n)
+    loi d'une v. a. X prenant les valeurs 1, 2,...,n avec la même probabilité
+                                             1
+                              P  X = x =     ∀ x ∈V = {1,2 ,  , n }
+                                             n
+
+
+ Moments :
+                                       n1                         2
+                                                                  n −1
+                              E  X =                 Var  X =
+                                        2                          12
+
+ Exemple :
+           Réalisation d'un nombre (entre 1 et 6) après avoir jeté un dé
+
+
+
+ A. ROGOZAN – Ph. LERAY                                                               25
+
+--- PAGE 26 ---
+INSA           Informatique                                            UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                 Cours n°1
+
+
+                          Principales lois DISCRETES de probabilité
+ Loi de Bernoulli B(1, p)
+    loi d'une v. a. X ne pouvant prendre que 2 valeurs 1 et 0 avec les
+    probabilités p et 1-p
+                                              x      1−x
+                                 P  X = x= p 1− p
+
+
+ Moments :
+                                 E  X = p    Var  X = p1− p
+
+
+ Exemple :
+           Réalisation de pile (ou face) après avoir jeté une pièce
+
+
+ A. ROGOZAN – Ph. LERAY                                                             26
+
+--- PAGE 27 ---
+INSA           Informatique                                                         UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                              Cours n°1
+
+
+                          Principales lois DISCRETES de probabilité
+ Loi binomiale B(n, p)
+    Répétition de l'expérience de Bernouilli n fois,
+    X est la somme des résultats des expériences X ∈{0 n}
+                                                   x   x        n−x
+                                      P  X = x=C n p 1− p
+
+ Moments :
+                                   E  X =np      Var  X =np1− p
+ Propriétés :
+            Si n grand (n>50) alors
+                                        {   B(n, p)  P(=np)         si p petit (p<0.1)
+      
+
+
+                                            B(n, p)  N(, )         sinon
+
+           X1 ~ B(n1, p) et X2 ~ B(n2, p) v.a. indépendantes  X1+X2 ~ B(n1+n2, p)
+
+ Exemple : nombre de réalisations de pile après n essais
+ A. ROGOZAN – Ph. LERAY                                                                          27
+
+--- PAGE 28 ---
+INSA           Informatique                                                  UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                       Cours n°1
+
+
+                          Principales lois DISCRETES de probabilité
+ Loi de Poisson P()
+                                                     x
+                                                   
+                                     P  X = x=e− ∀ x∈ℕ
+                                                   x!
+ Moments :
+                                    E  X =      Var  X =
+
+ Propriétés :
+    Si  grand alors P()  N(, )Texte
+      
+
+
+           X1 ~ P() et X2 ~ P() v.a. indépendantes  X1+X2 ~ P(+)
+
+ Exemples :
+       nombre de personnes à la queue du bus après un intervalle de temps
+       Nombre d'appels téléphoniques pendant un intervalle de temps
+ A. ROGOZAN – Ph. LERAY                                                                   28
+
+--- PAGE 29 ---
+INSA           Informatique                                                      UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                           Cours n°1
+
+
+                              Distributions CONTINUES usuelles
+
+ Loi uniforme U[0, a] sur [0,a] :
+      Densité :                            Fonction de répartition :
+
+                    {               }            {                           }
+                    1                                     x
+                                                            sur [0, a ]
+            f  x= a sur [0, a ]          F  x=        a
+                    0 ailleurs                     0 sur −∞ ,0et a ,∞
+                                                     1 si x>a
+ Moments :
+                                       a                        a2
+                              E  X =               Var  X =
+                                       2                        12
+ Remarque :
+           La somme de 2 lois uniformes n'est pas une loi uniforme !!!
+
+ A. ROGOZAN – Ph. LERAY                                                                       29
+
+--- PAGE 30 ---
+INSA          Informatique                                                UV Statistiques
+Rouen         Technologie
+Normandie     Information                                                     Cours n°1
+
+
+                             Distributions CONTINUES usuelles
+ Loi exponentielle E() :
+            Densité :                         Fonction de répartition :
+             f  x= e− x si x0                 F  x=1−e
+                                                                − x
+
+
+
+
+ Moments :                               1              1
+                                 E  X =      Var  X = 2
+                                                        
+
+ Exemples :
+       Temps d'attente à la queue du bus
+       Durée de vie d'un composant électrique
+
+ A. ROGOZAN – Ph. LERAY                                                                30
+
+--- PAGE 31 ---
+INSA           Informatique                                                   UV Statistiques
+Rouen          Technologie
+Normandie      Information                                                        Cours n°1
+
+
+                              Distributions CONTINUES usuelles
+ Loi normale N(, 2)
+                                                                  2
+                                                        1 x−
+             Densité :                       1         − 
+                                                        2 
+                                                              
+                                f  x=                e              ∀ x∈ℝ
+                                           2    2
+
+
+
+ Moments :                      E  X =                 V  X = 2
+ Propriété :
+           X1 ~ N(, 2) et X2 ~ N(, 2) v. a. Indépendantes
+                                                        -        -       -
+                                                   X1+X2 ~ N(, 2+2)
+
+ Exemple :
+       Variation du diamètre d'une pièce ;
+       Répartition des erreurs de mesure autour de la « vraie valeur »
+ A. ROGOZAN – Ph. LERAY                                                                    31

@@ -1,0 +1,643 @@
+--- PAGE 1 ---
+INSA          Informatique                                     UV Statistique
+Rouen         Technologie
+Normandie     Information                                      Cours n°11-12
+
+
+                             UV Statistique pour l'Ingénieur
+
+
+
+
+                                   Cours n° 11-12
+
+                      Tests séquentiels vs. non séquentiels
+                       Comparaison de deux échantillons
+                              Test d'adéquation, ...
+
+
+ Ph. LERAY - A. ROGOZAN                                                     1
+
+--- PAGE 2 ---
+INSA           Informatique                                            UV Statistique
+Rouen          Technologie
+Normandie      Information                                             Cours n°11-12
+
+
+                 Tests séquentiels vs tests non-séquentiels
+• Exemple :
+           « Soit un nouveau lot de pièces d'une société qui a toujours donné
+            satisfaction jusque là. Allons-nous accepter ce lot de nouveau, ou
+            bien le rejeter ? »
+• Test Non-Séquentiel :
+    Tirer du lot un échantillon de taille n fixée a priori.
+
+    En notant p la proportion de défectueux, se pose le pb. de
+
+     faire le test suivant avec α (erreur grave) fixé :
+
+
+               {       H 0 : p= p 0  HS 
+                 H 1 : p= p1  p1 p 0  HS    }
+             • Nb : utilisation d'une v.a. X~B(n, p) où n fixé a priori
+ Ph. LERAY - A. ROGOZAN                                                             2
+
+--- PAGE 3 ---
+INSA           Informatique                                            UV Statistique
+Rouen          Technologie
+Normandie      Information                                             Cours n°11-12
+
+
+                 Tests séquentiels vs tests non-séquentiels
+• Exemple :
+           « Soit un nouveau lot de pièces d'une société qui a toujours donné
+            satisfaction jusque là. Allons-nous accepter ce lot de nouveau, ou
+            bien le rejeter ? »
+• Test Séquentiel : (pour économiser des analyses )
+       Tirer du lot une pièce
+       Regarder si la pièce tirée est bonne ou défectueuse
+       Décider :
+             - soit d'accepter le lot (accepter H0)
+             - soit de refuser le lot (rejeter H0)
+                  - soit de tirer une nouvelle pièce (n←n+1)
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                             3
+
+--- PAGE 4 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                       Cours n°11-12
+
+
+                Tests séquentiels vs tests non-séquentiels
+• Exemple :
+       Traitement séquentiel des signaux RADAR pour détecter les cibles
+        ennemies.
+       Taille d'échantillon = Temps d'observation/Période d'acquisition
+       « cible mobile amie (H0) ; cible mobile ennemie (H1) »
+• Test Séquentiel :
+       Détecter une cible mobile
+       Regarder si la cible est amie ou ennemie
+       Décider :
+         - soit de protéger la cible (accepter H0)
+         - soit de détruire la cible (rejeter H0)
+         - soit de continuer à l'observer (t←t+1)
+
+
+ Ph. LERAY - A. ROGOZAN                                                      4
+
+--- PAGE 5 ---
+INSA          Informatique                                                             UV Statistique
+Rouen         Technologie
+Normandie     Information                                                              Cours n°11-12
+
+
+                             Tests séquentiels (Wald, 1943)
+• Exemple :
+           en notant p la proportion de défectueux, faire le test suivant
+            avec α (risque de 1ère espèce) et β (risque de 2ème espèce)
+            fixés :
+                               {      H 0 : p= p 0  HS 
+                                H 1 : p= p1  p1 p0  HS    }
+           sachant que Xi~B(1,p) , tirer la i-ème pièce et calculer :
+                                        L X i , p1          p1            1− p1 
+                                Z i =ln               = X i ln 1− X i ln
+                                        L X i , p0          p0            1− p0 
+
+
+
+
+                                        {                                                 }
+                                                                1
+           règle de décision :             Si Z 1Z 2Z n ln   alors rejeter le lot
+                                                                
+                                          Si Z 1Z 2Z n ln  alors accepter le lot
+ Ph. LERAY - A. ROGOZAN                           Sinon tirer une autre pièce                       5
+
+--- PAGE 6 ---
+INSA          Informatique                                                               UV Statistique
+Rouen         Technologie
+Normandie     Information                                                                Cours n°11-12
+
+
+                               Tests séquentiels (Wald, 1943)
+• Illustration du critère de décision séquentiel :
+                                              L  X 1 , , X n ; p 1 
+                             Z 1 Z n =ln
+                                              L  X 1 , , X n ; p 0 
+                                                                             Arrêt de l'analyse
+                 1 Seuil de rejet                                            « Rejet du lot »
+            ln
+                 
+
+
+
+
+                        1       2     ......                             ......     Taille n* de
+                      Seuil d'acceptation                                          l'échantillon
+            ln 
+
+ Ph. LERAY - A. ROGOZAN                                                                               6
+
+--- PAGE 7 ---
+INSA          Informatique                                            UV Statistique
+Rouen         Technologie
+Normandie     Information                                             Cours n°11-12
+
+
+                             Comparaison de deux échantillons
+• Problème : Comparer le comportement de 2 (ou plusieurs)
+    populations vis à vis d'un certain phénomène mesurable
+• Méthode :
+       Associer à chaque population une v.a.
+       Tirer un échantillon de chacune des populations
+       Déterminer (à partir des échantillons tirés) si les v.a. ont la même
+        distribution
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                            7
+
+--- PAGE 8 ---
+INSA           Informatique                                              UV Statistique
+Rouen          Technologie
+Normandie      Information                                               Cours n°11-12
+
+                             Classification des méthodes
+                          de comparaison de deux échantillons
+• Échantillons non-appariés
+           Cas des échantillons gaussiens :
+             1) Test de Fisher (d'égalité des variances)
+                 Si réussite :
+                    2) Test de Student (d'égalité des moyennes)
+                         Si échec : échantillons issus de distributions différentes
+           Cas des échantillons issus des distributions inconnues :
+                Test non-paramétrique de Wilcoxon (de rang)
+
+• Échantillons appariés
+           Test non-paramétrique du signe
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                               8
+
+--- PAGE 9 ---
+INSA          Informatique                                                          UV Statistique
+Rouen         Technologie
+Normandie     Information                                                           Cours n°11-12
+
+
+                                          Loi de Fisher
+• Si des v.a. V1 et V2 indépendantes et de loi de probabilités
+                                     V1
+     2              2
+    p1 et         p2       alors
+                                     p1
+                                        ~F p , p (loi de Fisher à p1et p2 degrés de liberté)
+                                     V2      1   2
+
+
+
+                                     p2
+
+
+                                                                           1
+           Propriété des fractiles :                f p , p ; =
+                                                        1   2
+                                                                    f p , p ;1−
+                                                                       2       1
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                          9
+
+--- PAGE 10 ---
+INSA          Informatique                                                   UV Statistique
+Rouen         Technologie
+Normandie     Information                                                    Cours n°11-12
+
+
+                    Test de Fisher (d'égalité des variances)
+• Comparaison de 2 échantillons gaussiens :
+  X1, ...,Xn avec X~N(µX,σ2X) et Y1, ...,Ym avec Y~N(µY,σ2Y)
+
+
+                             {                   }
+                          2      2
+• Test bilatéral : H 0 : X = Y  HC 
+                   H 1 : 2X ≠ Y2  HC 
+                                                                               ∗2
+                                                                             SX
+           Variables de décision : S ∗2   2
+                                      X ~ n−1 ,         S ~
+                                                             ∗2
+                                                             Y
+                                                                  2
+                                                                  m−1   et     ∗2
+                                                                             SY
+
+           Fonction pivotale sous H0 suit une loi de Fisher :
+                                          ∗2
+                                      SX
+                                          ∗2
+                                               ~F n−1, m−1
+ Ph. LERAY - A. ROGOZAN
+                                      S   Y                                              10
+
+--- PAGE 11 ---
+INSA          Informatique                                                        UV Statistique
+Rouen         Technologie
+Normandie     Information                                                         Cours n°11-12
+
+
+                    Test de Fisher (d'égalité des variances)
+• Comparaison de 2 échantillons gaussiens :
+  X1, ...,Xn avec X~N(µX,σ2X) et Y1, ...,Ym avec Y~N(µY,σ2Y)
+
+                             {                     }
+                                     2        2
+                             H 0 : =  HC 
+                                     X        Y
+• Test bilatéral :                   2        2
+                             H 1 : ≠  HC 
+                                     X        Y
+                                          ∗2           ∗2
+                                         SX        SX
+       Région critique : W ={ ∗2  A}∪{ ∗2 B}avec A1B
+                                SY        SY
+       Seuils = fractiles de la loi de Fisher
+
+
+                             A= f                      B= f                  
+                                    n−1, m−1 ;                 n−1, m−1 ;1−
+                                               2                              2
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                       11
+
+--- PAGE 12 ---
+INSA          Informatique                                                                UV Statistique
+Rouen         Technologie
+Normandie     Information                                                                 Cours n°11-12
+
+
+                    Test de Fisher (d'égalité des variances)
+• Comparaison de 2 échantillons gaussiens :
+  X1, ...,Xn avec X~N(µX,σ2X) et Y1, ...,Ym avec Y~N(µY,σ2Y)
+
+
+                             {                                                }
+                                               2     2
+                             H 0 : X = Y  HC 
+• Test unilatéral :        2     2         2     2
+                    H 1 : X  Y resp. X  Y  HC 
+                                     ∗2                                 ∗2
+                                 SX                                 SX
+           Région critique :        ∗2
+                                           f n−1, m−1 ;  resp.       ∗2
+                                                                              f n−1, m−1 ;1− 
+                                 S   Y                              S   Y
+
+
+                                             Fractiles de la loi de Fisher
+
+
+ Ph. LERAY - A. ROGOZAN                                                                               12
+
+--- PAGE 13 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                       Cours n°11-12
+
+            Estimation sur deux populations gaussiennes
+                          de même variance
+• Si le test de Fisher réussit ... comment bien estimer σ2 ?
+• Soit 2 échantillons non-appariés gaussiens de même variance
+  inconnue :
+   X1, ...,Xn avec X~N(µX,σ2) et Y1, ...,Ym avec Y~N(µY,σ2)
+
+• Montrer que :
+                           1
+                          ∗2            ∗2         ∗2
+                      S =      {n−1 S X m−1 S Y } où   N =nm
+                          N −2
+    est un estimateur sans biais de la variance σ2.
+
+ Ph. LERAY - A. ROGOZAN                                                     13
+
+--- PAGE 14 ---
+INSA          Informatique                                  UV Statistique
+Rouen         Technologie
+Normandie     Information                                   Cours n°11-12
+
+
+                 Test de Student (d'égalité des moyennes)
+• Soit 2 échantillons gaussiens de même variance inconnue :
+  X1, ...,Xn avec X~N(µX,σ2) et Y1, ...,Ym avec Y~N(µY,σ2)
+
+• Test bilatéral :
+                             {
+                             H 0 : X =Y  HC 
+                             H 1 : X ≠Y  HC    }
+       Variables de décision : X ,Y et X −Y
+
+       Fonction pivotale sous H0 suit une loi de Student     (N=n+m)
+                                         X −Y
+                                                ~ N −2
+
+ Ph. LERAY - A. ROGOZAN
+                                      S
+                                         
+                                        ∗ 1
+                                            
+                                           n m
+                                              1
+                                                                        14
+
+--- PAGE 15 ---
+INSA          Informatique                                                     UV Statistique
+Rouen         Technologie
+Normandie     Information                                                      Cours n°11-12
+
+
+                 Test de Student (d'égalité des moyennes)
+• Soit 2 échantillons gaussiens de même variance inconnue :
+  X1, ...,Xn avec X~N(µX,σ2) et Y1, ...,Ym avec Y~N(µY,σ2)
+
+
+                             {
+• Test bilatéral : H 0 : X =Y  HC 
+                   H 1 : X ≠Y  HC           }
+                                                      Fractiles de la loi de Student
+      
+            Région critique avec N=n+m :
+
+                                           X −Y                      X −Y
+                                 W ={             t          }∪{           t           }
+
+
+                                                                    
+                                                            
+                                          ∗ 1   1                   ∗ 1   1
+                                                     N −2 ;                    N −2 ; 1−
+                                                            2                            2
+                                        S                        S     
+                                             n m                       n m
+
+ Ph. LERAY - A. ROGOZAN                                                                    15
+
+--- PAGE 16 ---
+INSA          Informatique                                                    UV Statistique
+Rouen         Technologie
+Normandie     Information                                                     Cours n°11-12
+
+
+             Test non-paramétrique de Wilcoxon (de rang)
+• Comparaison de 2 échantillons X 1, ...,Xn et Y1, ...,Ym
+  de lois de probabilités X et Y inconnues :
+• Test unilatéral :
+                             {              H 0 : F X =F Y
+                              H 1 : F X F Y ou F X F Y ou F X ≠F Y    }
+              FX > FY => v.a. X stochastiquement < v.a Y
+
+           Ordonner de manière croissante le mélange des deux
+            échantillons :  Y(1)< X(2)< Y(3)<...Y(i)<...<X(n+m)
+             • rang des Y    1          3       i
+             • rang des X         2                       n+m
+           Variable de décision : W X =∑ rangs des X 
+ Ph. LERAY - A. ROGOZAN                                                                   16
+
+--- PAGE 17 ---
+INSA          Informatique                                                   UV Statistique
+Rouen         Technologie
+Normandie     Information                                                    Cours n°11-12
+
+
+             Test non-paramétrique de Wilcoxon (de rang)
+• Comparaison de 2 échantillons X 1, ...,Xn et Y1, ...,Ym
+  de lois de probabilités X et Y inconnues :
+• Test unilatéral :
+                             {             H 0 : F X =F Y
+                             H 1 : F X F Y ou F X F Y ou F X ≠F Y    }
+           Variable de décision : W X =∑ rangs des X 
+
+           Fonction pivotale sous H0 suit asympt. une loi normale :
+                                                    nnm1 2 nmnm1
+                                      W X  N W =         , W =       
+                                                        2          12
+
+ Ph. LERAY - A. ROGOZAN                                                                  17
+
+--- PAGE 18 ---
+INSA           Informatique                                                         UV Statistique
+Rouen          Technologie
+Normandie      Information                                                          Cours n°11-12
+
+
+              Test non-paramétrique de Wilcoxon (de rang)
+• Comparaison de 2 échantillons X 1, ...,Xn et Y1, ...,Ym
+  de lois de probabilités X et Y inconnues :
+• Test unilatéral :
+                                {
+                                H 0 : F X =F Y
+                                H 1 : F X F Y
+                                       X<Y
+                                                 }
+                                                                
+           Région critique :            nnm1       nmnm1
+                                    W X          −n1−
+                                             2              12
+                                                     Fractiles de la loi normale centrée réduite
+
+           Remarque : Si rangs égaux, attribuer à chacun un rang moyen.
+
+ Ph. LERAY - A. ROGOZAN                                                                         18
+
+--- PAGE 19 ---
+INSA          Informatique                                       UV Statistique
+Rouen         Technologie
+Normandie     Information                                        Cours n°11-12
+
+
+                             Test du signe (Arbutnott, 1710)
+• Comparaison de 2 échantillons appariés (X1,Y1)...(Xn,Yn)
+  de lois de probabilités X et Y inconnues
+
+• Variable de décision = différence des v.a. D = Y -X
+
+      
+            Statistique Z = nb. de fois où D > 0 => Z∼B(n,p)
+
+
+
+                   {                            }
+                                         1
+                                H 0 : p=
+                                         2
+                              1          1 1
+                      H 1 : p ou p ou p≠ 
+                              2         2, 2
+
+           Fonction pivotale sous H0 suit une loi Binomiale :
+                                          Z ~Bn , p=0,5
+ Ph. LERAY - A. ROGOZAN                                                      19
+
+--- PAGE 20 ---
+INSA           Informatique                                                       UV Statistique
+Rouen          Technologie
+Normandie      Information                                                        Cours n°11-12
+
+
+                              Test du signe (Arbutnott, 1710)
+• Comparaison de 2 échantillons appariés (X1,Y1)...(Xn,Yn)
+  de lois de probabilités X et Y inconnues
+
+
+                                                                         { }
+                                                                                      1
+                                                                             H 0 : p=
+• Variable de décision : Z = nb. de fois où D > 0                                     2
+                                                                                      1
+                                                                             H 1 : p
+                                                                                      2
+           Région critique : Z b n , p=0,5 ; 1−
+                                              Fractile de la loi binomiale
+
+
+
+           Remarque : en cas de valeurs égales, supprimer les
+            couples correspondant à ces égalités
+ Ph. LERAY - A. ROGOZAN                                                                       20
+
+--- PAGE 21 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                       Cours n°11-12
+
+
+                    Test d'adéquation (non-paramétriques)
+• Vérifier à partir d'un échantillon X1, ...,Xn si une v.a. suit ou
+  non une certaine loi de probabilité :
+
+                                 {
+                                H 0 : X ~Loi
+                          H 1 : X ne suit pas Loi }
+                             2
+           Test du  : distance entre la fréquence théorique et la
+            fréquence observée
+           Test de Kolmogorov-Smirnov : distance entre la fonction de
+            répartition empirique et la fonction de répartition théorique
+           Test de normalité : droite de Henry
+ Ph. LERAY - A. ROGOZAN
+                                     Tests à très faible puissance !!!      21
+
+--- PAGE 22 ---
+INSA          Informatique                                                  UV Statistique
+Rouen         Technologie
+Normandie     Information                                                   Cours n°11-12
+
+                                                         2
+                                          Test du 
+• Objectif : Vérifier à partir d'un échantillon X1, ...,Xn si une v.a.
+  suit ou non une certaine loi de probabilité
+
+           répartir les valeurs possibles de la v.a. X en K classes ;
+            (classes de probabilité à priori pk)
+
+           associer à un échantillon de taille n, un v.a. (N1,...,NK), où
+            Nk est le nombre de fois où la valeur k a été observée
+
+
+                             {   H 0 :les paramètres sont les p k
+                             H 1 : les paramètres ne sont pas les p k   }
+ Ph. LERAY - A. ROGOZAN                                                                 22
+
+--- PAGE 23 ---
+INSA          Informatique                                                 UV Statistique
+Rouen         Technologie
+Normandie     Information                                                  Cours n°11-12
+
+                                                     2
+                                         Test du 
+• Variable de décision : distance entre l'effectif théorique n*pk et
+  l'effectif observé Nk
+                    K            2
+                      N −np                 Si effectifs théoriques n*pk> 5
+            D 2=∑ k           k
+
+                k =1     np k                 sinon regrouper des classes !!!
+
+                                                                2    2
+           Fonction pivotale sous H0 suit une loi de chi 2 : D   ~ K −1
+
+                                              Fractile de la loi de chi2
+                                     2   2    2
+           Région critique : D  A => D    K −1 ;1−
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                23
+
+--- PAGE 24 ---
+INSA          Informatique                                          UV Statistique
+Rouen         Technologie
+Normandie     Information                                           Cours n°11-12
+
+                                                    2
+                                       Test du 
+• Distance entre effectifs théorique n*p k et observé Nk
+                                  K               2
+                                       N −np    
+                             D 2=∑ k           k
+                                                    ~ 2K −1
+                                 k =1     np k
+                                         2    2
+      
+                                  2
+            Région critique : D  A => D    K −1 ;1−
+
+
+
+        Remarques :
+            • test applicable aux v.a. continues ou discrètes
+            • si la loi de l'hypothèse H0 présente r paramètres
+                inconnus devant être estimés, alors :
+                                      K              2
+                                          N −np    
+                                D 2=∑ k
+                                                  k
+                                                       ~ 2K −1−r
+ Ph. LERAY - A. ROGOZAN             k =1     np k                               24
+
+--- PAGE 25 ---
+INSA          Informatique                                            UV Statistique
+Rouen         Technologie
+Normandie     Information                                             Cours n°11-12
+
+
+                             Test de Kolmogorov-Smirnov
+• Objectif : Vérifier à partir d'un échantillon X1, ...,Xn si une v.a.
+
+                                                          {            }
+  suit ou non une certaine loi de probabilité       H 0 : F =F 0
+                                                    H 1 : F ≠F 0
+           Var. décision : distance entre les fonctions de répartition
+            empirique et théorique                       ∗
+                                               D n =max∣F n  x−F 0  x∣
+                                                      x
+
+        où Dn suit une distribution tabulée qui, sous H 0, ne dépend
+        plus de la loi de X
+       Région critique :      D n A => D nd n ;1−
+       Remarques :
+                                       2
+         • plus précis que le test du  ,
+            • applicable uniquement aux v. a. continues de loi de référence
+ Ph. LERAY - A. ROGOZAN                                                           25
+                connue

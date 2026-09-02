@@ -1,0 +1,805 @@
+--- PAGE 1 ---
+Electronics for embedded systems
+Lecture 1: Recall on basic principles on electricity
+
+Dr. Hind Laghmara
+hind.laghmara@insa-rouen.fr
+                                                       Introduction and objectives
+                                                       Electric charge and current
+                                                                       Capacitors
+                                                                        Inductors
+ITI3 – 2025
+
+--- PAGE 2 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+
+       Introduction and objectives
+
+              Why review electricity in an electronics course?
+              What you should already know vs. what we’ll clarify?
+              The intended Learning Objectives of this session
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            1/49
+
+--- PAGE 3 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Why review electricity in an electronics course?
+
+
+
+
+            • Every electronic component — resistors, capacitors, transistors, op-amps — behaves
+              according to electrical laws.
+            • Knowing electricity helps explain why components behave the way they do in practical
+              electronics (e.g., voltage drops, power ratings, signal losses).
+            • Real-world debugging starts with basic electrical reasoning.
+            • Necessary to evaluate the total power consumption of your embedded system.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            2/49
+
+--- PAGE 4 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Intended Learning Objectives
+
+
+
+
+            • Refresh core electrical concepts necessary to understand and analyze basic electronic circuits.
+            • Understand electric charge, current, voltage, resistance
+            • Understand the role of basic electronic components in digital circuits
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            3/49
+
+--- PAGE 5 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+
+       Electric charge and current
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            4/49
+
+--- PAGE 6 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Electric current and its rules
+       Definition: Current is the rate at which charge passes by a point on the circuit. If a section of a wire
+       could be isolated and the quantity of charge (Q) passing through this cross section in a certain
+       amount of time (t) could be measured, the the current would be the i = dQ dt
+
+
+       1 Ampere = 6, 241 × 1018
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            5/49
+
+--- PAGE 7 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Electric current and its rules
+
+            • If current is flowing in a conductor, its intensity would be the same in all sections and it is
+              defined by the movement of electrons in it.
+            • The conventional direction of current is the opposite direction of electrons
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            6/49
+
+--- PAGE 8 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Types of Current & Notion of Voltage
+            • Current flows if there is a voltage and a path for electrons exists
+            • Voltage: difference in charge between two points
+            • Voltage is defined as the amount of potential energy between two points => just like when
+              measuring distance, you’ll need a reference point.
+            • Voltage can be direct (DC) or alternating (AC): What does that mean for polarity?
+            • Utility outlets typically provide AC
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            7/49
+
+--- PAGE 9 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Notion of voltage
+
+
+
+            • Difference of potential between two points is called a voltage and is noted VAB = VA − VB
+            • Key words: voltage drop, potential difference, potential drop
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            8/49
+
+--- PAGE 10 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Measuring current and voltage
+
+
+
+       Ideal voltmeters act like open circuits, and ideal ammeters act like short circuits.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            9/49
+
+--- PAGE 11 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Electrical Energy and Power
+
+
+
+
+            • Electrical power: The rate at which electrical energy is consumed or produced. Unit: Watt.
+            • Electrical energy: Result of electron movement and constitues the amount of energy
+              consumed over time. Units: Joule (J) or kilowatt-hour (kWh)
+            • Energy = Power × Time
+            • Power = Current × Voltage or alternative form Power = Current2 × Resistance
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            10/49
+
+--- PAGE 12 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Conservation of Energy
+            • Kirchhoff’s Voltage Law (KVL): The sum of voltages around any closed loop = 0.
+            • Kirchhoff’s Current Law (KCL): The sum of currents entering a node = sum of currents leaving.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            11/49
+
+--- PAGE 13 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Resistors and Usefulness
+
+
+
+       Resistivity /Resistance is the measure of an
+       object’s opposition to the flow of electrons.
+            • Resistance opposes electron flow
+            • Depends on material, cross-section,
+              length, temperature
+            • Light bulb filament example
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            12/49
+
+--- PAGE 14 ---
+Introduction and objectives                   Electric charge and current                   Capacitors                    Inductors
+
+
+
+Types of Resistors
+
+       Fixed resistors: relatively fixed values but a                                  Variable resistors: Has the ability to vary its
+       tolerance is present from its nominal value                                     resistance between two set values (with the
+                                                                                       lower usually being 0 ohms)
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                                             13/49
+
+--- PAGE 15 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Series and Parallel Resistors
+
+            • Series: Req > any individual resistor
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            14/49
+
+--- PAGE 16 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Series and Parallel Resistors
+            • Parallel: R1 =
+                                     P 1
+                         eq              Ri
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            15/49
+
+--- PAGE 17 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Mixed configuration
+            • Combining series and parallel resistors
+            • The current supplied by the battery is limited by the total resistance of the circuit
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            16/49
+
+--- PAGE 18 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+What else can a resistor do?
+
+       We’ve used them to reduce current which is
+       nice. How about voltage? Say if you have a
+       main power supply that is supplying a voltage
+       that is much higher than you may need for a
+       particular part of a circuit, such as for a chip
+       in the circuit. Maybe the circuit is run off of
+       a 9-volt battery but the chip in the circuit only
+       needs 3V.
+       Find the formula for the output voltage
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            17/49
+
+--- PAGE 19 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+
+       Capacitors
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            18/49
+
+--- PAGE 20 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors: introduction
+       They are very essential for storing electrical energy and are a crucial element of so many electronic
+       circuits They are what makes the signal change shape => resistors cannot do that They have so
+       many applications: Computer RAM memory Electronic flashes for cameras Radios and electronic
+       circuits We’ll see next what they are made off, how they store electrical energy and how that energy
+       can be used. . .
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            19/49
+
+--- PAGE 21 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors: definition
+
+
+       A capacitor is a passive electronic device that stores electrical energy transferred from a voltage
+       source. They can hold energy until needed by other elements of the circuit They are made from two
+       metal plates separated by an insulator, known as, a dieletric
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            20/49
+
+--- PAGE 22 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors: operation
+
+
+       When supplied with a DC voltage, current flow doesn’t flow accross dieletric. Electrons move to the
+       the other plate which induces a surplus on the plate. The positive terminal of the battery attracts
+       eletrons from the capacitors This activity induces a net negative charge on one plate and positive
+       charge on the other
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            21/49
+
+--- PAGE 23 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors: charging and discharging
+
+
+       The charge Q is proportional to the potential difference between the plates The capacitance is the
+       constant of proportionality, measured in Farads Farad = Coulomb/Volt
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            22/49
+
+--- PAGE 24 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitor: capacity
+
+
+       Charging: Current flow is higher at the beginning under an exponential model considering that the
+       charging factors are the resistance and capacitance Discharging: The current flow is opposite to
+       charging
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            23/49
+
+--- PAGE 25 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC circuit: charging capacitor
+
+       The switch closed => the maximum current flows What is the value of the maximum current?
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            24/49
+
+--- PAGE 26 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC circuit: charging capacitor
+
+       What happens when the current is at 0? We attain maximum charge Q How much is Q?
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            25/49
+
+--- PAGE 27 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC circuit: charging capacitor
+
+
+
+
+       Write Kirchhoff’s loop rule!
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            26/49
+
+--- PAGE 28 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC circuit: charging capacitor
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            27/49
+
+--- PAGE 29 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC capacitor: Discharging capacitor
+
+
+
+       The switch is closed => the capacitor discharges and the current flows When that’s over no more
+       current flows
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            28/49
+
+--- PAGE 30 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC capacitor: Discharging capacitor
+       Write Kirchhoff’s loop rule
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            29/49
+
+--- PAGE 31 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Charging and discharging
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            30/49
+
+--- PAGE 32 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors in parallel
+
+       What is the total charge in a parallel connection?
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            31/49
+
+--- PAGE 33 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Capacitors in series
+
+       What is the equivalent voltage in series?
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            32/49
+
+--- PAGE 34 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RC filters and frequency selection
+
+
+
+
+            • Capacitors highly depend on frequency of the input signal. If we’re talking about frequencies,
+              what kind of signals do we have?
+            • Capacitors naturally block DC signals and allow AC signals to pass but not any AC signal
+            • This circuit tends to allow lower frequencies to pass from input to output while blocking higher
+              frequencies from getting through and is therefore known as a low-pass filter.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            33/49
+
+--- PAGE 35 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+
+       Inductors
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            34/49
+
+--- PAGE 36 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+What’s an inductor?
+
+       The induction coil, or inductor, stores electrical energy in a magnetic field and shapes electrical
+       signals in a different way to a capacitor The interaction between electricity and magnetism led to the
+       development of two amazingly useful electronic components: the induction coil and the transformer
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            35/49
+
+--- PAGE 37 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Magnetism and electricity
+       Both phenomenons used to be completely independent but were yet discovered to be connected
+       when a compass needle was seen to derive from magnetic north pole when battery was current
+       conducted by nearby battery was switched on/off.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            36/49
+
+--- PAGE 38 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+The inductor and magnetic properties
+
+
+
+
+       An inductor is a passive electronic component made from a coil of wire wrapped around a core,
+       which can be air, iron or ferrite (a brittle material made from iron). If you pass current through an
+       inductor, you create a magnetic field around the wire. If you change the current, increasing it or
+       decreasing it, the magnetic flux around the coil changes, inducing a voltage across the inductor.
+       That voltage, sometimes called back voltage, causes a current flow that opposes the main current.
+       This property of inductors is known as self-inductance or simply inductance.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            37/49
+
+--- PAGE 39 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+ Inductance
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            38/49
+
+--- PAGE 40 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Inductors in circuits
+            • DC voltage induces a flow of current in the inductor
+            • magnetic field around the coils Increasing the current
+            • increasing the strength of the magnetic field The changing magnetic field induces a back
+              voltage This magnetic flux opposes any change in current This opposition is what is known as
+              inductance Inductors act like an open circuit when DC is first applied (no current flows right
+              away, and the entire source voltage drops across the inductor).
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            39/49
+
+--- PAGE 41 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Inductors in an AC circuit
+
+
+       The inductor current leads the source voltage Inductance causes a phase shift between the voltage
+       and current that depends on the relative values of the resistance and the inductive reactance Its
+       peaks correspond to the instants the voltage value is zero.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            40/49
+
+--- PAGE 42 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Impedance and phase angle of RL circuit
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            41/49
+
+--- PAGE 43 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+mpedance and phase angle of RL circuit
+
+       Emf: electromotive force
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            42/49
+
+--- PAGE 44 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+ Impedance and phase angle of RL circuit
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            43/49
+
+--- PAGE 45 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Inductors used in filters: Low& high Pass filters
+
+            • Since the increase of frequency induces an increase in the inductive reactance
+            • the output voltage across the resistor decreases In an RL circuit, when the output is taken
+              across the resistor, this can be used as a low pass filter. The voltage dropped across the
+              inductor is high which can be used as an output for high frequency => High pass filter
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            44/49
+
+--- PAGE 46 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Combined inductors
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            45/49
+
+--- PAGE 47 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RLC circuit
+
+
+       In an RLC circuit, both elements will be basically acting in opposite ways The capacitor voltage will
+       have a lag of 90° whereas the inductor voltage leads by 90° A circuit based on L and C is often
+       known as an oscillator
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            46/49
+
+--- PAGE 48 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RLC circuit
+
+
+
+       The total impedance in a series RLC circuit is found as follows: What happens when inductive
+       reactance and the capative reactance are equal? This happens at a single frequency known as the
+       resonant frequency
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            47/49
+
+--- PAGE 49 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+RLC circuit: Resonance
+
+
+       Radio receivers use RLC circuits to allow just one frequency to pass through the circuit. This
+       technique is known as tuning in to the frequency and used this way, the circuit is known as a tuning
+       circuit Use a variable capacitor to adjust the resonant frequency, so that you can tune in different
+       stations broadcasting at different frequencies. The knob that allows the capacitance to be changed
+       is attached to the tuning control knob on your radio.
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            48/49
+
+--- PAGE 50 ---
+Introduction and objectives                   Electric charge and current                   Capacitors   Inductors
+
+
+
+Summary
+            • In an RL circuit, the impedance is determined by both the resistance and the inductive
+              reactance combined
+            • The impedance and phase directly vary with frequency
+            • The impedance of a circuit can be measured by the source voltage and the total current
+            • The power is part resistive, part reactive In RLC circuits, the total impedance is based on
+              resistive ( R) and reactive (L, C) parts
+
+
+
+
+       Electronics – Lecture 2. Electrical principles – INSA Rouen Normandy – ITI3 – 2025                            49/49
+
+--- PAGE 51 ---
+Questions?

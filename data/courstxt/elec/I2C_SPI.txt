@@ -1,0 +1,348 @@
+--- PAGE 1 ---
+COMMUNICATION
+PROTOCOLS PT2
+ H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+PREVIOUSLY SEEN
+
+• 1-wire communication protocol
+• Application to a digital temperature sensor (DS18B20)
+• One-wire is an asynchronous half-duplex serial connection with a possibility of power supply
+  on data bus (parasitic power supply).
+• A 1-Wire master initiates and controls the communication with one or more 1-Wire slave
+  devices on the 1-Wire bus
+
+--- PAGE 3 ---
+ILO OF THIS SESSION
+
+• Become familair with the communication protocols
+  available on Raspberry Pi as well as other
+  embedded systems
+• Study the SPI, I2C on Raspberry Pi
+• Identify some devices that necessitate these
+  communication protocols
+
+--- PAGE 4 ---
+I2C COMMUNICATION BUS
+• I2C or Inter-Intergrated Circuit is a : Synchronous, multi-master, multi-slave, packet
+  switched and single-ended
+
+
+• Used for lower-speed peripheral ICs to processors and microcontrollers in short-distance,
+  intra-board communication
+
+--- PAGE 5 ---
+I2C COMMUNICATION BUS
+
+• I2C is a very commonly used standard designed to allow one chip to talk to another. So, since
+  the Raspberry Pi can talk I2C we can connect it to a variety of I2C capable chips and modules.
+
+
+• The I2C bus allows multiple devices to be connected to your Raspberry Pi, each with a unique
+  address, that can often be set by changing jumper settings on the module.
+
+
+• The stregth of I2C is the capability of a microcontroller to control a network of device chips
+  with just two general-purpose I/O pins and software
+
+--- PAGE 6 ---
+A BRIEF HISTORY ON I2C
+
+• I2C was originally developed in 1982 by Philips for various Philips chips. The original spec
+  allowed for only 100kHz communications, and provided only for 7-bit addresses, limiting the
+  number of devices on the bus to 112 (there are several reserved addresses, which will never
+  be used for valid I2C addresses).
+
+--- PAGE 7 ---
+I2C COMMUNICATION BUS
+• I2C only uses two bidirectional open-drain lines, Serial Data Line (SDL) and Serial Clock
+  Line (SCL) pulled up with resistors.
+
+--- PAGE 8 ---
+OPEN-DRAIN BUS DRIVERS
+• It is also called Open Collector which is a transistor having a connection with the ground pin.
+  In a simple way, it behaves like a switch that gets connected or disconnected depending on the
+  input signal.
+
+
+• This open-drain configuration permits different devices to establish communication bi-
+  directionally on one wire.
+
+--- PAGE 9 ---
+I2C COMMUNICATION BUS
+
+• The I2C bus drivers being open drain means that they can pull the corresponding signal line
+  low but cannot drive it high
+• There is no bus contention => no way that a device is trying to drive a line high while the
+  other pulls it low
+• This preserves from damage or excessive power dissipation in the system
+• Each signal line has a pull-up resistor on it to restore the signal to high when no device is
+  asserting it low
+
+--- PAGE 10 ---
+I2C COMMUNICATION BUS
+
+• The I2C reference design includes a 7-bit address space
+• On the Raspberry Pi, the I2C bus speed is 100kbits/s
+• The maximal number of nodes is limited by the address space and the total bus capacitance of
+  400pF which restrics practical communication distances to a few meters.
+• The bus has two roles for nodes: master and slave
+• The Master node generates the clock and initiates communication with slaves
+• The Slave node receives the clock and responds when addressed by the master
+• On the contrary of 1-wire, this is a multi-master bus which means that any number of nodes
+  can be present
+
+--- PAGE 11 ---
+I2C – SERIAL PROTOCOL DECODING
+
+
+
+
+ Start condition:                                                                     Stop condition:
+ SDA goes low                                                                         SDA goes high
+ before SCL                                                                           after SCL
+                                                 ACK/NACK: A '1' in this position
+                                                 indicates that the addressed
+          '1' - Controller is requesting data*   peripheral did not respond or
+          'O' - Controller is sending data       was unable to process the request.
+
+--- PAGE 12 ---
+I2C – SERIAL PROTOCOL DECODING
+
+
+
+• The address frame is always first in any new communication sequence. For a 7-bit address, the address is
+  clocked out most significant bit (MSB) first, followed by a R/W bit indicating whether this is a read (1) or
+  write (0) operation.
+
+• After the address frame has been sent, data can begin being transmitted. The controller will simply continue
+  generating clock pulses at a regular interval, and the data will be placed on SDA by either the controller or
+  the peripheral, depending on whether the R/W bit indicated a read or write operation. The number of data
+  frames is arbitrary, and most peripheral devices will auto-increment the internal register, meaning that
+  subsequent reads or writes will come from the next register in line.
+
+--- PAGE 13 ---
+I2C – SERIAL PROTOCOL DECODING
+• A seven bit wide address space theoretically allows 128 I2C addresses – however, some addresses are
+  reserved for special purposes. Thus, only 112 addresses are available with the 7 bit address scheme. To get rid
+  of this a special method for using 10 bit addresses.
+
+         10 bit adresses, binary noted, MSB is left      Purpose
+         0000000 0                                       General Call
+         0000000 1                                       Start Byte
+         0000001 X                                       CBUS Addresses
+         0000010 X                                       Reserved for Different Bus Formats
+         0000011 X                                       Reserved for future purposes
+         00001XX X                                       High-Speed Master Code
+         11110XX X                                       10-bit Slave Addressing
+         11111XX X                                       Reserved for future purposes
+
+--- PAGE 14 ---
+I2C-RASPBERRY PI PINOUT
+
+
+• The i2c pins of the Raspi incorporate a pull-up
+  resistor set at 1.8 kohms which maintains the line
+  at 3.3 volts. Therefore they cannot be used as
+  inputs/outputs for general purpose applications
+  that do not require a pull-up.
+• Check the pinout for more details
+
+--- PAGE 15 ---
+I2C- DEVICE ADDRESS ON RPI
+
+• When an I2C device is connected to your
+  Raspberry, you can and might need the
+  address to communicate with your device:
+
+  sudo i2cdetect –y l
+• On the example, two devices are available on
+  two addresses. What are they?
+• Device on address 0x40 and 0x70
+
+--- PAGE 16 ---
+I2C- DEVICE ENABLING ON RPI
+From the command line or Terminal window start
+by running the following command :
+                                                 Menu > Preferences > Raspberry Pi Configuration
+sudo raspi-config
+
+--- PAGE 17 ---
+I2C- EXAMPLES OF DEVICES
+• LCD1602:
+1602 crystal, or 1602 character crystal, is a dot-matrix crystal display module used specially to
+display letters, numbers, symbol, etc. It's composed of several dot-matrix character bits, each of
+which can display one character. The character bits are separated by one dot pitch and there's a
+gap between each line. Therefore, characters are spaced within and between lines.
+
+--- PAGE 18 ---
+I2C- EXAMPLES OF DEVICES
+• Since there are limited I/O ports on the Raspberry Pi, if
+  you use them to drive the LCD1602, it needs many of
+  the ports and there may be insufficient to connect
+  other devices. To solve this problem, an IIC (or I2C)
+  Interface Module based on PCF8574 is designed to
+  extend the I/O ports of the Raspberry Pi.You only need
+  two wires (SDA and SCL) to control the LCD1602 and
+  save many ports for the board to connect more
+  sensors
+
+--- PAGE 19 ---
+I2C- EXAMPLES OF DEVICES
+
+
+              • EEPROM:
+                Electrically-erasable programmable read-only
+                memory is a type of non-volatile memory used in
+                computers, integrated in microcontrollers for smart
+                cards and remote keyless systems, and other
+                electronic devices to store relatively small amounts
+                of data by allowing individual bytes to be erased and
+                reprogrammed.
+
+--- PAGE 20 ---
+I2C – EXAMPLES OF DEVICES
+• ADC MCP4725: Analog-to-Digital Converter
+This module can be used to supply an analog signal
+and can be controlled by an I2C bus.
+
+
+
+
+                                                     Raspberry Pi Signal   MCP4725
+                                                            GND             GND
+                                                            3.3V            VCC
+                                                            SCL              SCL
+                                                            SDA              SDA
+
+--- PAGE 21 ---
+SPI-A BRIEF HISTORY
+• The Serial Peripheral Interface (SPI) is a synchronous serial communication interface
+  specification used for short-distance communication, primarily in embedded systems. The
+  interface was developed by Motorola in the mid-1980s and has become a de facto
+  standard.
+
+--- PAGE 22 ---
+SPI-COMMUNICATION BUS
+
+The Serial Peripheral Interface uses 4 logic
+signals
+• SCLK — Serial Clock, Horloge
+• MOSI — Master Output, Slave Input
+• MISO — Master Input, Slave Output
+• SS — Slave Select, Active at low state
+
+--- PAGE 23 ---
+SPI – SERIAL PROTOCOL DECODING
+
+
+
+
+• Master will generate clock whenever it wants to write data to a Slave device.
+• After 8 clock pulses data in the master device (A7 ~ A0) is transferred to slave device
+  and data in the slave device (B7 ~ B0) is transferred to the master device.
+
+--- PAGE 24 ---
+SPI-CLOCK POLARITY
+                                                    • The SPI protocol supports four different
+                                                      combinations of serial clock and polarity
+                                                      modes, SPI Modes 0, 1, 2 & 3.
+                                                    • When the clock polarity is set to low (0) and the
+                                                      clock phase is set to "first edge" then the mode
+                                                      is considered Mode 0.
+                                                    • In Mode 3, the clock phase is also set to shift data
+                                                      onto the MOSI line on the "first edge", but in
+                                                      this case the clock polarity is high (1), which
+                                                      means that the data must be shifted when the
+                                                      clock falls from high (1), to low (0).
+
+
+https://www.analog.com/en/analog-dialogue/articles/introduction-to-spi-interface.html
+
+--- PAGE 25 ---
+SPI-RASPBERRY PI PINOUT
+
+  SPI0 pins in WiringPi are: 12, 13, 14 + 10/11
+
+
+  Normal SPI communication uses 4 wires.
+  Master:
+  • MISO - Master In Slave Out
+  • MOSI - Master Out Slave In
+  • SCLK - Serial Clock
+  • SS - Slave Select
+  Slave:
+  • SDI - Slave Data In
+  • SDO - Slave Data Out
+  • SCK - Serial Clock
+  • CS - Chip Select
+
+--- PAGE 26 ---
+SPI- DEVICE ENABLING ON RPI
+
+--- PAGE 27 ---
+SPI- DEVICE EXAMPLES
+
+The Serial 7-Segment display is particularly useful
+for testing serial interfaces, because it can accept
+command from a UART, SPI, or I2C.
+
+
+
+  Raspberry Pi Signal        Serial 7-seg Signal
+          GND                       GND
+          3.3V                      VCC
+          CE1                  SS (Shift Select)
+          SCK                        SCK
+          MOSI                       SDI
+          MISO                      SDO
+
+--- PAGE 28 ---
+SPI-FUN FACT
+
+• SD Cards and MicroSD cards uses SPI protocol for data transfer.
+
+--- PAGE 29 ---
+I2C OR SPI
+• Speed: SPI is the fastest protocol (more than UART and I2C)
+• Number of devices required: SPI – many but beyond 2
+  devices gets complicated due to CS line of each device. I2C –
+  up to 127
+• Duplex: SPI can be Full Duplex; I2C is only Half Duplex
+• Number of wires: I2C uses 2 wires, SPI uses 4 (plus ground
+  for both)
+• Distance: both are short distance solutions - a few meters
+  depending on transmission speed, cable quality and external
+  noise
+• Transmission confirmation: I2C is the only protocol among
+  these three that ensures that the data sent was received by
+  device.
+
+--- PAGE 30 ---
+DEVICES FOR LAB SESSION
+
+
+
+
+• 1602                                          • 8-bit I/O expander chip – PCF8574
+• Each grid is 5×8 pixels                       • It converts the I2C data from the RPI into
+• Needs the lcd.h library to call for special     the parallel data required for an LCD display
+  functions for character display
+
+--- PAGE 31 ---
+DEVICES FOR LAB SESSION
+
+
+• Each digit has a 7 segment display
+• Each is defined by an LED that can be switched
+  on/off according to the digit value
+• a chip TM1638
+
+--- PAGE 32 ---
+REFERENCES
+
+• https://www.i2c-bus.org/addressing/
+• https://learn.sparkfun.com/tutorials/i2c/all#why-use-i2c
+• https://electrosome.com/spi/
+• https://www.mikroe.com/blog/spi-bus

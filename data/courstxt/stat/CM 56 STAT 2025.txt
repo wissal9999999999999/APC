@@ -1,0 +1,584 @@
+--- PAGE 1 ---
+INSA         Informatique                                         UV Statistique
+Rouen        Technologie
+Normandie    Information                                            Cours n°5/6
+
+
+                             Statistiques pour l'Ingénieur
+
+
+
+                                    Cours n°5/6
+
+                         Statistique inférentielle : Estimation
+
+                                     - définitions
+                              - qualités d'un estimateur
+                              - théorème de Cramer-Rao
+
+
+Ph. LERAY - A. ROGOZAN                                                             1
+
+--- PAGE 2 ---
+INSA         Informatique                                      UV Statistique
+Rouen        Technologie
+Normandie    Information                                         Cours n°5/6
+
+
+                     Estimation : formalisation et notations
+• Soit une v.a. X , dont la loi - supposée connue - dépend d'un
+  paramètre Θ qui est inconnu
+    NB: Θ peut être vectoriel
+      
+
+
+
+• Supposons que l'on dispose d'une réalisation x1,...,xn d'un
+  échantillon i.i.d. X1,...,Xn de loi parente X
+
+• Objectif : Estimer Θ à partir de la réalisation x1,...,xn
+
+• L'estimation peut être :
+     ponctuelle :
+      
+                        Θ = valeur
+     par intervalles :
+      
+                        Θ ∈ [a,b]
+Ph. LERAY - A. ROGOZAN                                                          2
+
+--- PAGE 3 ---
+INSA                         Informatique                                                UV Statistique
+Rouen                        Technologie
+Normandie                    Information                                                   Cours n°5/6
+
+
+                                     Estimation : formalisation et notations
+ • Objectif : Estimer Θ à partir de la réalisation x1,...,xn
+Empirique Théorique
+
+
+
+
+                      
+                          Estimateur du paramètre Θ :
+                                                                  
+                           • T = f(X1,...,Xn) que l'on note aussi 
+                           • T = statistique de l'échantillon
+                               = v.a. ayant sa propre loi de probabilité
+                         Estimation :
+                           • réalisation t=f(x1,...,xn) de l'estimateur T=f(X1,...,Xn)
+
+ • Questions :
+                       Comment construire la statistique T ?
+                       Quelle est la précision de l'estimation t ?
+                       Comment choisir la taille de l'échantillon n ?
+   Ph. LERAY - A. ROGOZAN                                                                                 3
+
+--- PAGE 4 ---
+INSA           Informatique                                            UV Statistique
+Rouen          Technologie
+Normandie      Information                                               Cours n°5/6
+
+
+                              Qualités d'un estimateur
+• Problème : un même paramètre Θ peut être estimé à l'aide
+  d'estimateurs différents
+           ex : pour une distribution symétrique, la médiane et la moyenne
+            empirique sont des estimations de l'espérance
+• Il faut définir les qualités exigées d'un estimateur afin de
+  choisir entre plusieurs estimateurs possibles
+
+            estimateur convergent : quand T   c.a.d. si
+                                                     P
+      
+                                                   n-> ∞
+
+                                        ∀ 0, lim P ∣T −∣=0
+                                                 n ∞
+           ex : la loi de grands nombres permet de montrer que
+                   X est un estimateur convergent de 
+
+Ph. LERAY - A. ROGOZAN                                                                  4
+
+--- PAGE 5 ---
+INSA         Informatique                                               UV Statistique
+Rouen        Technologie
+Normandie    Information                                                  Cours n°5/6
+
+
+                               Qualités d'un estimateur
+• Problème : deux estimateurs convergents ne convergent pas
+  à la même vitesse vers le paramètre Θ
+       la vitesse de convergence dépend de n
+       à n fixé, elle dépend de la précision de l'estimateur
+
+• La précision (ou risque) de l'estimateur dépend de l'erreur
+  d'estimation :
+       Erreur = T − (v.a.)
+       Précision
+          Risque
+                  = Erreur quadratique moyenne (EQM) :
+                                              2                               2
+                            RT ,=E [T − ]=Var T  E T −
+                                                  = var. de l'estimateur + biais2
+Ph. LERAY - A. ROGOZAN                                                                   5
+
+--- PAGE 6 ---
+INSA         Informatique                                            UV Statistique
+Rouen        Technologie
+Normandie    Information                                               Cours n°5/6
+
+
+                            Qualités d'un estimateur
+• Estimateur préférable :
+            T1 préférable à T2 si ∀Θ∈ℜ,      RT 1 ,  RT 2 ,
+• Estimateur admissible :
+            T admissible s'il n'existe pas d'autre estimateur qui lui soit
+             préférable
+
+
+
+
+Ph. LERAY - A. ROGOZAN                                                                6
+
+--- PAGE 7 ---
+INSA         Informatique                                               UV Statistique
+Rouen        Technologie
+Normandie    Information                                                  Cours n°5/6
+
+
+                             Biais d'un estimateur : E T −
+• Stratégie MIN-MAX : min {max {RT ,}}
+                       T    
+                                          2
+   Minimiser l'EQM = minimiser E [T − ] , souvent difficile
+
+
+
+• Approche : chercher parmi les estimateurs sans biais
+   Trouver l'estimateur sans biais de variance minimale
+
+
+
+   • Paramètre : =E  X              • Paramètre :  2=Var  X 
+                                 n                             n
+                            1                            1
+                  =
+   • Estimateur : X           ∑
+                            n i=1
+                                  Xi   • Estimateur : S = ∑  X i − X
+                                                         2
+                                                         n i=1
+                                                                     2
+        ➢                                  ➢
+
+            SANS BIAIS car                 AVEC BIAIS car
+                                                             n−1
+            E  X =E  X =                           2
+                                                     E S =       Var  X ≠
+                                                                               2
+
+                                                               n
+                                                                   ∗2   n 2
+                                       ➢   Estimateur sans biais : S =     S 7
+Ph. LERAY - A. ROGOZAN                                                 n−1
+
+--- PAGE 8 ---
+INSA          Informatique                                                         UV Statistique
+Rouen         Technologie
+Normandie     Information                                                            Cours n°5/6
+
+                                                                           2
+                             Exemple d'estimateur biaisé S
+                                                                               n
+                                                                  1
+      
+                                2
+            Paramètre :  =Var  X              estimateur : S =   ∑  2
+                                                                       
+                                                                  n i=1 i
+                                                                         X − 
+                                                                             X 2
+
+
+
+           Montrez le th. de Huygens
+                                                  n               n
+                                         ∀ a∈ℝ , ∑  X i −a2=∑  X i − X
+                                                                         2n X
+                                                                                 −a2
+                                                 i=1             i=1
+                                                        n−12            2
+           Utilisez-le avec a=µ et montrez que E S =       Var  X ≠
+                                                          n
+                             n 2    ∗2
+           Montrez que S =     S n'est pas biaisé
+                            n−1
+
+
+
+Ph. LERAY - A. ROGOZAN                                                                              8
+
+--- PAGE 9 ---
+INSA            Informatique                                     UV Statistique
+Rouen           Technologie
+Normandie       Information                                        Cours n°5/6
+
+
+                               Qualités d'un estimateur
+• Propriété :
+    Si T est un estimateur (asymptotiquement) sans biais et
+                                                         ousisi
+      ( lim E T = ) et lim Var T =0     alors T est convergent.
+          n∞                  n∞
+
+           Remarque : la convergence et l'absence de biais ne
+            garantissent pas l'unicité d'un estimateur
+• Problème : soit une v.a. X
+  
+    définie par une famille paramétrée de lois f(x;Θ) [f connue]
+   observée sur x ,...,x
+                   1      n
+
+      
+        comment trouver l'estimateur T sans biais de Θ de variance
+        minimum ?
+Ph. LERAY - A. ROGOZAN  indice = notion de statistique exhaustive 9
+
+--- PAGE 10 ---
+INSA           Informatique                                            UV Statistique
+Rouen          Technologie
+Normandie      Information                                               Cours n°5/6
+
+
+                              Statistique exhaustive
+• Soient
+   X ,...,X un n-échantillon d'une v.a.
+      1     n
+   L  x , , x ,  la vraisemblance de l'échantillon
+         1     n
+   T une statistique
+
+
+
+• Statistique exhaustive : T est dite exhaustive
+   si elle contient toute « l'information » apportée par
+
+    l'échantillon relativement à la connaissance de Θ
+  
+    i.e. par le principe de factorisation, si ∃ g et h /
+                    L  x 1 , , x n , = g t ,  h  x 1 , , x n 
+           remarque : la factorisation permet de reconnaître que T (connue) est
+            exhaustive, mais permet difficilement de la construire ou même de
+            savoir s'il en existe une
+Ph. LERAY - A. ROGOZAN                                                              10
+
+--- PAGE 11 ---
+INSA           Informatique                                      UV Statistique
+Rouen          Technologie
+Normandie      Information                                         Cours n°5/6
+
+
+                         Exemples de statistiques exhaustives
+• Loi de Bernoulli de paramètre inconnu p
+                    n
+            T =∑ X i est exhaustive pour p
+                   i=1
+
+            L(x1,...,xn ,p) = pt (1-p)n-t             [ h(...)=1 ]
+
+
+                    1      −x
+• Loi exponentielle   exp     de paramètre inconnu Θ
+         n                
+      
+             T =∑ X i est exhaustive pour Θ
+                   i=1
+
+            L(x1,...,xn ,Θ) = ...                     [ h(...)=1 ]
+
+
+Ph. LERAY - A. ROGOZAN                                                        11
+
+--- PAGE 12 ---
+INSA          Informatique                                            UV Statistique
+Rouen         Technologie
+Normandie     Information                                               Cours n°5/6
+
+
+                      Exemples de statistiques exhaustives
+• Loi normale de paramètres µ et σ2 :
+
+      
+            Si σ2 est connu,
+                             n
+                  1
+               X = ∑ X i est exhaustive pour le paramètre inconnu µ
+               
+                  n i=1
+             L(x1,...,xn ,µ) = ...
+
+
+
+                                       n
+                                     1
+      
+            Si µ est connu, S 2=       ∑  
+                                     n i=1 i
+                                            X −
+                                                 2
+                                                   est exhaustive pour σ 2
+
+
+
+Ph. LERAY - A. ROGOZAN                                                             12
+
+--- PAGE 13 ---
+INSA          Informatique                                             UV Statistique
+Rouen         Technologie
+Normandie     Information                                                Cours n°5/6
+
+
+                                Statistique exhaustive
+• Quelles sont les lois permettant une statistique exhaustive ?
+
+      Théorème de Darmois
+      
+        soit une v.a. X / domaine de définition ne dépend pas de Θ
+       soit X ,...,X un échantillon
+              1      n
+       une condition nécessaire et suffisante pour que
+
+        l'échantillon admette une statistique suffisante est que la
+        densité de X appartienne à la famille exponentielle :
+                        f(x,Θ) = exp [ a(x)α(Θ) + b(x) + β(Θ) ]
+           de plus, si a bijective et continûment différentiable alors
+                                  n
+                              T =∑ a  X i  est une statistique exhaustive
+Ph. LERAY - A. ROGOZAN           i=1                                                13
+
+--- PAGE 14 ---
+INSA           Informatique                                               UV Statistique
+Rouen          Technologie
+Normandie      Information                                                  Cours n°5/6
+
+
+                              Statistique exhaustive
+• Exceptions :
+
+           il est possible de trouver des statistiques exhaustives
+            pour la loi uniforme même si le théorème de Darmois
+            ne s'applique pas
+
+            S’il existe une statistique exhaustive U, alors l’estimateur T sans
+            biais et de variance minimum d’un paramètre inconnu d’une loi
+            dont la forme est supposée connue, ne dépend que de U !
+
+
+
+
+Ph. LERAY - A. ROGOZAN                                                                 14
+
+--- PAGE 15 ---
+INSA           Informatique                                                    UV Statistique
+Rouen          Technologie
+Normandie      Information                                                       Cours n°5/6
+
+
+                                        Information de Fisher
+                                                                   2
+                                           ∂ ln L x 1 , , x n ,
+• Définition :                I n =E [                         ]
+                                                   ∂
+
+     quantité d'information de Fisher apportée par un échantillon
+     sur le paramètre Θ                          [si elle existe]
+
+• Propriétés (si le domaine de définition de X ne dépend pas de Θ)
+                               2
+                     ∂ ln L     + Conditions de Cramer Rao (CCR) verifiées
+       I n =−E       2
+                            
+                      ∂
+       additivité : I =n I   chaque observation apporte autant d'info.
+                         n    1
+
+           dégradation de l'information : I T ≤I n 
+            une statistique T apporte une quantité d'info inférieure ou égale à celle
+            apportée par l'échantillon ... il y a égalité si T est exhaustive
+Ph. LERAY - A. ROGOZAN                                                                      15
+
+--- PAGE 16 ---
+INSA          Informatique                                     UV Statistique
+Rouen         Technologie
+Normandie     Information                                        Cours n°5/6
+
+
+                             Information de Fisher
+• Exemple :
+
+           Calculer l'information apportée par une observation sur le
+            paramètre µ d'une loi normale ou σ2 est connu
+
+
+
+
+           On retrouve le fait que chaque observation apporte d'autant
+            plus d'information que la dispersion est petite
+
+
+
+Ph. LERAY - A. ROGOZAN                                                      16
+
+--- PAGE 17 ---
+INSA          Informatique                                    UV Statistique
+Rouen         Technologie
+Normandie     Information                                       Cours n°5/6
+
+
+                             Retour à nos estimateurs ...
+• Problème : soit une v.a. X
+  
+    définie par une famille paramétrée de lois f(x,Θ) [f connue]
+   observée sur x ,...,x
+                   1      n
+
+      
+            comment trouver l'estimateur T sans biais de Θ de variance
+            minimale ?
+                              indice = notion de statistique exhaustive
+• Une réponse : le théorème de Cramer-Rao
+   qui sous certaines conditions nous permet de
+
+     • calculer la borne inférieure de la variance d'un
+       estimateur sans biais
+     • construire un estimateur efficace (i.e. celui qui atteindra
+       cette borne min.)
+Ph. LERAY - A. ROGOZAN                                                     17
+
+--- PAGE 18 ---
+INSA          Informatique                                UV Statistique
+Rouen         Technologie
+Normandie     Information                                   Cours n°5/6
+
+
+                             Estimateur efficace
+• Estimateur efficace = estimateur sans biais
+   vérifiant l'ensemble des conditions de Cramer-Rao
+
+   dont la variance est égale à la borne de Cramer-Rao
+
+
+
+• Propriété :
+   Efficace => sans biais de variance minimale
+
+
+
+• Attention :
+   Un estimateur efficace n'EXISTE pas toujours!!!
+
+     (à cause des conditions de Cramer-Rao)
+           Sans biais de variance minimale => efficace
+
+
+Ph. LERAY - A. ROGOZAN                                                 18
+
+--- PAGE 19 ---
+INSA           Informatique                                         UV Statistique
+Rouen          Technologie
+Normandie      Information                                            Cours n°5/6
+
+
+                                    Théorème de Cramer-Rao
+• Soit û un estimateur sans biais de u(Θ), si
+
+
+
+
+                                                                         de Cramer-Rao
+      
+            le support de la loi de X est indépendant de Θ
+
+
+
+
+                                                                           conditions
+            ∂L
+      
+               existe et est continue par rapport à Θ
+            ∂
+           I n       l'information de Fisher est finie
+            ∂L       ∂L
+      
+               et u    intégrables par rapport à Θ
+            ∂       ∂
+                                          u ' 2
+             Alors            Var  u 
+                                            I n 
+
+Ph. LERAY - A. ROGOZAN                        borne de Cramer-Rao                   19
+
+--- PAGE 20 ---
+INSA         Informatique                                            UV Statistique
+Rouen        Technologie
+Normandie    Information                                               Cours n°5/6
+
+
+                            Estimateur efficace (le retour...)
+• Si les conditions de Cramer-Rao sont vérifiées,
+  alors û est un estimateur efficace de u(Θ)
+  ssi ∃ une fonction A indépendante de X1,...,Xn , telle que :
+
+                   ∂ ln L
+                                                          
+                           X 1 , , X n , = A  n ,  u−u 
+                    ∂
+
+                                                           u ' 
+• De plus, la variance de cet estimateur est : Var  u =
+                                                           An ,
+
+
+
+
+Ph. LERAY - A. ROGOZAN                                                            20
+
+--- PAGE 21 ---
+INSA         Informatique                                           UV Statistique
+Rouen        Technologie
+Normandie    Information                                              Cours n°5/6
+
+
+                               Exemples
+                                            − x
+• Soit une v.a. X de densité f X  x= e          où x∈0, ∞ de
+  paramètre inconnu Θ
+
+      
+        Il n'existe pas d'estimateur efficace de Θ !
+       
+        X est un estimateur efficace de 1/Θ
+
+
+
+
+Ph. LERAY - A. ROGOZAN                                                           21
+
+--- PAGE 22 ---
+INSA         Informatique                                  UV Statistique
+Rouen        Technologie
+Normandie    Information                                     Cours n°5/6
+
+
+                                 Exemples
+• Soit une v.a. X ~ N  , 2  , avec µ inconnu et σ2 connu
+
+      
+          X est un estimateur efficace de µ
+
+
+
+
+Ph. LERAY - A. ROGOZAN                                                  22

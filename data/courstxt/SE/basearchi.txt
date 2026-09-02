@@ -1,0 +1,476 @@
+--- PAGE 1 ---
+SYSTÈME D'EXPLOITATION
+
+
+
+
+Bases sur l'architecture des ordinateurs
+               N. Malandain
+
+
+
+
+                                  (1° version : P. Leray)
+
+--- PAGE 2 ---
+Plan
+
+Un peu d'histoire
+
+Architecture de base
+
+Représentation de l'information
+
+Codage des caractères
+
+--- PAGE 3 ---
+Un peu d'histoire
+1623 (Shickard), 1643 (Pascal)
+ –   machines à calculer : engrenages
+ –   peu de progrès jusqu'au XX siècle : relais électromagnétiques
+1943 ENIAC
+ –   30t, 167m2, 17468 tubes à vide, 1500 relais, 70000 résistances, 10000
+     condensateurs
+1958 La révolution du transistor
+ –   CDC 1604 (25000 transistors) (créé par Seymour Cray)
+1965 Les mini-ordinateurs
+ –   IBM System 360/XX (4Ko - 2048Ko)
+ –   circuits intégrés (dizaine de transistors/puce)
+1974 Les premiers micro-ordinateurs
+ –   Apple I (8Ko-64Ko, 1MHz)
+1981 Le premier PC
+ –   IBM PC/G (Intel 8088, 4.77MHz, 16Ko-256Ko)
+
+--- PAGE 4 ---
+Von Neuman (1945)
+
+      Enregistrer le programme dans la mémoire de l'ordinateur
+
+
+
+
+Le programme peut tenir compte des résultats intermédiaires
+ –   effectuer des branchements selon les résultats
+ –   effectuer des tests, itérations, sauts conditionnels
+Définition d'une architecture générale
+ –   machine universelle
+ –   stockage des instructions en binaire
+ –   modification possible de l'ordre des instructions
+ –   le programme peut se modifier lui-même
+
+--- PAGE 5 ---
+Architecture de Von Neuman
+
+
+                                              Unité de Commande
+                                   bus   ●
+                                           coordination
+                                         ●
+                                           lecture des instructions
+          stockage du programme
+
+
+
+
+                                         ●
+                                           commande l'unité de traitement
+          stockage des résultats
+          stockage des données
+Mémoire
+
+
+
+
+                                                       bus
+
+                                                                                           Entrées
+                                              Unité de Traitement                  clavier, souris, disque, ...
+                                   bus   ●
+                                           unité arithmétique et logique (UAL)
+                                           unité de virgule flottante
+           ●
+
+                   ●
+
+                          ●
+
+
+
+
+                                         ●
+
+                                         ●
+                                           registres : état / accumulateur                  Sorties
+                                                                                 carte son, carte graphique, ...
+
+--- PAGE 6 ---
+Le processeur
+                            (Central Processing Unit)
+
+
+
+Le processeur contient
+ –   une UAL
+ –   une unité de commande
+ –   de la mémoire cache
+      ●
+          mémoire intermédiaire très rapide pour pallier la lenteur de la mémoire principale
+Le processeur communique avec
+ –   la mémoire
+ –   les entrées/sorties
+ –   les périphériques
+
+--- PAGE 7 ---
+BUS
+
+
+
+La communication entre les différents éléments nécessite un câblage
+
+
+Deux solutions sont possibles
+ –   maillage : tous les éléments sont reliés entre eux deux à deux
+ –   partage des câbles par multiplexage : bus
+
+
+Le bus
+ –   permet sur un même support de faire communiquer plusieurs éléments
+ –   la communication a toujours lieu entre seulement 2 éléments
+
+--- PAGE 8 ---
+Différents types de bus (PC)
+                                                                                Processeur
+Rapide
+                                                               Générateur                   Front side
+                                                 Slot carte
+ –   Le bus interne ou front side bus :          graphique
+                                                                d'horloge
+                                                                                            bus
+
+     communication avec le processeur                                       Chipset
+
+                                                                                                                   Slots mémoire
+                                                   Bus graphique
+ –   AGP / PCI-X : communication avec la carte     à haute vitesse
+                                                     (AGP ou PCI
+     graphique                                         Express)
+                                                                               Northbridge                 Bus
+                                                                                                         mémoire
+
+                                                                                      (Contrôleur
+Lent                                                                                   mémoire)
+
+
+ –   PCI : carte réseau, son, ...
+                                                                                            Bus
+                                                                                            interne
+ –   ATA, SATA, SCSI vers les unités de stockage                                                           Bus
+                                                                                                           PCI     Contrôleur
+                                                                               Southbridge                         graphique
+ –   USB, firewire, vers les périphériques                    Bus                   (Contrôleur                    embarqué
+     extérieurs                                               PCI                d'entées/sorties)
+                                                                                                IDE
+                                                                                              SATA
+                                                                                                USB                 Câbles et
+                                                                                           Ethernet                  ports
+                                                                                       Codec audio
+                                                                                    Mémoire CMOS                    externes
+
+                                                 Slots PCI
+
+                                                                                      Bus
+                                                                                      LPC       Super I/O
+                                                                                                      Port série
+                                                                                                  Port parallèle
+                                                                     ROM flash               Lecteur disquettes
+                                                                                                        Clavier
+                                                                      (BIOS)                             Souris
+
+--- PAGE 9 ---
+Fonctionnement en couche
+langage de base = 0|1
+      Couche physique (matériel)
+composants --> micro-instructions
+      Couche micro-programmée
+micro-instructions --> langage machine
+      Couche « machine »
+organisation de la mémoire, exécution de programmes
+      Couche du système d'exploitation
+langage « compréhensible par l'homme », mais pas par la machine
+      Couche du langage d'assemblage
+langages plus évolués (C, Pascal, ...)
+      Couche des langages d'application
+
+--- PAGE 10 ---
+Représentation de l'information
+
+Différentes représentations
+exemple : quatre    4    100          IV
+
+
+
+Représentation des nombres (base usuelle : 10)
+ –   symboles = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+
+
+
+Représentations courantes en informatique : bases 2, 8, 16
+ –   base 2 = binaire (représentation interne)                    bit : {0, 1}
+ –   base 8 = octal                                    {0, 1, 2, 3, 4, 5, 6, 7}
+ –   base 16 = hexadécimal                  {0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
+
+--- PAGE 11 ---
+Un peu d'arithmétique binaire
+
+Table d'addition
+                0         0         1       1
+              +0         +1        +0     +1
+somme           0         1         1      10
+                                        retenue
+
+
+
+
+Addition de 2 nombres :
+                    retenue :         111
+                                  10100101
+                                +    10111
+                                  10111100
+
+--- PAGE 12 ---
+Représentation des entiers naturels
+De la base 10 vers la base B
+méthode : lecture des restes des divisions successives par B
+
+      22 / 2 =11,       reste 0
+      11 / 2 = 5,       reste 1
+       5 / 2 = 2,       reste 1
+       2 / 2 = 1,       reste 0
+       1 / 2 = 0,       reste 1                        (22)10 = (10110)2
+
+
+
+
+De la base B vers la base 10
+                                                              n−1               n−2
+               X B= x n−1 x n−2 ... x 1 x 0 B= x n−1×B         x n−2 ×B     ... x 1 ×B x 0 10
+
+
+
+                                     4        3        2             1     0
+                  101102=1×2 0×2 1×2 1×2 0×2 =1642=22 10
+
+--- PAGE 13 ---
+Représentation des réels
+                                     virgule fixe
+
+ Méthode
+  –   identique pour la partie entière
+  –   la virgule ne bouge pas
+  –   la partie décimale se décompose en puissances négatives de 2
+Exemple : (0,75)10 = (?)2
+
+           0,75 * 2 = 1,5           (on garde 1, reste 0,5)
+           0,5 * 2 = 1,0            (on garde 1, reste 0 : arrêt)
+
+              (0,75)10 = (0,11)2 = 1 * 2-1 + 1 * 2-2     (= 0,5 + 0,25)
+
+
+Exemple : (0,65)10 = (?)2
+
+            0,65* 2 = 1,3        0,4 * 2 = 0,8
+            0,3 * 2 = 0,6        0,8 * 2 = 1,6
+            0,6 * 2 = 1,2        0,6...
+            0,2 * 2 = 0,4
+
+                                (0,65)10 = (0,101001)2
+
+--- PAGE 14 ---
+Codage des nombres
+codage = représentation avec un nombre de bits fixé
+problème du dépassement de capacité
+
+
+
+        Représentation                       Codage sur 8 bits
+
+        10101010 (170)                        10101010 (170)
+      + 11000000 (192)                      + 11000000 (192)
+       101101010 (362)                       101101010 (106)
+
+
+
+
+              362 est trop grand pour être codé sur 8 bits
+
+--- PAGE 15 ---
+Codage des entiers relatifs
+                            le complément à 2
+
+2 étapes pour passer de X à -X
+                      +22                        +1
+
+                   00010110                  00000001
+ –   on complémente ( 0 passe à 1, et inversement)
+
+                   11101001                  11111110
+ –   on ajoute 1
+
+                   11101010                  11111111
+                      -22                            -1
+Le codage complément à 2 fonctionne pour l'addition d'entiers relatifs
+                       00000001                             01111111
+                    + 11111111                            + 10000000
+                       00000000                             11111111
+
+--- PAGE 16 ---
+Codage des réels : IEEE754
+                                 virgule flottante
+
+simple : 32 bits, double : 64 bits, étendu : 80 bits
+inspiré de la notation scientifique (ex : +1,05 x 10-6)
+définition en simple précision
+
+                1        8                        23             bits
+                S        E                       M
+
+                             S           E−127
+                X =−1 ×1, M ×2                 avec 0E 255
+
+
+
+
+                     X = (-1,5)10     (S=1, M=0,5, E=127)
+
+                 1        01111111                 10000...000
+
+--- PAGE 17 ---
+Codage des réels : IEEE754
+                                 (suite)
+
+Cas particuliers :
+ –   ±    (M=0, E=255)    résultat d'un div/0, ...
+ –   0     (M=0, E=0)      impossible d'écrire 0 avec 1,M*2E-127
+ –   NaN   (M!=0, E=255)   le résultat n'est pas un nombre : /
+
+--- PAGE 18 ---
+Portes Logiques
+
+             composants de base
+Porte   Symbole       Fonction     Table de Vérité
+        In     Out                      In Out
+NOT                   Out = In           0  1
+                                         1  0
+                                       A B Out
+        A                              0 0     0
+AND                  Out = A.B         0 1     0
+        B                              1 0     0
+                                       1 1     1
+                                       A B Out
+                                       0 0     0
+ OR                  Out = A+B         0 1     1
+                                       1 0     1
+                                       1 1     1
+                                       A B Out
+                                       0 0     0
+XOR                  Out = AB         0 1     1
+                                       1 0     1
+                                       1 1     0
+NOR = NOT OR                     NAND = NOT AND
+
+--- PAGE 19 ---
+Algèbre de Boole
+A+0=A                             A.0=0
+A+1=1                             A.1=A
+A + A =A                          A.A=A
+A+A=1                             A.A=0
+
+
+Lois de De Morgan
+A.B=A+B                           A+B=A.B
+
+
+A=A                               A + (A . B) = A
+A + (A . B) = A + B               A . (A + B) = A
+A . (B + C) = (A . B) + (A . C)
+A + (B . C) = (A + B) . (A + C)
+
+
+AB=A.B+A.B
+
+--- PAGE 20 ---
+Codage des caractères
+
+
+La machine ne sait traiter que des nombres
+ –   associer à chaque caractère un nombre
+Codage American Standard Code for Information Interchange
+ –   7 bits : 128 caractères
+ –   Les caractères 0 (00) à 31 (1F) sont réservés
+      ●
+          saut de ligne, tabulation, bell, ...
+ –   Les caractères 32 (20) à 127 (7F) représentent :
+      ●
+          minuscules, majuscules, ponctuation, ...
+Extension de l'ASCII par utilisation du 8° bit
+ –   ISO-8859-1 (= latin-1 , europe occidentale)
+ –   ISO-8859-15 (= latin-9, mise à jour de ISO-8859-1 ajout de Œ, œ, €)
+
+--- PAGE 21 ---
+Table ASCII
+
+00 NUL   01 SOH   02 STX   03 ETX   04 EOT   05 ENQ   06 ACK   07 BEL
+08 BS    09 HT    0A NL    0B VT    0C NP    0D CR    0E SO    0F SI
+10 DLE   11 DC1   12 DC2   13 DC3   14 DC4   15 NAK   16 SYN   17 ETB
+18 CAN   19 EM    1A SUB   1B ESC   1C FS    1D GS    1E RS    1F US
+20 SP    21 !     22 "     23 #     24 $     25 %     26 &     27 '
+28 (     29 )     2A *     2B +     2C ,     2D -     2E .     2F /
+30 0     31 1     32 2     33 3     34 4     35 5     36 6     37 7
+38 8     39 9     3A :     3B ;     3C <     3D =     3E >     3F ?
+40 @     41 A     42 B     43 C     44 D     45 E     46 F     47 G
+48 H     49 I     4A J     4B K     4C L     4D M     4E N     4F O
+50 P     51 Q     52 R     53 S     54 T     55 U     56 V     57 W
+58 X     59 Y     5A Z     5B [     5C \     5D ]     5E ^     5F _
+60 `     61 a     62 b     63 c     64 d     65 e     66 f     67 g
+68 h     69 i     6A j     6B k     6C l     6D m     6E n     6F o
+70 p     71 q     72 r     73 s     74 t     75 u     76 v     77 w
+78 x     79 y     7A z     7B {     7C |     7D }     7E ~     7F DEL
+
+--- PAGE 22 ---
+UTF-8
+      ASCII ne permet pas de représenter tous les caractères
+
+Unicode est une norme développée par le Consortium Unicode
+ –   elle définit l'UCS : Universal Character Set
+     (une centaine de milliers de caractères)
+UTF-8 : UCS Transformation format 8 bits
+ –   codage 8 bits de l'UCS
+ –   le numéro de chaque caractère correspond à une valeur de l'UCS
+ –   les caractères 0-127 sont codés sur 1 octets (bit de poids fort à « 0 »)
+      ●
+          ces caractères sont compatibles ASCII
+ –   les caractères>127 sont sur plusieurs octets (4 octets max)
+      ●
+          les « 1 » dans les bits de poids fort du 1° octet indiquent le nombre d'octets
+      ●
+          un « 0 » séparent cette série de 1 du reste du code
+      ●
+          les octets suivant commencent par « 10 »
+
+--- PAGE 23 ---
+UTF-8
+                              (exemples)
+Caractère : A
+ –   numéro 0x41 : 01000001
+Caractère : ç
+ –   numéro 0xE7 : 11000011 10100111
+Caractère : É
+ –   numéro 0xC9 : 11000011 10001001
+Caractère : €
+ –   numéro 0x20AC : 11100010 10000010 10101100
+
+Caractère : 豈 idéogramme
+ –   numéro 0xF900 : 11101111 10100100 10000000
+Caractère :      50 acrophonique grecques en Attique
+ –   numéro 0x10144 : 11110000 10010000 10000101 10000100

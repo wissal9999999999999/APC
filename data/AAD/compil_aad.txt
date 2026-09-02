@@ -1,0 +1,25 @@
+AAD-ID,AAD-TITLE
+COMP-TL01,Choisir le type d'un langage formel en fonction des caractéristiques des mots à reconnaître.
+COMP-TL02,"Déterminer le rôle des différents éléments d'une grammaire formelle (terminaux, non terminaux, axiome, règles)."
+COMP-TL03,"Déterminer, à l'aide de l'algorithme de dérivation, l'appartenance ou non d'un mot à un langage formel."
+COMP-COMP01,"Comprendre le vocabulaire des bases de la théorie de la compilation : unité lexicale, lexème, AST."
+COMP-COMP02,Connaître les entrées et sorties des différentes étapes du processus de la compilation.
+COMP-AL01,Lire et écrire des expressions rationnelles.
+COMP-AL02,"Caractériser un automate à états finis (déterministe, non déterministe, à epsilon transition)."
+COMP-AL03,"Comprendre la correspondance entre grammaire formelle linéaire, expression rationnelle et automate à états finis."
+COMP-AL04,"Déterminer, à l'aide de l'algorithme de parcours d'automate, l'appartenance ou non d'un mot à un langage rationnel."
+COMP-ASY01,Créer un AST depuis la racine à l'aide de l'algorithme de dérivation.
+COMP-ASY02,Créer un AST depuis les feuilles à l'aide de l'algorithme décalage-réduction.
+COMP-ASY03,Désambiguïser une grammaire en décomposant des règles.
+COMP-ASY04,Désambiguïser une grammaire en priorisant des unités lexicales ou en définissant des associativités.
+COMP-ASY05,Supprimer des récursivités à gauche à l'aide de l'algorithme décalage-réduction.
+COMP-ASE01,Calculer la valeur d'un attribut synthétisé d'une grammaire attribuée.
+COMP-ASE02,Calculer la valeur d'un attribut hérité d'une grammaire attribuée.
+COMP-ASE03,Calculer le graphe des dépendances d'une grammaire attribuée.
+COMP-ASE04,Ajouter des règles sémantiques.
+COMP-ASE05,Réprésenter et implémenter en classes les non terminaux des grammaires attribuées.
+COMP-ASE06,"Utiliser le design pattern Visiteur pour développer les analyseurs sémantiques, l'optimiseur et la phase de traitement."
+COMP-JC01,Représenter les unités lexicales.
+COMP-JC02,Traduire les règles de la grammaire attribuée et les règles sémantiques en code JavaCC.
+COMP-JC03,Remplacer les règles utilisant epsilon par l'utilisation de l'opérateur de Kleene.
+COMP-JC04,Compiler le code JavaCC et Java

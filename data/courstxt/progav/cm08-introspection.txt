@@ -1,0 +1,706 @@
+--- PAGE 1 ---
+Introduction Description de reflect JDBC
+
+
+
+
+                            Programmation
+                            - Introspection -
+
+                             Nicolas Malandain
+
+
+
+
+                         Introspection           1 / 25
+
+--- PAGE 2 ---
+Introduction Description de reflect JDBC
+
+
+
+
+1   Introduction
+       Présentation
+       Utilisation
+
+2   Description de reflect
+      Class
+      Constructor
+      Field
+      Method
+      Exemple
+
+3   JDBC
+      Présentation
+      Fonctionnement de base
+      Exemple
+
+
+                                  Introspection     2 / 25
+
+--- PAGE 3 ---
+Introduction Description de reflect JDBC   Présentation Utilisation
+
+
+Introspection
+Présentation
+Une classe est un objet, elle possède donc un état et des méthodes. Son
+état correspond à des attributs (meta-données) tels que : nom de la
+classe, ses attributs, ses méthodes, . . . Ses méthodes permettent la
+manipulation de l’état, récupération des attributs, des méthodes et des
+constructeurs, . . . Les attributs, constructeurs et méthodes sont eux
+même des objets.
+
+Où sont ces méta-données ?
+Le byte-code issue de la compilation contient les méta-données décrivant
+la classe. La commande javap permet d’accéder à ces informations.
+
+Comment les manipuler ?
+Java dispose d’un package java.lang.reflect permettant de
+manipuler des classes telles que : Class, Field, Constructor,
+Method, ...
+                                 Introspection                                 3 / 25
+
+--- PAGE 4 ---
+Introduction Description de reflect JDBC   Présentation Utilisation
+
+
+
+Exécution de “javap java.lang.Integer”
+
+public final class java.lang.Integer extends java.lang.Number implements java.lang.Comparable{
+    public static final int MIN_VALUE;
+    public static final int MAX_VALUE;
+    public static final java.lang.Class TYPE;
+    static final char[] digits;
+
+    public long longValue();
+    public float floatValue();
+    public double doubleValue();
+    public java.lang.String toString();
+    public int hashCode();
+    public boolean equals(java.lang.Object);
+    public static java.lang.Integer getInteger(java.lang.String);
+
+    public int compareTo(java.lang.Object);
+    static {};
+}
+
+
+
+C’est à l’aide de ces méta-données que Java est capable de donner des
+informations lors d’une erreur à l’exécution d’un programme (classe ou
+méthode non trouvée, numéro de ligne, . . . ).
+
+                                   Introspection                                           4 / 25
+
+--- PAGE 5 ---
+Introduction Description de reflect JDBC   Présentation Utilisation
+
+
+Utilité de l’introspection
+
+
+
+Quelques exemples :
+    Instancier/Manipuler un objet dont on ne connait pas la classe à la
+    compilation (notamment utilisé pour les drivers)
+    Un inspecteur de classe (notamment utilisé dans Netbeans ou
+    Eclipse)
+    Un interpréteur de commandes
+    ...
+
+
+
+
+                                   Introspection                                 5 / 25
+
+--- PAGE 6 ---
+Introduction Description de reflect JDBC   Présentation Utilisation
+
+
+Exemple de création/manipulation
+
+
+ManipulerSansIntrospection.java
+ public static void main(String[] args) {
+   // A, B et C implémentent une interface Manipulation possédant une méthode methode()
+   // étendre ce programme afin de le généraliser tel quel est impossible
+   String nomDeLaClasse = args[0];
+   Manipulation objManipulation = null;
+   if (nomDeLaClasse.equals("A"))
+     objManipulation = new A();
+   else
+      if (nomDeLaClasse.equals("B"))
+        objManipulation = new B();
+     else
+         if (nomDeLaClasse.equals("C"))
+           objManipulation = new C();
+
+     if (objManipulation != null)
+       System.out.println(objManipulation.methode());
+ }
+
+
+
+
+                                    Introspection                                            6 / 25
+
+--- PAGE 7 ---
+Introduction Description de reflect JDBC            Présentation Utilisation
+
+
+Utilisation de l’introspection pour généraliser
+      obtention d’une instance de la classe Class permettant de
+      manipuler la classe que l’on souhaite (A, B, C, . . . )
+       instanciation de la classe
+       appel de la méthode methode()
+
+ManipulerAvecIntrospection.java
+ public static void main(String[] args) {
+   String nomDeLaClasse = args[0];
+   Manipulation objManipulation = null;
+   try {
+     Class classe<?> = Class.forName(nomDeLaClasse);
+     objManipulation = (Manipulation)classe.getDeclaredConstructor().newInstance();
+     System.out.println(objManipulation.methode());
+   }
+   catch (NoSuchMethodException e) {
+     // traiter
+   }
+   catch (InvocationTargetException e) {
+     // traiter
+   }catch (ClassNotFoundException e) {
+     // traiter
+   }
+   catch (InstantiationException e) {
+     // traiter
+   }
+   catch (IllegalAccessException e) {
+     // traiter
+   }                                       Introspection                                     7 / 25
+
+--- PAGE 8 ---
+Introduction Description de reflect JDBC   Présentation Utilisation
+
+
+
+
+Exécution
+ java fr.insarouen.asi.prog.cours8.ManipulerAvecIntrospection \
+      fr.insarouen.asi.prog.cours8.C
+   Traitement dans la classe C
+
+ java fr.insarouen.asi.prog.cours8.ManipulerAvecIntrospection ExistePas
+   La classe que vous passez en paramètre n’existe pas
+   java.lang.ClassNotFoundException: ExistePas
+
+
+
+
+                                  Introspection                                 8 / 25
+
+--- PAGE 9 ---
+Introduction Description de reflect JDBC    Class Constructor Field Method Exemple
+
+
+La classe Class
+API de la classe Class                                                              (non exhaustif)
+public final class Class<T> extends Object
+         implements Serializable, GenericDeclaration, Type, AnnotatedElement {
+  static Class<?> forName(String className)
+  Constructor[]     getConstructors()
+  Constructor[]     getDeclaredConstructors()
+  Field             getDeclaredField(String name)
+  Field[]           getDeclaredFields()
+  Method            getDeclaredMethod(String name, Class... parameterTypes)
+  Method[]          getDeclaredMethods()
+  Field             getField(String name)
+  Field[]           getFields()
+  Class[]           getInterfaces()
+  Method            getMethod(String name, Class... parameterTypes)
+  Method[]          getMethods()
+  int               getModifiers()
+  String            getName()
+  Package           getPackage()
+  Class<? super T> getSuperclass()
+  boolean           isArray()
+  boolean           isEnum()
+  boolean           isInstance(Object obj)
+  boolean           isInterface()
+  boolean           isLocalClass()
+  boolean           isMemberClass()
+  boolean           isPrimitive()
+  T                 newInstance()
+  String            toString()
+}
+                                      Introspection                                              9 / 25
+
+--- PAGE 10 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+Manipulation de Class
+TestIntrospection.java
+   String s="toto";
+   Class a = s.getClass();
+   Class b = a.getSuperclass();
+   Class c = java.lang.String.class;
+   Class d = Class.forName("java.lang.String");
+   System.out.println(a);
+   System.out.println(b);
+   System.out.println(c);
+   System.out.println(d);
+   int modifiers=c.getModifiers();
+   if (Modifier.isPublic(modifiers))
+     System.out.println("public");
+   for (Class interf : c.getInterfaces())
+     System.out.println(interf);
+
+
+
+Exécution
+class java.lang.String                               public
+class java.lang.Object                               interface java.io.Serializable
+class java.lang.String                               interface java.lang.Comparable
+class java.lang.String                               interface java.lang.CharSequence
+
+
+                                   Introspection                                              10 / 25
+
+--- PAGE 11 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+La classe Constructor
+
+API de la classe Constructor                                                     (non exhaustif)
+public final class Constructor<T> extends AccessibleObject
+                                implements GenericDeclaration, Member {
+  Class<?>[] getExceptionTypes()
+  int           getModifiers()
+  String        getName()
+  Class<?>[] getParameterTypes()
+  TypeVariable<Constructor<T>>[]      getTypeParameters()
+  boolean       isVarArgs()
+  T             newInstance(Object... initargs)
+  String        toGenericString()
+  String        toString()
+}
+
+
+
+Instanciation
+Deux possibilités, appel de newInstance :
+      de Class pour le constructeur par défaut
+      de Constructor d’une manière générale
+
+                                   Introspection                                              11 / 25
+
+--- PAGE 12 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+Manipulation de Constructor
+
+TestIntrospection.java
+   Class<?> classA = Class.forName("fr.insarouen.asi.prog.cours8.A");
+   Constructor[] constructors = classA.getDeclaredConstructors();
+   for (Constructor constructor : constructors) {
+     System.out.println(constructor);
+   }
+   Class[] parametresFormels = {int.class, int.class, String.class};
+   Constructor constructor = classA.getConstructor(parametresFormels);
+   Object[] parametres = {1, 8, "coucou"};
+   Object objetA = constructor.newInstance(parametres);
+   System.out.println(objetA);
+
+
+
+Exécution
+public fr.insarouen.asi.prog.cours8.A()
+public fr.insarouen.asi.prog.cours8.A(int,int,java.lang.String)
+public fr.insarouen.asi.prog.cours8.A(java.lang.Integer,java.lang.String)
+1 / 8 / coucou / 42
+
+
+
+
+                                   Introspection                                              12 / 25
+
+--- PAGE 13 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+La classe Field
+
+API de la classe Field                                                           (non exhaustif)
+public final class Field extends AccessibleObject implements Member {
+  Object get(Object obj)
+  boolean getBoolean(Object obj)
+  char    getChar(Object obj)
+  double getDouble(Object obj)
+  int     getInt(Object obj)
+  int     getModifiers()
+  String getName()
+  Class<?> getType()
+  void    set(Object obj, Object value)
+  void    setBoolean(Object obj, boolean z)
+  void    setByte(Object obj, byte b)
+  void    setChar(Object obj, char c)
+  void    setDouble(Object obj, double d)
+  void    setFloat(Object obj, float f)
+  void    setInt(Object obj, int i)
+  void    setLong(Object obj, long l)
+  void    setShort(Object obj, short s)
+  String toGenericString()
+  String toString()
+}
+
+
+
+                                   Introspection                                              13 / 25
+
+--- PAGE 14 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+Manipulation de Field
+
+
+TestIntrospection.java
+classA.getField("entier").set(objetA,10);
+
+Field[] attributs = classA.getFields();
+for (Field field : attributs) {
+  System.out.println(field.getType().getName()
+                         +"␣:␣"+field.getName()
+                         +"␣=␣"+field.get(objetA));
+}
+
+
+
+Exécution
+int : entier = 10
+java.lang.String : chaine = coucou
+int : reponse = 42
+
+
+
+
+                                   Introspection                                              14 / 25
+
+--- PAGE 15 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+La classe Method
+
+
+
+API de la classe Method                                                          (non exhaustif)
+public final class Method extends AccessibleObject implements GenericDeclaration, Member {
+  Class<?>      getDeclaringClass()
+  Class<?>[] getExceptionTypes()
+  int           getModifiers()
+  String        getName()
+  Class<?>[] getParameterTypes()
+  Class<?>      getReturnType()
+  TypeVariable<Method>[]       getTypeParameters()
+  Object        invoke(Object obj, Object... args)
+  String        toGenericString()
+  String        toString()
+}
+
+
+
+
+                                   Introspection                                              15 / 25
+
+--- PAGE 16 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+Manipulation de Method
+TestIntrospection.java
+Method[] methods = classA.getMethods();
+for (Method method : methods)
+  System.out.println(method);
+Method method = classA.getMethod("methode", int.class, String.class);
+Object[] parametres2 = {666, "toto"};
+method.invoke(objetA, parametres2);
+System.out.println(objetA);
+
+
+
+Exécution
+public java.lang.String fr.insarouen.asi.prog.cours8.A.methode()
+public void fr.insarouen.asi.prog.cours8.A.methode(int,java.lang.String)
+public java.lang.String fr.insarouen.asi.prog.cours8.A.toString()
+public native int java.lang.Object.hashCode()
+public final native java.lang.Class java.lang.Object.getClass()
+public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+public final void java.lang.Object.wait() throws java.lang.InterruptedException
+public boolean java.lang.Object.equals(java.lang.Object)
+public final native void java.lang.Object.notify()
+public final native void java.lang.Object.notifyAll()
+1 / 666 / toto / 42
+
+
+                                   Introspection                                              16 / 25
+
+--- PAGE 17 ---
+Introduction Description de reflect JDBC   Class Constructor Field Method Exemple
+
+
+Test de performance d’un tri en fonction de la structure
+
+TestCollections.java
+public class TestCollections {
+  public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException,
+                                             InstantiationException, IllegalAccessException,
+                                             IllegalArgumentException,
+                                             InvocationTargetException {
+
+        Class<?> classe = Class.forName(args[0]);
+        List l = (List)classe.getDeclaredConstructor().newInstance();
+        for (int i=0; i<1000000; i++)
+          l.add(Math.round(Math.random()*1E10));
+        Collections.sort(l);
+
+    }
+}
+
+
+
+Exécution
+time java fr.insarouen.asi.prog.cours8.TestCollections java.util.LinkedList
+real   0m3.463s
+user   0m3.309s
+sys    0m0.092s
+
+
+
+                                     Introspection                                              17 / 25
+
+--- PAGE 18 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+Introduction à JDBC
+
+
+
+Java DataBase Connectivity
+    bibliothèque d’interfaces et de classes
+     communication avec un SGBDR
+     manipulation de requêtes SQL
+
+Drivers
+Il existe différents drivers JDBC pour différentes bases de données
+
+
+
+
+                                 Introspection                                                    18 / 25
+
+--- PAGE 19 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+Création de la connexion
+
+
+
+
+Chargement du driver
+Class.forName(‘‘classedudriver’’);
+
+Ouverture de la connexion
+Connection connection;
+connection=DriverManager.getConnection("UrlDeLaBaseDeDonnées","login","passwd");
+
+
+
+
+                                  Introspection                                                    19 / 25
+
+--- PAGE 20 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+Requêtes
+
+Création d’un objet Statement
+Statement statement = connection.createStatement();
+    cet objet permet l’exécution de requêtes SQL
+    un seul objet ResultSet lui est associé
+
+Exécution de requêtes sur l’objet Statement
+int executeUpdate("requete modification (insert/update/delete)");
+ResultSet executeQuery("requete de consultation (select)");
+
+
+Utilisation de ResultSet
+boolean next() , boolean previous() // positionnement sur les tuples
+leType getLeType (String nomColonne) // récupération des valeurs
+
+
+
+
+                                 Introspection                                                    20 / 25
+
+--- PAGE 21 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+Gestion de transaction en Java
+Transaction
+Ensemble d’instructions effectuées ensembles pour assurer la cohérence
+des données de la base
+
+Méthode
+    connection.setAutoCommit(false);
+    try {
+      // instructions java et/ou SQL de la transaction
+
+     // validation de la transaction
+     connection.commit();
+    }
+    catch (SQLException e) {
+      // code de traitement
+      connection.rollback();
+    }
+    catch (Exception e) {
+      // code de traitement
+      connection.rollback();
+    }
+    connection.setAutoCommit(true);
+
+
+                                  Introspection                                                    21 / 25
+
+--- PAGE 22 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+
+
+TestJDBC.java
+public class TestJDBC {
+  public static void main(String[] args) throws SQLException, ClassNotFoundException {
+      Class.forName("org.postgresql.Driver");
+      Connection connection;
+      connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/nicolasdb",
+                                               "nicolas","nicolas");
+
+        Personne p1 = new Personne(1,"Avuleur","Édith", 1983);
+        p1.writeObjectInBD(connection);
+        Personne p2 = new Personne(2,"Azutat","Laure", 1960);
+        p2.writeObjectInBD(connection);
+
+        Personne p3 = new Personne(1, connection);
+        System.out.println(p3);
+
+        connection.close();
+    }
+}
+
+
+
+
+                                      Introspection                                                    22 / 25
+
+--- PAGE 23 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+
+
+Création de la table personnes
+DROP TABLE personnes;
+CREATE TABLE personnes (
+      id_personne INTEGER NOT NULL,
+      nom VARCHAR(100) NOT NULL,
+      prenom VARCHAR(100),
+      annee INTEGER,
+      PRIMARY KEY (id_personne)
+);
+
+
+
+
+                                 Introspection                                                    23 / 25
+
+--- PAGE 24 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+
+
+Personne.java                                                                                       (. . . )
+public class Personne {
+  private int id;
+  private String nom;
+  private String prenom;
+  private int annee;
+
+ public Personne(int id, String nom, String prenom, int annee) {
+   this .id = id;
+   this .nom = nom;
+   this .prenom = prenom;
+   this .annee = annee;
+ }
+
+ public Personne(int id, Connection connection) throws SQLException {
+   this .id = id;
+   boolean res = readObjectFromBD(connection);
+   if (!res)
+     id = 0;
+ }
+
+ public int getId() {
+   return id;
+ }
+
+
+
+
+                                   Introspection                                                         24 / 25
+
+--- PAGE 25 ---
+Introduction Description de reflect JDBC   Présentation Fonctionnement de base Exemple
+
+
+Personne.java
+    public boolean readObjectFromBD(Connection connection) throws SQLException {
+      Statement transaction = connection.createStatement();
+      ResultSet resultat = transaction.executeQuery("SELECT * FROM personnes
+                                                      WHERE id_personne="+id);
+      if (resultat.next()) {
+        nom = resultat.getString("nom");
+        prenom = resultat.getString("prenom");
+        annee = resultat.getInt("annee");
+        return true;
+      }
+      return false ;
+    }
+    public void writeObjectInBD(Connection connection) throws SQLException {
+      Statement transaction = connection.createStatement();
+      if (getId(this.id,connection))
+        transaction.executeUpdate("UPDATE personnes
+                                    SET nom=’"+nom+"’, prenom=’"+prenom+"’, annee="+annee+"
+                                    WHERE id_personne="+id);
+      else
+        transaction.executeUpdate("INSERT INTO personnes (id_personne, nom, prenom, annee)
+                                        VALUES ("+id+",’"+nom+"’,’"+prenom+"’,"+annee+")");
+    }
+
+    public String toString() {
+      return getClass().getName()+"("+id+") : "+prenom+" "+nom+" ("+annee+")";
+    }
+}
+
+                                     Introspection                                                    25 / 25

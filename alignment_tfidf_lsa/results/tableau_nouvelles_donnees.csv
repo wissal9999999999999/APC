@@ -1,0 +1,3 @@
+Modèle,AUTO,BIGDATA,CAPT,DDRS31,Moy
+TF-Sentence-CamemBERT-Large (Hybrid alpha=0.9),0.6342,0.6747,0.7450,0.6389,0.6732
+LSA-Sentence-CamemBERT-Large (Hybrid alpha=0.8),0.6524,0.6869,0.7643,0.6389,0.6856

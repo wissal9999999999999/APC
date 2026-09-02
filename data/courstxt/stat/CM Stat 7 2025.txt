@@ -1,0 +1,292 @@
+--- PAGE 1 ---
+INSA         Informatique                                         UV Statistique
+Rouen        Technologie
+Normandie    Information                                             Cours n°7
+
+
+                             UV Statistique pour l'Ingénieur
+
+
+                                     Cours n° 7
+
+                         Statistique inférentielle : estimation
+
+                            méthodes d'estimation ponctuelle
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                   1
+
+--- PAGE 2 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°7
+
+                   Estimation ponctuelle d'un paramètre
+                  méthode du maximum de vraisemblance
+• Objectif : Construire un estimateur d'un paramètre Θ
+
+
+• Avantage : Fournir des estimateurs dont on connaît la
+  distribution asymptotique (c.a.d. leur loi quand n->∞)
+           Pratique pour l'estimation par intervalle de confiance et
+            pour les tests d'hypothèses (à suivre)
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                 2
+
+--- PAGE 3 ---
+INSA            Informatique                                                             UV Statistique
+Rouen           Technologie
+Normandie       Information                                                                 Cours n°7
+
+
+ « Fiche recette »                                                 MV =max L  x 1 , , x n , 
+                                                                  
+                                                                            
+
+
+
+                                         N
+
+•   L  x 1 ,  , x n , = ∏ f  x i , 
+                                        i=1
+                                                              N
+                      ln L  x 1 ,  , x n , =∑ ln f  x i ,  => Calculs + simples!
+                                                          i=1
+
+
+• Équation de vraisemblance : ∂ ln L  x 1 , , x n , =0
+                                                          ∂
+                                                          2
+• Prendre la valeur max :                                ∂ ln L
+                                                             2
+                                                                 x 1 ,  , x n , 0
+                                                          ∂
+
+            ∂ ln L
+• Si                                              
+                    X 1 , , X n , = An ,  u−u 
+             ∂
+            + Conditions de Cramer Rao vérifiés
+            + estimateur (asymptotiquement) sans biais                      u ' 
+                                                          alors Var  u =
+                                                                            An ,
+Ph. LERAY - A. ROGOZAN
+                                                                                                          3
+
+--- PAGE 4 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°7
+
+                   Estimation ponctuelle d'un paramètre
+                  méthode du maximum de vraisemblance
+• Remarques :
+   L'éq° de vraisemblance ne conduit pas forcément à un
+
+    estimateur  MV unique
+
+            Il peut exister un  
+                                   MV même quand L n'est pas 2 fois
+      
+
+            dérivable (i.e. loi uniforme)
+           L'éq° de vraisemblance n'est pas forcément « résolvable »
+            de manière formelle (et peut nécessiter l'utilisation de
+            méthodes itératives)
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                 4
+
+--- PAGE 5 ---
+INSA          Informatique                                            UV Statistique
+Rouen         Technologie
+Normandie     Information                                                Cours n°7
+
+                   Estimation ponctuelle d'un paramètre
+                  méthode du maximum de vraisemblance
+• Exemples :
+  
+    Soit une v.a. X ~P  de paramètre inconnu λ
+     construire un estimateur  MV
+
+
+
+                                                                               
+                                                                      −1 −x
+           Soit une v.a. qui suit une loi de Weibull f  x ;= x      e
+            ...
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                       5
+
+--- PAGE 6 ---
+INSA          Informatique                                        UV Statistique
+Rouen         Technologie
+Normandie     Information                                            Cours n°7
+
+                   Estimation ponctuelle d'un paramètre
+                  méthode du maximum de vraisemblance
+• Propriétés :
+
+           Si  MV estimateur du max. de vraisemblance de 
+                        est l'estimateur du max. de vrais. de u 
+            alors u   MV
+
+
+           S'il existe un estimateur T efficace de  ou de u  et si
+            
+             MV
+                  est une solution de l'éq° de vraisemblance
+
+            alors T = f   MV 
+            et la solution de l'éq° de vraisemblance est unique
+
+            (la réciproque est fausse ; ex : loi exp)
+Ph. LERAY - A. ROGOZAN
+                                                                                   6
+
+--- PAGE 7 ---
+INSA           Informatique                                     UV Statistique
+Rouen          Technologie
+Normandie      Information                                         Cours n°7
+
+                    Estimation ponctuelle d'un paramètre
+                   méthode du maximum de vraisemblance
+• Propriétés de la distribution asymptotique :
+
+           Si  MV estimateur du max. de vraisemblance de 
+            
+             MV n'est pas nécessairement sans biais,
+            mais il est asymptotiquement sans biais.
+           Si les conditions de Cramer-Rao sont vérifiées,
+             
+              MV est asymptotiquement efficace
+
+           Sous certaines conditions (conditions de Cramer-Rao et n
+                    
+            grand),     est asymptotiquement gaussien
+                      MV
+
+                 (    et  2  Borne de Cramer− Rao )
+Ph. LERAY - A. ROGOZAN
+                                                                                 7
+
+--- PAGE 8 ---
+INSA         Informatique                                                  UV Statistique
+Rouen        Technologie
+Normandie    Information                                                      Cours n°7
+
+        Estimation ponctuelle d'un vecteur de paramètres
+            méthode du maximum de vraisemblance
+• Objectif : Construire un estimateur d'un vecteur de
+  paramètres θ,...,θp
+• « Fiche recette » : annuler les dérivées partielles de ln L par
+  rapport à chacun des paramètres θi
+                      ∂ ln L
+                              x 1 , , x n , i =0 pour i ∈ {1,   , p}
+                       ∂ i
+
+• Exemple : Soit une v.a. X ~N  , 2  ayant 2 paramètres
+  inconnus µ et σ2
+                           
+                                    2
+   Construire 2 estimateurs MV et  MV
+
+Ph. LERAY - A. ROGOZAN
+                                                                                            8
+
+--- PAGE 9 ---
+INSA         Informatique                                                      UV Statistique
+Rouen        Technologie
+Normandie    Information                                                          Cours n°7
+
+      Estimation ponctuelle d'un vecteur de p paramètres
+                   méthode des moments
+• « Fiche recette » : à l'aide de p équations :
+  {moment théorique de la v.a. = moment empirique de
+  l'échantillon}
+• pb. du choix des moments : centrés ou non-centrés
+                                    P
+                                    n∞
+            Moment Empirique              Moment Théorique       Équation(s)
+                                n
+                       1
+                 m k = ∑ X ik
+                                                        k
+                                            mk = E  X           m k = m k
+                       n i=1
+                            n
+                 1
+            k = ∑  X i − X
+                             k        k = E  X − E  X k     k = k
+                 n i=1
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                                9
+
+--- PAGE 10 ---
+INSA         Informatique                                  UV Statistique
+Rouen        Technologie
+Normandie    Information                                      Cours n°7
+
+      Estimation ponctuelle d'un vecteur de p paramètres
+                   méthode des moments
+• « Fiche recette » : à l'aide de p équations :
+  {moment théorique de la v.a. = moment empirique de
+  l'échantillon}
+• pb. du choix des moments : centrés ou non-centrés
+
+
+• Exemple :
+   Soit une v.a. X ~U           de paramètres inconnus θ1et θ2
+                       [1 ,2 ]
+    Construire les 2 estimateurs      et 
+                                        1m    2m
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                        10
+
+--- PAGE 11 ---
+INSA          Informatique                                              UV Statistique
+Rouen         Technologie
+Normandie     Information                                                  Cours n°7
+
+         Estimation ponctuelle d'un vecteur de p paramètres
+                      méthode des moments
+                               obtenus par la méthode des
+• Propriété : les estimateurs  m
+
+   moments sont :
+                                   P
+           convergents         
+                                m  
+
+           asymptotiquement gaussiens                       L
+                                                     n m− N 0,  m 
+                                                                        2
+
+                                           2
+                        où la variance    m   dépend des moments utilisés
+
+
+
+
+Ph. LERAY - A. ROGOZAN
+                                                                                     11

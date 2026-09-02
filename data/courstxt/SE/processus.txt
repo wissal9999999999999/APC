@@ -1,0 +1,941 @@
+--- PAGE 1 ---
+Présentation Ordonnancement Programmation système Communication inter-processus
+
+
+
+
+                                    Système d’exploitation
+                                          - Processus -
+
+                                             Nicolas Malandain
+
+
+
+
+                             Système d’exploitation - Processus -                  1 / 37
+
+--- PAGE 2 ---
+Présentation Ordonnancement Programmation système Communication inter-processus
+
+
+
+  1   Présentation
+        Multitâche
+        Processus
+  2   Ordonnancement
+        Politique
+        Algorithmes
+  3   Programmation système
+        Appels systèmes
+        Shell & Processus
+  4   Communication inter-processus
+        IPC
+        Signaux
+        Tubes (Pipes)
+        Sémaphores
+ co-rédigé avec une IA
+
+
+                             Système d’exploitation - Processus -                  2 / 37
+
+--- PAGE 3 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+
+
+                                                   Section 1
+
+                                               Présentation
+
+
+
+
+                             Système d’exploitation - Processus -                  3 / 37
+
+--- PAGE 4 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ Mono/Multitâche
+
+
+ Monotâche
+    une seule tâche à la fois est exécutée par le système
+         arrêt de la tâche : utilisateur/programme
+         problème sur la tâche → plantage
+
+ Multitâche
+     plusieurs tâches exécutées en parallèle par le système
+         arrêt de la tâche : utilisateur/programme/système
+         problème sur une tâche → le système reprend la main
+
+
+
+
+                             Système d’exploitation - Processus -                  4 / 37
+
+--- PAGE 5 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ Multitâche
+
+
+ Quelques contraintes
+     ne pas compliquer les méthodes de développement
+         ne pas gêner l’utilisateur
+         illusion de la simultanéité
+         une tâche ne doit pas en bloquer une autre
+         mécanisme de communication/synchronisation entre tâches
+
+ Principe de fonctionnement
+      les tâches ne s’exécutent pas en continu
+         une petite fraction de chacune est exécutée chacune leur tour
+
+
+
+                             Système d’exploitation - Processus -                  5 / 37
+
+--- PAGE 6 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ 2 familles de systèmes d’exploitation multitâche
+
+
+ Coopératif (obsolète)
+ Le système multitâche donne la main à une application qui décidera
+ quand elle la rendra.
+         si une tâche ne passe/rend pas la main → plantage
+         risque d’iniquité du partage des ressources
+
+ Préemptif
+ Le système multitâche décide d’allouer du temps à chaque tâche et
+ reprend la main une fois ce temps écoulé.
+         quantum
+         meilleure stabilité du système
+
+
+
+                             Système d’exploitation - Processus -                  6 / 37
+
+--- PAGE 7 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ Programme / Processus
+ Définitions
+ Programme séquence d’instructions
+      Processus programme exécuté par un ordinateur
+
+ Contenu d’un processus
+     programme                                                   pile
+         pointeur d’instruction                                  variables
+         ...
+
+ Remarques
+    Un programme peut être dans plusieurs processus et donc être
+    exécuté plusieurs fois en même temps
+         Un processus peut se voir changer le programme qu’il exécute
+         L’ordonnanceur d’un système d’exploitation gère les processus
+
+                             Système d’exploitation - Processus -                  7 / 37
+
+--- PAGE 8 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ États d’un processus
+
+
+
+ États ≪ classiques ≫
+           élu processus OK, processeur OK
+                ⇒ en cours d’exécution
+              prêt processus OK, processeur occupé
+                    ⇒ suspendu (un autre processus est exécuté)
+ bloqué/endormi processus non prêt, processeur OK
+              ⇒ interrompu ou attend un événement pour continuer
+
+
+
+
+                             Système d’exploitation - Processus -                  8 / 37
+
+--- PAGE 9 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ Diagramme des états d’un processus
+
+
+
+
+                                                           prêt
+
+
+                                déblocage                                   relance
+                                                              réquisition
+
+
+                           bloqué                                                   élu
+                                                       blocage
+
+
+
+
+                             Système d’exploitation - Processus -                        9 / 37
+
+--- PAGE 10 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Multitâche
+                                                                  inter-processus
+                                                                        Processus
+
+
+ Autres états d’un processus
+
+
+
+ États particuliers
+       swappé stockage du processus sur mémoire de masse
+                (mémoire virtuelle)
+      exécution en espace utilisateur exécution avec des droits limités
+                 en espace noyau exécution ≪ sans limite de droits ≫
+          zombie processus terminé et non détruit
+                 (le père doit valider la mort de ses fils)
+
+
+
+
+                             Système d’exploitation - Processus -                  10 / 37
+
+--- PAGE 11 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+
+
+                                                   Section 2
+
+                                          Ordonnancement
+
+
+
+
+                             Système d’exploitation - Processus -                  11 / 37
+
+--- PAGE 12 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+ Ordonnanceur
+ L’ordonnanceur sélectionne le prochain processus à exécuter
+ ⇒ un processus en cours d’exécution est remplacée par un autre
+ ⇒ politique d’ordonnancement (plus court temps d’exécution,
+ tourniquet, . . .)
+
+ Objectifs de la politique d’ordonnancement
+     éviter les famines : processus sans temps d’exécution alloué
+         gestion des priorités
+         équité
+         un temps de réponse acceptable : important pour les processus
+         interactifs
+         maximiser l’utilisation du processeur
+         éviter le cache trashing : swap important de processus entre la
+         mémoire et le disque
+                             Système d’exploitation - Processus -                  12 / 37
+
+--- PAGE 13 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+ Base des algorithmes
+
+ File d’attente
+      les processus prêts sont mis dans une file d’attente
+      il peut y avoir plusieurs files d’attente
+                processus bloqués, endormis, . . .
+                files de priorités différentes
+
+ Gestion des files d’attente
+ Algorithmes d’ordonnancement basés sur :
+         les dates d’arrivés
+         les temps d’exécution
+         les priorités
+         l’interaction
+         ...
+
+                             Système d’exploitation - Processus -                  13 / 37
+
+--- PAGE 14 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+ Quelques algorithmes basiques
+
+
+ Algorithme de type FIFO (Le plus simple)
+ Le premier processus dans la file des prêts sera le premier exécuté.
+
+ Plus court d’abord (Shortest Job First)
+ Plusieurs processus de priorités équivalentes dans la file des processus
+ prêts, le processus élu sera celui qui a la plus courte durée d’exécution
+         nécessité d’évaluer la durée d’un processus
+         nécessité de réorganiser la file
+         risque de famine pour les processus les plus longs
+         ⇒ augmentation de la priorité pour les processus en attente
+
+
+
+
+                             Système d’exploitation - Processus -                  14 / 37
+
+--- PAGE 15 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+ Algorithme du Tourniquet (Round Robin)
+ Principe
+      les processus sont placés dans une liste circulaire
+         chaque processus dispose d’un quantum de temps pour s’exécuter
+ Le quantum correspond au temps d’exécution donné à un processus.
+         processus terminé durant le quantum
+         ordonnanceur : passe la main au processus suivant
+         processus non terminé durant le quantum :
+         ordonnanceur : arrête le processus et passe la main au suivant
+
+ Réglage du quantum
+         quantum trop petit (notamment par rapport au temps de
+         commutation)
+         ⇒ le processeur passe sont temps à commuter
+         quantum trop grand
+         ⇒ le temps de réponse augmente
+                             Système d’exploitation - Processus -                  15 / 37
+
+--- PAGE 16 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+ Tourniquet avec gestion de priorités
+
+
+ Priorité
+ Certains processus peuvent être plus importants ou urgents
+ ⇒ attribution de priorités aux processus
+
+ Gestion des priorités
+      plusieurs files d’attente selon les priorités
+         chaque file est gérée par l’algorithme du tourniquet
+         éviter une famine des processus moins prioritaire
+         ⇒ diminution régulière de la priorité du processus élu
+         ⇒ commutation vers le processus le plus prioritaire
+         ⇒ insertion de l’ancien processus élu dans sa nouvelle file de priorité
+
+
+
+                             Système d’exploitation - Processus -                  16 / 37
+
+--- PAGE 17 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+   Quelques exemples 1 / 3
+
+ Sans ordonnancement
+ Au temps t0 tous les processus sont dans la file                               TA =
+                                                                                TB =
+     A           B           C             D
+     8           4           4             4                                    TC =
+                                                                                TD =
+ Tempsmoyen =
+
+ Avec ordonnancement plus court d’abord
+                                                                     TB =
+                                                                     TC =
+                                                                     TD =
+                                                                     TA =
+ Tempsmoyen =
+
+
+                             Système d’exploitation - Processus -                     17 / 37
+
+--- PAGE 18 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+   Quelques exemples 2 / 3
+
+
+
+
+ Algorithme du tourniquet (Quantum = 2)
+ Création de processus :                                                           TA =
+         à t0 insertions de A(8), B(2), C(6) dans la file                          TB =
+         à t1 insertion de D(3)                                                    TC =
+                                                                                    TD =
+ Tempsmoyen =
+
+
+
+
+                             Système d’exploitation - Processus -                         18 / 37
+
+--- PAGE 19 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Politique
+                                                                  inter-processus
+                                                                      Algorithmes
+
+
+   Quelques exemples 3 / 3
+
+
+ Algorithme du tourniquet avec priorité (Quantum = 2)
+  File de priorité 2
+                       A   B   C       D
+                       8   4   2       4
+
+  File de priorité 1
+                       E   F
+                       4   6                                0      1   2   3   4     5   6   7   8   9
+                                                 pr. 2      X      X           X     X   X           X
+                                                 pr. 1                 X   X                 X   X
+
+                                                     TA =                           TD =
+                                                     TB =                           TE =
+                                                     TC =                           TF =
+
+
+ Tempsmoyen =
+
+
+
+                               Système d’exploitation - Processus -                                     19 / 37
+
+--- PAGE 20 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+
+
+                                                   Section 3
+
+                                  Programmation système
+
+
+
+
+                             Système d’exploitation - Processus -                              20 / 37
+
+--- PAGE 21 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+ Appels systèmes
+         Un appel système correspond à une fonction du noyau
+         La documentation est dans la section 2 du manuel Linux
+
+ man getpid
+ getpid(2)                                    System Calls Manual                               getpid(2)
+
+ NAME
+           getpid, getppid - get process identification
+
+ LIBRARY
+        Standard C library (libc, -lc)
+
+ SYNOPSIS
+        #include <unistd.h>
+        pid_t getpid(void);
+        pid_t getppid(void);
+
+ DESCRIPTION
+        getpid() returns the process ID (PID) of the calling process. (This is
+        often used by routines that generate unique temporary filenames.)
+        ...
+                             Système d’exploitation - Processus -                                     21 / 37
+
+--- PAGE 22 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+ Création d’un processus
+ progFork.c
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <sys/wait.h>
+
+ void main(void) {
+   pid_t pid ;
+   pid = fork() ;
+   switch (pid) {
+     case -1:
+       printf("erreur␣:␣echec␣du␣fork()\n");
+       exit(1);
+       break ;
+     case 0:
+       printf("--␣Processus␣fils␣:␣pid␣=%d\n", getpid() );
+       sleep(10);
+       printf("--␣fin␣du␣fils␣\n");
+       exit(0);
+       break ;
+     default:
+       printf("Processus␣pere␣:␣le␣fils␣a␣un␣pid=%d\n", pid) ;
+       wait(NULL);
+       printf("Fin␣du␣pere\n");
+     }
+ }
+                             Système d’exploitation - Processus -                              22 / 37
+
+--- PAGE 23 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+   Explication de quelques appels systèmes 1 / 2
+ pid t fork()
+         crée un nouveau processus (le fils)
+         le fils est une copie du père
+         retourne -1 en cas d’erreur
+         retourne le PID du fils dans le père
+         retourne 0 dans le fils
+ exit(int status)
+     termine le processus appelant
+     libère les ressources allouées au processus
+     retourne le code de fin status au père
+
+ pid t wait(int *wstatus)
+ pid t waitpid(pid t pid, int *wstatus, int options)
+         suspend le processus appelant jusqu’à la fin d’un de ses fils
+         retourne le PID du fils terminé
+         si status est non nul, stocke le code de fin du fils dans status
+                             Système d’exploitation - Processus -                              23 / 37
+
+--- PAGE 24 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+   Explication de quelques appels systèmes 2 / 2
+
+ int execlp(const char *file, const char *arg, ..., NULL)
+ execl, execle, execv, execvp, execvpe
+         remplace le programme du processus appelant par le programme
+         file
+         les arguments sont passés en paramètre
+         ne retourne rien en cas de succès car le programme appelant est
+         remplacé, sinon retourne -1
+ Exemple : execlp("ls", "ls", "-l", "/home", NULL);
+
+ unsigned int sleep(unsigned int seconds)
+         suspend le processus appelant pendant seconds secondes
+         retourne le nombre de secondes restant à dormir si interrompu par
+         un signal
+         ne doit pas être utilisé pour la synchronisation entre processus
+
+                             Système d’exploitation - Processus -                              24 / 37
+
+--- PAGE 25 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          Appels inter-processus
+                                                                  systèmes Shell & Processus
+
+
+ Les processus dans un shell Unix
+ Les flux d’entrée / sortie
+                                          stdin                          stdout
+                                                       Commande
+
+                                                                stderr
+
+
+
+ Exécution de commandes
+      séquentiel : C1 ; C2 ; C3
+         conditionnel : C1 && C2 ou C1 || C2
+         en arrière plan : C1 &
+ Redirections des flux
+     entrée : C1 < fichier
+         sortie : C1 > fichier (écrase) ou C1 >> fichier (ajoute)
+         erreur : C1 2> fichier
+         sortie & erreur : C1 &> fichier
+         pipeline : C1 | C2 (sortie de C1 vers entrée de C2)
+                             Système d’exploitation - Processus -                              25 / 37
+
+--- PAGE 26 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+
+
+                                                   Section 4
+
+                           Communication inter-processus
+
+
+
+
+                             Système d’exploitation - Processus -                                    26 / 37
+
+--- PAGE 27 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Communication inter-processus (IPC)
+
+ Problématique
+     plusieurs processus s’exécutent en même temps
+         ils peuvent avoir besoin de communiquer entre eux
+         ils peuvent avoir besoin de se synchroniser
+
+ Mécanismes d’IPC
+     signaux
+         tubes nommés (FIFOs)
+         tubes anonymes (entre processus parents/enfants)
+         mémoire partagée
+         files de messages
+         sémaphores
+         sockets
+
+                             Système d’exploitation - Processus -                                    27 / 37
+
+--- PAGE 28 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Signaux
+
+ Définition
+       mécanisme de communication asynchrone
+         un signal est un message envoyé à un processus
+         le processus peut ignorer, mourir, être stoppé, être réveillé ou
+         exécuter un code
+
+ Manipulation des signaux
+     int kill(pid t pid, int sig)
+     envoi le signal sig au processus pid
+         typedef void (*sighandler t)(int);
+         sighandler t signal(int signum, sighandler t handler)
+         associe la fonction handler au signal signum
+
+
+                             Système d’exploitation - Processus -                                    28 / 37
+
+--- PAGE 29 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Liste des signaux Linux
+ $ kill -l
+
+     1 SIGHUP (deconnexion du terminal)                              17 SIGCHLD (fin du fils)
+     2 SIGINT (Ctrl-c)                                               18 SIGCONT (reprise)
+     3 SIGQUIT                                                       19 SIGSTOP (arrêt)
+     4 SIGILL                                                        20 SIGTSTP
+     5 SIGTRAP                                                       21 SIGTTIN
+     6 SIGABRT                                                       22 SIGTTOU
+     7 SIGBUS                                                        23 SIGURG
+     8 SIGFPE                                                        24 SIGXCPU
+     9 SIGKILL (le ≪ signal tueur ≫)                                 25 SIGXFSZ
+    10 SIGUSR1 (utilisateur1)                                        26 SIGVTALRM
+    11 SIGSEGV                                                       27 SIGPROF
+    12 SIGUSR2 (utilisateur2)                                        28 SIGWINCH
+    13 SIGPIPE                                                       29 SIGIO
+    14 SIGALRM                                                       30 SIGPWR
+    15 SIGTERM (terminaison)                                            ...
+    16 SIGSTKFLT
+
+
+
+
+                             Système d’exploitation - Processus -                                    29 / 37
+
+--- PAGE 30 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Tubes (Pipes)
+
+ Définition
+       mécanisme de communication unidirectionnel
+         un processus écrit dans le tube, l’autre lit dans le tube
+         les données sont lues dans l’ordre où elles ont été écrites
+         la lecture est destructrice
+         la lecture et l’écriture sont bloquantes par défaut
+
+ Manipulation des tubes
+     tube anonyme : int pipe(int pipefd[2])
+     crée un tube anonyme, pipefd[0] pour lire, pipefd[1] pour écrire
+         tube nommé : int mkfifo(const char *pathname, mode t
+         mode)
+         crée un tube nommé dans le système de fichiers
+
+                             Système d’exploitation - Processus -                                    30 / 37
+
+--- PAGE 31 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ comPereFilsPipe.c
+ #include <stdio.h>                                                  // Code du processus parent
+ #include <unistd.h>                                                 close(pipefd[0]);
+ #include <string.h>
+ #include <sys/wait.h>                                               write(pipefd[1], message, strlen(message) + 1);
+ int main() {                                                        // +1 pour inclure le ’\0’
+     int pipefd[2];                                                  close(pipefd[1]);
+     // pipefd[0] lecture, pipefd[1] ecriture                        wait(NULL);    // Attendre que l’enfant termine
+     pid_t pid;                                                      return 0;
+     char buffer[100];                                         }
+     char *message = "Bonjour␣du␣processus␣parent!";
+     if (pipe(pipefd) == -1) {
+         perror("pipe");
+         return 1;
+     }
+
+     pid = fork();
+
+     if (pid == -1) { // Si fork echoue
+         perror("fork");
+         return 1;
+     }
+     if (pid == 0) { // Code du processus enfant
+         close(pipefd[1]); // Ferme l’extremite d’ecriture
+         read(pipefd[0], buffer, sizeof(buffer));
+         printf("Processus␣enfant␣a␣recu:␣%s\n", buffer);
+         close(pipefd[0]);
+         return 0;
+       }
+
+
+                             Système d’exploitation - Processus -                                                31 / 37
+
+--- PAGE 32 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Mémoire partagée
+ Définition
+       une zone mémoire est partagée entre plusieurs processus
+         chaque processus peut lire et écrire dans cette zone
+         nécessite une synchronisation entre les processus
+
+ Les appels de base
+ int shmget(key t key, size t size, int shmflg)
+     crée/accède à un segment de mémoire partagée, retourne l’identifiant
+ void *shmat(int shmid, const void *shmaddr, int shmflg)
+    attache le segment de mémoire partagée au processus appelant
+ int shmdt(const void *shmaddr)
+    détache le segment de mémoire partagée du processus appelant
+ int shmctl(int shmid, int cmd, struct shmid ds *buf)
+    contrôle le segment de mémoire partagée (suppression, info, . . .)
+
+                             Système d’exploitation - Processus -                                    32 / 37
+
+--- PAGE 33 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Sémaphores
+ Définition
+       mécanisme de synchronisation entre processus
+         les opérations sur un sémaphore sont atomiques
+
+ Opérations de base
+ Un sémaphore S est un entier non signé.
+         P(S)
+                si S > 0, alors S ← S - 1
+                si S = 0, le processus est bloqué jusqu’à ce que S > 0
+         V(S)
+                S←S+1
+                si des processus sont bloqués sur P(S), l’un d’eux est réveillé
+         Z(S)
+                si S = 0, le processus continue
+                si S > 0, le processus est bloqué jusqu’à ce que S = 0
+                             Système d’exploitation - Processus -                                    33 / 37
+
+--- PAGE 34 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Sémaphores : exclusion mutuelle
+
+ Problématique
+     n processus accèdent à une ressource partagée R
+         un seul processus à la fois doit accéder à cette ressource
+         le code accédant à cette ressource est appelé section critique
+
+ Exemple
+                                     A₁                R                 B₁
+                                               P               V
+                                          A₂               R             B₂
+                                                   P                 V
+
+
+
+
+                                     Aₙ        P       R       V         Bₙ
+
+
+
+                             Système d’exploitation - Processus -                                    34 / 37
+
+--- PAGE 35 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Sémaphores : synchronisation de processus
+
+ La problématique du rendez-vous
+     n processus doivent exécuter une partie de leur code en même temps
+         Utilisation d’un sémaphore initialisé à n
+
+ Exemple
+                                A₁                P;Z                    B₁
+
+                                A₂                      P;Z              B₂
+
+                                A₃             P;Z                       B₃
+
+
+
+
+                                Aₙ                      P;Z              Bₙ
+
+
+
+
+                             Système d’exploitation - Processus -                                    35 / 37
+
+--- PAGE 36 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Sémaphores : appels systèmes
+
+
+
+ Les appels de base
+ int semget(key t key, int nsems, int semflg)
+     crée/accède à un ensemble de sémaphores, retourne l’identifiant
+ int semctl(int semid, int semnum, int op, ...)
+    contrôle le sémaphore (initialisation, suppression, info, . . .)
+ int semop(int semid, struct sembuf *sops, size t nsops)
+    effectue une ou plusieurs opérations atomiques sur les sémaphores
+
+
+
+
+                             Système d’exploitation - Processus -                                    36 / 37
+
+--- PAGE 37 ---
+Présentation Ordonnancement Programmation système Communication
+                                                          IPC Signaux
+                                                                  inter-processus
+                                                                          Tubes (Pipes) Sémaphores
+
+
+ Création des clés IPC : key t
+ key t ftok(const char *pathname, int proj id)
+         crée une clé unique à partir d’un fichier existant et d’un identifiant
+         le fichier doit être accessible en lecture
+         pathname / proj id de même valeur ⇒ même clé
+
+ Gestion des clés
+ Une mauvaise gestion des clés peut entraı̂ner des fuites de ressources IPC
+         toujours supprimer les ressources IPC (sémaphores, mémoire
+         partagée, files de messages) après utilisation
+         vérifier l’existence d’une ressource IPC avant d’en créer une nouvelle
+         utiliser des fichiers dédiés stables pour la création des clés IPC (ex :
+         /etc/passwd /dev/null, ou créer un fichier spécifique
+         /tmp/monprog.ipc)
+         utiliser les commandes ipcs et ipcrm pour gérer les ressources IPC
+                             Système d’exploitation - Processus -                                    37 / 37

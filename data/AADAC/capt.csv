@@ -1,0 +1,38 @@
+﻿AC-ID,AC-TITLE,AAD-ID,AAD-TITLE,LABEL
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,CAPT-Capt01,"Définir et classer les différents types de capteurs en fonction de leurs caractéristiques : actif/passif, nature du mesurande ou du signal de sortie, analogique/numérique/logique, mesure directe/indirecte",1
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,CAPT-Capt02,Décrire les signaux/données d'entrée/sortie,1
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,CAPT-Capt03,Définir les caractéristiques métrologiques des capteurs,1
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,CAPT-Capt04,Caractériser les erreurs de mesures liées aux capteurs.,1
+specifier-1.3,Utiliser un langage formel,CAPT-Capt19,"Développer un programme python pour utiliser les capteurs ou pour traiter les données (filtre, kalman…)",1
+specifier-2.1,Analyser la demande,CAPT-Capt05,"Interpréter la position dans différents repères de référence (géocentrique, terrestre, local, ENU, NED)",1
+specifier-2.1,Analyser la demande,CAPT-Capt10,Interpréter les résultats de détection ou de mesure de distance,1
+specifier-2.1,Analyser la demande,CAPT-Capt17,Interpréter les résultats de la fusion dans le contexte de la navigation,1
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,CAPT-Capt01,"Définir et classer les différents types de capteurs en fonction de leurs caractéristiques : actif/passif, nature du mesurande ou du signal de sortie, analogique/numérique/logique, mesure directe/indirecte",1
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,CAPT-Capt02,Décrire les signaux/données d'entrée/sortie,1
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,CAPT-Capt03,Définir les caractéristiques métrologiques des capteurs,1
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel,CAPT-Capt09,"Comparer les performances des capteurs (portée, résolution, fréquence)",1
+modeliser-2.1,Analyser les données numériques et symboliques du problème,CAPT-Capt05,"Interpréter la position dans différents repères de référence (géocentrique, terrestre, local, ENU, NED)",1
+modeliser-2.1,Analyser les données numériques et symboliques du problème,CAPT-Capt06,Analyser des trames NMEA pour extraire les données utiles,1
+modeliser-2.1,Analyser les données numériques et symboliques du problème,CAPT-Capt07,"Comparer différentes représentations de l’orientation (angles, matrices)",1
+modeliser-2.1,Analyser les données numériques et symboliques du problème,CAPT-Capt10,Interpréter les résultats de détection ou de mesure de distance,1
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,CAPT-Capt05,"Interpréter la position dans différents repères de référence (géocentrique, terrestre, local, ENU, NED)",1
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,CAPT-Capt06,Analyser des trames NMEA pour extraire les données utiles,1
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,CAPT-Capt07,"Comparer différentes représentations de l’orientation (angles, matrices)",1
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",CAPT-Capt11,Appliquer un filtrage simple pour réduire le bruit sur un signal mesuré,1
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",CAPT-Capt12,"Synchroniser les données issues de capteurs différents (IMU, GPS)",1
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",CAPT-Capt13,Prétraiter les données pour compenser les dérives ou biais,1
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",CAPT-Capt14,Mettre en œuvre un filtre de Kalman linéaire,1
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire",CAPT-Capt19,"Développer un programme python pour utiliser les capteurs ou pour traiter les données (filtre, kalman…)",1
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,CAPT-Capt10,Interpréter les résultats de détection ou de mesure de distance,1
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,CAPT-Capt16,Expliquer les intérêts d’une fusion multi-capteurs pour la robustesse,1
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,CAPT-Capt17,Interpréter les résultats de la fusion dans le contexte de la navigation,1
+developper-1.3,Caractériser le matériel et le système au regard des besoins,CAPT-Capt01,"Définir et classer les différents types de capteurs en fonction de leurs caractéristiques : actif/passif, nature du mesurande ou du signal de sortie, analogique/numérique/logique, mesure directe/indirecte",1
+developper-1.3,Caractériser le matériel et le système au regard des besoins,CAPT-Capt08,"Décrire les principes physiques (semi-conducteur, laser) associés à des capteurs de perception",1
+developper-1.3,Caractériser le matériel et le système au regard des besoins,CAPT-Capt09,"Comparer les performances des capteurs (portée, résolution, fréquence)",1
+developper-1.3,Caractériser le matériel et le système au regard des besoins,CAPT-Capt18,Utiliser un capteur avec une carte raspberry,1
+communiquer-3.2,Critiquer les résultats,CAPT-Capt13,Prétraiter les données pour compenser les dérives ou biais,1
+communiquer-3.2,Critiquer les résultats,CAPT-Capt15,Présenter les limites du modèle linéaire et expliquer le filtre de Kalman étendu,1
+communiquer-3.2,Critiquer les résultats,CAPT-Capt156,,1
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,CAPT-Capt10,Interpréter les résultats de détection ou de mesure de distance,1
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,CAPT-Capt17,Interpréter les résultats de la fusion dans le contexte de la navigation,1
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,CAPT-Capt19,"Développer un programme python pour utiliser les capteurs ou pour traiter les données (filtre, kalman…)",1

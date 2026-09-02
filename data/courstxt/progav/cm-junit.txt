@@ -1,0 +1,723 @@
+--- PAGE 1 ---
+Introduction JUnit Assertions Exécution
+
+
+
+
+                     Programmation
+                - Tests unitaires : JUNIT -
+
+                            Nicolas Malandain
+
+
+
+
+                       Tests Unitaires          1 / 28
+
+--- PAGE 2 ---
+Introduction JUnit Assertions Exécution
+
+
+
+
+1   Introduction
+       Présentation
+       Framework de tests unitaires
+
+2   JUnit
+      TestCase
+      Avant / Après les tests
+
+3   Assertions
+      Méthodes classiques
+      Méthode basée sur des contrats
+
+4   Exécution
+      Cas de Test
+      Suite de test
+
+
+                                 Tests Unitaires     2 / 28
+
+--- PAGE 3 ---
+Introduction JUnit Assertions Exécution   Présentation Framework de tests unitaires
+
+
+Objectif des tests unitaires
+
+
+                    S’assurer du bon fonctionnement
+                d’une partie ou de la totalité d’un logiciel
+
+Utilisation
+      vérifier que le code répond aux spécification fonctionnelles
+     permettre de tester facilement le code
+     lors de modification de code, vérifier qu’il n’y a pas de régression
+
+Les tests unitaires sont très utilisés pour des applications critiques. La
+méthode agile XP (eXtreme Programming) les place maintenant au
+centre du processus de développement
+
+
+
+                                 Tests Unitaires                                                  3 / 28
+
+--- PAGE 4 ---
+Introduction JUnit Assertions Exécution   Présentation Framework de tests unitaires
+
+
+xUnit
+
+
+
+Bibliothèques xUnit disponibles pour de nombreux langages
+    AUnit (Ada)
+    JUnit (Java)
+    FLEXUnit (Adobe Flex)
+    NUnit (.NET)
+    JSUnit (Javascript)
+    CPPUnit (C++)
+    ...
+
+
+
+
+                                 Tests Unitaires                                                  4 / 28
+
+--- PAGE 5 ---
+Introduction JUnit Assertions Exécution   Présentation Framework de tests unitaires
+
+
+Le framework JUnit
+
+
+
+Créé par Kent Beck et Erich Gamma
+Principe
+     un environnement de développement simple
+    un test = un objet
+    vérification “à la chaı̂ne” des tests
+    depuis la version 4.x utilisation des annotations java
+
+
+
+
+                                Tests Unitaires                                                  5 / 28
+
+--- PAGE 6 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Principe des annotations en Java
+
+Méta-données
+ajout de méta-données (déclaratif) dans le code source qui seront
+accessibles à la compilation et à l’exécution (par réflexion).
+
+Deux exemples :
+public   class A {                                       public   class B extends A {
+
+    @Deprecated                                              @Override
+    public void laMethode() {                                public void methodeA() {
+      ...                                                      ...
+    }                                                        }
+
+    public void methodeA() {                             }
+      ...
+    }
+}
+
+
+
+
+                                     Tests Unitaires                                         6 / 28
+
+--- PAGE 7 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Vocabulaire JUnit
+
+
+Test case (Cas de test)
+classe regroupant un ensemble de tests généralement liés à une classe à
+tester
+
+Test
+méthode effectuant un test
+
+Fixture
+contenu commun aux tests d’un cas de test
+
+Test Suite
+enchaı̂nement de cas de test
+
+
+
+                                 Tests Unitaires                                         7 / 28
+
+--- PAGE 8 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Test des méthodes d’une classe
+Principe
+     création d’une classe de test pour chaque classe à tester
+          annotation des méthodes de test par @Test
+
+Syntaxe (package org.junit)
+import org.junit.Test
+
+public class TestDeLaClasse {
+
+    @Test
+    public void testConstructeur() {
+      // utilisation d’assertions
+    }
+
+    @Test
+    public void testMethode1() {
+      // utilisation d’assertions
+    }
+
+    ...
+}
+
+
+                                     Tests Unitaires                                         8 / 28
+
+--- PAGE 9 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Paramétrage de @Test
+
+
+@Test(timeout=durée )
+Le test déclaré avec un timeout échoue si la méthode annotée prend plus
+de temps que la durée (ms) indiquée .
+
+@Test(expected=ClasseException.class )
+Le test déclaré avec une classe d’exception doit lancer cette exception
+sinon le test échoue.
+
+@Ignore
+Une annotation @Test précédée d’un @Ignore permet de ne pas passer
+le test.
+
+
+
+                                 Tests Unitaires                                         9 / 28
+
+--- PAGE 10 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Exécution de code avant et après chaque test
+
+Objectifs
+Préparer un contexte avant chaque test et le nettoyer après chaque test
+allocation/désallocation de ressources, initialisation d’objets “fixes”
+(fixtures)
+
+Exemples d’utilisation
+    allocation de ressources avant un test (création d’un fichier) et
+    suppression de ces ressources après le test (destruction d’un fichier)
+    création d’objets commun à chaque test
+
+Syntaxe
+Utilisation des annotations @Before et @After devant les méthodes
+correspondantes
+
+
+                                Tests Unitaires                                         10 / 28
+
+--- PAGE 11 ---
+Introduction JUnit Assertions Exécution   TestCase Avant / Après les tests
+
+
+Exécution de code avant et après chaque cas de test
+
+
+
+Objectif
+Initialisation d’objets fixes commun aux tests : objets constants,
+singleton, ou encore ayant un temps de préparation très long.
+
+Syntaxe
+Annotations de méthodes public static void avec @BeforeClass et
+@AfterClass.
+
+
+
+
+                                Tests Unitaires                                         11 / 28
+
+--- PAGE 12 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Présentation des assertions
+
+
+
+
+D’un point de vue génie logiciel
+Les assertions permettent de vérifier des hypothèses de conceptiona
+  a
+      Java in a Nutshell, Fifth edition (O’REILLY)
+
+
+
+
+                                    Tests Unitaires                                                             12 / 28
+
+--- PAGE 13 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Les assertions de base de java                                             classe org.junit.Assert
+
+
+
+
+Quelques méthodes de classe :
+    assertEquals(..., ...) / assertArrayEquals(..., ...)
+    teste l’égalité des types simples, des objets et des tableaux
+     assertSame(Object, Object) teste qu’il s’agit du même objet
+     assertTrue(boolean)/assertFalse(boolean) teste le résultat
+     d’une expression logique
+     ...
+Remarque : un commentaire (String) d’assertion peut être passer en 1°
+paramètre pour expliquer la raison de l’échec d’une assertion
+
+
+
+
+                                  Tests Unitaires                                                             13 / 28
+
+--- PAGE 14 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+ Exemple avec assertions classiques 1 / 3
+
+TestAmpouleClassique.java
+import org.junit.After;                                  @Ignore
+import static org.junit.Assert.*;                        @Test
+import org.junit.Before;                                 public void test_SetGetCouleur() {
+import org.junit.Ignore;                                   ampoule.setCouleur(Color.RED);
+import org.junit.Test;                                     assertEquals(ampoule.getCouleur(), Color.BLUE);
+import java.awt.Color;                                   }
+
+                                                         @Test(timeout=1000)
+public class TestAmpouleClassique {                      public void test_basculer() {
+                                                           boolean etat = ampoule.getEtat();
+  public Ampoule ampoule;                                  assertFalse(etat);
+                                                           assertTrue(ampoule.basculer());
+ @Before                                                   assertTrue(ampoule.getEtat());
+ public void avantTest() {                                 while (etat != ampoule.getEtat()) {
+   ampoule = new Ampoule();                                  etat=ampoule.getEtat();
+ }                                                           ampoule.basculer();
+                                                           }
+ @Test                                                     assertFalse(ampoule.getEtat());
+ public void test_construteurs() {                       }
+   assertEquals(ampoule.getCouleur(), Color.WHITE); }
+   assertFalse(ampoule.getEtat());
+   assertEquals((new Ampoule(Color.BLUE)).getCouleur(),Color.BLUE);
+ }
+
+
+
+                                      Tests Unitaires                                                            14 / 28
+
+--- PAGE 15 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Exemple avec assertions classiques 2 / 3
+
+
+
+
+Exécution OK
+JUnit version 4.5
+.Before
+After
+I.Before
+After
+
+Time: 0,017
+
+OK (1 test)
+
+
+
+
+                                     Tests Unitaires                                                             15 / 28
+
+--- PAGE 16 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+ Exemple avec assertions classiques 3 / 3
+
+Exécution Échec : ( @Ignore )
+JUnit version 4.5
+.Before
+After
+.Before
+After
+E.Before
+After
+
+Time: 0,023
+There was 1 failure:
+1) test_SetGetCouleur(TestAmpouleClassique)
+java.lang.AssertionError: expected:<java.awt.Color[r=255,g=0,b=0]> but was:<java.awt.Color[r=0,g=0,b=255]>
+       at org.junit.Assert.fail(Assert.java:91)
+       at org.junit.Assert.failNotEquals(Assert.java:618)
+...
+       at org.junit.runners.ParentRunner.run(ParentRunner.java:220)
+       at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+       at org.junit.runner.JUnitCore.run(JUnitCore.java:116)
+       at org.junit.runner.JUnitCore.run(JUnitCore.java:107)
+       at org.junit.runner.JUnitCore.runMain(JUnitCore.java:88)
+       at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:54)
+       at org.junit.runner.JUnitCore.main(JUnitCore.java:46)
+
+FAILURES!!!
+Tests run: 3, Failures: 1
+
+
+                                    Tests Unitaires                                                             16 / 28
+
+--- PAGE 17 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+ Remarques 1 / 2
+Comparaison de 2 valeurs
+ @Test
+ public void testNonExplicite1() {
+   int x = 5;
+   assertTrue(x>10);
+ }
+ @Test
+ public void testExpliciteAMaintenir() {
+   int x = 5;
+   assertTrue(String.format("%d␣n’est␣pas␣supérieur␣à␣10",x),x>10);
+ }
+
+
+
+Exécution
+1) testNonExplicite1(TestNonExplicite)
+java.lang.AssertionError:
+       at org.junit.Assert.fail(Assert.java:91)
+       at org.junit.Assert.assertTrue(Assert.java:43)
+...
+2) testExpliciteAMaintenir(TestNonExplicite)
+java.lang.AssertionError: 5 n’est pas supérieur à 10
+       at org.junit.Assert.fail(Assert.java:91)
+       at org.junit.Assert.assertTrue(Assert.java:43)
+
+
+                                   Tests Unitaires                                                             17 / 28
+
+--- PAGE 18 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Remarques 2 / 2
+
+
+Constatations
+    par défaut pas de message explicite de l’échec
+    comment, dans le temps, assurer la cohérence entre le message et
+    l’assertion ?
+    remarque : il y a redondance entre l’assertion et le message
+    pas de réelles combinaisons d’assertions possible
+
+
+
+
+=⇒ les assertions à base de contrat
+
+
+                                Tests Unitaires                                                             18 / 28
+
+--- PAGE 19 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Les assertions basées sur des contrats 1 / 2
+
+La bibliothèque JMock
+API permettant d’énoncer des contraintes sur la valeur d’un objet et de
+les combiner.
+Bibliothèque découpée en 7 parties :
+    org.hamcrest.beans
+    org.hamcrest.collection
+    org.hamcrest.core
+    org.hamcrest.number
+    org.hamcrest.object
+    org.hamcrest.text
+    org.hamcrest.xml
+
+
+
+                                Tests Unitaires                                                             19 / 28
+
+--- PAGE 20 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Les assertions basées sur des contrats 2 / 2
+
+
+Insertion d’une partie de hamcrest dans JUnit 4
+Contrats disponibles dans la classe org.hamcrest.CoreMatchers :
+
+     allOf                                                 not
+     anyOf                                                 nullValue
+     is
+     isA                                                   notNullValue
+     equalTo                                               ...
+
+Utilisation des contrats avec la méthode MatcherAssert.assertThat
+static <T> void assertThat(T actual, Matcher<?                   super T> matcher)
+
+
+
+
+                                 Tests Unitaires                                                             20 / 28
+
+--- PAGE 21 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Exemple avec assertions à contrats
+TestAmpoule.java
+import org.junit.After;
+import org.junit.Before;                                 @Ignore
+import org.junit.Ignore;                                 @Test
+import org.junit.Test;                                   public void test_SetGetCouleur() {
+import java.awt.Color;                                     ampoule.setCouleur(Color.RED);
+// Attention import static                                 assertThat(ampoule.getCouleur(), equalTo(Color.BLUE)
+import static org.hamcrest.CoreMatchers.is;              }
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;     @Test(timeout=1000)
+                                                         public void test_basculer() {
+                                                           boolean etat = ampoule.getEtat();
+public class TestAmpoule {                                 assertThat(etat, is(false));
+  private Ampoule ampoule;                                 assertThat(ampoule.basculer(), is(true));
+                                                           assertThat(ampoule.getEtat(), is(true));
+ @Before                                                   while (etat != ampoule.getEtat()) {
+ public void avantTest() {                                   etat=ampoule.getEtat();
+   ampoule = new Ampoule();                                  ampoule.basculer();
+ }                                                         }
+                                                           assertThat(ampoule.getEtat(), is(false));
+ @Test                                                   }
+ public void test_construteurs() {                    }
+   assertThat(ampoule.getCouleur(), equalTo(Color.WHITE));
+   assertThat(ampoule.getEtat(), is(false));
+   assertThat((new Ampoule(Color.BLUE)).getCouleur(), equalTo(Color.BLUE));
+ }
+
+
+                                     Tests Unitaires                                                             21 / 28
+
+--- PAGE 22 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Contrats supplémentaires
+
+hamcrest-core
+Hamcrest est aussi une bibliothèque importante qui fournit des
+fonctionnalités supplémentaires dont des contrats.
+JUnit4 inclut, par dépendance, la bibliothèque hamcrest-core.
+
+Exemples de contrats de hamcrest-core
+org.hamcrest.Matchers
+    lessThan, greaterThan
+    equalToIgnoringCase
+    arrayContainingInAnyOrder
+    arrayWithSize
+    ...
+
+
+                                 Tests Unitaires                                                             22 / 28
+
+--- PAGE 23 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Des messages explicites
+
+
+Test de comparaison
+import static org.hamcrest.Matchers.lessThan;
+...
+
+@Test
+ public void testExplicite() {
+   int x = 50;
+   assertThat(x, lessThan(10));
+ }
+
+
+
+Test de comparaison en erreur
+java.lang.AssertionError:
+Expected: a value less than <10>
+    but: <50> was greater than <10>
+       at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+       at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+       at TestNonExplicite.testExplicite(TestNonExplicite.java:41)
+
+
+
+
+                                     Tests Unitaires                                                             23 / 28
+
+--- PAGE 24 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Combinaison de contrats
+
+
+
+
+Combinaison de contrats
+   allOf( les contrats )
+   anyOf( les contrats )
+   ...
+
+
+
+
+                                Tests Unitaires                                                             24 / 28
+
+--- PAGE 25 ---
+Introduction JUnit Assertions Exécution   Méthodes classiques Méthode basée sur des contrats
+
+
+Exemple de combinaison de contrats
+
+Code
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.greaterThan;
+
+...
+
+ @Test
+ public void testCombinaisonContrats() {
+   int x = 150;
+   assertThat(x, anyOf(allOf(lessThan(100), greaterThan(50)), is(42)));
+ }
+
+
+
+Exécution
+ava.lang.AssertionError:
+Expected: ((a value less than <100> and a value greater than <50>) or is <42>)
+    but: was <150>
+       at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+       at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+       at TestNonExplicite.testCombinaisonContrats(TestNonExplicite.java:48)
+
+
+
+
+                                     Tests Unitaires                                                             25 / 28
+
+--- PAGE 26 ---
+Introduction JUnit Assertions Exécution   Cas de Test Suite de test
+
+
+Exécution d’un cas de test
+
+
+
+Ajout au CLASSPATH
+    /chemin-junit /junit4.jar
+   /chemin-jmock /hamcrest-core.jar (inutile)
+   inclus implicitement par dépendance dans junit4
+
+Appel
+java org.junit.runner.JUnitCore casdetest
+
+
+
+
+                              Tests Unitaires                                 26 / 28
+
+--- PAGE 27 ---
+Introduction JUnit Assertions Exécution   Cas de Test Suite de test
+
+
+Déclaration d’une suite
+
+Les annotations @RunWith et @SuiteClasses
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@SuiteClasses({
+    CasDeTest1 ou Suite1 ,
+    CasDeTest2 ou Suite2 ,
+    ...
+})
+
+public class NomDeLaSuite {
+    // classe vide
+}
+
+
+
+Exécution d’une Suite
+java org.junit.runner.JUnitCore NomDeLaSuite
+
+
+                                   Tests Unitaires                                 27 / 28
+
+--- PAGE 28 ---
+Introduction JUnit Assertions Exécution   Cas de Test Suite de test
+
+
+Exemple
+
+SuiteA.java                                              SuiteB.java
+import org.junit.runner.RunWith;                         import org.junit.runner.RunWith;
+import org.junit.runners.Suite;                          import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;             import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)                                    @RunWith(Suite.class)
+@SuiteClasses({                                          @SuiteClasses({
+    Test1A.class,                                            Test1B.class,
+    Test2A.class                                             Test2B.class,
+})                                                           Test3B.class
+public class SuiteA {}                                   })
+                                                         public class SuiteB {}
+
+
+AllTests.java
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    SuiteA.class,
+    SuiteB.class
+    })
+public class AllTests {}
+
+                                     Tests Unitaires                                                    28 / 28

@@ -1,0 +1,1334 @@
+--- PAGE 1 ---
+Introduction to embedded systems
+
+                  Hind Laghmara
+             hind.laghmara@insa-rouen.fr
+
+Département d’Informatique et Traitement de l’Information
+
+
+                      2025-2026
+
+--- PAGE 2 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ Outline
+
+
+
+      1    ILOs of this session
+
+      2    Embedded systems
+
+      3    Equipment for this course
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         2/39
+
+--- PAGE 3 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ ILO covered
+
+
+             Basic concepts of elecricity : notion of energy consumption
+             and laws of electricity
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         3/39
+
+--- PAGE 4 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ ILO covered
+
+
+             Basic concepts of elecricity : notion of energy consumption
+             and laws of electricity
+             The role of semi-conductos in bulding logic circuits
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         3/39
+
+--- PAGE 5 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ ILO covered
+
+
+             Basic concepts of elecricity : notion of energy consumption
+             and laws of electricity
+             The role of semi-conductos in bulding logic circuits
+             The basics of digital electronics
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         3/39
+
+--- PAGE 6 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ ILO covered
+
+
+             Basic concepts of elecricity : notion of energy consumption
+             and laws of electricity
+             The role of semi-conductos in bulding logic circuits
+             The basics of digital electronics
+             The architecture of a processor and the role of combinational
+             and sequential elements in it
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           3/39
+
+--- PAGE 7 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ ILO covered
+
+
+             Basic concepts of elecricity : notion of energy consumption
+             and laws of electricity
+             The role of semi-conductos in bulding logic circuits
+             The basics of digital electronics
+             The architecture of a processor and the role of combinational
+             and sequential elements in it
+             The importance of a electronics in today’s advanced
+             calculators
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           3/39
+
+--- PAGE 8 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ The Intended Learning Objectives of this session
+
+
+
+             Understanding of an embedded system: examples, purpose,
+             characteristics
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         4/39
+
+--- PAGE 9 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ The Intended Learning Objectives of this session
+
+
+
+             Understanding of an embedded system: examples, purpose,
+             characteristics
+             Understanding of the chosen material for this course
+             compared to available systems in the market
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         4/39
+
+--- PAGE 10 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ The Intended Learning Objectives of this session
+
+
+
+             Understanding of an embedded system: examples, purpose,
+             characteristics
+             Understanding of the chosen material for this course
+             compared to available systems in the market
+             Understanding of a micro-computer architecture
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         4/39
+
+--- PAGE 11 ---
+ILOs of this session
+                                                         Previously seen
+                                   Embedded systems
+                                                         Today’s session
+                             Equipment for this course
+
+
+ The Intended Learning Objectives of this session
+
+
+
+             Understanding of an embedded system: examples, purpose,
+             characteristics
+             Understanding of the chosen material for this course
+             compared to available systems in the market
+             Understanding of a micro-computer architecture
+             Identify the main tools to program your Raspberry Pi: C
+             library
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026         4/39
+
+--- PAGE 12 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Outline
+
+
+
+      1    ILOs of this session
+
+      2    Embedded systems
+
+      3    Equipment for this course
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        5/39
+
+--- PAGE 13 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ What is an Embedded System?
+
+
+
+      A system:
+      is an arrangement in which all its unit assemble work together
+      according to a set of rules. It can also be defined as a way of
+      working, organizing or doing one or many tasks according to a
+      fixed plan. For example, a watch is a time displaying system. Its
+      components follow a set of rules to show time. If one of its parts
+      fails, the watch will stop working. So we can say, in a system, all
+      its subcomponents depend on each other.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        6/39
+
+--- PAGE 14 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ What is an Embedded System?
+      An embedded system:
+      can be thought of as a computer hardware system having software
+      embedded in it. An embedded system can be an independent
+      system or it can be a part of a large system. An embedded system
+      is a microcontroller or microprocessor based system which is
+      designed to perform a specific task.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        7/39
+
+--- PAGE 15 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ What is an Embedded System?
+      An embedded system:
+      can be thought of as a computer hardware system having software
+      embedded in it. An embedded system can be an independent
+      system or it can be a part of a large system. An embedded system
+      is a microcontroller or microprocessor based system which is
+      designed to perform a specific task.
+      An embedded system has three components
+             It has hardware.
+             It has application software.
+             In some cases, it has Real Time Operating system (RTOS)
+             that supervises the application software and provide
+             mechanism to let the processor run a process as per
+             scheduling by following a plan to control the latencies.
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        7/39
+
+--- PAGE 16 ---
+Definition
+                                      ILOs of this session
+                                                             Microprocessors and microcontrollers
+                                       Embedded systems
+                                                             Developpement plateforms with microcontrollers
+                                 Equipment for this course
+                                                             Programming languages
+
+
+ Examples of Embedded Systems: Applications
+
+
+
+
+      © Electronicshub
+
+
+
+Hind Laghmara, ITI       Introduction to embedded systems    2025-2026                                        8/39
+
+--- PAGE 17 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Why do you learn about it?
+
+
+
+             Bridging Software and the Physical World
+             Understanding How Computers Really Work: closer to CPU,
+             timing, interrupts
+             Developing Optimization and Debugging Skills: limited
+             ressources
+             Foundation for Emerging Technologies: IoT, Robotics, AI...
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        9/39
+
+--- PAGE 18 ---
+Definition
+                                    ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                     Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                               Equipment for this course
+                                                           Programming languages
+
+
+ Architecture of an Embedded System
+
+
+
+
+               Sensor: measures the physical quantity and converts it to an electrical
+               signal
+
+
+
+
+          1
+              Application-Specific Integrated Circuit
+Hind Laghmara, ITI     Introduction to embedded systems    2025-2026                                        10/39
+
+--- PAGE 19 ---
+Definition
+                                    ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                     Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                               Equipment for this course
+                                                           Programming languages
+
+
+ Architecture of an Embedded System
+
+
+
+
+               Sensor: measures the physical quantity and converts it to an electrical
+               signal
+               A-D Converter: converts the analog signal sent by the sensor into a
+               digital signal
+
+
+
+
+          1
+              Application-Specific Integrated Circuit
+Hind Laghmara, ITI     Introduction to embedded systems    2025-2026                                        10/39
+
+--- PAGE 20 ---
+Definition
+                                    ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                     Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                               Equipment for this course
+                                                           Programming languages
+
+
+ Architecture of an Embedded System
+
+
+
+
+               Sensor: measures the physical quantity and converts it to an electrical
+               signal
+               A-D Converter: converts the analog signal sent by the sensor into a
+               digital signal
+               Processor and ASICs1 : process the data to measure the output and
+               store it to the memory
+
+
+
+
+          1
+              Application-Specific Integrated Circuit
+Hind Laghmara, ITI     Introduction to embedded systems    2025-2026                                        10/39
+
+--- PAGE 21 ---
+Definition
+                                    ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                     Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                               Equipment for this course
+                                                           Programming languages
+
+
+ Architecture of an Embedded System
+
+
+
+
+               Sensor: measures the physical quantity and converts it to an electrical
+               signal
+               A-D Converter: converts the analog signal sent by the sensor into a
+               digital signal
+               Processor and ASICs1 : process the data to measure the output and
+               store it to the memory
+               D-A Converter: converts the digital data fed by the processor to analog
+               data
+
+
+          1
+              Application-Specific Integrated Circuit
+Hind Laghmara, ITI     Introduction to embedded systems    2025-2026                                        10/39
+
+--- PAGE 22 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Architecture of an Embedded System
+
+
+
+
+             Sensor: measures the physical quantity and converts it to an electrical
+             signal
+             A-D Converter: converts the analog signal sent by the sensor into a
+             digital signal
+             Processor and ASICs1 : process the data to measure the output and
+             store it to the memory
+             D-A Converter: converts the digital data fed by the processor to analog
+             data
+             Actuator: compares the output given by the D-A Converter to the actual
+             (expected) output stored in it and stores the approved output.
+          1
+            Application-Specific Integrated Circuit
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        10/39
+
+--- PAGE 23 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Microprocessors and microcontrollers
+
+      Embedded systems are equipped with what is known as a processor. It is the
+      basic unit for data processing in any system. More specifically:
+
+      A processor (CPU) is the logic circuitry that responds to and processes the
+      basic instructions that drive a computer. The CPU is seen as the main and
+      most crucial integrated circuitry (IC) chip in a computer, as it is responsible for
+      interpreting most of computers commands. CPUs will perform most basic
+      arithmetic, logic and I/O operations, as well as allocate commands for other
+      chips and components running in a computer.
+
+      A Microcontroller is a single-chip Very Large Scale Integration (VLSI) unit
+      (also called microcomputer) which, although having limited computational
+      capabilities, possesses enhanced input/output capability and a number of
+      on-chip functional units.
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        11/39
+
+--- PAGE 24 ---
+Definition
+                                      ILOs of this session
+                                                             Microprocessors and microcontrollers
+                                       Embedded systems
+                                                             Developpement plateforms with microcontrollers
+                                 Equipment for this course
+                                                             Programming languages
+
+
+ Microprocessors and microcontrollers
+
+
+
+
+      © Tutorialspoint
+
+        Microprocessor                                       Microcontroller
+        Multitasking                                         Single task oriented
+        External addition of RAM, ROM,                       Embedded on-chip RAM, ROM, I/O
+        I/O Ports and Timers                                 Ports and Timers
+        Hearvier, more expensive and more                    Lightweight, cheaper and less power
+        power consuming                                      consuming
+                                  Table: Microprocessor vs. Microcontroller
+
+
+Hind Laghmara, ITI       Introduction to embedded systems    2025-2026                                        12/39
+
+--- PAGE 25 ---
+Definition
+                                  ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                   Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                           Programming languages
+
+
+ A glance on the microcontroller
+
+
+
+
+                                                    © Eevibes
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems      2025-2026                                        13/39
+
+--- PAGE 26 ---
+Definition
+                                    ILOs of this session
+                                                           Microprocessors and microcontrollers
+                                     Embedded systems
+                                                           Developpement plateforms with microcontrollers
+                               Equipment for this course
+                                                           Programming languages
+
+
+ Types of microcontrollers
+
+
+
+
+                                     Figure: Types of microcontrollers
+
+      © Electro-mate
+Hind Laghmara, ITI     Introduction to embedded systems    2025-2026                                        14/39
+
+--- PAGE 27 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Microcontrollers: bits and family
+
+
+
+
+      © iiot-world
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        15/39
+
+--- PAGE 28 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Microcontrollers: pin diagram exmaple
+
+
+
+
+      © Microchip
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        16/39
+
+--- PAGE 29 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Microcontrollers: memory architecture
+
+
+
+
+                           Figure: Von Neumann vs. Harvard Architecture
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        17/39
+
+--- PAGE 30 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Developpement kits for electronics
+
+      Several solutions are available for prototyping in the field of
+      electronics and embedded systems. The most common ones are
+      Raspberry Pi, Arduino with other less common such as
+      BeagleBone, Nanode and Waspmote
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        18/39
+
+--- PAGE 31 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Arduino
+      Arduino is an open-source electronics platform based on easy-to-use
+      hardware and software. Arduino boards are able to read inputs - light on a
+      sensor, a finger on a button, or a Twitter message - and turn it into an output -
+      activating a motor, turning on an LED, publishing something online. You can
+      tell your board what to do by sending a set of instructions to the
+      microcontroller on the board. To do so you use the Arduino programming
+      language (based on Wiring), and the Arduino Software (IDE), based on
+      Processing.
+
+
+
+
+      © Arduino
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        19/39
+
+--- PAGE 32 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Arduino
+      The main advatanges of Arduino:
+             Inexpensive - The least expensive version of the Arduino module can be
+             assembled by hand, and even the pre-assembled Arduino modules cost
+             less than $50
+              Cross-platform - The Arduino Software (IDE) runs on all operating
+             systems
+             Simple, clear programming environment - The Arduino Software (IDE)
+             is easy-to-use for beginners
+             Open source and extensible software
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        20/39
+
+--- PAGE 33 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Arduino
+      The main advatanges of Arduino:
+             Inexpensive - The least expensive version of the Arduino module can be
+             assembled by hand, and even the pre-assembled Arduino modules cost
+             less than $50
+              Cross-platform - The Arduino Software (IDE) runs on all operating
+             systems
+             Simple, clear programming environment - The Arduino Software (IDE)
+             is easy-to-use for beginners
+             Open source and extensible software
+      The drawbacks on the other hand are:
+             Single sketch at a time
+             Lack of built-in communications
+             Lack of built-in peripherals - not built for use with mouse,
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        20/39
+
+--- PAGE 34 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Raspberry Pi
+      Raspberry Pi is a minicomputer, like BeagleBone. It is the size of a credit
+      card, quite inexpensive (cheaper than BeagleBone, but more expensive than
+      Arduino) and was developed in the UK by the Raspberry Pi Foundation with
+      the main aim being to stimulate the teaching of computer sciences in schools.
+      Being a minicomputer, it can be used for running considerably more complex
+      things than Arduino and can use high-level programming languages such as
+      Python, C++ and Java.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        21/39
+
+--- PAGE 35 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Raspberry Pi
+
+      The main advantages of Raspberry Pi:
+             Silent, energy-efficient fanless, energy-efficient Raspberry Pi runs
+             silently and uses far less power than other computers.
+             Low cost (35$)
+             Huge processing power in a compact board
+             Many interfaces (HDMI, multiple USB, Ethernet, onboard Wi-Fi and
+             Bluetooth, many GPIOs, USB powered, etc.)
+             Supports Linux, Python (making it easy to build applications)
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        22/39
+
+--- PAGE 36 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Raspberry Pi
+
+      The main advantages of Raspberry Pi:
+             Silent, energy-efficient fanless, energy-efficient Raspberry Pi runs
+             silently and uses far less power than other computers.
+             Low cost (35$)
+             Huge processing power in a compact board
+             Many interfaces (HDMI, multiple USB, Ethernet, onboard Wi-Fi and
+             Bluetooth, many GPIOs, USB powered, etc.)
+             Supports Linux, Python (making it easy to build applications)
+      The drawbacks on the other hand are:
+             Non Cross-platform Not able to run Windows Operating system
+             Overheating it can go up to 70 degrees
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        22/39
+
+--- PAGE 37 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Levels of programming
+
+
+
+
+          Programming is an increasingly important part of electrical and electronic
+                    engineering but understanding hardware is crucial
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        23/39
+
+--- PAGE 38 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ C programming
+
+      C is a popular microcontroller language even though it was developed in the
+      early 1970s. For use with microcontrollers, C functions well because it has the
+      ability to handle memory allocation while also performing complex functions
+      like if statements, loops, and mathematical expressions.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        24/39
+
+--- PAGE 39 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Assembly language
+      Assembly an older language that often uses code specific to the device,
+      which is converted using an assembler utility program. Using this language, the
+      user has direct access to the CPU where routines can be carefully adjusted for
+      precise timing applications. Assembly offers better CPU usage, as well as
+      further sets of instructions that C does not support such as bit manipulation
+      with specific BIT instructions.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        25/39
+
+--- PAGE 40 ---
+Definition
+                                  ILOs of this session
+                                                         Microprocessors and microcontrollers
+                                   Embedded systems
+                                                         Developpement plateforms with microcontrollers
+                             Equipment for this course
+                                                         Programming languages
+
+
+ Machine language
+
+
+      Machine language consists of the very same binary codes which the
+      Control Unit inside the CPU chip decodes to perform tasks. It is often written
+      in hexadecimal form, because it is easier for human beings to work with
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                                        26/39
+
+--- PAGE 41 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Outline
+
+
+
+      1    ILOs of this session
+
+      2    Embedded systems
+
+      3    Equipment for this course
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           27/39
+
+--- PAGE 42 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi 4: at a glance
+
+
+
+
+      Link to a presentation video
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           28/39
+
+--- PAGE 43 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi 4 Model B: specifications
+
+
+        CPU                ARM Cortex - A72 Quad-core 1.5GHz
+        Architecture       ARM Cortex - A72 64-bit
+        RAM                1GB / 2GB / 4GB / 8GB
+        GPIO pins          40 pins
+        USB                2.0 X 2 / 3.0 X 2
+        Bluetooth          5.0 Bluetooth Low Energy
+        HDMI               Micro HDMI x 2
+        Storage            Micro SD card
+        Video input        2-lane MIPI DSI display and 2-lane MIPI CSI camera
+        Audio output       3.5mm Audio jack
+        Power input        5V USB C port
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026              29/39
+
+--- PAGE 44 ---
+ILOs of this session    Raspberry Pi 4
+                                   Embedded systems       Code Architecture
+                             Equipment for this course    The C library
+
+
+ ARM Cortex-A72 block diagram
+
+
+
+
+                                           © Sand, software and sound
+
+Hind Laghmara, ITI   Introduction to embedded systems      2025-2026          30/39
+
+--- PAGE 45 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi 4: datasheet and pinout
+
+
+
+
+      Raspberry Pi 4 Schematics
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           31/39
+
+--- PAGE 46 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi 4: GPIO
+      GPIO means General Purpose Input/Output. Basically that’s one pin you can
+      use to write data to external components (output), or read data from external
+      components (input).
+      GPIOs will allow you to read some basic sensors (ex: infrared), control some
+      actuators (those which are working with a ON/OFF mode), and communicate
+      with other hardware boards, such as Raspberry Pi, Arduino, Beaglebone, Jetson
+      Nano, etc.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                    32/39
+
+--- PAGE 47 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi: Programming your GPIO
+
+
+      You can use several languages to program your Raspberry Pi. Here are
+      examples of Python and C programs that allow you to set GPIO 17 (pin 11) as
+      output/high:
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                  33/39
+
+--- PAGE 48 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi: Programming your GPIO
+
+
+      You can use several languages to program your Raspberry Pi. Here are
+      examples of Python and C programs that allow you to set GPIO 17 (pin 11) as
+      output/high:
+
+
+
+
+      In our lab sessions, we will be programming using C language and more
+      specifically the wiringPi library.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                  33/39
+
+--- PAGE 49 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi: Raspbian
+      Raspbian is a free operating system based on Debian optimized for the
+      Raspberry Pi hardware. An operating system is the set of basic programs and
+      utilities that make your Raspberry Pi run. However, Raspbian provides more
+      than a pure OS: it comes with over 35,000 packages, pre-compiled software
+      bundled in a nice format for easy installation on your Raspberry Pi.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                  34/39
+
+--- PAGE 50 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Raspberry Pi: programming
+      Geany
+      Geany is a small and lightweight integrated development environment. It was
+      developed to provide a small and fast IDE, which has only a few dependencies
+      from other packages.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026                   35/39
+
+--- PAGE 51 ---
+ILOs of this session    Raspberry Pi 4
+                                   Embedded systems       Code Architecture
+                             Equipment for this course    The C library
+
+
+ "Regular" vs. "Embedded" programming
+
+      « Regular » programming
+                                      int main ()
+                                      {
+                                               // initialisations
+                                               ...
+
+                                                         // data processing
+                                                         cin >> a ;
+                                                         ...
+                                                         cout << b ;
+
+                                      } // end
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems     2025-2026           36/39
+
+--- PAGE 52 ---
+ILOs of this session    Raspberry Pi 4
+                                   Embedded systems       Code Architecture
+                             Equipment for this course    The C library
+
+
+ "Regular" vs. "Embedded" programming
+
+      "Embedded" programming
+                                      int main ()
+                                      {
+                                               // initialisations
+                                               ...
+
+                                                         // infinite loop
+                                                         while (1)
+                                                         {
+                                                                   ... // event
+                                                                   processing
+                                                         }
+
+                                      } // never ending
+
+
+Hind Laghmara, ITI   Introduction to embedded systems      2025-2026              37/39
+
+--- PAGE 53 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ WiringPi Library
+
+
+
+
+      The following ressources should be used all the time:
+             Go check the git: WiringPi
+             Pinout for RPI: pinout Link
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           38/39
+
+--- PAGE 54 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39
+
+--- PAGE 55 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+             Is the SD card in?
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39
+
+--- PAGE 56 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+             Is the SD card in?
+             Did you identify the right pin number? There is a difference
+             between the WiringPi and GPIO number.
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39
+
+--- PAGE 57 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+             Is the SD card in?
+             Did you identify the right pin number? There is a difference
+             between the WiringPi and GPIO number.
+             Did you correctly select the input/output mode?
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39
+
+--- PAGE 58 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+             Is the SD card in?
+             Did you identify the right pin number? There is a difference
+             between the WiringPi and GPIO number.
+             Did you correctly select the input/output mode?
+             Is your circuit well built? Think about using your multimiter
+             talents
+
+
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39
+
+--- PAGE 59 ---
+ILOs of this session   Raspberry Pi 4
+                                   Embedded systems      Code Architecture
+                             Equipment for this course   The C library
+
+
+ Troubleshooting
+
+      If you have issues with your RaspberryPi, here are some things to
+      check:
+             Have you powered you RPI?
+             Is the SD card in?
+             Did you identify the right pin number? There is a difference
+             between the WiringPi and GPIO number.
+             Did you correctly select the input/output mode?
+             Is your circuit well built? Think about using your multimiter
+             talents
+             No short-circuits or overpower (more than 3.3V on gpio)
+             allowed in this course!
+
+
+Hind Laghmara, ITI   Introduction to embedded systems    2025-2026           39/39

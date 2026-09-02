@@ -1,0 +1,436 @@
+--- PAGE 1 ---
+Electronics for embedded systems
+Lecture 1: Introduction to the course
+
+Dr. Hind Laghmara
+hind.laghmara@insa-rouen.fr
+
+                                        Introduction and objectives
+                                                   Program outline
+
+ITI3 – 2025
+
+--- PAGE 2 ---
+Introduction and objectives                                                        Program outline
+
+
+
+
+       Introduction and objectives
+
+              Format and evaluation
+              ILOs of the course
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        1/8
+
+--- PAGE 3 ---
+Introduction and objectives                                                         Program outline
+
+
+
+Session formats and evaluation critera
+
+
+
+
+       Hourly volume: 12 Lectures, 6 Tutorial sessions (3H) and 6 Lab sessions (3H)
+
+       Evaluation:
+         • A written evaluation (50% of the final grade): a mid-term (30%) final exam
+           (70%)
+         • A practical evaluation (50% of the final grade): the lab sessions
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025         2/8
+
+--- PAGE 4 ---
+Introduction and objectives                                                         Program outline
+
+
+
+Session formats and evaluation critera
+
+
+
+
+       Hourly volume: 12 Lectures, 6 Tutorial sessions (3H) and 6 Lab sessions (3H)
+
+       Evaluation:
+         • A written evaluation (50% of the final grade): a mid-term (30%) final exam
+           (70%)
+         • A practical evaluation (50% of the final grade): the lab sessions
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025         2/8
+
+--- PAGE 5 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 6 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 7 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 8 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 9 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 10 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 11 ---
+Introduction and objectives                                                          Program outline
+
+
+
+The Intended Learning Objectives of the course
+
+
+           • Understand the role and importance of basic electronic elements
+           • Put into use eletronic devices based on schematic circuits, datasheets and
+             documentation
+           • Knowledge of digital systems and integrated circuits
+           • Knowledge of common inter-chip communication protocols
+           • Ability to analyze and synthesize a given prooblem by conducting
+             experiments, using standard test equipment and interpret experimental data
+           • Have a hand-on ability to program, debug and excecute code on an
+             embedded system
+           • Understand the chain of instrumentation, acquisition, sensing and actuation
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025           3/8
+
+--- PAGE 12 ---
+Introduction and objectives                                                        Program outline
+
+
+
+
+       Program outline
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        4/8
+
+--- PAGE 13 ---
+Introduction and objectives                                                                      Program outline
+
+
+
+Sessions content
+
+         Week           Lecture                                                    TD/TP
+          1             Recall on fundamentals                                     Lab Session
+          2             Semi-conductors                                            Lab Session
+          3             Digital electronics: introduction                          Tutorial
+          4             Digital electronics: combinational circuits                Tutorial
+          5             Digital electronics : sequential circuits                  Tutorial
+          6             Digital electronics : sequential circuits                  Tutorial
+          7             Digital electronicss : sequential circuits)                Tutorial
+          8
+                        Mid-term                                                   Correction
+            9           Introduction to microcontrollers                           Lab Session
+            10          Sensors and communication protocols                        Lab Session
+            11          Sensors and communication protocols                        Lab Session
+            12          PWM - Interruption / multithreading                        Lab Session
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025                      5/8
+
+--- PAGE 14 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Supervisors
+
+
+
+
+           • Lectures : Hind Laghmara
+           • Lab sessions: Hind Laghmara, Elsa Planterose and Robin Condat
+           • Tutorials: Hind Laghmara and Robin Condat
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        6/8
+
+--- PAGE 15 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Tools
+
+
+
+
+           • Lab session: hand-out sessions
+           • Tutorials: written session + simulation
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        7/8
+
+--- PAGE 16 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 17 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 18 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 19 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 20 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 21 ---
+Introduction and objectives                                                        Program outline
+
+
+
+Rules and recommendations
+
+
+
+
+           • All material is in english
+           • Read all the safety recommandations on the course material
+           • Learn to be curious and independent during practical sessions
+           • Choose your partner well
+           • Take notes during/before lectures
+           • Have fun!
+
+
+
+
+       Electronics – Lecture 1. Introduction – INSA Rouen Normandy – ITI3 – 2025        8/8
+
+--- PAGE 22 ---
+Questions?

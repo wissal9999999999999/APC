@@ -1,0 +1,16 @@
+course,isco_code,status,rationale
+auto,2151,retenu_heuristique,Ingénieurs électriciens
+auto,2152,retenu_heuristique,Ingénieurs électroniciens
+auto,2144,retenu_heuristique,Ingénieurs mécaniciens
+auto,3113,retenu_heuristique,Techniciens en génie électrique
+auto,3114,retenu_heuristique,Techniciens en électronique
+capt,2152,retenu_heuristique,Ingénieurs électroniciens
+capt,3114,retenu_heuristique,Techniciens en électronique
+capt,3115,retenu_heuristique,Techniciens en génie mécanique
+bigdata,2120,retenu_heuristique,Mathématiciens actuaires et statisticiens
+bigdata,2511,retenu_heuristique,Analystes de systèmes
+bigdata,2521,retenu_heuristique,Concepteurs et administrateurs de bases de données
+bigdata,2529,retenu_heuristique,Spécialistes des bases de données et réseaux non classés ailleurs
+ddrs31,2133,retenu_heuristique,Spécialistes de la protection de l’environnement
+ddrs31,2143,retenu_heuristique,Ingénieurs environnementaux
+ddrs31,3257,retenu_heuristique,Inspecteurs salubrité environnement et santé au travail

@@ -62,7 +62,7 @@ select {
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.15);
   background: rgba(255,255,255,.08);
-  color: #fff;
+  color: #000000;
   font-size: 14px;
   margin-bottom: 10px;
   outline: none;
@@ -83,6 +83,40 @@ select:focus {
 select {
   appearance: none;
   cursor: pointer;
+}
+
+.item-list {
+  display: grid;
+  gap: 8px;
+  max-height: 260px;
+  margin: 12px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.item-list li {
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  cursor: pointer;
+}
+
+.item-list li:hover,
+.item-list li.selected {
+  border-color: #6c7cff;
+  background: rgba(108,124,255,.22);
+}
+
+.status {
+  margin: 12px 0 0;
+  color: #cdd3ff;
+  font-size: 13px;
+}
+
+.status.error {
+  color: #ff9f9f;
 }
 
 /* Buttons */

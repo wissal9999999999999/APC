@@ -1,0 +1,392 @@
+--- PAGE 1 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                         Cours n°10
+
+
+                              UV Statistique pour l'Ingénieur
+
+
+
+
+                                      Cours n° 10
+
+                             Tests statistiques paramétriques
+                                HS-HS ; HS-HC ; HC-HC
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                          1
+
+--- PAGE 2 ---
+INSA           Informatique                                                 UV Statistique
+Rouen          Technologie
+Normandie      Information                                                    Cours n°10
+
+
+              Tests entre 2 hypothèses SIMPLES (Rappel)
+• Exemple : Soit X~N(µ, σ2) où µ inconnue et σ connue.
+  Tester 2 hypothèses simples (ex 2 du TD1.6)
+
+
+       {         H 0 :=0  HS 
+            H 1 :=1 10  HS    }
+                                                
+      
+            Région critique définie par X 0 −    n1−             où α fixé
+                                                n        fixé
+
+
+            et = f n , 0 , 1 ,   constant
+           Remarque : autre test avec les mêmes hypothèses simples,
+            mais avec µ1>µ0 ⇒ région critique définie par
+                                                   
+                                           X 0     n1−
+ Ph. LERAY - A. ROGOZAN                            n        fixé
+                                                                                             2
+
+--- PAGE 3 ---
+INSA          Informatique                                               UV Statistique
+Rouen         Technologie
+Normandie     Information                                                  Cours n°10
+
+
+      Hypothèse SIMPLE contre hypothèse COMPOSITE
+• Soit X une v.a. et θ l'unique paramètre inconnu de sa distribution
+  de probabilité
+• Se pose le problème de tester             ⇒ résoudre le test :
+
+            {      H 0 :=0  HS 
+              H 1 :∈E 0 ∉E  HC    }    {    H 0 :=0  HS 
+                                              H 1 :=i i ∈E  HS    }
+• Si la région critique Wi est indépendante de i              Η1: θ<θ0 ou θ>θ0
+
+
+                                                           }
+    la région critique du test initial W = W
+                                             i
+                                                               Test
+      
+        β dépend de la valeur du paramètre θ
+                                                               UPP
+      
+        θ∈Ε pour α fixée
+        ⇒ 1-β(θ) est max / toute autre règle de décision
+
+ Ph. LERAY - A. ROGOZAN                                                                   3
+
+--- PAGE 4 ---
+INSA          Informatique                                           UV Statistique
+Rouen         Technologie
+Normandie     Information                                              Cours n°10
+
+
+                    Courbe de puissance d'un test (rappel)
+• Courbe de puissance d'un test = fonction qui à chaque valeur
+  du paramètre θ associe la probabilité de rejeter l'hypothèse de
+  référence H0 quand H1 est vrai ( ∈E )
+
+            1−= P rejeter H 0∣valeur du paramètre=∈ E ∈[0, 1]
+
+
+
+• Définition d'un test UPP régi par la règle RUPP :
+                   ∀ ∈E tel que H 1 vrai , ∀ R, 1−RUPP ≥1−R
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                               4
+
+--- PAGE 5 ---
+INSA           Informatique                                                                       UV Statistique
+Rouen          Technologie
+Normandie      Information                                                                          Cours n°10
+
+
+      Hypothèse SIMPLE contre hypothèse COMPOSITE
+• Soit X une v.a. et θ l'unique paramètre inconnu de sa distribution
+  de probabilité
+• Se pose le problème de tester :
+                                       H 0 :=0  HS 
+                                                        {
+                                  H 1 :∈E 0 ∉E  HC                                      }
+• Si région critique Wi n'est pas constante             Η1: θ ≠ θ0
+  ⇒ la stratégie de « Neyman-Pearson » n'est pas applicable
+                                                                   Fixer l’erreur grave
+            Stratégie retenue :
+
+
+                                                                                          }
+                                                                  maximum !
+             • conserver la contrainte P [W∣H 0 ]= fixée                                     Test
+             • chercher une région critique « raisonnable »                                   non
+               en s'appuyant sur une « fonction pivotale »                                    UPP
+               & en repartissant l’erreur grave de manière symetrique !
+
+ Ph. LERAY - A. ROGOZAN                                                                                            5
+
+--- PAGE 6 ---
+INSA          Informatique                                           UV Statistique
+Rouen         Technologie
+Normandie     Information                                              Cours n°10
+
+
+      Hypothèse SIMPLE contre hypothèse COMPOSITE
+• Soit X une v.a. et θ l'unique paramètre inconnu de sa distribution
+  de probabilité
+
+                                        {                        }
+                                       H 0 :=0  HS    Test
+• Se pose le problème de tester :                         non
+                                  H 1 :∈E 0 ∉E  HC  UPP
+
+• Si région critique Wi n'est pas constante             Η1: θ ≠ θ0
+  ⇒ la stratégie de « Neyman-Pearson » n'est pas applicable
+
+• Remarques :
+     
+       α n'est pas constant mais <  fixée (niveau de signification du test)
+      β n'est pas constant mais dépend de la valeur du paramètre θ∈Η1
+
+ Ph. LERAY - A. ROGOZAN                                                               6
+
+--- PAGE 7 ---
+INSA             Informatique                                                     UV Statistique
+Rouen            Technologie
+Normandie        Information                                                        Cours n°10
+
+
+      Hypothèse SIMPLE contre hypothèse COMPOSITE
+• Ex de « Test UPP » : Soit X~N(µ,σ2) où µ inconnue, σ connue ;
+    Tester 1 HS contre 1 HC                                                   Ex2.e/Chap1.6
+
+
+
+            {   H 0 :=0  HS 
+                H 1 :0  HC    }   Pour α fixé, déterminer la région critique,
+                                       puis l'expression du risque β de 2ème espèce
+
+
+
+• Ex de « Test non-UPP » : Soit X~N(µ,σ2) où µ inconnu, σ connue ;
+    Tester 1 HS contre 1 HC                                                   Ex1.b/Chap1.6
+
+
+
+
+            {
+            H 0 :=0  HS 
+            H 1 :≠0  HC     }      Pour α fixé, déterminer la région critique,
+                                       puis l'expression du risque β de 2ème espèce
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                            7
+
+--- PAGE 8 ---
+INSA             Informatique                                                 UV Statistique
+Rouen            Technologie
+Normandie        Information                                                    Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• Soit X une v.a. et θ l'unique paramètre inconnu de sa distribution
+  de probabilité
+• Se pose le problème de tester :
+                                                    {H 0 :0  HC 
+                                                     H 1 : 0  HC    }   Th. de Lehman
+• Si la famille des lois Lθ est à rapport de vraisemblance monotone*
+   ⇒ Région critique de forme T>A où A défini par :          Test
+                                                P T  A∣=0 = fixée      }   UPP
+
+            *
+                S'il ∃ 1 statistique T telle que, pour θ'>θ,
+                L  x1 , , x n ,  ' 
+                L  x 1 , , x n ,  est une fonction croissante de t
+ Ph. LERAY - A. ROGOZAN                                                                        8
+
+--- PAGE 9 ---
+INSA          Informatique                                                UV Statistique
+Rouen         Technologie
+Normandie     Information                                                   Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• Soit X une v.a. et θ l'unique paramètre inconnu de sa distribution
+  de probabilité
+• Se pose le problème de tester :
+                                             {H 0 :0  HC 
+                                              H 1 : 0  HC    }
+• Si la famille des lois Lθ est à rapport de vraisemblance monotone*
+   ⇒ Région critique de forme T>A où A défini par :          Test
+                                        P T  A∣=0 = fixée         }   UPP
+
+           Remarques :
+            • α n'est pas constant mais <  fixée (niveau de signification du test)
+            • β n'est pas constant mais dépend de la valeur de θ∈Η1
+            • Si hypothèses inverses, idem avec T<A
+ Ph. LERAY - A. ROGOZAN                                                                    9
+
+--- PAGE 10 ---
+INSA            Informatique                                                     UV Statistique
+Rouen           Technologie
+Normandie       Information                                                        Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• Montrer que la famille des lois : N(µ, σ2) avec σ connu, est à
+  rapport de vraisemblance monotone
+
+
+• Ex de « Test UPP » : Soit X~B(n, p) où n inconnu ;
+  Tester 1 HC contre 1 HC                                                    Ex3/Chap1.6
+
+
+
+            {                     }
+            H 0 : p p 0  HC        Pour α fixé déterminer la région critique,
+                                      puis l'expression du risque β de 2ème espèce
+            H 1 : p p 0  HC 
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                       10
+
+--- PAGE 11 ---
+INSA          Informatique                                                   UV Statistique
+Rouen         Technologie
+Normandie     Information                                                      Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• X suit une loi dépendant de plusieurs paramètres inconnus, dont le
+  paramètre θ sur lequel porte le test :
+
+               {    H 0 :=0 , autres paramètres inconnus HC 
+                 H 1 :,,≠0 , autres paramètres inconnus HC    }
+• Pas de test UPP ⇒ la stratégie de «Neyman-Pearson» non applicable
+
+• Stratégie retenue :
+
+
+                                                                        }
+      • trouver une fonction pivotale de θ                                  Test
+      • chercher une région critique « raisonnable »                        non
+      • déterminer le seuil avec la contrainte :                            UPP
+                                   =P [W∣H 0 ] fixée
+
+ Ph. LERAY - A. ROGOZAN                                                                   11
+
+--- PAGE 12 ---
+INSA          Informatique                                                 UV Statistique
+Rouen         Technologie
+Normandie     Information                                                    Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• Ex «Test unilatéral non-UPP» : Soit X~N(µ, σ2) où µ et σ inconnus ;
+  Tester 1 HC contre 1 HC
+
+  { H 0 :=0 , inconnu  HC 
+    H 1 :0 , inconnu  HC    }     Pour α fixé, déterminer la région critique,
+                                        puis l'expression du risque β de 2ème espèce
+
+
+
+• Ex «Test bilatéral non-UPP» : Soit X~N(µ, σ2) où µ et σ inconnus ;
+  Tester 1 HC contre 1 HC
+
+   {  H 0 :=0 , inconnu  HC 
+      H 1 :≠0 , inconnu  HC    }   Pour α fixé, déterminer la région critique,
+                                        puis l'expression du risque β de 2ème espèce
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                 12
+
+--- PAGE 13 ---
+INSA          Informatique                                                    UV Statistique
+Rouen         Technologie
+Normandie     Information                                                       Cours n°10
+
+
+Hypothèse COMPOSITE contre hypothèse COMPOSITE
+• Ex «Test unilatéral non-UPP» : Soit X~N(µ, σ2) où µ et σ inconnus ;
+  Tester 1 HC contre 1 HC
+
+
+   {                               }
+              2        2
+     H 0 : = , inconnu  HC 
+                       0
+                                           Pour α fixé, déterminer la région critique,
+           2           2
+                                           puis l'expression du risque β de 2ème espèce
+     H 1 :  , inconnu  HC 
+                       0
+
+
+
+• Ex «Test bilatéral non-UPP» : Soit X~N(µ, σ2) où µ et σ inconnus ;
+  Tester 1 HC contre 1 HC                               Ex4/Chap1.6
+
+
+
+    {                                  }
+               2        2
+       H 0 : = 0 , inconnu  HC        Pour α fixé, déterminer la région critique,
+             2   2                         puis l'expression du risque β de 2ème espèce
+       H 1 : ≠ 0 , inconnu  HC 
+
+
+ Ph. LERAY - A. ROGOZAN                                                                    13
+
+--- PAGE 14 ---
+INSA             Informatique                                                              UV Statistique
+Rouen            Technologie
+Normandie        Information                                                                 Cours n°10
+
+
+                         Classification des tests paramétriques
+            HS – HS                         HS – HC                           HC – HC
+                =                   =                 =                 >                 =, ...
+                =                   <                 ≠                 <                 <, ...
+
+
+
+             UPP                  UPP          non-UPP                UPP              Non-UPP
+
+     Neyman-Pearson                                                  Lehman           Résolution fondée
+                                Wi=W , ∀i          Wi=g(i)
+         L n 1                                                L n 1              sur la « fonction
+    W ={           k  }                                                  monotone       pivotale »
+         L n 0                                                L n 0 
+         A 
+              A                           Découpe du test
+    W :                                                           W :T A
+                                             Résolution fondée
+                                             sur la « fonction
+                                                pivotale »
+            = fixée           = fixée        fixée             fixée
+        =const
+        =constant              = f         = f              = f 
+ Ph. LERAY - A. ROGOZAN                                                                                    14
+
+--- PAGE 15 ---
+INSA          Informatique                                     UV Statistique
+Rouen         Technologie
+Normandie     Information                                        Cours n°10
+
+
+                             P-value ou probabilité critique
+• P-value ou probabilité critique
+   
+     le plus petit α qui aurait fait changer la décision
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                     15

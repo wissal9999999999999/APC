@@ -1,0 +1,358 @@
+--- PAGE 1 ---
+Python
+                    Les exceptions
+
+                    Nicolas Delestre
+
+
+
+
+Exceptions - v1.2                      1 / 15
+
+--- PAGE 2 ---
+Rappels
+
+      Rappels 1 / 3
+
+     Qu’est ce qu’une exception ?
+         C’est un mécanisme de gestion des erreurs :
+                    Certaines utilisations d’instructions, d’opérations, de fonctions, de méthodes sont
+                    susceptibles de générer des erreurs (erreurs systèmes, valeurs incompatibles, types
+                    incompatibles, etc.)
+                    Plutôt que de mélanger le code de gestion des erreurs avec le code métier, on sépare les
+                    deux pour rendre le code plus lisible
+                    Plutôt que déterminer le type d’erreur en fonction d’une valeur particulière, ce sont des
+                    classes (une exception est donc un objet) qui vont indiquer la sémantique de l’erreur. Les
+                    langages proposent une hiérarchie d’exceptions, que le programmeur peut étendre.
+            Une exception est dite levée lorsqu’une erreur apparaı̂t
+            Une exception est dite capturée lorsqu’elle est est gérée et traitée. Ce cas peut lever
+            d’autres exceptions
+
+Exceptions - v1.2                                                                                                  2 / 15
+
+--- PAGE 3 ---
+Rappels
+
+      Rappels 2 / 3
+
+
+
+     Comment gérer une exception ?
+        Lorsqu’on utilise une suite d’instructions qui est susceptible de lever une exception :
+                    soit on capture l’exception et on exécute une suite d’instructions qui a pour objectif de
+                    gérer l’erreur
+                    soit on ne capture pas l’exception et dans ce cas, la fonction ou méthode en cours s’arrête
+                    et propage l’exception levée à la fonction appelante. Si cette propagation remonte jusqu’au
+                    programme principal sans que l’exception soit capturée, le programme s’arrête
+
+
+
+
+Exceptions - v1.2                                                                                               3 / 15
+
+--- PAGE 4 ---
+Rappels
+
+      Rappels 3 / 3
+     Quand lever une exception ?
+     Deux cas :
+      1 Une erreur  système  est détectée. Par exemple
+
+                    ouverture d’un fichier qui n’existe pas
+                    connexion réseau qui n’a pu être établie
+                    etc.
+        2   L’appelant de la fonction ne respecte pas les règles définies par sa  documentation  a .
+            Le corps de la fonction commence donc par une suite de tests susceptible de lever une
+            exception.
+                    Il y a un débat sur la vérification des types. Python adopte le principe du duck typing, il ne
+                    devrait pas y avoir de vérification de type. Mais on voit apparaı̂tre différents packages de
+                    vérification de type à partir des annotations (par exemple typecheck :
+                    https://github.com/prechelt/typecheck-decorator).
+
+       a. les langages compilés à typage statique vérifient une partie de cette documentation en vérifiant
+     l’adéquation des types. Plus les types sont bien définis plus cette vérification à la compilation est utile
+Exceptions - v1.2                                                                                                      4 / 15
+
+--- PAGE 5 ---
+Gestion des exceptions
+
+    Les exceptions standards
+     https://docs.python.org/3/library/exceptions.html
+     BaseException                         BaseException                                BaseException
+      +-- SystemExit                        +-- Exception                                +-- Exception
+      +-- KeyboardInterrupt                      +-- OSError                                  +-- ValueError
+      +-- GeneratorExit                          |    +-- BlockingIOError                     |    +-- UnicodeError
+      +-- Exception                              |    +-- ChildProcessError                   |         +-- UnicodeDecodeError
+           +-- StopIteration                     |    +-- ConnectionError                     |         +-- UnicodeEncodeError
+           +-- StopAsyncIteration                |    |    +-- BrokenPipeError                |         +-- UnicodeTranslateError
+           +-- ArithmeticError                   |    |    +-- ConnectionAbortedError         +-- Warning
+           |    +-- FloatingPointError           |    |    +-- ConnectionRefusedError              +-- DeprecationWarning
+           |    +-- OverflowError                |    |    +-- ConnectionResetError                +-- PendingDeprecationWarning
+           |    +-- ZeroDivisionError            |    +-- FileExistsError                          +-- RuntimeWarning
+           +-- AssertionError                    |    +-- FileNotFoundError                        +-- SyntaxWarning
+           +-- AttributeError                    |    +-- InterruptedError                         +-- UserWarning
+           +-- BufferError                       |    +-- IsADirectoryError                        +-- FutureWarning
+           +-- EOFError                          |    +-- NotADirectoryError                       +-- ImportWarning
+           +-- ImportError                       |    +-- PermissionError                          +-- UnicodeWarning
+                +-- ModuleNotFoundError          |    +-- ProcessLookupError                       +-- BytesWarning
+           +-- LookupError                       |    +-- TimeoutError                             +-- ResourceWarning
+           |    +-- IndexError                   +-- ReferenceError
+           |    +-- KeyError                     +-- RuntimeError
+           +-- MemoryError                       |    +-- NotImplementedError
+           +-- NameError                         |    +-- RecursionError
+           |    +-- UnboundLocalError            +-- SyntaxError
+                                                 |    +-- IndentationError
+                                                 |         +-- TabError
+                                                 +-- SystemError
+                                                 +-- TypeError
+Exceptions - v1.2                                                                                                                   5 / 15
+
+--- PAGE 6 ---
+Gestion des exceptions
+
+    Lever d’une exception
+     raise
+         On lève une exception à l’aide l’instruction raise suivie de la création d’une instance
+         d’une sous classe de Exception
+            Le constructeur prend au moins en paramètre une chaı̂ne de caractères explicitant
+            l’erreur
+
+     Exemple : simuler une classe abstraite
+     class ClasseAbstraite:
+         def m1(self):
+             raise NotImplementedError("Classe abstraite")
+
+         def m2(self):
+             self.m1()
+
+     class ClasseConcrete(ClasseAbstraite):
+         def m1(self):
+             pass
+
+
+Exceptions - v1.2                                                                                     6 / 15
+
+--- PAGE 7 ---
+Gestion des exceptions
+
+    Attraper une exception
+
+     try...except
+                                                                                      ...
+            La suite d’instructions susceptible de lever une exception,               try:
+                                                                                           instr1
+            que l’on veut capturer, est :                                                  ...
+                    précédée de l’instruction try:                                 except Exception1:
+                                                                                           instr1
+                    suivie d’au moins une clause except suivie de la classe (ou       except (Exception2, \
+                    d’un tuple de classes) de l’exception devant être attrapée                Exception2) as ex:
+                                                                                           ...
+                    avec possibilité de récupérer l’exception (mot clé as)        else :
+                    suivie optionnellement d’une clause else. Cette clause doit            ...
+                                                                                       finally :
+                    être positionnée après toutes les clauses except (il ne peut        ...
+                    pas y avoir de clause except après un else), son code est        ...
+                    exécuté lorsqu’aucune exception a été levée
+                    suivie optionnellement d’une clause finally. Cette clause
+                    doit être positionnée après toutes les clauses except et la
+                    clause else, son code est toujours exécuté (qu’il y ait eu
+                    une exception ou pas).
+Exceptions - v1.2                                                                                                    7 / 15
+
+--- PAGE 8 ---
+Gestion des exceptions
+
+    Création d’un type d’exception
+
+
+
+     Exception
+            Pour créer un type d’exception il faut créer une sous classe (ou sous-sous classe) de la
+            classe Exception (importée par défaut en python 3)
+            On peut la configurer comme toute classe (redéfinir init , ajouter des attributs,
+            ajouter des méthodes) mais elles sont souvent très simples (voire vides, utilisation de
+            pass)
+            La bonne pratique veut que le nom d’une exception se termine par Error (ou Erreur si
+            codage en français).
+
+
+
+
+Exceptions - v1.2                                                                                        8 / 15
+
+--- PAGE 9 ---
+Un exemple
+
+      Exemple : polyligne.py 1 / 6
+
+
+     Règles
+          Un polyligne n’a de sens que s’il y a au moins deux points
+            On interdit qu’une polyligne possède deux fois le même point
+
+     Définition des exceptions
+  4 class MemePointInterditErreur(Exception):
+  5     pass
+  6
+  7 class AuMoinsDeuxPointsErreur(Exception):
+  8     pass
+
+
+
+
+Exceptions - v1.2                                                            9 / 15
+
+--- PAGE 10 ---
+Un exemple
+
+      Exemple : polyligne.py 2 / 6
+
+      Une méthode statique pour vérifier l’unicité des points (au sens de l’égalité)
+ 12      @staticmethod
+ 13      def _verifier_points_differents_deux_a_deux(pts):
+ 14          if pts:
+ 15              if pts[0] in pts[1:]:
+ 16                  raise MemePointInterditErreur(f"{pts[0]} est présent au moins deux fois")
+ 17              return Polyligne._verifier_points_differents_deux_a_deux(pts[1:])
+
+
+
+      Une méthode statique pour vérifier le nombre de points minimal
+ 19      @staticmethod
+ 20      def _verifier_assez_points(pts):
+ 21          if len(pts) < 2:
+ 22               raise AuMoinsDeuxPointsErreur("Une polyligne doit avoir au moins deux points")
+
+
+
+
+Exceptions - v1.2                                                                                  10 / 15
+
+--- PAGE 11 ---
+Un exemple
+
+      Exemple : polyligne.py 3 / 6
+
+
+      Redéfinition de     init
+ 24      def __init__(self, est_fermee, pt1, pt2, *args):
+ 25          pts = [pt1, pt2] + list(args)
+ 26          self._verifier_points_differents_deux_a_deux(pts)
+ 27          self._est_fermee = est_fermee
+ 28          self._points = pts
+
+
+
+      Redéfinition de ajouter
+ 40      def ajouter(self, *args):
+ 41          pts = self._points + list(args)
+ 42          self._verifier_points_differents_deux_a_deux(pts)
+ 43          self._points = pts
+
+
+
+
+Exceptions - v1.2                                                11 / 15
+
+--- PAGE 12 ---
+Un exemple
+
+      Exemple : polyligne.py 4 / 6
+
+
+      Redéfinition de      setitem
+ 50      def __setitem__(self, indice_ou_slice, pt_ou_pts):
+ 51          pts = list (self._points)
+ 52          if isinstance (indice_ou_slice, int):
+ 53               pts[indice_ou_slice] = pt_ou_pts
+ 54           elif isinstance (indice_ou_slice, slice):
+ 55               if isinstance (pt_ou_pts, Polyligne):
+ 56                    pts[indice_ou_slice] = pt_ou_pts._points
+ 57                elif isinstance (pt_ou_pts, list) or \
+ 58                     isinstance (pt_ou_pts, tuple):
+ 59                    pts[indice_ou_slice] = pt_ou_pts
+ 60
+ 61           self._verifier_points_differents_deux_a_deux(pts)
+ 62           self._verifier_assez_points(pts)
+ 63
+ 64           self._points = pts
+
+
+
+
+Exceptions - v1.2                                                 12 / 15
+
+--- PAGE 13 ---
+Un exemple
+
+      Exemple : polyligne.py 5 / 6
+
+
+
+
+      Redéfinition de     delitem
+ 66      def __delitem__(self, indice_ou_slice):
+ 67          pts = list (self._points)
+ 68          del(pts[indice_ou_slice])
+ 69          self._verifier_assez_points(pts)
+ 70          self._points = pts
+
+
+
+
+Exceptions - v1.2                                  13 / 15
+
+--- PAGE 14 ---
+Un exemple
+
+      Exemple : polyligne.py 6 / 6
+
+   1 >>> from point import Point2D
+   2 >>> from polyligne import Polyligne
+   3 >>> pl=Polyligne(True, Point2D(1,2), Point2D(3,4), Point2D(2,6))
+   4 >>> pl.ajouter(Point2D(1,2))
+   5 ---------------------------------------------------------------------------
+   6 MemePointInterditErreur                Traceback (most recent call last)
+   7 <ipython-input-4-019abfa3dcb3> in <module>
+   8 ----> 1 pl.ajouter(Point2D(1,2))
+   9 ...
+  10 MemePointInterditErreur: (1,2) est présent au moins deux fois
+  11
+  12 >>> pl[0:2]=[Point2D(0,0), Point2D(1,2)]
+  13 >>> pl
+  14 Polyligne(True, Point2D(0, 0), Point2D(1, 2), Point2D(2, 6))
+  15 >>> pl[0]=Point2D(1,2)
+  16 --------------------------------------------------------------------------
+  17 MemePointInterditErreur                Traceback (most recent call last)
+  18 <ipython-input-10-733cd8ccec92> in <module>
+  19 ----> 1 pl[0]=Point2D(1,2)
+  20 ...
+  21 MemePointInterditErreur: (1,2) est présent au moins deux fois
+  22 >>> del(pl[0:2])
+  23 --------------------------------------------------------------------------
+  24 AuMoinsDeuxPointsErreur                Traceback (most recent call last)
+  25 <ipython-input-12-0ffab3dd44e2> in <module>
+  26 ----> 1 del(pl[0:2])
+  27 ...
+  28 AuMoinsDeuxPointsErreur: Une polyligne doit avoir au moins deux points
+
+Exceptions - v1.2                                                                  14 / 15
+
+--- PAGE 15 ---
+Conclusion
+
+    Conclusion
+
+
+
+
+            Nous avons rappelé ce que sont les exceptions, ce que signifie lever et attraper une
+            exception
+            Nous avons rapidement vu les exceptions standards de Python et comment on lève ou
+            attrape une exception
+            Nous avons mis en pratique cela en ajoutant des exceptions à la classe Polyligne
+
+
+
+
+Exceptions - v1.2                                                                                   15 / 15

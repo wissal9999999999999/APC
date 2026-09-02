@@ -1,0 +1,175 @@
+--- PAGE 1 ---
+Python
+                                      Méthodes spéciales (suite)
+
+
+                                             Nicolas Delestre
+
+
+
+
+Méthodes spéciales (suite) - v1.2                                  1/9
+
+--- PAGE 2 ---
+Identité et égalité
+
+     Rappels
+             Les variables Python référencent des objets : on obtient la référence d’un objet grâce à la fonction standard id
+             Deux variables peuvent référencer le même objet (utilisation de l’affectation) : on compare les références des
+             objets grâce à l’opérateur is
+             Deux objets peuvent être égaux : les attributs les caractérisant sont égaux
+             L’opérateur == permet de tester l’égalité. Par défaut pour Python, cette égalité repose sur l’identité
+             Pour les types de base, ce comportement a été redéfini
+
+
+     Illustration                                                                                      Attention aux int
+     >>> class A:                     >>> a1 is a2                         >>> x=1.0                   >>> a=256
+             pass                     False                                >>> y=1.0                   >>> b=256
+     >>> a1=A()                       >>> a1 is a3                         >>> x is y                  >>> a is b
+     >>> a2=A()                       True                                 False                       True
+     >>> a3=a1                        >>> a1==a2                           >>> x==y                    >>> a=257
+                                      False                                True                        >>> b=257
+                                      >>> a1==a3                                                       >>> a is b
+                                      True                                                             False
+
+
+Méthodes spéciales (suite) - v1.2                                                                                                   2/9
+
+--- PAGE 3 ---
+Les méthodes spéciales               eq     et    ne       1/2
+
+     La méthode              eq
+             C’est la méthode qui est exécutée lorsque l’opérateur == est utilisé
+             Ainsi l’interprétation a == b invoque a. eq (b)
+             Code de eq (self, autre) (bonne pratique) :
+                      Tester si le paramètre est un instance de la classe de self :
+                      isinstance(autre, LaClasseDeSelf) ou isinstance(autre, self. class )
+                      Tester les égalités des attributs qui définissent l’égalité
+                      Renvoyer NotImplemented si l’opérateur d’égalité n’a pas à être utilisé
+
+     La méthode ne
+         C’est la méthode qui est exécutée lorsque l’opérateur != est utilisé
+             Par défaut ne renvoie la négation de l’appel à        eq   (sauf si le résultat est
+             NotImplemented)
+
+Méthodes spéciales (suite) - v1.2                                                                    3/9
+
+--- PAGE 4 ---
+Les méthodes spéciales               eq     et     ne        2/2
+
+     Point2D
+           def __eq__(self, autre):
+               if not isinstance(autre, self.__class__):
+                    return False
+               else :
+                    return self.x == autre.x and self.y == autre.y
+
+
+
+     Point3D
+           def __eq__(self, autre):
+               if not isinstance(autre, self.__class__):
+                    return False
+               else :
+                    return super().__eq__(autre) and self.z == autre.z
+
+
+
+
+Méthodes spéciales (suite) - v1.2                                        4/9
+
+--- PAGE 5 ---
+Les méthodes spéciales de comparaison d’ordre
+
+        ge ,         gt , . . .
+             Les méthodes spéciales sont :
+                         ge      pour l’opérateur ≥
+                         gt      pour l’opérateur >
+                         le      pour l’opérateur ≤
+                         lt      pour l’opérateur <
+             Le fait de développer             lt     (inversement    gt ) n’oblige pas à développer           gt
+             (inversement lt )
+
+     Attention
+             Il n’y a pas de lien entre le ou ge et lt ,          gt    et   eq   : par exemple le fait de coder uniquement
+               lt et eq ne permet d’utiliser l’opérateur <=
+             Il n’y a pas de lien entre    le   et   ge
+             Le décorateur total ordering du module standard funtools permet de lever ces limites
+
+
+Méthodes spéciales (suite) - v1.2                                                                                           5/9
+
+--- PAGE 6 ---
+La méthode spéciale                   hash         1/2
+     Rappels
+             L’empreinte (hash) d’un objet est un nombre (inférieur à une certaine borne) qui le
+             caractérise :
+                      Deux objets égaux doivent avoir la même empreinte
+                      Deux objets différents devraient avoir deux empreintes différentes (mais il peut y avoir des
+                      collisions)
+
+     La méthode hash
+         En Python on obtient l’empreinte d’un objet en appelant la fonction standard hash qui
+         appelle la méthode spéciale hash
+             Si la méthode           hash   n’est pas définie, la fonction hash lève une exception TypeError
+             Si la méthode           hash   est définie, on dit que les objets de cette classe sont hashable
+             Pour qu’un objet puisse être utilisé comme clé d’un dict, ou ajouté à un set ou à un
+             frozenset, il faut qu’il soit hashable
+Méthodes spéciales (suite) - v1.2                                                                                    6/9
+
+--- PAGE 7 ---
+La méthode spéciale                hash         2/2
+
+
+
+
+     Bonnes pratiques
+         Dans le cas ou l’on veut que les objets soient hashables :
+                      on définit hash en combinant les empreintes des attributs immuables de l’objet (par
+                      exemple en calculant le hash des additions des hash des attributs immuables)
+                      la méthode eq doit être redéfinie : x == y doit impliquer hash(x) == hash(y)
+
+
+
+
+Méthodes spéciales (suite) - v1.2                                                                          7/9
+
+--- PAGE 8 ---
+Objet appelable
+
+             Un appelable (callable) est un objet qui peut etre utilisé comme une fonction
+             Tout objet dont la classe possède la méthode   call (self[,arg, ...]) est un
+             appelable
+
+     Point2D
+          def __call__(self, x, y):
+              self.x = x
+              self.y = y
+
+
+
+     >>> from point import Point2D
+     >>> pt=Point2D(1,2)
+     >>> pt(3,4)
+     >>> pt.x
+     3
+
+
+Méthodes spéciales (suite) - v1.2                                                           8/9
+
+--- PAGE 9 ---
+Conclusion
+
+
+
+
+             Rappels : variables, références aux objets, identité, égalité, empreinte
+             Les méthodes spéciales pour les comparaisons
+             Les méthodes spéciales qui permettent aux instances d’une classe d’être :
+                      hashables
+                      appelables
+
+
+
+
+Méthodes spéciales (suite) - v1.2                                                          9/9

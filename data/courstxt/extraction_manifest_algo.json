@@ -1,0 +1,79 @@
+{
+  "input_root": "data/courspdf/course_pdfs",
+  "output_root": "data/courstxt",
+  "pdf_count": 10,
+  "page_count": 400,
+  "character_count": 338267,
+  "files": [
+    {
+      "course": "algo",
+      "source_pdf": "algo/01-LangageC.pdf",
+      "output_text": "algo/01-LangageC.txt",
+      "pages": 93,
+      "characters": 74423
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/04-TAD.pdf",
+      "output_text": "algo/04-TAD.txt",
+      "pages": 46,
+      "characters": 33495
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/05-Collection.pdf",
+      "output_text": "algo/05-Collection.txt",
+      "pages": 36,
+      "characters": 28635
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/06-StructureDeDonneesDynamiques.pdf",
+      "output_text": "algo/06-StructureDeDonneesDynamiques.txt",
+      "pages": 28,
+      "characters": 21267
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/07-ConceptionTADCollection.pdf",
+      "output_text": "algo/07-ConceptionTADCollection.txt",
+      "pages": 45,
+      "characters": 45474
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/09-ImplantationSDDEnC.pdf",
+      "output_text": "algo/09-ImplantationSDDEnC.txt",
+      "pages": 24,
+      "characters": 16021
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/09-ImplantationTADEnC.pdf",
+      "output_text": "algo/09-ImplantationTADEnC.txt",
+      "pages": 23,
+      "characters": 24484
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/10-Graphe.pdf",
+      "output_text": "algo/10-Graphe.txt",
+      "pages": 37,
+      "characters": 39377
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/12-ProgrammationDynamique.pdf",
+      "output_text": "algo/12-ProgrammationDynamique.txt",
+      "pages": 32,
+      "characters": 27633
+    },
+    {
+      "course": "algo",
+      "source_pdf": "algo/13-ArbreB.pdf",
+      "output_text": "algo/13-ArbreB.txt",
+      "pages": 36,
+      "characters": 27458
+    }
+  ]
+}

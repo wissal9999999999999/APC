@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="AUTO" nbMax="56" obligatoire="true" presentDansRecapitulatif="true" detailleSurSiteWeb="true" url="https://moodle.insa-rouen.fr/course/view.php?id=100" type="ressource">
+  <!-- <responsable ref="JoseAlferdoGuerreroMata"/> -->
+  <responsable ref="HindLaghmara" />
+  <intervenants>
+    <intervenant ref="HindLaghmara" />
+  </intervenants>
+  <credits nb="3" />
+  <volume-horaire cm="9h" td="9h" tp="9h" />
+  <attendus-apprentissages-disciplinaires>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT01" code="AUT01">
+      <titre xml:lang="fr">Définir et classer les systèmes selon des caractéristiques telles que : statique/dynamique, monovariable/multivariable, continu/discret, linéaire/non-linéaire, causal et invariant.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT02" code="AUT02">
+      <titre xml:lang="fr">Décrire la nature des signaux d'entrée/sortie, qu'ils soient continus ou discrets.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT03" code="AUT03">
+      <titre xml:lang="fr">Identifier la classe d’un système à partir de sa réponse indicielle, impulsionnelle, etc.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT04" code="AUT04">
+      <titre xml:lang="fr">Représenter des signaux en utilisant un outil numérique (Scilab)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT05" code="AUT05">
+      <titre xml:lang="fr">Analyser la stabilité d’un système en étudiant sa fonction de transfert à l’aide d’un outil numérique (Scilab)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT06" code="AUT06">
+      <titre xml:lang="fr">Tracer des les diagrammes de réponse en fréquence (gain, phase) à l’aide d’un outil numérique (Scilab)</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT07" code="AUT07">
+      <titre xml:lang="fr">Identifier les exigences clés dans la conception d’un système de commande : stabilité, marges, précision, rapidité, rejet des perturbations, robustesse.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT08" code="AUT08">
+      <titre xml:lang="fr">Proposer une stratégie générale pour analyser un système non corrigé, définir les exigences, synthétiser un correcteur et vérifier les performances.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT09" code="AUT09">
+      <titre xml:lang="fr">Déterminer la fonction de transfert d'un système LTI continu à partir de son équation différentielle.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT10" code="AUT10">
+      <titre xml:lang="fr">Identifier les éléments caractéristiques d'une fonction de transfert : pôles, zéros et gain.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT11" code="AUT11">
+      <titre xml:lang="fr">Analyser la réponse temporelle des systèmes du premier ordre (intégrateur, premier ordre) soumis à des signaux d’entrée standards.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT12" code="AUT12">
+      <titre xml:lang="fr">Analyser les caractéristiques temporelles (amortissement, oscillations, temps de stabilisation) des systèmes du second ordre en fonction de leurs pôles et de leurs paramètres.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT13" code="AUT13">
+      <titre xml:lang="fr">Appliquer la transformée de Laplace et ses propriétés aux signaux et aux systèmes.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT14" code="AUT14">
+      <titre xml:lang="fr">Analyser la réponse fréquentielle des systèmes LTI à l’aide des diagrammes de Bode, Nyquist et Black.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT15" code="AUT15">
+      <titre xml:lang="fr">Appliquer le critère de Routh pour déterminer la stabilité d’un système en boucle fermée à partir de son équation caractéristique.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT16" code="AUT16">
+      <titre xml:lang="fr">Appliquer le critère de Nyquist pour déterminer la stabilité en boucle fermée à partir du diagramme de la fonction de transfert en boucle ouverte autour du point critique (-1).</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT17" code="AUT17">
+      <titre xml:lang="fr">Évaluer les performances dynamiques (rapidité, amortissement) des systèmes en boucle fermée, en les reliant si possible aux caractéristiques en boucle ouverte.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT18" code="AUT18">
+      <titre xml:lang="fr">Interpréter les diagrammes de réponse fréquentielle (gain, phase) pour les systèmes élémentaires : gain pur, intégrateur, dérivateur, éléments du premier et du second ordre.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT19" code="AUT19">
+      <titre xml:lang="fr">Relier les performances en temps (constante de temps, temps de montée) aux notions fréquentielles (fréquence de coupure, bande passante) pour les systèmes du premier ordre.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT20" code="AUT20">
+      <titre xml:lang="fr">Utiliser le critère du Revers pour une évaluation simplifiée de la stabilité à partir du diagramme de Nyquist ou de Black.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT21" code="AUT21">
+      <titre xml:lang="fr">Identifier les pôles dominants dans les systèmes d’ordre supérieur et analyser leur influence sur la réponse transitoire.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT22" code="AUT22">
+      <titre xml:lang="fr">Décrire la structure et le rôle d’un système automatique ou d’un système asservi (boucle de rétroaction).</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT23" code="AUT23">
+      <titre xml:lang="fr">Distinguer les caractéristiques des systèmes en boucle ouverte et en boucle fermée.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT24" code="AUT24">
+      <titre xml:lang="fr">Analyser la stabilité des systèmes LTI à partir de la partie réelle des pôles de leur fonction de transfert.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT25" code="AUT25">
+      <titre xml:lang="fr">Déterminer les marges de stabilité à partir des diagrammes fréquentiels en boucle ouverte.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT26" code="AUT26">
+      <titre xml:lang="fr">Interpréter la signification des marges de stabilité pour évaluer la robustesse de la stabilité en boucle fermée.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT27" code="AUT27">
+      <titre xml:lang="fr">Analyser l’erreur statique en régime permanent pour différents types de signaux d’entrée en fonction de la classe du système.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT28" code="AUT28">
+      <titre xml:lang="fr">Analyser le rejet asymptotique des perturbations en fonction de la structure du système et du nombre d’intégrateurs.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT29" code="AUT29">
+      <titre xml:lang="fr">Comprendre les limitations des systèmes non corrigés et la nécessité d’ajouter des correcteurs.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT30" code="AUT30">
+      <titre xml:lang="fr">Décrire la fonction et les effets d’un correcteur intégral (I) sur les performances du système et sa réponse fréquentielle.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT31" code="AUT31">
+      <titre xml:lang="fr">Décrire la fonction et les effets d’un correcteur proportionnel-intégral (PI), combinant amélioration de la précision et impact minimal sur la dynamique rapide.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT32" code="AUT32">
+      <titre xml:lang="fr">Décrire la fonction et les effets d’un correcteur proportionnel-dérivatif (PD), améliorant principalement la stabilité et la dynamique rapide.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT33" code="AUT33">
+      <titre xml:lang="fr">Décrire la fonction et les effets d’un correcteur à avance de phase comme approximation causale d’un correcteur PD.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT34" code="AUT34">
+      <titre xml:lang="fr">Décrire les effets combinés et la structure d’un correcteur proportionnel-intégral-dérivatif (PID).</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT35" code="AUT35">
+      <titre xml:lang="fr">Tracer les diagrammes de Bode asymptotiques à partir de la forme normalisée de la fonction de transfert.</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT36" code="AUT36">
+      <titre xml:lang="fr">Tracer un diagramme de Nyquist</titre>
+    </attendu-apprentissage-disciplinaire>
+    <attendu-apprentissage-disciplinaire id="AUTO-AUT37" code="AUT37">
+      <titre xml:lang="fr">Tracer un diagramme de Black</titre>
+    </attendu-apprentissage-disciplinaire>
+  </attendus-apprentissages-disciplinaires>
+  <alignements>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.1"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT01"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT02"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT03"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.3"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT04"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT05"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT06"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-2.1"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT07"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT08"/>
+
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-1.2"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT01"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT09"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT10"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT11"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.1"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT13"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT09"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT10"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT11"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT12"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT14"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT15"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT16"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT17"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.2"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT14"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT18"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT19"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT20"/>
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-2.4"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT13"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT11"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT12"/>
+
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.1"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT11"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT12"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT21"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT14"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT18"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT19"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT22"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT23"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT24"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT15"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT16"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT20"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT25"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT26"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT27"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT28"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT17"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT07"/>
+
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.2"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT29"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT07"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT30"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT31"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT32"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT33"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT34"/>
+
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.4"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT35"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT36"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT37"/>
+
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-1.3"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT01"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT26"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT27"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT28"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT29"/>
+      <attendu-apprentissage-disciplinaire ref="AUTO-AUT07"/>
+    </alignement>
+  </alignements>
+  <description xml:lang="fr">
+    <titre>Automatique</titre>
+    <langue>Français</langue>
+    <objectif>
+      <ul>
+        <li>Acquérir les notions de base de l'automatique
+        continue.</li>
+        <li>Analyser les propriétés des systèmes linéaires continus
+        : réponses temporelles et fréquentielles, stabilité,
+        etc.</li>
+        <!-- <li> Représenter les systèmes dynamiques par une modélisation d'état.</li> -->
+        <!-- <li> Implémenter des techniques classiques de commande telles que les régulateurs PID ou commande par retour d'état.</li> -->
+        <li>Implémenter des techniques classiques de commande
+        telles que les régulateurs PID</li>
+      </ul>
+    </objectif>
+    <programme>
+      <ul>
+        <li>Rappels de représentation et d'analyse des systèmes
+        dynamiques linéaires</li>
+        <li>Analyse des systèmes linéaires asservis</li>
+        <li>Synthèses de correcteurs de type PID</li>
+        <!-- <li>Représentation d'état des systèmes dynamiques </li>
+              <li>Analyse des propriétés d'un système décrit par un modèle d'état : Stabilité, Commandabilité, Observabilité</li>
+              <li>Commande par retour d'état : Placement des pôles, Reconstruction d'états (observateurs)</li> -->
+      </ul>
+    </programme>
+    <pre-requis>
+      <ul>
+        <li>Traitement du signal,</li>
+      </ul>
+    </pre-requis>
+    <documentation>
+      <ul>
+        <li>Granjon Y., Automatique - Systèmes linéaires, non
+        linéaires - 2e édition: Cours et exercices corrigés,
+        2010</li>
+        <li>Franklin, Gene, J. David Powell, and Abbas
+        Emami-Naeini. Feedback Control of Dynamic Systems. 6th ed.
+        Prentice Hall, 2009</li>
+        <!-- <li>Codron P. et Le Ballois S. : Automatiques - Systèmes linéaires et continus, Dunod, 1998</li> -->
+      </ul>
+    </documentation>
+    <evaluation>
+      <ul>
+        <li>Final : 70%</li>
+        <!-- <li>Médian : 40%</li> -->
+        <li>TP : 30%</li>
+      </ul>
+    </evaluation>
+  </description>
+  <description xml:lang="en">
+    <titre>Automatic Control Systems</titre>
+    <langue>French</langue>
+    <objectif>
+      <p>Basic tools for continuous linear time invariant systems
+      regulation: transfer Functions, closed loop, controllers
+      synthesis</p>
+    </objectif>
+    <programme>
+      <ul>
+        <li>Dynamic linear systems representation and system
+        analysis (time and frequence response)</li>
+        <li>Opened and closed loop systems: introduction to
+        feedback control systems</li>
+        <li>Performance analysis: stability, precision</li>
+        <li>Controllers presentation and design</li>
+        <!-- <li>State-space modeling</li>
+              <li>State-space properties analysis</li>
+              <li>Controllability and observability, duality principle</li>
+              <li>State feedback</li>
+              <li>Observer design</li> -->
+      </ul>
+    </programme>
+    <pre-requis>
+      <ul>
+        <li>Signal processing,</li>
+      </ul>
+    </pre-requis>
+    <documentation>
+      <ul>
+        <li>Granjon Y., Automatique - Systèmes linéaires, non
+        linéaires - 2e édition: Cours et exercices corrigés,
+        2010</li>
+        <li>Franklin, Gene, J. David Powell, and Abbas
+        Emami-Naeini. Feedback Control of Dynamic Systems. 6th ed.
+        Prentice Hall, 2009</li>
+        <!-- <li>Codron P. et Le Ballois S. : Automatiques - Systèmes linéaires et continus, Dunod, 1998</li> -->
+      </ul>
+    </documentation>
+    <evaluation>
+      <ul>
+        <!-- <li>Mid-semester exam: 40%,</li> -->
+        <li>Final exam: 70%,</li>
+        <li>Laboratory work: 30%</li>
+      </ul>
+    </evaluation>
+  </description>
+</ec>

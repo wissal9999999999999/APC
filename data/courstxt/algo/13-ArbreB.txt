@@ -1,0 +1,861 @@
+--- PAGE 1 ---
+Les arbres-B
+
+                   Nicolas Delestre, Géraldine Del Mondo
+
+
+
+
+                    Fondé sur le cours de Michel Mainguenaud
+
+arbre-B - v2.2.1                                                1 / 36
+
+--- PAGE 2 ---
+Plan. . .
+
+
+
+     1    Définition
+
+
+     2    Recherche dans un Arbre-B
+
+
+     3    Insertion dans un Arbre-B
+
+
+     4    Suppression dans un Arbre-B
+
+
+
+
+arbre-B - v2.2.1                        2 / 36
+
+--- PAGE 3 ---
+Définition
+
+    Contexte
+
+
+         L’arbre-B (où B-Tree en anglais et B pour balanced) est un type de
+         donnée utilisé dans les domaines des :
+                   systèmes de gestion de fichiers : ReiserFS (version modifiée
+                   des arbres-B) ou Btrfs (B-Tree file system)
+                   bases de données : gestion des index
+         L’arbre-B reprend le concept d’ABR équilibré mais en stockant dans
+         un nœud k valeurs (nommées clés dans le contexte des arbres-B) et
+         en référençant k + 1 sous arbres :
+                   ≪  minimise la taille de l’arbre et réduit le nombre d’opérations
+                   d’équilibrage ≫ (Wikipédia)
+                   utile pour un stockage sur une unité de masse
+
+
+
+arbre-B - v2.2.1                                                                         3 / 36
+
+--- PAGE 4 ---
+Définition
+
+    Arbre-B
+
+
+          Définition Arbre-B
+         Un arbre-B d’ordre m est un arbre tel que :
+            1      Chaque nœud contient k clés triées avec : m ≤ k ≤ 2m (nœud
+                   non racine) et 1 ≤ k ≤ 2m (nœud racine).
+            2      Chaque chemin de la racine à une feuille est de même longueur
+            3      Un nœud est :
+                     • Soit terminal (feuille)
+                     • Soit possède (k + 1) fils tels que les clés du ième fils ont des
+                       valeurs comprises entre les valeurs du (i − 1)ème et ième clés
+                       du père
+
+
+
+
+arbre-B - v2.2.1                                                                             4 / 36
+
+--- PAGE 5 ---
+Définition
+
+    Structure d’un nœud
+
+          Définition Nœud
+             • k clés triées
+             • k + 1 références (pointeur mémoire, indice d’un cluster, etc.
+               avec une valeur particulière, noté ici NIL, pour dénoter
+               l’absence de référencement) tels que :
+                   - Tous sont différents de NIL si le nœud n’est pas une feuille
+                   - Tous à NIL si le nœud est une feuille
+
+
+         P0        k1        P1       k2   P2               ..   Pk−1 kk              Pk
+
+      k < k1                           k2 < k < k3                                   k > kk
+                     k1 < k < k2                             kk−1 < k < kk
+
+
+
+arbre-B - v2.2.1                                                                              5 / 36
+
+--- PAGE 6 ---
+Définition
+
+    Capacité
+
+
+     Nombre de clés
+
+     Arbre-B d’ordre m et de hauteur h :
+
+→ Nombre de clé(s) minimal = 2 ∗ (m + 1)h − 1
+
+→ Nombre de clés maximal = (2 ∗ m + 1)h+1 − 1
+
+     Exemple : m = 100, h = 2 : Nombre maximal de clés ≈ 8 000 000
+
+     Stockage sur disque
+
+→ Un noeud = Un bloc ou cluster (= ensemble de secteurs)
+
+
+
+arbre-B - v2.2.1                                                      6 / 36
+
+--- PAGE 7 ---
+Définition
+
+    Exemple
+
+
+     Exemple : Arbre-B d’ordre 2
+                                          51
+
+                    11 30                                 66 78
+
+      27           12 15 22       35 41    53 54 63   68 69 71 76   79 84 93
+
+
+     Chaque nœud, sauf la racine contient k clés avec 2 ≤ k ≤ 4
+
+     La racine contient k clé(s) avec 1 ≤ k ≤ 4
+
+
+
+
+arbre-B - v2.2.1                                                        7 / 36
+
+--- PAGE 8 ---
+Définition
+
+    Analyse
+
+
+
+          TAD
+          Nom :              ArbreB
+          Paramètre :       Cle (Possede un ordre total)
+          Opérations :      arbreB:       NaturelNonNul → ArbreB
+                             ordre:        ArbreB → NaturelNonNul
+                             estPresent: ArbreB × Cle → Booleen
+                             inserer:      ArbreB × Cle ↛ ArbreB
+                             supprimer: ArbreB × Cle → ArbreB
+          Préconditions :   inserer(a,c): non estPresent(a,c)
+          Axiomes :        - ordre(arbreB(n))=n
+                           - estPresent(inserer(a,c),c)
+                           - non estPresent(supprimer(a,c),c)
+
+
+
+
+arbre-B - v2.2.1                                                    8 / 36
+
+--- PAGE 9 ---
+Définition
+
+      Conception 1 / 3
+
+
+
+
+          Conception préliminaire
+                   fonction arbreB (ordre : NaturelNonNul) : ArbreB
+                   fonction ordre (a : ArbreB) : NaturelNonNul
+                   fonction estPresent (a : ArbreB) : Booleen
+                   procédure inserer (E/S a : ArbreB, E c : Cle)
+                         ⌊précondition(s) non estPresent(a,c)
+                   procédure supprimer (E/S a : ArbreB, E c : Cle)
+
+
+
+
+arbre-B - v2.2.1                                                      9 / 36
+
+--- PAGE 10 ---
+Définition
+
+      Conception 2 / 3
+
+
+
+          Exemple de conception détaillée en mémoire
+          Type ArbreB = ˆNoeud
+          Type Noeud = Structure
+             nbCles : NaturelNonNul
+             cles : Tableau[1..MAX] de Cle
+             sousArbres : Tableau[0..MAX] de ArbreB
+          finstructure
+
+
+
+
+arbre-B - v2.2.1                                          10 / 36
+
+--- PAGE 11 ---
+Définition
+
+      Conception 3 / 3
+
+          Pour s’abstraire de l’implantation
+                   fonction feuille (cles : Liste<Cle>, ordre : NaturelNonNul) : ArbreB
+                        ⌊précondition(s) 1≤longueur(cles)≤2*ordre
+                   fonction noeud (cles : Liste<Cle>, sousArbres : Liste<ArbreB>, ordre : NaturelNonNul) : ArbreB
+                        ⌊précondition(s) 1≤longueur(cles)≤2*ordre
+                                            logueur(sousArbres)=longueur(cles)+1
+                                            ∀ a∈sousArbres, ordre≤nbCles(a)≤2*ordre
+                   fonction estUneFeuille (a : ArbreB) : Booleen
+                   fonction ordre (a : ArbreB) : NaturelNonNul
+                   fonction nbCles (a : ArbreB) : NaturelNonNul
+                   fonction cles (a : ArbreB) : Liste<Cle>
+                   fonction sousArbres (a : ArbreB) : Liste<ArbreB>
+                   fonction cle (a : ArbreB, pos : NaturelNonNul) : Cle
+                        ⌊précondition(s)   pos≤nbCles(a)
+                   fonction sousArbre (a : ArbreB, pos : Naturel) : ArbreB
+                        ⌊précondition(s)   pos<nbCles(a)
+                   procédure changerCle (E/S a : ArbreB, E pos : NaturelNonNul, c : Cle)
+                        ⌊précondition(s)   pos≤nbCles(a)
+                   procédure changerSousArbre (E/S a : ArbreB, E pos : Naturel, ssa : ArbreB)
+                         ⌊précondition(s) pos≤nbCles(a)
+
+
+
+
+arbre-B - v2.2.1                                                                                                    11 / 36
+
+--- PAGE 12 ---
+Recherche d’un élément de clé c                              1/3
+
+ P0      k1    P1   k2      P2        ..   Pk−1 kk      Pk
+
+k < k1                  k2 < k < k3                    k > kk
+          k1 < k < k2                  kk−1 < k < kk
+
+
+      Principe
+   À partir de la racine, pour chaque nœud examiné :
+              La clé C est présente (recherche qui peut être dichotomique)
+              → succès
+              C < k1 → recherche dans le sous-arbre le plus à gauche (via le
+              pointeur P0 )
+              C > kk → recherche dans le sous-arbre le plus à droite (via le
+              pointeur Pk )
+              ki < C < ki+1 (recherche qui peut être dichotomique) →
+              recherche dans le sous-arbre (via le pointeur Pi )
+              Si l’arbre est vide (pointeur vaut NIL) → échec
+
+--- PAGE 13 ---
+Recherche d’un élément de clé c                      2/3
+
+
+  fonction estPresent (a : ArbreB, c : Cle) : Booleen
+  debut
+      si estVide(a) alors
+           retourner FAUX
+      sinon
+           present, filsPossible ← estPresentDansRacine(a,c)
+           si present alors
+                 retourner VRAI
+           sinon
+                 si estUneFeuille(a) alors
+                      retourner FAUX
+                 sinon
+                      retourner estPresent(filsPossible, c)
+                 finsi
+           finsi
+      finsi
+  fin
+
+--- PAGE 14 ---
+Recherche d’un élément de clé c                                      3/3
+
+
+  fonction estPresentDansRacine (a : ArbreB, c : Valeur) : Booleen, ArbreB
+       Déclaration g,d,m : NaturelNonNul
+  debut
+      g←1
+      d ← nbCle(a)
+      tant que g̸=d faire
+            m ← (g+d) div 2
+            si cle(a,m)≥c alors
+                    d←m
+            sinon
+                    g ← m+1
+            finsi
+      fintantque
+      si cle(a,g)=c alors
+            retourner VRAI, arbreB(ordre(a))
+      sinon
+            retourner FAUX, sousArbre(a,g-1)
+      finsi
+  fin
+
+
+
+  Remarque
+ g et d référencent la position de l’élément supérieur ou égal à la valeur recherchée
+
+--- PAGE 15 ---
+Insertion dans un arbre-B d’ordre m
+
+
+
+  Principe
+   1   L’insertion se fait récursivement au niveau des feuilles
+   2   Si un nœud a alors plus 2m + 1 clés, il y a éclatement du
+       nœud et remontée (grâce à la récursivité) de la clé médiane au
+       niveau du père
+   3   Il y a augmentation de la hauteur de l’arbre lorsque la racine
+       se retrouve avec 2m + 1 clés
+       ,→ l’augmentation de la hauteur de l’arbre se fait donc au
+       niveau de la racine !
+
+--- PAGE 16 ---
+Exemple : cas d’un nœud plein 1 / 2
+
+Exemple : Insertion de 75 ?
+
+                                     51
+
+              11 30                                     66 78
+
+27          12 15 22        35 41   53 54 63         68 69 71 76      79 84 93
+Rappel : ici nombre de clés par nœud ≤ 4
+   Méthode
+    1   Eclatement du nœud en deux :
+          - Les (deux) plus petites clés restent dans le nœud
+          - Les (deux) plus grandes clés sont insérées dans un nouveau
+            nœud
+    2   Remontée de la clé médiane dans le nœud père (e.g. ici 71)
+
+--- PAGE 17 ---
+Exemple : cas d’un nœud plein 2 / 2
+Exemple : Insertion de 75 ?
+
+                                    51
+
+             11 30                                     66 71 78
+
+27         12 15 22      35 41     53 54 63       68 69        75 76         79 84 93
+
+Rappel : ici nombre de clés par nœud ≤ 4
+   Méthode
+     1   Eclatement du nœud en deux :
+           - Les (deux) plus petites clés restent dans le nœud
+           - Les (deux) plus grandes clés sont insérées dans un nouveau
+             nœud
+     2   Remontée de la clé médiane dans le nœud père (e.g. ici 71)
+
+--- PAGE 18 ---
+Insertion Arbre-B
+
+      Exemple : cas de l’augmentation de la hauteur 1 / 2
+
+
+     Arbre-B d’ordre 2 :
+                                       5 11 16 21
+
+      1234               6 7 8 10      12 13 14 15   17 18 19 20   22 23 24 25
+
+
+     Insertion clé 9 → Eclatement + remontée de la clé 8 au nœud père
+
+     Remontée de la clé 8 au nœud père → Eclatement + création nouvelle
+     racine (e.g. ici 11)
+
+
+
+
+arbre-B - v2.2.1                                                              18 / 36
+
+--- PAGE 19 ---
+Insertion Arbre-B
+
+      Exemple : cas de l’augmentation de la hauteur 2 / 2
+
+
+     Arbre-B d’ordre 2 :
+                                            11
+
+                          58                               16 21
+
+      1234                67           9 10 12 13 14 15 17 18 19 20 22 23 24 25
+
+     Insertion clé 9 → Eclatement + remontée de la clé 8 au nœud père
+
+     Remontée de la clé 8 au nœud père → Eclatement + création nouvelle
+     racine (e.g. ici 11)
+
+     ,→ Augmentation d’une unité de la hauteur
+
+
+
+arbre-B - v2.2.1                                                              19 / 36
+
+--- PAGE 20 ---
+Insertion Arbre-B
+
+      Algorithme 1 / 2
+
+
+          Prérequis
+         On suppose posséder les fonctions/procédures suivantes :
+                   procédure eclater (E/S a : ArbreB)
+                       ⌊précondition(s) nbCles(a)=2*ordre(a)+1
+                   fonction positionDInsertion (a : ArbreB, c : Cle) : NaturelNonNul
+                   procédure insererCleDansFeuille (E/S a : ArbreB, E c : Cle, pos :
+                   NaturelNonNul)
+                       ⌊précondition(s) estUneFeuille(a)
+                   procédure insererRacineDeTailleUnDansNoeud (E/S a : ArbreB, E racine :
+                   ArbreB, pos : NaturelNonNul)
+                       ⌊précondition(s) nbCles(racine)=1
+
+
+
+
+arbre-B - v2.2.1                                                                             20 / 36
+
+--- PAGE 21 ---
+Insertion Arbre-B
+
+      Algorithme 2 / 2
+
+          procédure inserer (E/S a : ArbreB, E c : Cle, ordre : NaturelNonNul)
+                ⌊précondition(s) 2*ordre<MAX
+              Déclaration . . .
+          debut
+              si estVide(a) alors
+                    l ← liste()
+                    inserer(l,1,c)
+                    a ← feuille(l)
+              sinon
+                    pos ← positionDInsertion(a,c)
+                    si estUneFeuille(a) alors
+                            insererCleDansFeuille(a,c,pos)
+                            si nbCles(a)>2*ordre(a) alors
+                                   eclater(a)
+                            finsi
+                    sinon
+                            ssArbre ← sousArbre(a,pos-1)
+                            inserer(ssArbre,c)
+                            si nbCles(ssArbre)=1 alors
+                                   insererRacineDeTailleUnDansNoeud(a,ssArbre,pos)
+                                   si nbCles(a)>2*ordre(a) alors
+                                         eclater(a)
+                                   finsi
+                            finsi
+                    finsi
+              finsi
+          fin
+
+
+
+arbre-B - v2.2.1                                                                     21 / 36
+
+--- PAGE 22 ---
+Suppression Arbre-B
+
+    Supression dans un arbre-B d’ordre m
+
+
+          Principe
+            1      La suppression se fait toujours au niveau des feuilles
+                   ,→ Si la clé à supprimer n’est pas dans une feuille, alors la
+                   remplacer par la plus grande valeur des plus petites (ou plus
+                   petite valeur des plus grandes) et supprimer cette dernière
+            2      Si la suppression de la clé d’une feuille (récursivement d’un
+                   nœud) amène à avoir moins de m clés :
+                     1    Combinaison avec un nœud voisin (avant ou après)
+                     2    Descente de la clé associant ces deux nœuds (éclatement du
+                          nœud si nécessaire et donc remonté d’une nouvelle clé)
+                   ,→ la récursivité de ce principe peut ammener à diminuer la
+                   hauteur de l’arbre (par le haut)
+
+
+
+
+arbre-B - v2.2.1                                                                         22 / 36
+
+--- PAGE 23 ---
+Suppression Arbre-B
+
+    Ex. cas 1 : très simple
+
+
+     Arbre-B d’ordre 2 :
+                                   10 15 27
+
+                          12 14             20 25 26
+     Rappel : ici nombre de clés par nœud non racine > 1
+
+     ,→ Exemple : Suppression de la clé 25 ?
+
+          Méthode
+            1      Suppression de la valeur (décalage des valeurs dans le tableau)
+
+
+
+
+arbre-B - v2.2.1                                                                      23 / 36
+
+--- PAGE 24 ---
+Suppression Arbre-B
+
+      Ex. cas 2 : simple 1 / 2
+
+     Arbre-B d’ordre 2 :
+                                   10 15 27
+
+                          12 14             20 25
+     Rappel : ici nombre de clés par nœud non racine ≥ 2
+
+     ,→ Exemple : Suppression de la clé 25 ?
+
+          Méthode
+            1      Combinaison avec un nœud voisin
+            2      Descente de la clé (ici 15)
+            3      Suppression du nœud
+
+
+
+arbre-B - v2.2.1                                            24 / 36
+
+--- PAGE 25 ---
+Suppression Arbre-B
+
+      Ex. cas 2 : simple 2 / 2
+
+     Arbre-B d’ordre 2 :
+                          10 27
+
+                      12 14 15 20
+     Rappel : ici nombre de clés par nœud non racine ≥ 2
+
+     ,→ Exemple : Suppression de la clé 25 ?
+
+          Méthode
+            1      Combinaison avec un nœud voisin ([12 14] et 20)
+            2      Descente de la clé médiane (ici 15)
+            3      Suppression du nœud
+
+
+
+arbre-B - v2.2.1                                                     25 / 36
+
+--- PAGE 26 ---
+Suppression Arbre-B
+
+      Ex. cas 3 : avec éclatement 1 / 2
+
+     Arbre-B d’ordre 2 :
+                             48
+
+      123                    67
+     Rappel : ici nombre de clés par nœud non racine ≥ 2 et ≤ 4
+
+     ,→ Exemple : Suppression de la clé 6 ?
+
+
+     Suppression clé 6 → Combinaison [1 2 3] et 7 + descente de la clé 4 au
+     nœud fils
+
+     Descente de la clé 4 au nœud fils → Redistribution + remontée de clé
+     médiane (e.g. ici 3)
+
+
+
+arbre-B - v2.2.1                                                               26 / 36
+
+--- PAGE 27 ---
+Suppression Arbre-B
+
+      Ex. cas 3 : avec éclatement 2 / 2
+
+     Arbre-B d’ordre 2 :
+                           38
+
+      12                   47
+     Rappel : ici nombre de clés par nœud non racine ≥ 2 et ≤ 4
+
+     ,→ Exemple : Suppression de la clé 6 ?
+
+
+     Suppression clé 6 → Combinaison [1 2 3] et 7 + descente de la clé 4 au
+     nœud fils
+
+     Descente de la clé 4 au nœud fils → Redistribution + remontée de clé
+     médiane (e.g. ici 3)
+
+
+
+arbre-B - v2.2.1                                                               27 / 36
+
+--- PAGE 28 ---
+Suppression Arbre-B
+
+      Ex. cas 4 : avec un nombre de clés inférieurs à m               1/2
+
+
+     Arbre-B d’ordre 2 :
+                                   11                           11
+
+                     38                  16 21         8             16 21
+
+             12      47        9 10              1 2 3 7 9 10
+
+
+     ,→ Exemple : Suppression de la clé 4 ?
+
+
+     Combinaison ([1 2] et 7) + descente de la clé 3
+
+
+
+
+arbre-B - v2.2.1                                                             28 / 36
+
+--- PAGE 29 ---
+Suppression Arbre-B
+
+      Ex. cas 4 : avec un nombre de clés inférieurs à m   2/2
+
+
+     Arbre-B d’ordre 2 :
+                                         8 11 16 21
+
+      1237               9 10
+     ,→ Exemple : Suppression de la clé 4 ?
+
+
+     Combinaison + descente de la clé 3
+
+     Combinaison (8 et [16 21]) + descente de la clé 11
+
+     ,→ Diminution d’une unité de la hauteur
+
+
+
+
+arbre-B - v2.2.1                                               29 / 36
+
+--- PAGE 30 ---
+Suppression Arbre-B
+
+    Ex. cas 5 : suppression non feuille
+
+     Arbre-B d’ordre 2 :
+                             58                                    48
+
+      1234                   67             9 10   123             67        9 10
+     ,→ Exemple : Suppression de la clé 5 ?
+
+          Méthode
+            1      Recherche d’une clé adjacente A à la clé à supprimer → on
+                   choisit la plus grande du sous arbre gauche
+            2      Remplacement de la clé à supprimer par A
+            3      Suppression de la clé A du sous arbre gauche
+
+
+
+
+arbre-B - v2.2.1                                                                    30 / 36
+
+--- PAGE 31 ---
+Suppression Arbre-B
+
+      Algorithme 1 / 5
+          Prérequis
+         On suppose posséder :
+                   Les fonctions/procédures suivantes :
+                         fonction plusGrandeCle (a : ArbreB) : Cle
+                              ⌊précondition(s) non estVide(a)
+                         fonction positionCleDansNoeudRacine (a : ArbreB, c : Cle) : Entier
+                               ⌊précondition(s) non estVide(a)
+                         -1 si non présent
+                         fonction positionSsArbrePouvantContenirCle (a : Arbre, c : Valeur) : Naturel
+                               ⌊précondition(s) non estVide(a) et positionCleDansNoeudRacine(a,c)=-1
+                         fonction freresEtClesPeres (a : ArbreB, posSsArbre : Naturel) : ArbreB, ArbreB, Cle, Cle
+                              ⌊précondition(s) non estVide(a) et non estVide(sousArbre(a, posSsArbre))
+                         procédure supprimerCleDansFeuille (E/S a : ArbreB, E c : Cle)
+                               ⌊précondition(s) estUneFeuille(a)
+                         procédure fusionner (E/S a : ArbreB, E frere : ArbreB, frereGauche : Booleen, clePere : Cle)
+
+                   Type Fusion = {AUCUNE, GAUCHE, DROITE}
+
+
+
+          procédure supprimer (E/S a : ArbreB, E c : Cle)
+                Déclaration typeFusion : Fusion, uneCleGauche, uneCleDroite : Cle
+          debut
+              supprimerR(a, c, arbreB(ordre(a)), arbreB(ordre(a)), uneCleGauche, uneCleDroite, typeFusion)
+          fin
+
+arbre-B - v2.2.1                                                                                                         31 / 36
+
+--- PAGE 32 ---
+Suppression Arbre-B
+
+      Algorithme 2 / 5
+          Cas simples
+          procédure supprimerR (E/S a : ArbreB, E c : Cle, frereG, frereD : ArbreB, clePereGauche, clePereDroite : Cle, S
+          typeFusion : Fusion)
+                Déclaration . . .
+          debut
+                typeFusion ← AUCUNE
+                si non estVide(a) alors
+                      pos ← positionCleDansNoeudRacine(a,c)
+                      si estUneFeuille(a) alors
+                             si pos ̸= -1 alors
+                                   si estVide(frereG) et estVide(frereD) et nbCles(a)=1 alors
+                                         liberer(a) // n’est possible que pour la racine
+                                   sinon
+                                         Algo #1 : supprimer c dans une feuille
+                                   finsi
+                             finsi
+                      sinon
+                             si pos = -1 alors
+                                   posSsArbre ← positionSsArbrePouvantContenirCle(a,c)
+                             sinon
+                                   // cas # 5 des exemples
+                                   cleRemplacement ← plusGrandeCle(sousArbre(a,pos-1))
+                                   changerCle(a,pos,cleRemplacement)
+                                   c ← cleRemplacement
+                                   posSsArbre ← pos-1
+                             finsi
+                             Algo #2 : supprimer c dans un sous-arbre de rang posSsArbre
+                      finsi
+                finsi
+          fin
+
+arbre-B - v2.2.1                                                                                                             32 / 36
+
+--- PAGE 33 ---
+Suppression Arbre-B
+
+      Algorithme 3 / 5
+
+
+
+          Algo #1 : supprimer c dans une feuille
+          supprimerCleDansFeuille(a,c)
+          si nbCles(a)<ordre(a) et (non estVide(frereG) ou non estVide(frereD)) alors
+                si non estVide(frereG) alors
+                      fusionner(a, frereG, VRAI, clePereGauche)
+                      typeFusion ← GAUCHE
+                sinon
+                      fusionner(a, frereD, FAUX, clePereDroite)
+                      typeFusion ← DROITE
+                finsi
+                si nbCles(a)>2*ordre(a) alors
+                      eclater(a)
+                finsi
+          finsi
+
+
+
+
+arbre-B - v2.2.1                                                                        33 / 36
+
+--- PAGE 34 ---
+Suppression Arbre-B
+
+      Algorithme 4 / 5
+          Algo #2 : supprimer c dans le sous-arbre
+          frereG,frereD,clePereG,clePereD ← freresEtClesPeres(a,posSsArbre)
+          temp ← sousArbre(a,posSsArbre)
+          supprimerR(temp, c, frereG, frereD, clePereG, clePereD, typeFusion)
+          si typeFusion ̸= AUCUN alors
+               si nbCles(temp)=1 alors
+                    // cas #3 des exemples : il y a eu éclatement après combinaison
+                    changerCle(a, posSsArbre, cle(temp, 1))
+                    changerSousArbre(a, posSsArbre-1, sousArbre(temp,0))
+                    changerSousArbre(a, posSsArbre, sousArbre(temp,1))
+                    liberer(temp)
+               sinon
+                    si typeFusion = GAUCHE alors
+                          supprimerCleA(a, posSsArbre)
+                          supprimerSousArbreA(a, posSsArbre-1)
+                    sinon
+                          supprimerCleA(a, 1)
+                          supprimerSousArbreA(a, 1)
+                    finsi
+                    si nbCles(a)<ordre(a) alors
+                          // Cas #4
+                    finsi
+               finsi
+          finsi
+arbre-B - v2.2.1                                                                        34 / 36
+
+--- PAGE 35 ---
+Suppression Arbre-B
+
+      Algorithme 5 / 5
+
+
+          Fin Algo #2 : supprimer c dans le sous-arbre, cas #4
+          si non estVide(frereG) ou non estVide(frereD) alors
+               si non estVide(frereG) alors
+                    fusionner(a, frereG, VRAI, clePereGauche)
+                    typeFusion ← GAUCHE
+               sinon
+                    fusionner(a, frereD, FAUX, clePereDroite)
+                    typeFusion ← DROITE
+               finsi
+               si nbCles(a)>2*ordre(a) alors
+                    eclater(a)
+               finsi
+          finsi
+
+
+
+
+arbre-B - v2.2.1                                                 35 / 36
+
+--- PAGE 36 ---
+Suppression Arbre-B
+
+    Conclusion
+
+
+          Comparaison AVL vs Arbre-B
+                                    AVL                                           Arbre-B
+
+
+                   Structure : arbres binaires de recherche         Structure : arbres équilibrés généraux
+                   équilibrés, différence de hauteur entre les   pouvant avoir plusieurs clés par nœud et
+                   sous-arbres gauche et droit limitée à 1        plusieurs enfants
+                   Équilibre : maintenu en réajustant la          Équilibre : maintenu en redistribuant les
+                   hauteur des sous-arbres lors des opérations     clés entre les nœuds lors des opérations
+                   d’insertion et de suppression, à l’aide de      d’insertion et de suppression, conçus pour
+                   simple et double rotation                        minimiser le nombre de mouvements
+                   Recherche : temps de recherche                   nécessaires
+                   logarithmiques                                   Recherche : temps de recherche
+                                                                    logarithmiques
+                   Utilisation : mémoire
+                                                                    Utilisation : ssystèmes de gestion de bases
+                                                                    de données (SGBD) et les systèmes de
+                                                                    fichiers (BTRFS, ZFS, HFS+)
+
+
+
+
+arbre-B - v2.2.1                                                                                                   36 / 36

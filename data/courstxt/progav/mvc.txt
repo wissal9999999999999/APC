@@ -1,0 +1,682 @@
+--- PAGE 1 ---
+MVC - Java
+
+
+The Model View Controller design pattern
+
+
+
+
+                Nicolas Malandain          1
+
+--- PAGE 2 ---
+Concevoir une application et son interface
+  ● L'interface permet d'interagir avec l'application
+
+     ● saisir des informations
+
+     ● récupérer des informations
+
+  ● L'interface peut varier selon la personne qui l'utilise
+
+     ● droits
+
+     ● moyen de saisie
+
+     ● format d'affichage
+
+
+
+            Interface / Application indépendants
+
+                                                              2
+
+--- PAGE 3 ---
+Organisation Interface / Application                           1/3
+
+
+
+
+                          Application
+
+                           Interface
+
+
+
+
+             Fusion entre l'interface et l'application
+
+  ● une intervention sur l'un implique de modifier l'autre
+
+  ● l'application ne peut pas fonctionner sans son interface
+
+
+          Modèle absolument non évolutif
+                                                                     3
+
+--- PAGE 4 ---
+Organisation Interface / Application                         2/3
+
+
+
+
+                         Application
+
+
+
+                           Interface
+
+
+
+       L'interface est un module inclus dans l'application
+
+  ● une intervention sur l'un implique de modifier l'autre
+
+  ● l'application peut fonctionner sans son interface
+
+
+          Modèle difficilement évolutif
+                                                                   4
+
+--- PAGE 5 ---
+Organisation Interface / Application                         3/3
+
+
+
+
+             Application                 Interface
+
+
+
+       L'interface est un module dissocié de l'application
+  ● l'application et l'interface sont "indépendants"
+
+  ● la communication se fait par notification d'événements
+
+  ● l'application peut fonctionner sans son interface
+
+           Modèle évolutif
+           Vers le design pattern MVC
+                                                                   5
+
+--- PAGE 6 ---
+Pattern ?       1/2
+
+
+
+Origine et définition
+   ● Travaux réalisés par l'architecte Alexander dans les années 1970
+
+   ● Les patterns sont des descriptions de problèmes récurrents
+
+   ● Ils sont basés sur des savoir-faire
+
+   ● Ils fournissent des méthodes de résolutions des problèmes
+
+
+
+Typologie
+   ● patterns pour l'analyse : méthodes pour mener une analyse
+
+   ● patterns pour la programmation : méthodes pour bien programmer
+
+   ● patterns pour la conception : "Design patterns"
+
+
+
+
+                                                                        6
+
+--- PAGE 7 ---
+Design pattern ?                2/2
+
+
+
+ Origine et définition
+● Introduit par Gamma (1991)
+
+● Le catalogue des patterns (1995) écrit par le "groupe des quatre" (GoF)
+
+● 23 patterns organisés suivant leur rôle
+
+
+
+
+ Rôles
+● créateur : concerne la fabrication d'objets
+
+● structuraux : concernent la structure des objets
+
+● comportementaux : spécifient l'interaction et les responsabilités entre classes
+
+
+
+
+                                                                              7
+
+--- PAGE 8 ---
+Le design pattern MVC
+
+               Model View Controller
+
+● Origine : Smalltalk
+
+● Solution au problème interface / applicatif
+
+   division du problème en 3 parties :
+      ● Controller
+
+      ● View
+
+      ● Data model
+
+
+
+
+                                                8
+
+--- PAGE 9 ---
+Un schéma d'interaction "simple"
+
+                User
+                User
+
+       sees              uses
+
+
+UI     View
+       View             Controller
+                         Controller
+
+
+      updates            manipulates
+
+
+                Model
+                Model
+
+
+                                       9
+
+--- PAGE 10 ---
+Avantages du design pattern MVC
+
+● Applications distribuées
+
+● Affichage d'informations identiques sous différentes formes
+
+● Différentes manières de manipuler des informations
+
+● Amélioration de la portabilité et de la maintenance
+
+● Facilité de développement collaboratif
+
+● Facilite les phases de tests
+
+
+
+
+                                                                10
+
+--- PAGE 11 ---
+Schéma du pattern MVC
+                                                       Model
+                                                       Model
+                                            ● Encapsulates application state
+                                               Encapsulates application state
+                                                ●
+                                            ● Respond to state queries
+                                             ● Respond to state queries
+          State                             ● Exposes application functionality
+                                             ● Exposes application functionality
+                                            ● Notifies views of changes
+         Query                               ● Notifies views of changes                           State
+                                                                                                   Change
+                             Change
+                             Notification
+
+
+
+
+            View
+             View                               View Selection                      Controller
+                                                                                    Controller
+● Renders the models                                                       ● Defines application behavior
+   Renders the models
+    ●                                                                         Defines application behavior
+                                                                               ●
+● Requests updates from models                                             ● Maps user actions to model updates
+ ● Requests updates from models                                             ● Maps user actions to model updates
+● Sends user gestures to controller                                        ● Selects view fo response
+ ● Sends user gestures to controller            User Gestures               ● Selects view fo response
+● Allows controller to select view                                         ● One for each functionality
+ ● Allows controller to select view                                         ● One for each functionality
+
+
+
+                        Method invocations
+                        Events
+
+                                                                                   Extrait de http://java.sun.com   11
+
+--- PAGE 12 ---
+Model
+● Abstraction des fonctionnalités
+
+● Encapsulation de l'état de l'application
+
+● Donne accès aux fonctionnalités de l'application
+
+
+● Informe les vues d'un changement d'état
+
+● Interrogeable par les vues
+
+● Fourni les fonctionnalités de changement d'état au contrôleur
+
+
+
+                           Model
+                           Model
+
+
+                  View           Controller
+                                                                  12
+
+--- PAGE 13 ---
+View
+● Abstraction de la présentation des données
+
+● Présente les données à l'utilisateur
+
+● Maintien de la cohérence avec le modèle de données
+
+
+● Met à jour l'affichage, lorqu'elle est informée d'un changement
+
+● Envoie les interactions de l'utilisateur au contrôleur
+
+
+
+
+                           Model
+
+
+                  View
+                   View          Controller
+                                                                    13
+
+--- PAGE 14 ---
+Controller
+
+● Abstraction des interactions utilisateur/application
+
+● Transcrit les entrées utilisateurs en action dans l'application
+
+● Sélectionne une méthode d'affichage appropriée basée sur les
+
+  entrées de l'utilisateur et le contexte
+● Modifie l'état du modèle
+
+
+
+
+                            Model
+
+
+                   View           Controller
+                                  Controller
+                                                                    14
+
+--- PAGE 15 ---
+Multi-vues / Multi-contrôles
+   View
+    View11                            Controller
+                                      Controller11
+
+
+   View
+    View......              Model
+                            Model     Controller
+                                      Controller......
+
+
+   View
+    Viewnn                            Controller
+                                      Controllernn
+
+● Permet de distribuer :
+
+   ● différentes vues
+
+   ● différents contrôles
+
+● Maintien de la cohérence au niveau du modèle
+
+
+                                                         15
+
+--- PAGE 16 ---
+Un exemple d'utilisation de MVC
+
+
+ V1
+  V1(Solide
+     (SolidePhong)                  C1
+             Phong)                  C1(Zoom)
+                                        (Zoom)
+
+
+
+V2
+ V2(Solide
+    (SolideGouraud)     Model    C2
+            Gouraud)     Model    C2(Edition
+                                     (Editionligne)
+                                               ligne)
+
+
+
+     V3
+      V3(fil
+         (filde
+              defer)             C3
+                 fer)             C3(Edition
+                                     (Editionface)
+                                              face)
+
+
+
+
+                                                        16
+
+--- PAGE 17 ---
+Observable / Observer
+
+
+
+
+Big Brother is watching you ...
+                        (1984 George Orwell)
+
+
+
+
+                                               17
+
+--- PAGE 18 ---
+Principe
+
+    Des Observateurs observent des Observables
+
+     Les Observables informent les Observateurs
+                dès qu'ils changent d'état
+
+
+● Les observables héritent de la classe Observable
+
+● Les observateurs implémentent l'interface Observer
+
+
+
+         Classe et interface dans le package java.util
+
+
+                                                         18
+
+--- PAGE 19 ---
+La classe Observable                          1/2
+
+
+
+
+Constructeur
+   ●   public Observable()
+   Construit un Observable sans Observer (unique constructeur)
+
+
+Gestion des Observers
+   ●   public synchronized void addObserver(Observer o)
+   ●   public synchronized void deleteObserver(Observer o)
+   ●   public synchronized void deleteObservers()
+   ●   public synchronized int countObservers()
+
+
+
+
+                                                                 19
+
+--- PAGE 20 ---
+La classe Observable                                   2/2
+
+Méthodes de changement d'état
+   ●   protected synchronized void setChanged()
+   Spécifie que l'objet a changé d'état
+   ●   protected synchronized void clearChanged()
+   Spécifie que l'objet est inchangé, ou qu'il a déjà notifié ses Observers
+   Méthode appelée automatiquement par notifyObservers()
+   ●   public synchronized boolean hasChanged()
+   Teste si l'objet a changé d'état
+
+
+Notification
+   ●   public void notifyObservers()
+   Informe les Observers que l'objet a changé d'état
+   ●   public void notifyObservers(Object arg)
+   Informe les Observers que l'objet a changé d'état,
+   et transmet l'objet arg aux Observers
+                                                                              20
+
+--- PAGE 21 ---
+L'interface Observer
+
+
+   public interface Observer {
+      public void update(Observable o, Object arg);
+   }
+
+
+
+Méthode appelée lors du changement d'état de l'Observable
+
+
+
+
+                                                            21
+
+--- PAGE 22 ---
+Exemple Observer              1/3
+
+
+
+
+class BigBrother implements Observer {
+
+    public void update(Observable o, Object arg) {
+       int tmp = ((Nous)o).getMoney();
+       if ( tmp != 0) {
+          System.out.println("Donne moi tes "+tmp+"$");
+          ((Nous)o).giveMoney();
+       }
+    }
+}
+
+
+
+
+                                                          22
+
+--- PAGE 23 ---
+Exemple Observable                      2/3
+
+
+
+class Nous extends Observable {
+   private int money=0;
+   void earnMoney(int val) {
+       if (val!=0) {
+          money += val;
+          System.out.println("J'ai gagné "+val+"$");
+          setChanged();
+          notifyObservers();
+       }
+   }
+   int getMoney() {
+       return money;
+   }
+   int giveMoney() {
+       int tmp = money;
+       money = 0;
+       return tmp;
+   }
+}
+                                                       23
+
+--- PAGE 24 ---
+Exemple classe principale          3/3
+
+        import java.util.Observable;
+        import java.util.Observer;
+
+        public class Obs1 {
+           public static void main(String[] param) {
+              BigBrother bb = new BigBrother();
+              Nous   n = new Nous();
+              n.addObserver(bb);
+              n.earnMoney(100);
+              n.earnMoney(0);
+              n.earnMoney(50);
+           }
+        }
+Résultat :
+         J'ai gagné 100$
+         Donne moi tes 100$
+         J'ai gagné 50$
+         Donne moi tes 50$
+                                                       24
+
+--- PAGE 25 ---
+Gestion de température avec MVC
+
+
+
+
+● 3 vues:
+
+   ● Farenheit : éditable
+
+   ● Celsius : éditable
+
+   ● Jauge : non éditable
+
+
+                                  25
+
+--- PAGE 26 ---
+Un Modèle de température
+          ● Encapsulation d'un double = température en Farenheit
+
+          ● Le modèle doit être observable
+
+public class TemperatureModel extends Observable {
+    private double temperatureFarenheit=32;
+    public double getFarenheit() {
+        return temperatureFarenheit;
+    }
+    public double getCelsius() {
+        return (temperatureFarenheit - 32.0) * 5.0 / 9.0;
+    }
+    public void setFarenheit(double _temperatureFarenheit) {
+    // verification du changement de valeur
+        if (temperatureFarenheit != _temperatureFarenheit) {
+            temperatureFarenheit = _temperatureFarenheit;
+            setChanged();
+            notifyObservers();
+        }
+    }
+    public void setCelsius(double temperatureCelsius) {
+        setFarenheit(temperatureCelsius*9.0/5.0 + 32.0);
+    }
+}
+                                                                   26
+
+--- PAGE 27 ---
+Une Vue et un Contrôleur
+public class CelsiusFrameEditor extends JFrame implements Observer {
+  private TemperatureModel model;
+  private JTextField champCelsius;
+  public CelsiusFrameEditor(TemperatureModel _model) {
+    super("Celcius editor");
+    model = _model;
+    model.addObserver(this);
+    ...
+    champCelsius = new JTextField(15);
+    panel.add(champCelsius);
+    update(model,null);
+    champCelsius.addActionListener( new ActionListener() {
+       public void actionPerformed(ActionEvent e) {
+         model.setCelsius(Double.valueOf(champCelsius.getText()).doubleValue());
+    }});
+    JButton plus = new JButton("+1C");
+    panel.add(plus);
+    plus.addActionListener( new ActionListener() {
+       public void actionPerformed(ActionEvent e) {
+           model.setCelsius(model.getCelsius()+1);
+    }});
+    ...
+  }
+  public void update(Observable observable, Object o) {
+    champCelsius.setText(""+model.getCelsius());
+  }                                                                           27
+
+--- PAGE 28 ---
+Une simple Vue
+public class FarenheitGauge extends JFrame implements Observer {
+    private TemperatureModel model;
+    private JProgressBar gauge;
+
+   public FarenheitGauge(TemperatureModel _model) {
+       super("Farenheit gauge");
+       model = _model;
+       model.addObserver(this);
+
+       gauge = new JProgressBar(JProgressBar.VERTICAL,-20,150);
+       gauge.setStringPainted(true);
+       gauge.setBorderPainted(true);
+       getContentPane().setLayout(new FlowLayout());
+       getContentPane().add(gauge);
+       update(model, null);
+
+       setDefaultCloseOperation(EXIT_ON_CLOSE);
+       pack();
+       setVisible(true);
+   }
+
+   public void update(Observable observable, Object o) {
+       int val = Math.round((float)model.getFarenheit());
+       gauge.setString(val+"F");
+       gauge.setValue(val);
+   }                                                               28
+
+--- PAGE 29 ---
+Programme principal
+
+
+public class ExempleMVC {
+
+    public static void main(String[] args) {
+        // création de la température Observable
+        TemperatureModel tempModel = new TemperatureModel();
+
+        // création des vues et des contrôleurs
+        CelsiusFrameEditor cfe = new CelsiusFrameEditor(tempModel);
+        FarenheitFrameEditor ffe = new FarenheitFrameEditor(tempModel);
+        FarenheitGauge fg=new FarenheitGauge(tempModel);
+    }
+
+}
+
+
+
+
+                                                                          29

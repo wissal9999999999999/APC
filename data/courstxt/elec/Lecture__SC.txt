@@ -1,0 +1,755 @@
+--- PAGE 1 ---
+SEMI-
+CONDUCTORS
+H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+ILOS OF THIS SESSION
+
+• What makes electricity flow?
+• What are semiconductors?
+• Understand the role of diodes
+• Understand the role and the importance of transistors
+• Understand the role of semiconductors in circuits and modern-day electronics, computers
+• From a simple circuit to binary coding
+
+--- PAGE 3 ---
+THE ATOM
+
+
+
+
+ • all atoms consist of neutrons, protons, and electrons, except for a normal hydrogen atom
+   which doesn’t have a neutron.
+
+--- PAGE 4 ---
+THE ATOM
+
+
+
+
+• The orbits surrounding the nucleus are grouped into energy levels known as shells and the
+  outermost shell is called the valence shell.
+• When a valence electron gains enough energy from an external source, it can escape from the
+  valence band and goes to the conduction band.
+
+--- PAGE 5 ---
+TYPES OF MATERIALS: INSULATOR
+
+
+
+
+• An insulator has a wide band gap between the valence band and the conduction band
+• The electrons are unable to travel from one band to another
+
+--- PAGE 6 ---
+TYPES OF MATERIALS: INSULATOR
+
+--- PAGE 7 ---
+TYPES OF MATERIALS: CONDUCTOR
+
+
+
+
+• In a conductor, like copper, there’s no band gap. Actually, the conduction band and valence
+  band overlaps, which means that electrons can freely move into the conduction band
+
+--- PAGE 8 ---
+TYPES OF MATERIALS: CONDUCTOR
+
+--- PAGE 9 ---
+TYPES OF MATERIALS: SEMI-
+CONDUCTORS
+
+
+
+
+• The band gap in a semiconductor is smaller compared to an insulator and allows valence
+  electrons in the valence band to jump into the conduction band if it receives external energy.
+
+--- PAGE 10 ---
+SEMICONDUCTORS
+
+
+• Almost every electronic system in use today, from your washing machine to the space shuttle.
+• These tiny components have revolutionised modern medicine, space exploration, industrial
+  automation, home entertainment, transport, communications and just about every industry or
+  workplace you can think of.
+• Silicon and germanium are two semiconductor elements commonly used to create electronic
+  devices.
+• Sillicon Valley was named after the primary material found in computer microprocessors.
+  Originally used by Electronic News in 1971
+
+--- PAGE 11 ---
+SUSTAINABLE DEVELOPMENT & SEMI-
+CONDUCTORS
+• Taiwan Semiconductor Manufacturing Company, the world’s
+  largest chipmaker, which supplies chips to Apple uses almost 5%
+  of all Taiwan’s electricity and used about 63m tons of water in
+  2019
+• Imec has estimated that IC manufacturing could account for 3%
+  of total greenhouse gas emissions by 2040
+• In the US, a single fab, Intel’s 700-acre campus in Ocotillo,
+  Arizona, produced nearly 15,000 tons of waste in the first three
+  months of this year (2019), about 60% of it hazardous. It also
+  consumed 927m gallons of fresh water, enough to fill about
+  1,400 Olympic swimming pools, and used 561m kilowatt-
+  hours of energy.
+• High water consumption, depletion of abiotic resources and
+  generation of e-waste.
+
+--- PAGE 12 ---
+USES OF SEMICONDUCTORS
+• Memory
+Memory chips serve as temporary storehouses of data and pass information to and from
+computer devices' brains.
+• Microprocessors
+These are central processing units that contain the basic logic to perform tasks.
+• Commodity Integrated Circuit
+Sometimes called "standard chips", these are produced in huge batches for routine processing
+purposes.
+• Complex SOC
+"System on a Chip" is essentially all about the creation of an integrated circuit chip with an entire
+system's capability on it..
+
+--- PAGE 13 ---
+TYPES OF SEMICONDUCTORS
+• The definition of an intrinsic semiconductor is a semiconductor that is exceedingly pure. A pure
+  semiconductor does not have any dopant species
+• According to the energy band theory, the conductivity of this semiconductor will be zero at ambient
+  temperature. Si and Ge are two examples of intrinsic semiconductors.
+
+
+
+
+ A dopant (also called a doping agent) is a small amount of a
+ substance added to a material to alter its physical properties, such
+ as electrical or optical properties. The amount of dopant is typically very
+ low compared to the material being doped.
+
+--- PAGE 14 ---
+INTRINSIC SEMICONDUCTORS
+
+
+
+
+• Semiconductors behave like conductors under some conditions and insulators under other conditions.
+• At a temperature of 0° K, the electrons are strongly attached to their atoms which makes it act as an insulator
+• Conductivity of materials : for Si => 4.3 10−4 Ω. 𝑚 −1
+   Example video
+• Example video
+
+--- PAGE 15 ---
+EXTRINSIC SEMICONDUCTORS
+• Extrinsic semiconductors are semiconductors that have had an impurity introduced to them at
+  a regulated rate to make them conductive.
+
+• The doping process is to add impurities (different types
+  of atoms) to a pure semiconductor to increase its
+  electric conductivity
+• This process creates « holes » in the structure of the
+  semiconductor in which an electron can fall
+• They are classified to N-type and P-type semiconductors
+• P-type material includes holes which are majority
+  carriers meaning that they are positively charged
+  materials
+• N-type are ones in which electrons are majority charge
+  carriers. They are negatively charged materials
+
+--- PAGE 16 ---
+DIODES
+
+  They are electronic devices which are created by combining a p-type and n-type
+  region within the same semiconductor lattice
+
+  The basic element in electronics which behaves like a switch according to the
+  direct voltage and only allows the current to flow in one direction
+
+--- PAGE 17 ---
+THE PN JUNCTION
+
+
+
+
+• After doping an intrinsic semiconductor material, usually silicon, so that part of it is p-type
+  and the other part is n-type, a pn junction is formed at the boundary between the p and n
+  regions.
+• In the p region, the majority carriers are holes while in the n region, the majority carriers are
+  free electrons.
+
+--- PAGE 18 ---
+THE DEPLETION REGION
+
+
+
+
+• When the pn junction is formed, the free electrons in the n region begin to diffuse across
+  the junction and combine with the holes in the p region near the junction
+• These two layers of positive and negative charges create a region where charge carriers
+  are depleted
+
+--- PAGE 19 ---
+POTENTIAL BARRIER
+
+
+
+
+• The forces between the positive and negative charges in the depletion region create an electric field which
+  blocks the free electrons from the n region to flow across the junction. In order for the electrons to move
+  through this electric field, a certain amount of voltage equal to the barrier potential of the electric field
+  must be applied across the pn junction with the proper polarity.
+
+--- PAGE 20 ---
+DIODES
+   Biasing is applying a DC voltage accross a component => can be forward or reverse
+
+--- PAGE 21 ---
+DIODES: FORWARD BIAS
+
+
+
+
+• One requirement to forward-bias a diode is that the negative side of the external bias
+  voltage must be connected to the cathode or n region of the diode and the positive side
+  of the external bias voltage to the anode or the p region.
+• The second requirement is, the external bias voltage must be greater than the barrier
+  potential.
+
+--- PAGE 22 ---
+DIODES: FORWARD BIAS
+
+
+
+
+ • When a diode is forward-biased, the negative side of the external bias voltage pushes the majority
+   carriers in the n region, which are free electrons, toward the pn junction.
+ • It also provides a continuous flow of electrons into the n region through the external connection
+   or the conductor.
+ • electrons give up an amount of energy equal to the barrier potential when they will cross the
+   depletion region => it’s called the voltage drop
+
+--- PAGE 23 ---
+CHARACTERISTICS OF A DIODE
+• It always conducts in one direction
+• They only conduct when « Forward Biased »
+• They do not conduct when « Reverse Biased »
+• Reverse voltage: minority carriers go through because of energy level differenes in both
+  regions
+• Reverse breakdown: suddenly increases when the bias voltage is equal to the breakdown
+  voltage
+
+--- PAGE 24 ---
+USE OF DIODES: HALF-WAVE
+RECTIFIER
+• Diodes are commonly used for a process called rectification
+• It is the process of converting AC to DC
+• Can be done by Half-wave rectification or Full-wave rectification
+• The simplest way is by applying a single diode to clip the input signal
+
+--- PAGE 25 ---
+USE OF DIODES: FULL-WAVE
+RECTIFIER
+• A full-wave rectifier provides an output
+  for both the positive and negative
+  alternation of the input voltage
+• In this example, a capacitor is added to
+  the output of the bridge rectifier in
+  order to smooth the signal and induce a
+  ripple
+
+--- PAGE 26 ---
+REGULATING VOLTAGE USING ZENER
+DIODES
+• Zener diodes are special diodes that are meant to break down. They’re really just heavily
+  doped diodes that break down at much lower voltages than standard diodes.
+
+--- PAGE 27 ---
+REGULATING VOLTAGE USING ZENER
+DIODES
+• When you reverse-bias a Zener diode, and the
+  voltage across it reaches or exceeds its breakdown
+  voltage, the Zener diode suddenly starts conducting
+  current backwards through the diode (from cathode
+  to anode).
+• As you continue to increase the reverse-bias
+  voltage beyond the breakdown point, the Zener
+  continues to conduct more and more current – while
+  maintaining a steady voltage drop.
+• A bit different from the ideal model due to small
+  impedance called the Zener impedance
+
+--- PAGE 28 ---
+USING DIODES IN OTHER WAYS
+
+• Overvoltage protection: Diodes placed in parallel with a piece of sensitive electronic
+  equipment protect the equipment from large voltage spikes. The diode is placed backwards so
+  that it’s normally reversebiased, acting like an open circuit and not playing any part in the
+  normal operation of the circuit. However, an abnormal voltage spike forwardbiases the diode,
+  limiting the voltage across the sensitive component and drawing excess current away from it.
+• Making logic gates: Diodes are the building blocks of specialised circuits known as logic,
+  which produce a binary (0 or 1) output when given a set of two or more binary inputs. We’ll
+  see this in the next lectures
+
+--- PAGE 29 ---
+TRANSISTORS: INTRODUCTION
+
+
+
+
+A transistor is an electronic device that can be used as an amplifier or as an electronic switch.
+Its ability to amplify a signal or to switch high power loads using a small signal makes it very
+useful in the field of electronics.
+
+--- PAGE 30 ---
+TRANSISTORS: HISTORY &
+EVOLUTION
+
+
+
+
+• The first recognized transistor was developed by Bell Labs researchers Walter Brattain and John
+  Bardeen in 1947. After several efforts to make an amplifier with silicon, Bardeen and Brattain
+  resolved to use a slab of germanium and two gold foils to make a point-contact transistor. They
+  observed more holes for electrons when a gold foil was placed in close proximity to the surface of
+  germanium.The Bell researchers also noticed that the current passing through the contact was
+  further boosted and amplified at the other contact of the gold foil.
+
+--- PAGE 31 ---
+TRANSISTORS: HISTORY &
+EVOLUTION
+• The transistor has evolved in sizes and
+  types since its inception in the mid-20th
+  century.
+• Thanks to very large-scale integration
+  (VLSI) technology, billions of transistors can
+  be placed on a single chip for use in
+  computing applications.
+• The M1 Ultra SoC from Apple, for example,
+  is made up of 114 billion transistors—the
+  largest number of transistors ever on a chip.
+
+--- PAGE 32 ---
+MOORE’S LAW
+
+• The observation that the number of
+  transistors on an IC doubles about
+  every two years.
+• Named after Gordon Moore the co-
+  founder of Fairchild
+  Semiconductor and Intel (and former
+  CEO of the latter), who in 1965
+  posited a doubling every year in the
+  number of components per integrated
+  circuit
+• How are IC manufactured here
+
+--- PAGE 33 ---
+TRANSISTORS: IMPORTANCE & TYPES
+
+• Transistors are microscopically small, have no moving parts, are very reliable and dissipate a lot
+  less power than their vacuum tube predecessors
+• Their capacity to switch and amplify are highly appreciated in very involved circuits to control
+  the flow and amplify an electrical signal
+• Two types of transistors: Bipolar Junction Transistors (BJT) and Field Effect Transistors (FETs)
+
+--- PAGE 34 ---
+TRANSISTORS: HOW THEY OPERATE
+Bipolar Junction Transistor (BJT) Structure:
+- Manufactured with three semiconductor regions that are doped differently.
+- BJT has two pn junctions that must be correctly biased with an external DC voltage to operate
+properly.
+
+--- PAGE 35 ---
+TRANSISTORS: HOW THEY OPERATE
+• To work as an amplifier: the base-emitter junction
+  must be forward-biased and base-collector is
+  reverse biased
+• The emitter region is heavily doped
+• In npn transistor => emitter region has a high
+  density of electrons
+• In pnp transistor => emitter region has a high
+  density of holes
+
+
+
+                                                       NPN BJT Bias arrangement
+
+--- PAGE 36 ---
+TRANSISTORS: HOW THEY OPERATE
+
+• The Emitter-Base region: forward base-
+  emitter junction causes the electrons to flow
+• The input current is 𝐼𝐸
+• Holes in the base absorb as many of emitted
+  electrons as they can and induce the base
+  current 𝐼𝐵
+• The collector lead current is induced by the
+  electrons moving towards thepositive voltage
+  𝑉𝐶𝐸 which leave the area near the junction
+  that is positively charged
+
+--- PAGE 37 ---
+TRANSISTORS: HOW THEY OPERATE
+
+
+
+
+• The direction of currents of an npn and a pnp transistor using convential current flow are on
+  the opposite
+
+--- PAGE 38 ---
+BJT PARAMETERS
+• The BJT can operate in different regions that are necessary to know for analysis
+• The first parameter to know is the DC beta (𝛽𝐷𝐶 ) which is equivalent to the hybrid parameter
+  ℎ𝐹𝐸 found on most datasheets.
+• 𝛽𝐷𝐶 is the ratio of the DC collector current and the DC base current => the DC gain of a
+  transistor
+                                                      𝐼𝐶
+                                        ℎ𝐹𝐸 = 𝛽𝐷𝐶 =
+                                                      𝐼𝐵
+
+--- PAGE 39 ---
+BJT PARAMETERS
+
+
+• Another parameter of the BJT is the DC Alpha (𝛼𝐷𝐶 ) which is the ratio of the DC
+  collector current and the DC emitter current. It is rarely used in transistor circuits and its
+  value is always less than 1 because the collector current is always less than the emitter
+  current
+                                                  𝐼𝐶
+                                           𝛼𝐷𝐶 =
+                                                  𝐼𝐸
+
+--- PAGE 40 ---
+BJT CIRCUIT ANALYSIS
+
+
+
+• Three DC voltages accross the transistor junctions 𝑉𝐵𝐸 , 𝑉𝐶𝐸 , 𝑉𝐶𝐵
+• The DC currents 𝐼𝐵 , 𝐼𝐶 , 𝐼𝐸
+• On the right figure, the base-emitter junction is like a diode => when forward-biased it has a
+  voltage drop of approximately 0.7V or higher => 𝑉𝐵𝐸 = 0.7𝑉
+• By Kirchoff’s law, the voltage across 𝑉𝑅𝐵 = 𝑉𝐵𝐵 − 𝑉𝐵𝐸 and by Ohm’s law 𝑉𝑅𝐵 = 𝐼𝐵 𝑅𝐵
+                                                             𝑉𝐵𝐵−𝑉𝐵𝐸
+• By rearranging the equation, the DC base current is 𝐼𝐵 =
+                                                               𝑅𝐵
+• The voltage accross the collector-emitter: 𝑉𝐶𝐸 = 𝑉𝐶𝐶 − 𝛽𝐷𝐶 𝐼𝐵 𝑅𝐶
+
+--- PAGE 41 ---
+BJT REGIONS OF OPERATION
+• Three operating regions of a BJT: the cutoff
+  region, the saturation region and the active
+  region
+• The cutoff region: when 𝐼𝐵 = 0 no current
+  throught the collector (very low current in
+  reality known as a leakage current). 𝑉𝐶𝐸 = 𝑉𝑐𝑐
+• The saturation region: when the collector
+  current reaches a maximum when both base-
+  collector and base-emitter are forward-biased
+• Active region: also known as the linear
+  region where the base-emitter is forward-
+  biased and the base-collector is reverse-
+  biased. The collector current is constant with
+  increasing voltage
+
+--- PAGE 42 ---
+TRANSISTORS: AS A SWITCH
+
+
+
+
+An npn BJT operating in the cutoff region acts          An npn BJT operating in the saturation region
+like an open switch                                     acts like a closed switch.
+
+
+  • To use as an open-switch, the base-emitter junction cannot be foward-biased
+  • To use as a closed-switch, the npn BJT is operating in the saturation region => short
+    between the collector and the emitter => the voltage should be zero but it’s not null
+
+--- PAGE 43 ---
+TRANSISTORS: AS A SWITCH
+
+• For a BJT to operate in the saturation region, the base-emitter junction and base-collector junction
+  should be forward-biased
+• There should also be a sufficient base current to produce the collector saturation current 𝐼𝐶 𝑠𝑎𝑡
+                                                 𝑉𝐶𝐶 − 𝑉𝐶𝐸(𝑠𝑎𝑡)
+                                       𝐼𝐶 𝑠𝑎𝑡 =
+                                                       𝑅𝐶
+• 𝑉𝐶𝐸(𝑠𝑎𝑡) is specified in the datasheet of the BJT and 𝑅𝐶 is the load requiring current 𝐼𝐶 𝑠𝑎𝑡
+• Next, it is important to find the minimum value of the base current to produce 𝐼𝐶 𝑠𝑎𝑡
+                                                        𝐼𝐶 𝑠𝑎𝑡
+                                         𝐼𝐵 𝑚𝑖𝑛𝑖𝑚𝑢𝑚 =
+                                                         𝛽𝐷𝐶
+• The base current needs to be greater than the minimum current
+
+--- PAGE 44 ---
+TRANSISTORS: AS A SWITCH
+
+• Once 𝑉𝐶𝐸 𝑠𝑎𝑡 of the BJT, the voltage drop accross the load and the resistance is known =>
+  𝐼𝐶 𝑠𝑎𝑡 and 𝐼𝐵 𝑚𝑖𝑛𝑖𝑚𝑢𝑚 can be found
+• The DC beta needs to be specified => check the datasheet
+
+
+
+
+                    DC current gain for the 2N3904 on the active region
+
+--- PAGE 45 ---
+TRANSISTORS: AS A SWITCH
+
+• The values need to be found when
+  the BJT is in the saturation
+  condition.
+• What is the value of 𝛽𝐷𝐶 ?
+
+
+
+
+                                     2N3904 characteristics at saturation region
+
+--- PAGE 46 ---
+BASIC TRANSISTOR SETUP
+SETUP                                              Circuit                                           Use
+
+Common emitter:                                                                                      Used for amplification
+IN: base
+OUT: collector
+
+
+
+Common collector:                                                                                    Used for impedance adaptation
+IN: base
+OUT: emitter
+
+
+
+Common base:                                                                                         Used for high frequency
+IN: emitter
+OUT: collector
+
+
+   Reference: Circuits Electriques Analogiques ESGEE-Oran/USTO, M. BOUMEHED, Y. ZINE, B. ALSHAQAQI
+
+--- PAGE 47 ---
+OPERATION REGION
+MODE                                 Characteristics                                                 Equivalent circuit
+
+Linear Mode                                  𝑉𝐵𝐸 ≈ 0.7𝑉~0.3𝑉 < 𝑉𝐶𝐸 < 𝑉𝐶𝐶
+                                                       𝐼𝐶 ≈ 𝛽𝐼𝐵
+
+
+
+
+Cutoff mode                                             𝐼𝐵 ≅ 0 𝑉𝐶𝐸 ≅ 𝑉𝐶𝐶
+                                                             𝐼𝐶 ≈ 0
+
+
+
+
+Saturated mode                             𝑉𝐵𝐸 ≈ 0.8𝑉 𝑉𝐶𝐸 = 𝑉𝐶𝐸𝑠𝑎𝑡 ≈ 0.2𝑉
+                                                   𝐼𝐶 = 𝐼𝐶𝑠𝑎𝑡 ≠ 𝛽𝐼𝐵
+
+
+
+   Reference: Circuits Electriques Analogiques ESGEE-Oran/USTO, M. BOUMEHED, Y. ZINE, B. ALSHAQAQI
+
+--- PAGE 48 ---
+OTHER TRANSISTORS?
+
+
+
+
+• FET: Field Effect Transistors
+• BJT controls current and FET controls voltage
+
+--- PAGE 49 ---
+DIFFERENCE BETWEEN FET AND BJT
+
+--- PAGE 50 ---
+FIELD EFFECT TRANSISTORS
+
+• The Field Effect Transistor, FET, is a three terminal active device that uses an electric field to
+  control the current flow and it has a high input impedance which is useful in many circuits.
+• The major use for the field effect transistor, FET is within integrated circuits. In this application
+  FET circuits consume much lower levels of power than ICs using bipolar transistor technology.
+
+--- PAGE 51 ---
+TYPES OF FET
+
+--- PAGE 52 ---
+JFET: JUNCTION FET
+
+• A three terminal device with one terminal that allows to control the current between the
+  other two
+• Drain
+• Source: connected to n-channel
+• Gate: connected to p-channel
+
+--- PAGE 53 ---
+JFET: JUNCTION FET TYPES
+
+
+
+
+ • This arrow also indicates the polarity of P-N junction, which is formed between the channel and
+   the gate
+ • Ohmic contacts at each end are created to form the Source and Drain connections. There are 4
+   Ohmic contacts
+ • Depletion regions at each junction
+
+--- PAGE 54 ---
+JFET: HOW IT OPERATES
+• 2 Depletion regions widen with the increase of the
+  voltage across the gate to source 𝑉𝐺𝑆
+• 𝑉𝐺𝑆 controls the output current 𝐼𝐷
+• This means that it is a voltage controlled device
+
+--- PAGE 55 ---
+JFET: HOW IT OPERATES
+• The 𝐼𝐷 current direction goes from the drain to the source. The drain has a positive potential
+  𝑉𝐷𝑆 > 0
+• The grid to source junction is inversly polarized which means that the potential should be
+  negative 𝑉𝐺𝑆 < 0
+• This applies for an n-channel JFET. In a p-channel type 𝑉𝐺𝑆 > 0 whereas 𝑉𝐷𝑆 < 0, 𝐼𝐷 < 0
+
+--- PAGE 56 ---
+REGIONS OF JFET
+• Ohmic region of linear region: JFET
+  behaves like a resistor
+• Saturation: JFET operates as a constant
+  current device because 𝐼𝐷 is relatively
+  independent of 𝑉𝐷𝑆
+• Breakdown region: JFET eneters a region
+  where 𝑉𝐷𝑆 is beyond its avalanche voltage
+  and 𝐼𝐷 increases to an excessive value
+• Cut-off region: this happens when the
+  depletion regions thicken and touch each
+  other
+
+--- PAGE 57 ---
+OPERATION REGIONS OF A FET
+• Saturation: 𝑉𝐺𝑆 = 0 and 𝑉𝐷𝑆 is increased to a
+  more positive voltage
+• Linear: 𝑉𝐺𝑆 controls the drain-source
+  resistance 𝑟𝑑 . With 𝑉𝐺𝑆 becoming more
+  negative, the resistance increases
+• Cutoff: 𝑉𝐺𝑆 = −𝑉𝑝 where 𝑉𝑝 is the pinch-off
+  voltage (saturation voltage)
+
+                      𝑟0
+• Note that 𝑟𝑑 =      𝑉        where 𝑟𝑜 is the
+                   (1− 𝐺𝑆 )2
+                      𝑉𝑝
+
+  resistance with 𝑉𝐺𝑆 = 0
+
+--- PAGE 58 ---
+JFET TRANSFER CHARACTERISTICS
+• A transfer characteristic is defined by the value of 𝐼𝐷 for a given value of 𝑉𝐺𝑆
+• In a JFET, the relationship of 𝑉𝐺𝑆 (input) and 𝐼𝐷 (output) is defined by Shockley’s equation
+                                                             2
+                                                      𝑉𝐺𝑆
+                                       𝐼𝐷 = 𝐼𝐷𝑆𝑆   1−
+                                                       𝑉𝑝
+
+--- PAGE 59 ---
+TO SUM UP
+
+            JFET
+                                          BJT
+                       2
+               𝑉𝐺𝑆
+• 𝐼𝐷 = 𝐼𝐷𝑆𝑆 1 − 𝑉          • 𝐼𝐶 = 𝛽𝐼𝐵
+                   𝑝
+                           • 𝐼𝐶 ≅ 𝐼𝐸
+• 𝐼𝐷 = 𝐼𝑆
+• 𝐼𝐺 ≅ 0𝐴                  • 𝑉𝐵𝐸 ≅ 0.7𝑉
+
+--- PAGE 60 ---
+MOSFET
+
+• MOSFETs are Metal Oxide Semiconductor Field Effect Transistors. MOSFETs act like switches
+  by varying the voltage on one terminal, the gate, changing the resistance between the other
+  two terminals - the source and drain.
+
+--- PAGE 61 ---
+JFET VS. MOSFET
+
+                  • JFET can operate only in Depletion Mode
+                    but MOSFET can operate in both
+                    Enhancement Mode and Depletion Mode.
+                  • JFET has less input impedance than
+                    MOSFET. The input impedance of a JFET
+                    is 109 Ω whereas the input impedance of a
+                    MOSFET is 1015 Ω
+                  • the MOSFET provides high switching speed,
+                    it is used for very high-speed switching
+                    applications.
+
+--- PAGE 62 ---
+MOSFET
+• MOSFETs act like switches by varying the voltage on one terminal, the gate, changing the
+  resistance between the other two terminals - the source and drain.
+• On top of the substrate, an oxide, which acts as an insulator, is deposited and a metal is
+  deposited => gate
+• No real connection to the rest but the voltage on the gate creates a field effect
+
+--- PAGE 63 ---
+MOSFET
+• A depletion region is naturally created even when there are no electric fields
+• When the gate voltage is 0 => cutoff region
+• When the voltage increases, electrons are attracted in the substrate
+• With not enough voltage=> still at the stauration region
+
+--- PAGE 64 ---
+MOSFET
+• In the linear region, the voltage attracts enough electrons in the substrate up the area between
+  the source and drain
+• The increase in the voltage=> increase in the electric field => current flow to the drain
+
+--- PAGE 65 ---
+MOSFET: SYMBOLS
+
+--- PAGE 66 ---
+USE OF MOSFETS IN INTEGRATED
+CIRCUITS
+• On a PC, MOSFETs help make up the VRM
+  (voltage regulator module), which controls how
+  much voltage other components on the
+  motherboard, like the CPU or graphics card
+  receive.
+
+
+• MOSFETs are like switches that go on and off
+  based on a signal from an integrated circuit (IC)
+  called the PWM chip / controller. MOSFETs
+  switch on and off quickly, allowing high current
+  to flow through in short bursts.
+
+--- PAGE 67 ---
+OPERATIONAL AMPLIFIER
+
+• An op-Amp: is a low cost integrated circuits which consists of transistors, resistors and
+  capacitors
+• It is used to amplify signals due to an external power supply
+• Are applied to different applications; summers, comparators, integrators, differentiators and
+  ADC
+
+--- PAGE 68 ---
+SCHEMATIC OF AN OP-AMP
+
+--- PAGE 69 ---
+REFERENCES
+
+• https://www.imec-int.com/en/expertise/cmos-advanced/sustainable-semiconductor-
+  technologies-and-systems-ssts
+• https://www.circuitbread.com/tutorials/band-gap-and-semiconductor-current-carriers
+• https://www.circuitbread.com/tutorials/different-regions-of-bjt-operation
+• Supports Cours/TD/TP Circuits Electriques Analogiques ESGEE-Oran/USTO, M. BOUMEHED,
+  Y. ZINE, B. ALSHAQAQI
+• https://leetsacademy.blogspot.com/2017/05/bjt-vs-fet.html
+• https://www.electronics-tutorials.ws/transistor/tran_8.html
+• https://www.circuitbread.com/tutorials/how-to-read-a-mosfet-symbol
+
+--- PAGE 70 ---
+DEPLETION & ENHANCEMENT MOSET

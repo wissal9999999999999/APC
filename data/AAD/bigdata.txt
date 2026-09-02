@@ -1,0 +1,80 @@
+AAD-ID,AAD-TITLE
+BGD-CBD01,"Identifier les caractéristiques des données massives (volume, vélocité, variété, véracité)"
+BGD-CBD02,Expliquer les enjeux liés au traitement de données massives
+BGD-CBD03,Expliquer les limites des systèmes de gestion de données traditionnels
+BGD-ARC01,Décrire l'organisation générale d'un système Big Data
+BGD-ARC02,"Expliquer le rôle des différentes couches (batch, temps réel, stockage)"
+BGD-ARC03,"Décrire les étapes de traitement des données (collecte, traitement, stockage)"
+BGD-STO01,Décrire les principes du stockage distribué des données
+BGD-STO02,"Expliquer les mécanismes assurant la fiabilité des données (réplication, distribution)"
+BGD-STO03,Identifier différents types de bases de données adaptées au Big Data
+BGD-STO04,"Manipuler des données dans une base NoSQL (requêtes, insertion, modification)"
+BGD-TRD01,Décrire le principe du traitement de données en mode batch
+BGD-TRD02,Expliquer le fonctionnement du modèle MapReduce
+BGD-TRD03,Concevoir un traitement distribué à partir d'un problème donné
+BGD-TRD04,Identifier les limites des traitements batch pour certaines applications
+BGD-TRT01,Expliquer les principes du traitement de données en flux
+BGD-TRT02,Comparer les traitements batch et temps réel
+BGD-TRT03,"Décrire les étapes d'un traitement de données en temps réel (collecte, traitement, stockage)"
+BGD-TRT04,Utiliser des outils de traitement de flux pour analyser des données en temps réel
+BGD-COL01,Décrire les mécanismes de collecte de données dans un système distribué
+BGD-COL02,Expliquer le principe d'échange de données entre producteurs et consommateurs
+BGD-COL03,Interagir avec des services permettant d'accéder aux données (API)
+BGD-COL04,Mettre à disposition des données via une interface ou un service
+BGD-SYS01,Mettre en place un environnement de travail pour le traitement de données
+BGD-SYS02,Exécuter des traitements distribués sur un système Big Data
+BGD-SYS03,Interpréter les résultats produits par un traitement de données
+BGD-PRJ01,Concevoir une architecture répondant à un besoin de traitement de données massives
+BGD-PRJ02,Intégrer différents outils dans une chaîne de traitement cohérente
+BGD-PRJ03,Exploiter et restituer les résultats d'un traitement de données
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,

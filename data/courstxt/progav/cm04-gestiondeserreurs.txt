@@ -1,0 +1,770 @@
+--- PAGE 1 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+
+
+                                         Programmation
+                                      - Gestion des erreurs -
+
+                                              Nicolas Malandain
+
+
+
+
+                                       Gestion des erreurs        1 / 28
+
+--- PAGE 2 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+
+
+  1   Présentation
+        Principe
+        Les exceptions
+
+  2   Les exceptions en Java
+        Principe et Types
+        Gestion et Syntaxe
+        Exemple
+
+  3   Création
+        Principe
+        Exemple
+
+  4   Pratique
+
+
+
+                                       Gestion des erreurs     2 / 28
+
+--- PAGE 3 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Les exceptions
+
+
+ La gestion d’erreur
+
+
+
+
+ La gestion d’erreur devrait/doit :
+         obliger le développeur à prendre en compte les erreurs importantes
+         proposer au développeur de créer son propre jeu d’erreurs
+         permettre au développeur de gérer proprement les erreurs
+
+
+
+
+                                       Gestion des erreurs                               3 / 28
+
+--- PAGE 4 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Les exceptions
+
+
+ Anciennes méthodes
+
+
+ Principe du code de retour
+ Une fonction retourne une valeur (code) indiquant si elle s’est bien
+ passée ou si il y a eu une erreur. Le code indique le type d’erreur.
+
+ Principe de la variable d’erreur globale
+ Une fonction, en cas d’erreur, affecte une valeur à une variable globale
+ (exemple : errno en C).
+
+ Traitement des erreurs
+ Le traitement des erreurs est mélangé au code du programme
+
+
+
+
+                                       Gestion des erreurs                               4 / 28
+
+--- PAGE 5 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Les exceptions
+
+
+ Les exceptions
+
+
+ Définition
+ Une exception est un évènement exceptionnel pouvant survenir lors de
+ l’exécution d’un programme, celle-ci interrompt alors le déroulement
+ normale du programme pour entrer dans une branche de traitement.
+
+ Avantages des exceptions
+     1   séparation du code et du traitement des erreurs
+     2   propagation des erreurs à travers la pile des appels
+     3   organisation des erreurs
+
+
+
+
+                                       Gestion des erreurs                               5 / 28
+
+--- PAGE 6 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Les exceptions
+
+
+ Séparation du code et du traitement des erreurs
+
+ Sans gestion des exceptions                                     Avec gestion des exceptions
+ TypeCodeErreur lireFichier() {                                     lireFichier() {
+   TypeCodeErreur erreur = 0;                                         try {
+   ouvrir le fichier;                                                     ouvrir le fichier;
+   if (fichier ouvert) {                                                  obtenir sa taille;
+     obtenir sa taille;                                                   allouer la mémoire;
+     if (tailleObtenu) {                                                  charger le fichier en memoire;
+       allouer la mémoire;                                               fermer le fichier;
+       if (mémoireDisponible) {                                      } catch (OuvertureFichierEchec) {
+         charger le fichier en mémoire;                                  traiter l’erreur;
+         if (erreurLecture)                                           } catch(CalculTailleFichierEchec) {
+            erreur = 1;                                                   traiter l’erreur;
+       } else                                                         } catch (AllocationMemoireEchec) {
+            erreur = 2;                                                   traiter l’erreur;
+     } else                                                           } catch (LectureFichierEchec) {
+       erreur = 4;                                                        traiter l’erreur;
+   }                                                                  } catch (fileCloseFailed) {
+   fermer le fichier;                                                     traiter l’erreur;
+   if (le fichier ne se ferme pas)                                    }
+       erreur = erreur or 8;                                        }
+   return erreur;
+ }
+ Exemple modifié issu du tutoriel Java de Sun
+
+                                        Gestion des erreurs                                                 6 / 28
+
+--- PAGE 7 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Les exceptions
+
+
+ Propagation des erreurs
+
+ Sans gestion des exceptions                                     Avec gestion des exceptions
+ methode1() {                                                    methode1() {
+     TypeCodeErreur erreur = methode2();                             try {
+     if (erreur)                                                         methode2();
+         traiter erreur;                                                 code de la methode;
+     else                                                            } catch (exception) {
+         code de la methode;                                             traiter erreur;
+ }                                                                   }
+ TypeCodeErreur methode2() {                                     }
+     TypeCodeErreur erreur;                                      methode2() throws exception {
+     erreur = methode3();                                            methode3();
+     if (erreur)                                                     code de la methode;
+         return erreur;                                          }
+     else                                                        methode3() throws exception {
+         code de la methode;                                         lireFichier();
+ }                                                                   code de la methode;
+ TypeCodeErreur methode3() {                                     }
+     TypeCodeErreur erreur;
+     erreur = lireFichier();
+     if (erreur)
+                                                                 Exemple modifié issu du tutoriel Java de Sun
+         return erreur;
+     else
+         code de la methode;
+ }
+
+                                       Gestion des erreurs                                                       7 / 28
+
+--- PAGE 8 ---
+Plan Présentation Les exceptions en Java Création Pratique         Principe Les exceptions
+
+
+ Organisation des erreurs
+
+
+                                                  Exception
+
+
+
+
+                                              TableauException
+
+
+
+
+          IndiceTableauException       TableauTypeIncompatibleException              TailleTableauMaximumAtteinteException
+
+
+
+
+ Objectif
+     soit traiter différemment les types d’erreurs
+         soit traiter de manière identique toutes les erreurs
+
+
+
+                                       Gestion des erreurs                                                                   8 / 28
+
+--- PAGE 9 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Fonctionnement des Exceptions en Java
+ Principe
+ Lever une exception consiste à dérouter le flot d’instructions pour soit la
+ propager , soit la traiter.
+ Si l’exception est propagée au main alors le programme s’arrête et affiche
+ des informations la caractérisant.
+
+ Informations associées à une exception levée
+      le type de l’exception
+      Utile au développeur qui appellera une méthode levant une
+      exception,
+      le bon type permettra le bon traitement
+         le lieu de l’exception donné par la pile des appels
+         Utile au débogueur pour isoler/déboguer le problème
+         un message caractérisant l’exception
+         Utile à l’utilisateur pour l’informer
+                                       Gestion des erreurs                                                    9 / 28
+
+--- PAGE 10 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Hiérarchie
+                                                         Les exceptions sont des classes
+                                                         Exceptions non controlées
+                                                             java.lang.Error
+                                                             problème de JVM ⇒ arrêt
+                                                               java.lang.RuntimeException
+                                                               gestion falcutative (ex: div / 0)
+
+                                                         Exceptions controlées
+                                                             java.lang.Exception
+                                                             propagation/traitement obligatoire
+
+
+ Deux méthodes pratiques de Throwable
+     void printStackTrace()
+         String toString()
+                                       Gestion des erreurs                                                    10 / 28
+
+--- PAGE 11 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Exemple d’exécution d’une exception non controlée
+ DivisionParZero.java
+ 1    package fr.insarouen.asi.prog.cours4;
+ 2    import java.io.*;
+ 3    public class DivisionParZero {
+ 4      static int meth(int a, int b) {
+ 5          return a/b;
+ 6      }
+ 7      public static void main(String[] param) {
+ 8        int c;
+ 9        c=meth(5,3);
+10        System.out.println("c=␣"+c);
+11        c=meth(3,0);
+12        System.out.println("c=␣"+c);
+13      }
+14    }
+
+
+
+ Exécution
+ java -classpath ./classes fr.insarouen.asi.prog.cours4.DivisionParZero
+ c= 1
+ Exception in thread "main" java.lang.ArithmeticException: / by zero
+         at fr.insarouen.asi.prog.cours4.DivisionParZero.meth(DivisionParZero.java:5)
+         at fr.insarouen.asi.prog.cours4.DivisionParZero.main(DivisionParZero.java:11)
+
+
+                                       Gestion des erreurs                                                    11 / 28
+
+--- PAGE 12 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Propager des exceptions
+ Définition
+ Propager une exception consiste à renvoyer sa gestion à la méthode
+ appelante.
+
+ Syntaxe
+      methode(...) throws Exception1, Exception2 {
+        ...
+        // appel à une ou plusieurs méthodes susceptibles de lever des
+        // exceptions de classes Exception1, Exception2 (ou sous classes)
+        // la clause throws fait partie de la signature de la méthode
+        ...
+      }
+
+
+ Remarque
+ En Java, toute exception non contrôlée levée par une méthode est
+ implicitement propagée.
+                                       Gestion des erreurs                                                    12 / 28
+
+--- PAGE 13 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Attraper des exceptions (traitement)
+
+ Définition
+ Attraper une exception consiste à dérouter le flot d’instructions vers une
+ autre partie du programme permettant de la traiter (transfert de
+ contrôle).
+
+ Remarques
+         une seule clause catch exécutée (la première qui correspond)
+         possibilité d’attraper plusieurs exceptions en une seule clause avec
+         une classe mère.
+         la clause finally facultative est toujours exécutée
+         Utilisé pour exécuter des opérations coûte que coûte
+         ex: fermeture de fichiers, . . .
+         il est possible de mélanger propagation et traitement des exceptions
+
+
+                                       Gestion des erreurs                                                    13 / 28
+
+--- PAGE 14 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Syntaxe
+      methode(...) {
+        ...
+        try {
+          // appel à une ou plusieurs méthodes susceptibles de lever des
+          // exceptions de classes Exception1, Exception2 (ou sous classes)
+        }
+        catch (Exception1 e) {
+          // Exception1 ne doit pas ^etre anc^etre de Exception2
+        }
+        catch (Exception2 e) {
+
+          }
+          catch (Exception3 | Exception 4 e) { // depuis java 7
+             // évite la duplication de code, et l’utilisation d’une classe
+             // d’exception trop vaste (classe mère par exemple).
+             // e est implicitement final
+          }
+           finally {
+             // code toujours exécuté exception ou pas
+             // sauf en cas de sortie de la jvm
+             // et de l’interruption ou mort d’un thread
+          }
+          ...
+      }
+                                       Gestion des erreurs                                                    14 / 28
+
+--- PAGE 15 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ TraitementFinally.java preuve du fonctionnement de finally
+ public class TraitementFinally {
+     public int methodeException(int v) {
+         try {
+              if (v == 1)
+                  new FileReader("FichierQuiNExistePas");
+              if (v != 0)
+                  v = v /0;
+              return v;
+         }
+         catch (ArithmeticException e) {
+              System.err.println("Je␣suis␣passé␣par␣l’exception␣"+e.getMessage());
+              return 42;
+         }
+         catch (FileNotFoundException e) {
+              System.err.println("Je␣suis␣passé␣par␣l’exception␣"+e.getMessage());
+              System.exit(13);
+         }
+          finally {
+              System.err.println("Je␣suis␣passé␣par␣finally␣!!!");
+         }
+         return 1234;
+     }
+     public static void main(String[] args) {
+         TraitementFinally tf = new TraitementFinally();
+         System.err.println(tf.methodeException(0));
+         System.err.println(tf.methodeException(666));
+         System.err.println(tf.methodeException(1));
+     }
+ }                              Gestion des erreurs                                                           15 / 28
+
+--- PAGE 16 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Try-with
+
+ Nouvelle fonctionnalité depuis Java 7.0
+      methode(...) {
+        ...
+        try (déclaration des ressources utilisées ) {
+          // appel à une ou plusieurs méthodes susceptibles de lever des
+          // exceptions de classes Exception1, Exception2 (ou sous classes)
+        }
+        catch (Exception1 e) {
+          // Exception1 ne doit pas ^etre anc^etre de Exception2
+        }
+        catch (Exception2 e) {
+
+          }
+          catch (Exception3 | Exception 4 e) { // depuis java 7
+            // évite la duplication de code, et l’utilisation d’une classe
+            // d’exception trop vaste (classe mère par exemple).
+            // e est implicitement final
+          }
+          ...
+      }
+
+
+                                       Gestion des erreurs                                                    16 / 28
+
+--- PAGE 17 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ Lever des exceptions
+
+
+
+ Définition
+ Lever une exception consiste à dérouter le flot d’instructions du
+ programme pour la traiter ou la propager.
+
+ Syntaxe
+       methode(...) ... {
+         ...
+         throw new UneException();
+         ...
+       }
+
+
+
+
+                                       Gestion des erreurs                                                    17 / 28
+
+--- PAGE 18 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe et Types Gestion et Syntaxe Exemple
+
+
+ TableauEntierNaturelDynamique.java
+ package fr.insarouen.asi.prog.cours4;
+ public class TableauEntierNaturelDynamique {
+   private int[] tab;
+   public TableauEntierNaturelDynamique(int tailledebase) {
+     this .tab=new int[tailledebase];
+   }
+   public int getEntier(int indice) {
+     //      if (indice < 0 || indice >= this.tab.length) // inutile car existe déjà
+     //        throw new IndexOutOfBoundsException("indice non valide");
+     return this .tab[indice];
+   }
+   public void setEntier(int indice, int valeur) throws IndexOutOfBoundsException, IllegalArgumentException {
+     // runtime exception donc déclaration facultative
+     if (valeur < 0)
+       throw new IllegalArgumentException("Entier␣<␣0");
+     try {
+        this .tab[indice]=valeur;
+     }
+     catch (IndexOutOfBoundsException e) {
+        if (indice < 0)
+          throw new IndexOutOfBoundsException("indice␣<␣0");
+        int [] tabtmp=new int[indice+1];
+       System.arraycopy(this.tab, 0, tabtmp, 0, this.tab.length);
+       tabtmp[indice]=valeur;
+        this .tab=tabtmp;
+     }
+   }
+   ...
+ }
+
+
+                                       Gestion des erreurs                                                    18 / 28
+
+--- PAGE 19 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Exemple
+
+
+ Création d’exceptions : principes et syntaxe
+
+
+
+ Utilisation
+       créer son propre système d’erreurs
+         traduire des exceptions de “trop bas niveau”
+
+ Syntaxe
+ Les exceptions sont des classes comme les autres. Les nouvelles
+ exceptions doivent dériver de Exception ou de RuntimeException
+
+
+
+
+                                       Gestion des erreurs                        19 / 28
+
+--- PAGE 20 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Exemple
+
+
+ Reprise du TableauEntierNaturelDynamique
+
+
+ La hiérarchie d’exceptions créée
+
+
+
+
+                                       Gestion des erreurs                        20 / 28
+
+--- PAGE 21 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Exemple
+
+
+
+ TableauEntierNonTrouveException.java
+ package fr.insarouen.asi.prog.cours4;
+
+ public class TableauEntierNonTrouveException
+              extends TableauEntierNaturelDynamiqueException {
+   public TableauEntierNonTrouveException(String s) {
+     super(s);
+   }
+   public TableauEntierNonTrouveException() {
+   }
+ }
+
+
+ TableauIndiceHorsBornesException.java
+ package fr.insarouen.asi.prog.cours4;
+
+ public class TableauIndiceHorsBornesException
+              extends TableauEntierNaturelDynamiqueException {
+   public TableauIndiceHorsBornesException(String s) {
+     super(s);
+   }
+   public TableauIndiceHorsBornesException() {
+   }
+ }
+
+
+ ...
+                                       Gestion des erreurs                        21 / 28
+
+--- PAGE 22 ---
+Plan Présentation Les exceptions en Java Création Pratique         Principe Exemple
+
+
+
+
+ TableauEntierNaturelDynamiqueAvecException.java. . .
+ package fr.insarouen.asi.prog.cours4;
+ public class TableauEntierNaturelDynamiqueAvecException {
+   ...
+   public int getEntier(int indice) throws TableauIndiceHorsBornesException {
+     if (indice < 0 )
+       throw new TableauIndiceNegatifException("indice:"+indice+"␣<␣0␣interdit");
+     if (indice >= this.tab.length )
+       throw new TableauIndiceHorsBornesException("indice␣supérieur␣ou␣égal␣à␣la␣borne␣supérieure");
+     return this .tab[indice];
+   }
+   public void setEntier(int indice, int valeur) throws TableauEntierValeurNegativeException, TableauIndiceNegatifException {
+     if (valeur < 0)
+       throw new TableauEntierValeurNegativeException(valeur+"␣<␣0");
+     try {
+       this .tab[indice]=valeur;
+     }
+     catch (IndexOutOfBoundsException e) {
+        if (indice < 0)
+          throw new TableauIndiceNegatifException(indice+"␣<␣0");
+       int [] tabtmp=new int[indice+1];
+       System.arraycopy(this.tab, 0, tabtmp, 0, this.tab.length);
+       tabtmp[indice]=valeur;
+       this .tab=tabtmp;
+     }
+   }
+ ...
+
+
+
+
+                                         Gestion des erreurs                                                                    22 / 28
+
+--- PAGE 23 ---
+Plan Présentation Les exceptions en Java Création Pratique   Principe Exemple
+
+
+
+
+ TableauEntierNaturelDynamiqueAvecException.java                                       (suite)
+    public int chercherEntier(int valeur)
+      throws TableauEntierNonTrouveException, TableauEntierValeurNegativeException {
+      if (valeur < 0)
+        throw new TableauEntierValeurNegativeException(valeur+"␣<␣0");
+      if (this.tab.length == 0)
+        throw new TableauEntierVideException("Tableau␣vide");
+      for (int i=0; i<this.tab.length; i++)
+         if (this.tab[i] == valeur )
+           return i;
+      throw new TableauEntierNonTrouveException(valeur+"␣non␣trouvé");
+
+
+    }
+
+    public String toString() {
+      StringBuilder sb=new StringBuilder();
+      for (int i=0; i<this.tab.length; i++) {
+        sb.append(this.tab[i]);
+         if (i!=this.tab.length-1)
+           sb.append("/");
+      }
+      return sb.toString();
+    }
+    ...
+
+
+
+                                       Gestion des erreurs                                  23 / 28
+
+--- PAGE 24 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+ Cohérence
+ Ce qu’il faut faire
+     Le contenu d’un bloc try/catch doit être “cohérent”
+     essayer de regrouper un ensemble d’instructions liées
+         toujours traiter l’erreur dans le catch, cad pas de clause catch vide
+         lors d’un throws toujours se mettre du point de vue de l’appelant
+         (méthode ou utilisateur) et non de celui de la classe.
+         quelle exception peut-il comprendre ?
+         a-t-il la possibilité de la traiter ?
+         propager plus de 3 types d’exceptions n’est pas très bon
+         la méthode fait trop de choses → la découper
+         le changement de signature est problématique → mettre à jour tout
+         le code
+         bien spécifier dès le départ et/ou créer une hiérarchie d’exceptions et
+         ne déclarer que la classe mère dans le throws
+
+                                       Gestion des erreurs                         24 / 28
+
+--- PAGE 25 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+ Problème exception perdue
+ ExceptionPerdue.java
+ package fr.insarouen.asi.prog.cours4;
+ public class ExceptionPerdue {
+   public static void main(String[] args) throws Exception {
+     MessageInTheBottle mp = new MessageInTheBottle();
+     try {
+        mp.lanceExceptionPerdue();
+     }
+      finally {
+        mp.lanceExceptionQuiCache();
+     }
+   }
+ }
+ class MessageInTheBottle {
+   void lanceExceptionPerdue() throws PerdueException {
+     throw new PerdueException();
+   }
+   void lanceExceptionQuiCache() throws QuiCacheException {
+     throw new QuiCacheException();
+   }
+ }
+ ...
+
+
+                                                               adapté de “Thinking in Java”
+
+                                       Gestion des erreurs                               25 / 28
+
+--- PAGE 26 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+ Chaı̂nage d’exceptions
+ Principe
+ Une exception levée est attrapée puis aussitôt une exception d’un autre
+ type est lancée
+
+ Exemple d’utilisation
+ Une classe a besoin de charger une ressource quelconque
+         plusieurs possibilités pour obtenir la ressource : BD, fichier, URL,
+         ...
+         donc plusieurs exceptions possibles : ⇒ SQLException,
+         FileNotFoundException, MalformedURLException, ...
+         toutes attrapées et lancement d’une exception commune
+ Problème : Perte de la cause initiale de l’exception
+ Solution : depuis le JDK 1.4 le chaı̂nage d’exceptions est pris en compte
+ dans Throwable
+
+                                       Gestion des erreurs                       26 / 28
+
+--- PAGE 27 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+ Exemple de chaı̂nage d’exceptions
+ VecteursNoms.java
+ package fr.insarouen.asi.prog.cours4;
+ import java.io.*;
+ import java.net.*;
+ public class VecteurNoms {
+   public void chargerNoms(File fichier) throws ChargementRessourceException {
+     try {
+       FileReader reader = new FileReader(fichier);
+       // code
+     }
+     catch (IOException e) {
+       throw new ChargementRessourceException("Problème␣de␣chargement␣du␣fichier␣:"
+                                                +fichier,e);
+     }
+   }
+   public void chargerNoms(URL url) throws ChargementRessourceException {
+     try {
+       URLConnection connection = url.openConnection();
+       Object obj = connection.getContent();
+       // code
+     }
+     catch (MalformedURLException e) {
+       throw new ChargementRessourceException("Problème␣de␣chargement␣de␣l’URL␣:"+url,e);
+     }
+   }
+ }
+                                       Gestion des erreurs                                   27 / 28
+
+--- PAGE 28 ---
+Plan Présentation Les exceptions en Java Création Pratique
+
+
+ ExempleChainageException.java
+ package fr.insarouen.asi.prog.cours4;
+ import java.io.*;
+ import java.net.*;
+
+ public class ExempleChainageException {
+   public static void main(String[] args) throws Exception {
+     VecteurNoms vn = new VecteurNoms();
+     vn.chargerNoms(new URL("http://asi.insa-rouen.fr/"));
+     vn.chargerNoms(new File("/tmp/unfichierquinexistepas"));
+   }
+ }
+
+
+ Résultat
+ Exception in thread "main" fr.insarouen.asi.prog.cours4.ChargementRessourceException:
+ Problème de chargement du fichier :/tmp/unfichierquinexistepas
+          at fr.insarouen.asi.prog.cours4.VecteurNoms.chargerNoms(VecteurNoms.java:14)
+          at fr.insarouen.asi.prog.cours4.ExempleChainageException.main(
+ ExempleChainageException.java:12)
+ Caused by: java.io.FileNotFoundException: /tmp/unfichierquinexistepas (No suchfile or
+  directory)
+          at java.io.FileInputStream.open(Native Method)
+          at java.io.FileInputStream.<init>(FileInputStream.java:106)
+          at java.io.FileReader.<init>(FileReader.java:55)
+          at fr.insarouen.asi.prog.cours4.VecteurNoms.chargerNoms(VecteurNoms.java:10)
+          ... 1 more
+
+                                       Gestion des erreurs                               28 / 28

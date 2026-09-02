@@ -1,0 +1,958 @@
+--- PAGE 1 ---
+Les Graphes
+                      Introduction
+
+
+                     Nicolas Delestre
+
+
+
+
+Les Graphes v2.3.6                      1 / 37
+
+--- PAGE 2 ---
+Plan. . .
+
+    1    Introduction
+    2    TAD Graphe
+    3    Conception détaillée
+           Représentation par matrice
+           Représentation par liste
+           Représentation des étiquettes et valeurs
+    4    Quelques algorithmes sur les graphes
+           Parcours
+           Tri topologique
+           Chemin le plus cours : Dijkstra
+           A*
+    5    Conclusion
+
+Les Graphes v2.3.6                                      2 / 37
+
+--- PAGE 3 ---
+Introduction
+
+      La structure de graphe 1 / 3
+
+
+    Défintion
+    Un graphe G est composé de deux ensembles S et A :
+            S est un ensemble fini d’éléments, appelés sommets (ou aussi
+            nœuds)
+            A est un ensemble fini d’éléments, appelés arcs
+
+    Notion d’arc
+        un arc a est un élément du produit cartésien des sommets S × S :
+                     il est noté a = (i, j) où i et j sont dans S
+            A traduit une organisation relationnelle des sommets entre eux :
+                     les organisations linéaires et hiérarchiques sont des cas particuliers
+
+
+
+
+Les Graphes v2.3.6                                                                              3 / 37
+
+--- PAGE 4 ---
+Introduction
+
+      La structure de graphe 2 / 3
+
+    Concept d’orientation
+            graphe non orienté : (i, j) = (j, i)
+            graphe orienté : (i, j) ̸= (j, i)
+
+
+                                          2
+                                    1                 3    4
+
+
+    G = (S, A) :
+            S = {1, 2, 3, 4}
+            A = {(1, 1), (1, 2), (2, 3), (3, 1), (3, 4)}
+
+
+
+Les Graphes v2.3.6                                             4 / 37
+
+--- PAGE 5 ---
+Introduction
+
+      Notation, terminologie 1 / 3
+
+
+    Notation
+        si un graphe a n sommets, les sommets sont notés 1, 2, . . . , n
+            un arc orienté est noté (i, j), où i et j sont pris dans l’intervalle 1..n
+
+    Terminologie
+    Sommets adjacents Si (a, b) est un arc alors a et b sont des sommets
+                      adjacents
+                Arc incident Si (a, b) est un arc, alors :
+                                  (a, b) est un arc incident extérieurement à a
+                                  (a, b) est un arc incident intérieurement à b
+    Degrès d’un sommet nombre d’arcs incidents au sommet
+
+
+
+Les Graphes v2.3.6                                                                      5 / 37
+
+--- PAGE 6 ---
+Introduction
+
+      Notation, terminologie 2 / 3
+
+
+    Terminologie (suite)
+                     Chemin séquence de sommets (s0 , s1 , s2 , . . . , sp−1 , sp ) où
+                            (s0 , s1 ), (s1 , s2 , ), . . ., (sp−1 , sp ) sont des arcs
+                                         la longueur d’un chemin (s0 , s1 , ..., sp ) vaut p
+                                         un chemin simple est un chemin qui ne comporte pas
+                                         plusieurs fois le même arc
+                                         un chemin élémentaire est un chemin qui ne passe pas plus
+                                         d’une fois par le même sommet
+                                         un circuit (ou cycle) est un chemin de la forme
+                                         (s0 , s1 , s2 , ..., sp−1 , s0 )
+    Graphe étiqueté graphe où une information est associée à chaque
+                      sommet
+         Graphe valué graphe où une valuation est associée à chaque arc
+
+
+
+Les Graphes v2.3.6                                                                                     6 / 37
+
+--- PAGE 7 ---
+Introduction
+
+      Notation, terminologie 3 / 3
+
+
+
+    Terminologie (fin)
+    Graphe connexe Quelque soit s1 et s2 de S, il existe un chemin allant de
+                   s1 à s2
+     Graphe complet Quelque soit si de S, il existe un arc le reliant aux
+                    autres sj (j ̸= i) de S
+                     Clique Ensemble de sommets deux à deux adjacents. Le sous
+                            graphe engendré est complet
+
+
+
+
+Les Graphes v2.3.6                                                                7 / 37
+
+--- PAGE 8 ---
+TAD Graphe
+
+    Les TAD Graphe
+
+
+
+
+            Il n’y a pas un TAD Graphe mais des TAD Graphe fonction :
+                     de l’étiquetage ou pas des sommets
+                     de la valuation ou pas des arcs
+                     de l’orientation ou pas des arcs
+            Il y a donc en tout 8 TAD Graphe possibles
+            Nous allons en définir deux (orienté ou non orienté) que l’on pourra
+            ≪ réduire ≫ en fonction de l’utilisation
+
+
+
+
+Les Graphes v2.3.6                                                                    8 / 37
+
+--- PAGE 9 ---
+TAD Graphe
+
+    TAD Graphe
+    Nom:            Graphe
+    Paramètre:     Sommet, Etiquette, Valeur
+    Utilise:        Booleen, Liste
+    Opérations:    graphe:                   → Graphe
+                    ajouterSommet:            Graphe × Sommet ↛ Graphe
+                    ajouterArc:               Graphe × Sommet × Sommet × ↛ Graphe
+                    sommetPresent:            Graphe × Sommet → Booleen
+                    arcPresent:               Graphe × Sommet × Sommet → Booleen
+                    supprimerSommet:          Graphe × Sommet ↛ Graphe
+                    supprimerArc:             Graphe × Sommet × Sommet ↛ Graphe
+                    obtenirSommets:           Graphe → Liste<Sommet>
+                    obtenirSommetsAdjacents: Graphe × Sommet ↛ Liste<Sommet>
+                    possedeEtiquette:         Graphe × Sommet ↛ Booleen
+                    obtenirEtiquette:         Graphe × Sommet ↛ Etiquette
+                    fixerEtiquette:           Graphe × Sommet × Etiquette ↛ Graphe
+                    possedeValeur:            Graphe × Sommet × Sommet ↛ Booleen
+                    obtenirValeur:            Graphe × Sommet × Sommet ↛ Valeur
+                    fixerValeur:              Graphe × Sommet × Sommet × Valeur ↛ Graphe
+    Préconditions: ajouterSommet(g,s):           non sommetPresent(g,s)
+                    ajouterArc(g,s1,s2):          sommetPresent(g,s1) et sommetPresent(g,s2) et non arcPresent(g,s1,s2)
+                    supprimerSommet(g,s):         sommetPresent(g,s)
+                    supprimerArc(g,s1,s2):        arcPresent(g,s1,s2)
+                    obtenirSommetsAdjacents(g,s): sommetPresent(g,s)
+                    possedeEtiquette(g,s):        sommetPresent(g,s)
+                    obtenirEtiquette(g,s):        sommetPresent(g,s) et possedeEtiquette(g,s)
+                    fixerEtiquette(g,s,l):        sommetPresent(g,s)
+                    possedeValeur(g,s1,s2):       arcPresent(g,s1,s2)
+                    obtenirValeur(g,s1,s2):       arcPresent(g,s1,s2) et possedeValeur(g,s1,s2)
+                    fixerValeur(g,s1,s2,l):       arcPresent(g,s1,s2)
+
+
+
+Les Graphes v2.3.6                                                                                                        9 / 37
+
+--- PAGE 10 ---
+TAD Graphe
+
+    TAD GrapheOriente
+    Nom:            GrapheOriente
+    Paramètre:     Sommet, Etiquette, Valeur
+    Utilise:        Booleen, Liste
+    Opérations:    grapheOriente:              → GrapheOriente
+                    ajouterSommet:              GrapheOriente × Sommet ↛ GrapheOriente
+                    ajouterArc:                 GrapheOriente × Sommet × Sommet × ↛ GrapheOriente
+                    sommetPresent:              GrapheOriente × Sommet → Booleen
+                    arcPresent:                 GrapheOriente × Sommet × Sommet → Booleen
+                    supprimerSommet:            GrapheOriente × Sommet ↛ GrapheOriente
+                    supprimerArc:               GrapheOriente × Sommet × Sommet ↛ GrapheOriente
+                    obtenirSommets:             GrapheOriente → Liste<Sommet>
+                    obtenirPredecesseurs:       GrapheOriente × Sommet ↛ Liste<Sommet>
+                    obtenirSuccesseurs:         GrapheOriente × Sommet ↛ Liste<Sommet>
+                    possedeEtiquette:           GrapheOriente × Sommet ↛ Booleen
+                    obtenirEtiquette:           GrapheOriente × Sommet ↛ Etiquette
+                    fixerEtiquette:             GrapheOriente × Sommet × Etiquette ↛ GrapheOriente
+                    possedeValeur:              GrapheOriente × Sommet × Sommet ↛ Booleen
+                    obtenirValeur:              GrapheOriente × Sommet × Sommet ↛ Valeur
+                    fixerValeur:                GrapheOriente × Sommet × Sommet × Valeur ↛ GrapheOriente
+    Préconditions: ajouterSommet(g,s):        non sommetPresent(g,s)
+                    ajouterArc(g,s1,s2):       non arcPresent(g,s)
+                    supprimerSommet(g,s):      sommetPresent(g,s)
+                    supprimerArc(g,s1,s2):     arcPresent(g,s1,s2)
+                    obtenirPredecesseurs(g,s): sommetPresent(g,s)
+                    obtenirSuccesseurs(g,s):   sommetPresent(g,s)
+                    possedeEtiquette(g,s):     sommetPresent(g,s)
+                    obtenirEtiquette(g,s):     sommetPresent(g,s)
+                    fixerEtiquette(g,s,l):     sommetPresent(g,s)
+                    possedeValeur(g,s1,s2):    arcPresent(g,s1,s2)
+                    obtenirValeur(g,s1,s2):    arcPresent(g,s1,s2)
+                    fixerValeur(g,s1,s2,l):    arcPresent(g,s1,s2)
+
+Les Graphes v2.3.6                                                                                         10 / 37
+
+--- PAGE 11 ---
+TAD Graphe
+
+    Utilisation
+
+
+    Adapter ces deux TAD au besoin
+            Besoin d’un graphe non orienté simple (pas d’étiquette, pas de
+            valuation) dont les sommets seront identifiés par des naturels non
+            nuls (interdiction d’utiliser les opérations obtenir/fixer
+            Etiquettes/Valeurs) :
+                     Graphe<Sommet=NaturelNonNul>
+                     Graphe<NaturelNonNul>
+            Besoin d’un graphe non orienté dont les sommets sont identifiés par
+            des naturels non nuls et les arcs ont des valeurs de type réel
+            (interdiction d’utiliser les opérations obtenir/fixer
+            Etiquettes) :
+                     Graphe<Sommet=NaturelNonNul,Valeur=Reel>
+                     Graphe<NaturelNonNul,,Reel>
+
+
+
+Les Graphes v2.3.6                                                                11 / 37
+
+--- PAGE 12 ---
+Conception détaillée                Représentation par matrice
+
+      Représentation par une matrice d’adjacence 1 / 2
+
+
+
+            Soit G un graphe à n sommets notés 1, 2, . . . , n
+            G est représenté par une matrice A n × n de booléens, tel que :
+            si (i, j) est un arc de G alors
+                A[i, j] ← VRAI (ou 1)
+            sinon
+                A[i, j] ← FAUX (ou 0)
+            finsi
+
+    Remarque
+       Si la graphe est non orienté, la matrice est symétrique
+
+
+
+
+Les Graphes v2.3.6                                                                       12 / 37
+
+--- PAGE 13 ---
+Conception détaillée                       Représentation par matrice
+
+      Représentation par une matrice d’adjacence 2 / 2
+
+
+
+                                                  2
+                                       1                    3          4
+
+
+
+
+                                                    1   2   3   4
+                                                                 
+                                                 1 1    1   0   0
+                                                 2 0   0   1   0
+                                              A=                 
+                                                 3 1   0   0   1
+                                                 4 0    0   0   0
+
+
+
+
+Les Graphes v2.3.6                                                                              13 / 37
+
+--- PAGE 14 ---
+Conception détaillée                          Représentation par matrice
+
+      Représentation par une matrice d’incidence 1 / 2
+
+
+
+
+            Soit G un graphe à n sommets et de p arcs
+            G est représenté par une matrice A n × p de d’entiers, tel que :
+                     pour tout arc vk = (i, j) avec i ̸= j :
+                            Si le graphe est orienté : A[i, k] = 1 et A[j, k] = −1
+                            Si le graphe est non orienté : A[i, k] = 1 et A[j, k] = 1
+                     pour tout arc vk = (i, i) : A[i, k] = 2
+                     0 sinon
+
+
+
+
+Les Graphes v2.3.6                                                                                  14 / 37
+
+--- PAGE 15 ---
+Conception détaillée                         Représentation par matrice
+
+      Représentation par une matrice d’incidence 2 / 2
+
+
+
+                                                  2
+                                       1                     3           4
+
+
+
+
+                                          1            2 3       4  5
+                                                                      
+                                       1 2            1  0       −1 0
+                                       2 0           −1 1        0 0 
+                                    A=                                
+                                       3 0           0 −1        1  1 
+                                       4 0            0  0        0 −1
+
+
+
+
+Les Graphes v2.3.6                                                                                15 / 37
+
+--- PAGE 16 ---
+Conception détaillée                                Représentation par liste
+
+    Représentation par une liste d’adjacence
+
+
+
+            G est représenté par une liste de sommets ls =< s1 , . . . , sn >
+            Chaque élément si de la liste ls est une liste qui contient les
+            sommets successeurs du sommet i dans le graphe G
+
+
+                                                    2
+                                       1                       3              4
+
+                                              ls=((1,2), (3), (1,4), ())
+
+
+
+
+Les Graphes v2.3.6                                                                                     16 / 37
+
+--- PAGE 17 ---
+Conception détaillée            Représentation des étiquettes et valeurs
+
+    Représentation des étiquettes et valeurs
+
+
+
+
+            Les étiquettes à l’aide d’un dictionnaire dont les clés sont les
+            sommets
+            Les valeurs à l’aide d’un dictionnaire dont les clés sont des couples
+            de sommets
+
+
+
+
+Les Graphes v2.3.6                                                                                  17 / 37
+
+--- PAGE 18 ---
+Quelques algorithmes sur les graphes                        Parcours
+
+      Parcours d’un graphe 1 / 4
+
+
+    Parcours de tous les sommets
+        visiter chaque sommet du graphe une seule fois
+            appliquer un même traitement en chaque sommet
+
+    Parcours à partir d’un sommet s
+        1   parcours en profondeur
+                     le principe consiste à descendre le plus ”profond” dans le graphe à
+                     partir de s, en suivant un certain ordre, avant de revenir pour prendre
+                     une autre direction
+        2   parcours en largeur
+                     le principe consiste à visiter les sommets situés à une distance 1 de s,
+                     puis ceux situés à une distance 2 de s, etc...
+
+
+
+Les Graphes v2.3.6                                                                            18 / 37
+
+--- PAGE 19 ---
+Quelques algorithmes sur les graphes                 Parcours
+
+      Parcours d’un graphe 2 / 4
+
+    Exemple
+
+
+                                                        5
+                                                    2
+                                                        6     8
+                                          1         3
+                                                        7
+                                                    4
+
+
+
+
+    Parcours en profondeur à partir du sommet 1 :
+            Parcours en profondeur : 1, 2, 5, 6, 8, 3, 7, 4
+            Parcours en largeur : 1, 2, 3, 4, 5, 6, 7, 8
+
+Les Graphes v2.3.6                                                           19 / 37
+
+--- PAGE 20 ---
+Quelques algorithmes sur les graphes          Parcours
+
+      Parcours d’un graphe 3 / 4
+
+
+    Le type de parcours est fonction du TAD utilisé pour stocker les sommets
+    à traiter :
+            Pile ⇒ Parcours en profondeur
+            File ⇒ Parcours en largeur
+
+    Souvent besoin d’ajouter une opération à ces TAD : estPresent
+
+    Dans tous les cas il faut un mécanisme pour éviter de boucler
+    indéfiniment :
+            Marquer les nœuds
+            Lister les nœuds traités
+
+
+
+Les Graphes v2.3.6                                                         20 / 37
+
+--- PAGE 21 ---
+Quelques algorithmes sur les graphes                     Parcours
+
+      Parcours d’un graphe 4 / 4
+    Exemple : Parcours en largeur
+    procédure parcoursEnLargeurIteratif (E g : Graphe<Sommet>, s : Sommet, traiter :
+    procédure(E Graphe<Sommet>,Sommet))
+        ⌊précondition(s) sommetPresent(g,s)
+        Déclaration f : File<Sommet>
+                         sCourant : Sommet
+    debut
+        f ← file()
+        enfiler(f,s)
+        tant que non estVide(f) faire
+             sCourant ← obtenirElement(f)
+             defiler(f)
+             marquer(sCourant)
+             traiter(g,sCourant)
+             pour chaque s’ de obtenirSommetsAdjacents(g, sCourant)
+                   si non estMarque(s’) et non estPresent(f,s’) alors
+                        enfiler(f,s’)
+                   finsi
+             finpour
+        fintantque
+    fin
+
+Les Graphes v2.3.6                                                                      21 / 37
+
+--- PAGE 22 ---
+Quelques algorithmes sur les graphes                               Tri topologique
+
+      Tri topologique 1 / 2
+    Objectif
+    Un graphe orienté acyclique avec une seule racine a peut représenter
+    un ordre partiel entre les sommets.
+    Le tri topologique a pour but de créer un ordre total (une liste)
+     a. nœud qui ne possède pas de précédesseur et qui peut atteindre tous les autres
+    nœuds du graphe
+
+
+                                                                3
+
+
+                                 1          2           4       6       7
+                                                                                    9
+                                                                5       8
+
+
+                                                            ↓
+                1          3           2            4       6       5       7             8       9
+
+
+Les Graphes v2.3.6                                                                                    22 / 37
+
+--- PAGE 23 ---
+Quelques algorithmes sur les graphes                                           Tri topologique
+
+      Tri topologique 2 / 2
+    Algorithme
+    fonction triTopologique (g : GrapheOriente<Sommet>, s : Sommet) : Liste<Sommet>
+        ⌊précondition(s) sommetPresent(g,s) et estVide(obtenirPredecesseurs(g,s))
+        Déclaration l : Liste<Sommet>
+                         f : File<Sommet>
+                         sC : Sommet
+    debut
+        l ← liste()
+        f ← file()
+        enfiler(f,s)
+        tant que non estVide(f) faire
+              sC ← obtenirElement(f)
+              defiler(f)
+              inserer(l,longueur(l)+1,sC)
+              marquer(sC)
+              pour chaque s’ de obtenirSuccesseurs(g,sC)
+                      si non estMarque(s’) et non estPresent(f,s’) et tousPredecesseursMarques(g,s’) alors
+                             enfiler(f,s’)
+                      finsi
+              finpour
+        fintantque
+        retourner l
+    fin
+
+
+    Exercices
+    Donnez l’algorithme de la fonction tousPredecesseursMarques
+Les Graphes v2.3.6                                                                                            23 / 37
+
+--- PAGE 24 ---
+Quelques algorithmes sur les graphes                                Chemin le plus cours : Dijkstra
+
+    Chemin le plus cours
+    Objectif
+    Soit un graphe étiqueté et valué par des nombres. Quel est le chemin le plus court pour aller
+    d’un nœud A à un nœud B ?
+    Plusieurs algorithmes : Dijkstra, Floyd, Bellman-Ford, etc.
+
+
+                                                                 9                    5
+                                                            5        8           11           12
+                                                    8            6
+
+                                          3                                  5    3            5
+                                 2            4         1
+                                                                     9
+
+                                  7           2              3
+
+
+                                                                 3
+                                 1                                                            13
+                                      5
+                                                                                          1
+                                              3         2   6    7   7   3       10
+
+
+
+
+    On suppose posséder la fonction :
+            fonction obtenirCout (g : Graphe, s1,s2 : Sommet) : ReelPositif
+
+Les Graphes v2.3.6                                                                                                 24 / 37
+
+--- PAGE 25 ---
+Quelques algorithmes sur les graphes               Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 1 / 6
+
+    Principe a
+      a. Extrait de Wikipédia
+    Soit sdeb le nœud (ou sommet) source et sfin le nœud destination du graphe G .
+    L’algorithme fonctionne en construisant un sous-graphe P tel que la distance entre un
+    sommet s de P depuis sdeb est connue pour être un minimum dans G . Initialement P
+    contient simplement le nœud sdeb isolé, et la distance de sdeb à lui-même vaut 0. Des
+    arcs sont ajoutés à P à chaque étape :
+        1   en identifiant toutes les arêtes ai ∈ A tel que A = {(si1 , si2 ) ∈ P × G − P}
+        2   en choisissant l’arête aj ∈ A avec aj = (sj1 , sj2 ) qui donne la distance minimum
+            de sdeb à sj2 .
+    L’algorithme se termine soit quand P devient un arbre couvrant de G , soit quand
+    sfin ∈ P.
+
+
+                     Ne fonctionne qu’avec des coût à valeurs positives
+
+
+Les Graphes v2.3.6                                                                                25 / 37
+
+--- PAGE 26 ---
+Quelques algorithmes sur les graphes                                 Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 2 / 6
+
+
+
+    Exemple avec sdeb = 1
+                                                                  9                    5
+                                                             5        8           11           12
+                                                     8            6
+
+                                             3                                5    3            5
+                                 2               4       1
+                                                                      9
+
+                                  7              2            3
+
+
+                                                                  3
+                                 1                                                             13
+                                     0
+                                         5
+                                                                                           1
+                                                 3       2   6    7   7   3       10
+
+
+
+
+Les Graphes v2.3.6                                                                                                  26 / 37
+
+--- PAGE 27 ---
+Quelques algorithmes sur les graphes                                              Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 3 / 6
+
+
+
+    Exemple
+                                                                           9                            5
+                                                                  5            8               11               12
+                                                          8            10 6        8                7                8
+
+
+                                              3                                            5    3                5
+                                 2                4           1
+                                                                               9
+                                      7               7                            8
+
+                                  7               2                3
+
+
+                                                                           3
+                                 1                                                                              13
+                                     0                                                                               3
+                                          5
+                                                                                                            1
+                                                  3           2   6        7   7       3       10
+                                                      5                7           7                4
+
+
+
+
+Les Graphes v2.3.6                                                                                                               27 / 37
+
+--- PAGE 28 ---
+Quelques algorithmes sur les graphes                 Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 4 / 6
+    On suppose posséder les fonctions et procédures suivantes
+            fonction arbreInitial (s : Sommet) : Arbre<Sommet>
+            qui crée un arbre possédant uniquement le noeud s
+            fonction arcsEntreArbreEtGraphe (a : Arbre<Sommet>, g :
+            Graphe<Sommet,,ReelPositif>) : Liste<Liste<Sommet>>
+            qui retourne la liste des arcs (liste de deux sommets) dont le premier sommet appartient
+            à a et le second sommet appartient à g et n’appartient pas à a
+            fonction arcMinimal (g : Graphe<Sommet,,ReelPositif>, arcs :
+            Liste<Liste<Sommet>>, cout : Dictionnaire<Sommet, ReelPositif>) : Sommet,
+            Sommet, ReelPositif
+                ⌊précondition(s) non estVide(arcs) et ∀i ∈ 1..longueur (arcs)
+                                    estPresent(cout,obtenirElement(obtenirElement(arcs,i),1))
+            qui retourne, parmi les arcs, l’arc (sommet source, sommet destination) dont le sommet
+            destination est le plus proche (au sens du dictionnaire de cout) des sommets de a ainsi
+            que le coût supplémentaire pour l’atteindre
+            procédure ajouterCommeFils (E/S a : Arbre<Sommet>, E sommetPere, sommetFils :
+            Sommet)
+                ⌊précondition(s) estPresent(a, sommetPere)
+            qui ajoute un nouveau noeud, à l’arbre a, contenant sommetFils qui sera fils du noeud
+            contenant sommetPere
+
+Les Graphes v2.3.6                                                                                  28 / 37
+
+--- PAGE 29 ---
+Quelques algorithmes sur les graphes                           Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 5 / 6
+
+    Algorithme (étude complète du graphe)
+    fonction dijkstra (g : Graphe<Sommet,,ReelPositif>, s : Sommet) : Arbre<Sommet>, Dictionnaire<Sommet,ReelPositif>
+
+        ⌊précondition(s) sommetPresent(g,s)
+        Déclaration arbreRecouvrant : Arbre<Sommet>, cout : Dictionnaire<Sommet,ReelPositif>
+                       l : Liste<Liste<Sommet>>, c : ReelPositif
+                       sommetDeA, sommetAAjouter : Sommet
+    debut
+        arbreRecouvrant ← arbreInitial(s)
+        cout ← dictionnaire()
+        ajouter(cout,s,0)
+        l ← arcsEntreArbreEtGraphe(g,arbreRecouvrant)
+        tant que non estVide(l) faire
+              sommetDeA,sommetAAjouter,c ← arcMinimal(g,l,cout)
+              ajouter(cout,
+                      sommetAAjouter,
+                      obtenirValeur(cout,sommetDeA)+c
+              )
+              ajouterCommeFils(arbreRecouvrant,sommetDeA,sommetAAjouter)
+              l ← arcsEntreArbreEtGraphe(g,arbreRecouvrant)
+        fintantque
+        retourner arbreRecouvrant, cout
+    fin
+
+
+
+
+Les Graphes v2.3.6                                                                                                29 / 37
+
+--- PAGE 30 ---
+Quelques algorithmes sur les graphes                Chemin le plus cours : Dijkstra
+
+      Algorithme de Dijkstra 6 / 6
+
+
+    Exercices
+    Donnez les algorithmes des fonctions/procédures suivantes :
+            fonction arbreInitial (s : Sommet) : Arbre<Sommet>
+            fonction arcsEntreArbreEtGraphe (a : Arbre<Sommet>, g :
+            Graphe<Sommet,,ReelPositif>) : Liste<Liste<Sommet>>
+            fonction arcMinimal (g : Graphe<Sommet,,ReelPositif>, arcs :
+            Liste<Liste<Sommet>>, cout : Dictionnaire<Sommet, ReelPositif>) : Sommet,
+            Sommet, ReelPositif
+                ⌊précondition(s) non estVide(arcs) et ∀i ∈ 1..longueur (arcs)
+                                  estPresent(cout,obtenirElement(obtenirElement(arcs,i),1))
+            procédure ajouterCommeFils (E/S a : Arbre<Sommet>, E sommetPere, sommetFils :
+            Sommet)
+                ⌊précondition(s) estPresent(a, sommetPere)
+
+
+
+
+Les Graphes v2.3.6                                                                                 30 / 37
+
+--- PAGE 31 ---
+Quelques algorithmes sur les graphes               A*
+
+      A* 1 / 6
+
+
+    Constat
+        L’algorithme de Dijkstra va donner le chemin le plus court car il
+        explore tous les sommets du graphe (où jusqu’à trouver le sommet
+        recherché)
+            La complexité de cet algorithme est naı̈vement en O(n2 ), mais il
+            peut être réduit à du n + m avec des structures de données
+            performantes (cf. articles de wikipédia et interstice a )
+            Lorsque le nombre de sommets et d’arcs grandit (par exemple dans
+            les logiciels d’aide à la conduite), ne peut-on pas éviter de tout
+            explorer ?
+      a. https://interstices.info/le-plus-court-chemin/
+
+
+
+
+Les Graphes v2.3.6                                                               31 / 37
+
+--- PAGE 32 ---
+Quelques algorithmes sur les graphes         A*
+
+      A* 2 / 6
+    Exemple
+        Quel est le plus court chemin entre Rouen et Montpellier ?
+
+
+
+
+    http://www.lecartographe.fr
+
+Les Graphes v2.3.6                                                   32 / 37
+
+--- PAGE 33 ---
+Quelques algorithmes sur les graphes                                   A*
+
+      A* 3 / 6
+    Le graphe correspondant
+
+
+
+                                                                 140
+                                                           90120    220
+                                                    95
+                                                              135 140    490
+                                           180           130
+                                   240
+                                                             133      316    330
+                                300         100
+                                                                   300
+
+                                                           360                200
+                                         350
+                                                         200                 320
+                                                                  180
+                                                                              310
+                                                           200         320
+                                                    240
+
+                                                                  242         170
+
+Les Graphes v2.3.6                                                                       33 / 37
+
+--- PAGE 34 ---
+Quelques algorithmes sur les graphes                                         A*
+
+      A* 4 / 6
+    Utilisation de l’algorithme de Dijkstra
+
+                                                                    260
+                                                              140
+                                                       90 90 120 220
+                                                     95     120
+                                                  95         135 140     490        625
+                                                180     130
+                                    515   240                     135
+                                                             133      316     330
+                                                   275
+                                        300      100       268
+                                                  375            300
+                                                                             451
+                                                           360          200
+                                              350               568
+                                                        200           320    651
+                                                          628 180       310
+                                               725
+                                                          200     320
+                                                     240
+
+                                                         828   242 888170
+
+
+
+
+    Remarque
+    Pratiquement tout le graphe est exploré, même des destinations que l’on ≪ sait ≫ non utiles
+    (nord/ouest/est de la France)
+Les Graphes v2.3.6                                                                                  34 / 37
+
+--- PAGE 35 ---
+Quelques algorithmes sur les graphes                                 A*
+
+      A* 5 / 6
+
+    Principe de l’algorithme A*
+         Utiliser une fonction heuristique h qui estime le coût d’un sommet,
+         c’est-à-dire à quelle distance il est de la solution
+                     Dans l’exemple précédent, cela pourrait être la distance à vol d’oiseau
+                     entre une ville et Montpellier
+            Modifier la fonction arcMinimal de façon en prendre en compte le
+            coût depuis la source mais aussi l’heuristique h
+                     fonction arcMinimal (g : Graphe<Sommet,,ReelPositif>, arcs :
+                     Liste<Liste<Sommet>>, cout : Dictionnaire<Sommet, ReelPositif>, h :
+                     fonction(Sommet) : ReelPositif) : Sommet, Sommet, ReelPositif
+                         ⌊précondition(s) non estVide(arcs) et ∀i ∈ 1..longueur (arcs)
+                                              estPresent(cout,obtenirElement(obtenirElement(arcs,i),1))
+                     Si h(s) = 0 quelque soit s, alors l’algorithme A* est équivalent à l’algorithme de
+                     Dijkstra
+                     Si h est mal choisie, il se peut que A* ne donne pas la meilleure solution
+
+
+
+
+Les Graphes v2.3.6                                                                                      35 / 37
+
+--- PAGE 36 ---
+Quelques algorithmes sur les graphes                                                          A*
+
+      A* 6 / 6
+
+    Utilisation de l’algorithme A*
+
+                                                         140
+                                                     90       220
+                                                95     120
+                                                        135 140    490
+                                            180    130
+                                    240
+                                                        133 135 316    330
+                                  300       100           268
+                                                                 300
+
+                                                          360            200                        Montpellier
+                                          350                   568            Amiens                 710
+                                                                               Bordeaux               380
+                                                                               Brest                  840
+                                                     200                320    Brive la Gaillarde     250
+                                                                180            Caen                   700
+                                                                         310   Clermont Ferrand
+                                                                               Dijojn
+                                                                                                      250
+                                                                                                      420
+                                                          200     320          Le Havre               715
+                                                                               Lille                  790
+                                                    240                        Lyon                   250
+                                                                               Marseille              130
+                                                                               Nantes                 580
+                                                                               Orléans                500
+                                                                242      170   Paris                  600
+                                                                               Rouen                  680
+                                                                               Strasbourg             630
+                                                                               Toulouse               195
+
+
+
+
+Les Graphes v2.3.6                                                                                                36 / 37
+
+--- PAGE 37 ---
+Conclusion
+
+    Conclusion
+
+
+    Le graphe est une structure de données très utilisée :
+         Il permet de représenter beaucoup d’objets de la vie réelle, avec des
+         problèmes d’optimisation (Cf. le cours de RO, ITI4)
+                     par exemple représentation d’une carte routière, d’un réseau
+                     électrique, d’Internet
+            Il est utilisé dans beaucoup de domaines scientifiques :
+                     Théorie des langages (Cf. le cours sur la compilation, ITI 3.2)
+                     Le Web sémantique
+                     Machine learning (Réseaux de neurones, Réseaux bayésien)
+            Il existe beaucoup d’algorithmes à étudier non présentés dans cette
+            introduction : découverte de clique, algorithmes sur les flux,
+            isomorphisme de graphe, distance entre graphes, etc.
+
+
+
+Les Graphes v2.3.6                                                                      37 / 37

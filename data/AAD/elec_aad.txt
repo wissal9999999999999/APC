@@ -1,0 +1,21 @@
+AAD-ID,AAD-TITLE
+ELEC-1-1,Distinguer les entrées/sorties sur un système à microprocesseur
+ELEC-1-2,Distinguer les signaux analogiques et numériques
+ELEC-1-3,Identifier les entrées/sorties d'un circuit logique
+ELEC-2-1,Identifier les priorités de tâches dans un systèmes embarqué
+ELEC-2-2,Traduire un cachier des charges en une table de vérité
+ELEC-2-3,Programmer des entrées/sorties d'un système embarqué
+ELEC-15-3,Différencier les capteurs en fonction de leurs propriétés et de la mesure physique
+ELEC-15-4,Identifier les caractéristiques d'un systèmes à microprocesseur
+ELEC-17-1,Identifier les outils logiciel pour la mise en œuvre d'un système embarqué
+ELEC-17-2,Différencier les interfaces disponibles sur une carte électronique
+ELEC-17-3,Distinguer les protocoles de communication dans un système embarqué
+ELEC-17-4,Utiliser des actionneurs pour mettre en œuvre un système embarqué
+ELEC-17-5,Analyser des filtres analogiques passifs et actifs en terme de gain
+ELEC-31-2,Etablir une acquisition en choisissant le bon protocole de communication
+ELEC-31-4,Utiliser la modulation de largeur d'impulsions pour piloter des actionneurs
+ELEC-48-2,Programmer un système numérique pour générer un signal modulé en s'appuyant sur des paramètres pré-définis
+ELEC-48-3,Intégrer des requêtes d'interruptions dans un programme
+ELEC-48-4,Concevoir un programme avec du multithreading
+ELEC-52-1,Evaluer un capteur en fonction d'une documentation
+ELEC-52-2,Implémenter une application sur un système embarqué à l'aide de la documentation

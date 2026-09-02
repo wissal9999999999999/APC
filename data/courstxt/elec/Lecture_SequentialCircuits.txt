@@ -1,0 +1,490 @@
+--- PAGE 1 ---
+DIGITAL
+ELECTRONICS:
+ SEQUENTIAL
+  CIRCUITS
+H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+ILO OF THIS SESSION
+
+• Understand the difference between combinational sequential digital systems
+• Become familiar with types of sequential digital systems
+• Be introduced to basic sequential elements: latches and flip flops
+• Understand the role of different elementary sequential blocks: JK, D, T, RS, RSE, …
+• Understand the danger of metastability in sequential digital systems
+
+--- PAGE 3 ---
+COMBINATION VS. SEQUENTIAL
+CIRCUITS
+• Combinatorial logic circuits, as we have seen in the previous section, are limited to the fixed
+  correspondence between the inputs and outputs of a system.
+• Sequential logic circuits no longer depend only on the inputs received, but also on the data processed
+  previously. A memory effect is then introduced allowing the circuit to "remember" past events
+• First, we will see the essential building blocks for the design of sequential circuits, and then we will see
+  assembly techniques to realize more complex systems.
+
+--- PAGE 4 ---
+TYPES OF SEQUENTIAL CIRCUITS
+
+• Type 1:Asynchronous sequential circuit: These circuits do not use a clock signal but
+  uses the pulses of the inputs.
+• These circuits are faster than synchronous sequential circuits because there is clock pulse and
+  change their state immediately when there is a change in the input signal.
+• Asynchronous sequential circuits are used when speed of operation is important
+  and independent of internal clock pulse.
+
+--- PAGE 5 ---
+TYPES OF SEQUENTIAL CIRCUITS
+
+• Type 2: Synchronous sequential circuit: These circuits uses clock signal and level inputs
+  (or pulsed) (with restrictions on pulse width and circuit propagation).
+• The output pulse is the same duration as the clock pulse for the clocked sequential circuits.
+• These circuits are bit slower compared to asynchronous due to the constant variation at each
+  clock period
+
+--- PAGE 6 ---
+LATCHES AND FLIP FLOPS
+
+• We distinguish 2 types of memory elements: Latch and the flip-flop. They are very similar elements
+  (except for a clock input)
+• These memory elements are bistable circuits, i.e. they can take 2 logical states '0' or '1' at the
+  output
+• The latches are synchronous
+• The flip-flops are asynchronous: It is also known as a bistable multivibrator or a binary or one-bit
+  memory.
+• The output of a flip-flop is denoted by 𝑸
+• The memory state is denoted by 𝑸𝒏−𝟏 or 𝑸, whereas the next state is 𝑸 or 𝑸𝒏+𝟏
+• In the synchronous case, the clock signal is denoted 𝑪𝑳𝑲
+
+--- PAGE 7 ---
+THE ASYNCHRONOUS SET-RESET
+
+• They are also known as preset and clear states. The SR latches form the basic building blocks
+  of all other types of flip-flops.
+• It constitutes a memory component
+• SR Latch is a circuit with:
+    – 2 cross-coupled NOR gate or 2 cross-coupled NAND gate.
+    – 2 inputs: S for SET and R for RESET.
+                    ഥ
+    – 2 outputs: 𝑸, 𝑸
+
+--- PAGE 8 ---
+THE ASYNCHRONOUS SET-RESET
+
+• The reset to 1 is done by asserting the Set input
+• The reset to 0 is done by asserting the Reset
+  ഥ is not really considered to be the complement of 𝑸
+• 𝑸
+• Complete the truth table :
+
+
+          S         R          𝑸        ഥ
+                                        𝑸
+          0         0
+          0         1
+          1         0
+          1         1
+
+--- PAGE 9 ---
+GATED SR LATCH
+                                                                  Gated
+• A Gated SR latch is a SR latch with enable input which works   SR latch
+  when enable is 1 and retains the previous state when enable
+  is 0.
+• The changing input (outputs) can switch states many times
+  during the high state of H
+
+             H/E     S       R      𝑸      ഥ
+                                           𝑸
+              0      x       x
+              1      0       0
+              1      0       1
+              1      1       0
+              1      1       1
+
+--- PAGE 10 ---
+JK FLIP FLOP
+• The JK flip-flop is a synchronous flip-flop which changes the state of its output according to the
+  inputs only if an event on the clock (rising edge or falling edge) occurs.
+• This is an improved version of the RSH lock, which no longer has a forbidden state, replaced
+  by a toggle if J = K = 1. J corresponds to Set and K to Reset.
+
+
+
+
+ H/E      J       K      𝑸
+  ↑       0       0
+  ↑       0       1
+  ↑       1       0
+  ↑       1       1
+
+--- PAGE 11 ---
+D FLIP FLOP
+• The synchronous flip-flop D (Delay flip-flop) is a JK flip-flop which verifies J = ¯K = D.
+• D flip-flops are widely used. They are the basis of shift registers, which are present in
+  electronics.
+• The advantage of the D flip-flop is that the D input signal is captured at the rising edge of the
+  clock (or falling edge depending on the type of flip-flop), and the modifications on the D input
+  will be ignored until the next clock stroke
+
+
+                                                                          H/E     D      𝑄
+
+                                                                           ↑      D      D
+
+--- PAGE 12 ---
+D FLIP FLOP (1)
+• FDE flip flop or the D flip flop with a chip enable
+
+
+
+
+                                                    CE      H/E   D   𝑸𝒏+𝟏
+                                                        0    x    x    Q
+                                                        1    ↑    d    d
+
+--- PAGE 13 ---
+D FLIP FLOP (2)
+• FDRE flip flop or a clock enable and synchronous reset
+
+
+                                                       R   CE   H/E   D   𝑸𝒏+𝟏
+                                                       0   0     x    x   Q
+                                                       1   x     ↑    d    0
+                                                       0   1     ↑    d    d
+
+
+• The reset has priority over the enable
+
+--- PAGE 14 ---
+D FLIP FLOP (3)
+• FDRSE flip flop with a clock enable and synchronous reset and a synchronous set
+• The priority is noted from the lowest to the highest RSE   R     S     CE     H/E       D     𝑸𝒏+𝟏
+                                                             0     0     0       x         x      Q
+                                                             1     x     x       ↑         x       0
+                                                             0     1     x       ↑         x       1
+                                                             0     0     1       ↑        d        d
+
+
+• The reset has priority over the set which has priority over the chip enable
+
+                                                                                      D = 1, E = 1: set
+                                                                                      D = 1, E = 0: hold
+                                                                                      D = 0, E = 0: hold
+                                                                                      D = 0, E = 1: reset
+
+--- PAGE 15 ---
+A POPULAR FLIP FLOP IC
+
+• The CD4013 Dual D-Flip Flop IC has two identical
+  and independent data type flip flops. Because they
+  are independent, each of the data type flip flops has
+  its set input, reset input, clock input, and Q
+  outputs.
+• It could be used for control circuits, registers,
+  counters, and more. Regardless of the levels of the
+  other inputs, a high level at the set input or reset
+  input will set or reset the outputs.
+
+--- PAGE 16 ---
+T FLIP FLOP
+• The synchronous toggle T (or Toggle) is a JK toggle that checks J = K = T.
+• The expression of the output 𝑄𝑛+1 = 𝑇𝑄ത + 𝑇𝑄  ത = 𝑇⨁𝑄
+• The flip-flop T changes state at each rising edge
+• When T=1 the output takes the opposite of the value of 𝑄𝑛+1 = 𝑄ത
+
+
+
+       H      T    𝑸𝒏+𝟏
+        0     x
+        1     x
+        ↑     0
+        ↑     1
+
+--- PAGE 17 ---
+RECAP
+
+        Latches    Flip flops
+
+
+           SR      Gated SR
+        Gated SR      D
+           D           T
+                      JK
+
+--- PAGE 18 ---
+CONVERSION FOR FLIP FLOPS
+
+• Let there be required flipflop to be constructed using sub-flipflop:
+    1. Draw the truth table of the required flip-flop.
+    2. Write the corresponding outputs of sub-flipflop to be used from the excitation table.
+    3. Draw K-Maps using required flipflop inputs and obtain excitation functions for sub-flipflop inputs.
+    4. Construct a logic diagram according to the functions obtained.
+
+--- PAGE 19 ---
+EXCITATION TABLES
+• An excitation table shows the minimum inputs that are necessary to generate a particular
+  next state (in other words, to "excite" it to the next state) when the current state is known
+• They are similar to truth tables and state tables, but rearrange the data so that the current
+  state and next state are next to each other on the left-hand side of the table, and the inputs
+  needed to make that state change happen are shown on the right side of the table.
+
+                          Present    Next       𝑇
+                             0         0
+                             0         1
+                             1         0
+                             1         1
+
+--- PAGE 20 ---
+CONVERSION EXAMPLE
+                                  • Kmap:
+• Convert SR To D FlipFlop:
+
+  D      𝑄𝑁    𝑄𝑁+1     S     R
+
+
+
+
+                                  • Diagram:
+
+--- PAGE 21 ---
+METASTABILITY
+• Metastability in digital systems occurs when two asynchronous signals combine in such a way that their
+  resulting output goes to an indeterminate state.
+• Data violating the setup and hold specifications of a latch or a flip-flop.
+• In most of the design, the data is asynchronous w.r.t. the clock making the flop a potential candidate for
+  metastability as there’s no reasonable way to insure that the changing asynchronous data will meet the
+  flop’s setup time.
+• when the input of a flip-flop does not respect the TSU and TH times, the flip-flop is marginally
+  triggered, and the output may not immediately take one of the two stable states within the
+  specified time. This marginal triggering can lead to a glitch, and take time to go to a stable state:
+  this is the metastability.
+
+--- PAGE 22 ---
+HOW TO SOLVE IT
+• Mainly happens for asynchronous signals which we would like to make synchronous in
+  sequential systems
+• To solve this problem, an asynchronous signal is passed through 2 D flip flops before using it in
+  the rest of the system
+• The resulting signal 𝑄2 might be lagging but is considered compliant with no parasites
+
+--- PAGE 23 ---
+REGISTER MEMORY
+
+• Register memory is the smallest and fastest memory in a computer.
+• A register temporarily holds frequently used data, instructions, and memory address that are
+  to be used by CPU.
+• Structurally, a 4-bit register has 4 flip-flops D controlled in parallel, receiving the same clock
+  signal CLK and the same enable command CE, but different data. The 4 bits of the data are
+  copied simultaneously into 4 D flip-flops.
+
+
+                               CE     D(3:0)     CLK   State
+                                0       x          x
+                                1    data(3:0)     ↑
+
+--- PAGE 24 ---
+SHIFT REGISTERS
+• Shift registers are used to temporally shift bits on a wire or a data bus
+• One of the most common uses of a shift register is to convert between serial and parallel
+  interfaces (Deserializer).
+• Another use is memorizing 4 successive samples of a serial input
+• They can also be used to apply 2𝑛 divisions because a bit shift to the right implies a whole
+  division by 2 (at each shift, the MSB is lost)
+• A 4-bit shift register contains 4 D flip-flops in series with the same clock signal CLK and
+  validation signal XE but with chained data lines
+
+                                           CE         D      CLK     State
+                                            0         x        x              No change
+                                            1        data      ↑      𝑄 3 === 𝑑𝑎𝑡𝑎
+                                                                      𝑄 2: 0 == 𝑄𝑁−1(3: 1)
+
+--- PAGE 25 ---
+SHIFT REGISTERS
+                                                      The most
+                                                      recent bit
+Take an example of a 4-bit shift register with
+
+
+                             𝑄3                  𝑄2                𝑄1   𝑄0
+
+
+
+
+                                                                        The
+                                                                        oldest
+                                                                        bit
+
+--- PAGE 26 ---
+COUNTERS: MODULO 16
+• A counter modulo 16 (0...15) by chaining 4 JK flip-flops (or 4 T flip-flops)
+• The application can be only a counter, or a frequency divider; if f the frequency of the clock,
+                                                              𝑓 𝑓 𝑓    𝑓
+  then 𝑄0 , Q1 , Q2 , Q3 have respectively the frequencies 2 , 4 , 8 , 16
+• To create a counter, the clock signal of the flip-flop must be active on the falling edge. To
+  create a decounter, it must be active on the rising edge. One can also look at either the
+  outputs 𝑄 for a decounter, or 𝑄ത for the counter when the flip-flops are active on the rising
+  edge.
+
+--- PAGE 27 ---
+COUNTERS: BCD RIPPLE COUNTER
+• A chain of 4 T flip-flops to realize the asynchronous counter
+  modulo 10.
+
+
+                                                                  State   𝑸𝟎   𝑸𝟏   𝑸𝟐   𝑸𝟑
+                                                                    0     0    0    0    0
+                                                                    1     0    0    0    1
+                                                                    2     0    0    1    0
+                                                                    3     0
+                                                                    4     0
+                                                                    5     0
+                                                                    6     0
+                                                                    7     0
+                                                                    8     1
+• The combination 𝑄3 𝑄2 𝑄1 𝑄0 = 1010 exists but for a very          9     1    0    0    1
+
+  brief period                                                     10     0    0    0    0
+
+--- PAGE 28 ---
+COUNTERS: MODULO N
+• The aim is to count up until 2𝑁 by using N flip flops
+• We count in ascending order with JK scales with falling edge and in descending order with JK
+  scales with rising edge.
+• The practical uses can be:
+    – Event counting
+    – Frequency division (e.g.: make a 1Hz clock with a 50MHz clock...)
+    – A counter modulo 1 000 000 (0 to 999 999) allows, for example, to make a 50ms delay if the clock
+      period is equal to 50ns (20MHz)
+
+  As we have seen with the modulo 10 counter, to realize a counter whose cycle is not a power of 2,
+  the only solution is to shorten the cycle of a modulo N, by playing on the inputs "RST" or "Clear"
+  when the combination at the output of the flip-flops corresponds to the desired counter modulo.
+
+--- PAGE 29 ---
+PIPELINES
+• When a combinatorial function is very complex, the signals pass through many logic layers in
+  the integrated circuit, which induces a significant global propagation time.
+
+
+
+
+• If multiplication operations are to be carried out one after the other, the clock period must be
+  at least longer than the propagation time of the signals through the entire combinatorial block
+  network.
+• In a pipeline, 𝑇𝐶𝐿𝐾 > 3. 𝑡𝑃𝐷 + 𝑡𝑆𝑈 + 𝑡𝐶𝑂
+
+--- PAGE 30 ---
+PIPELINES
+
+• To avoid problems of too great a delay between registers, it is important to interpose registers
+  between each block of partial multiplication in order to increase the clock frequency and thus
+  to increase the rate of operations.
+
+
+
+
+• The clock period clk is now reduced, and imposed by the formula : 𝑇𝐶𝐿𝐾 ≥ 𝑡𝑃𝐷 + 𝑡𝑆𝑈 + 𝑡𝐶𝑂
+• Before obtaining the result of the first global multiplication, there is an initial delay equal to 3 ×
+  𝑇𝐶𝐿𝐾 . The following results, on the other hand, are available every 𝑇𝐶𝐿𝐾 .
+
+--- PAGE 31 ---
+PIPELINES
+
+• A pipeline exploits the possibility of performing operations (+, -, /, shift, exp, log, etc.) in parallel, in
+  order to maximize the execution time of a calculation/algorithm. In contrast, a simple processor
+  would perform all operations in a perfectly sequential manner.
+
+
+
+
+• Here, the adders are synchronized thanks to the registers (D flip-flops)
+• It is necessary to add the 3 registers for the I input in order to delay its arrival for the last stage of
+  the pipeline, and to avoid that the data is desynchronized between them.
+
+--- PAGE 32 ---
+DEBOUNCING PUSH BUTTONS
+
+
+
+
+• When contacts of the switch hit together, they bounce off of each other a few times before
+  settling down
+• The process of filtering these parasite impulses is called debouncing
+
+--- PAGE 33 ---
+DEBOUNCING PUSH BUTTONS
+• The circuit must continuously record the logic level of the button in a flip-flop called FF1 and then in another
+  called FF2. Thus, FF1 and FF2 always record the last two logic levels of the button. When these two values
+  remain the same for a specified time, then a D flip-flop FF3 is activated, and the stable value is redirected to the
+  signal_debounced output.
+• An XOR gate and an N-bit counter are used to realize the synchronization. If the level of the button changes,
+  the values of FF1 and FF2 differ for one clock cycle, clearing the N-bit counter via an XOR gate. If the button
+  level is unchanged (i.e. FF1 and FF2 are of the same logic level), then the XOR gate releases the synchronous
+  counter reset and the counter (re-)starts counting. The counter continues to increment in this way until it
+  reaches the specified time if it is not interrupted.
+• The size of the counter determines the time needed to validate the stability of the button. The period P that
+                                                           (2𝑁+2)   2𝑁
+  validates the stability of the button is given by :𝑃 =      𝑓
+                                                                  ≈  𝑓
+                                                                       . In general, 10ms is sufficient for an anti-bounce
+  filtering.
+
+--- PAGE 34 ---
+EDGE DETECTION
+
+
+
+• For an asynchronous signal sig with no parasites, we’re looking for a way to detect the rising
+  edge of the signal
+• The steps for edge detection:
+    – Synchronize 2 D serial flip flops considering that the signal is asynchronous
+    – Compare both states taken on two successive CLK edges (output of 2 D flip-flops in series)
+    – If the oldest sample state is 0 while the most recent is 1, this means that sig has a rising edge. This is
+      detected only once on the CLK period which means that an impulse is stated on the signal
+      edge_detected according to CLK frequency
+
+--- PAGE 35 ---
+EDGE DETECTION
+
+
+
+• A 3-bit shift register to the right is used in order to save the 3 last values of the signal sig
+• Outputs 2 and 1 are used to synchronize the signal sig
+• Outputs 1 and 0 are used to save the 2 successive states
+• The AND gate compares the states and sends 1 if they are different
+
+--- PAGE 36 ---
+EDGE DETECTION
+
+
+
+
+   • On the left: the falling edge detection
+   • On the right: both rising and falling edge detection
+
+--- PAGE 37 ---
+FINITE STATE MACHINES
+• A finite state machine (sometimes called a finite state automaton) is a computation model
+  that can be implemented with hardware or software and can be used to simulate sequential
+  logic and some computer programs. Finite state automata generate regular languages.
+• Any type of system where particular inputs cause changes in state can be represented using
+  finite machine.
+
+
+
+
+   Image reference: DigiKey
+
+--- PAGE 38 ---
+FINITE STATE MACHINES
+
+• The outputs of the system can depend on
+  current state ( Moore Machine) or the
+  current state as well as inputs (Mealy
+  Machine)
+• Both Moore and Mealy machines can be
+  synchronous or asynchronous. For a
+  synchronous state, inputs are analyzed on
+  clock edge

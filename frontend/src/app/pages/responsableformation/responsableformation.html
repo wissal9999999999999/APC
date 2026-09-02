@@ -29,6 +29,22 @@
   </option>
 
 </select>
+
+      <p class="status" *ngIf="loadingSavoirAgir">Chargement…</p>
+      <p class="status error" *ngIf="savoirAgirError">{{ savoirAgirError }}</p>
+
+      <ul class="item-list" *ngIf="!loadingSavoirAgir && savoirAgirList.length">
+        <li
+          *ngFor="let s of savoirAgirList; trackBy: trackById"
+          [class.selected]="s.id === selectedSavoirAgirId"
+          (click)="selectedSavoirAgirId = s.id; onSavoirChange()">
+          {{ s.name }}
+        </li>
+      </ul>
+
+      <p class="status" *ngIf="!loadingSavoirAgir && !savoirAgirError && !savoirAgirList.length">
+        Aucun savoir-agir disponible.
+      </p>
     </div>
 
     <!-- Jalons -->
@@ -45,6 +61,25 @@
         </option>
 
       </select>
+
+      <p class="status" *ngIf="!selectedSavoirAgirId">
+        Sélectionnez un savoir-agir pour afficher ses jalons.
+      </p>
+      <p class="status" *ngIf="loadingJalons">Chargement…</p>
+      <p class="status error" *ngIf="jalonsError">{{ jalonsError }}</p>
+
+      <ul class="item-list" *ngIf="selectedSavoirAgirId && !loadingJalons && jalonsList.length">
+        <li
+          *ngFor="let j of jalonsList; trackBy: trackById"
+          [class.selected]="j.id === selectedJalonId"
+          (click)="selectedJalonId = j.id">
+          {{ j.name }}
+        </li>
+      </ul>
+
+      <p class="status" *ngIf="selectedSavoirAgirId && !loadingJalons && !jalonsError && !jalonsList.length">
+        Aucun jalon disponible pour ce savoir-agir.
+      </p>
     </div>
 
     <!-- AC -->

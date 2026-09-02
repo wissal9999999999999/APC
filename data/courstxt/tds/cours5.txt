@@ -1,0 +1,617 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+       Cours 5
+
+
+  Filtrage analogique
+
+
+        ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+   Introduction
+       Notion de filtrage
+       Filtrages temporel et fréquentiel
+   Filtres élémentaires idéaux
+   Filtres physiquement réalisables
+   Filtres réalisables classiques
+       Synthèse de filtres passe-bas
+           Filtres de Butterworth
+           Filtres de Tchebytchev
+           Filtres de Cauer
+
+       Obtention des autres filtres par transformation
+   Méthodologie de synthèse des filtres
+   Exemple
+
+
+TdS                                                       2
+
+--- PAGE 3 ---
+Introduction
+
+   Notion de filtrage
+
+
+  Filtrer = arrêter, complètement ou non, empêcher ou gêner le passage de
+  quelque chose.
+  = changement ou annulation des amplitudes d'un signal.
+
+
+   En général, un système est un filtre      x(t )      Filtre      y (t )
+
+   But :
+  Sélectionner des parties du signal contenant une information pertinente
+  Éliminer du bruit
+  Adoucir un signal, éliminer des valeurs aberrantes
+  Séparer plusieurs composantes d'un signal
+  etc.
+
+TdS                                                                           3
+
+--- PAGE 4 ---
+Applications
+
+   Réglage de tonalité dans les appareils audio : equalizer
+
+   Suspension des véhicules : filtre mécanique amortissant les chocs
+      (voir applet)
+   Protection sismique : filtrage des ondes provenant de la rotation de la terre
+
+   Acoustique : séparation des graves et des aigus dans les enceintes
+
+   Téléphonie mobile,
+
+   Compression de données : mp3
+
+   karaoké
+
+   Imagerie médicale, ...
+
+
+
+
+TdS                                                                                 4
+
+--- PAGE 5 ---
+exemple de filtrage sur un fichier son
+            Bbc.wav
+
+
+
+                                                   f (Hz )
+
+                               0 − 1000 Hz       5500 Hz
+
+
+
+      exemple de filtrage sur un fichier image
+               Application d'un filtre pour la détection de contours
+               (filtre de laplace sous gimp)
+
+
+
+
+TdS                                                                    5
+
+--- PAGE 6 ---
+Problématique
+   Objectif du filtre : sélection de composantes particulières
+
+
+   Caractérisation du filtre : capacité à transmettre certaines fréquences ou
+      certaines parties du signal
+
+   Difficultés :
+                                                            x(t )         Système            y (t )
+            Détermination de h(t) ou H(f)
+                                                                           (filtre)
+            Réaliser le filtre à partir de h(t) ou H(f)
+                                                                    Réponse impulsionnelle
+                                                                          h(t) / H(f)
+
+
+                    Module H ( f )         Gain en décibel (dB) : G ( f ) = 20 log H ( f )
+         H( f )
+                     Argument φ ( f ) = arg( H ( f ) )
+
+   Filtrage temporel / fréquentiel
+
+
+
+TdS                                                                                                   6
+
+--- PAGE 7 ---
+Filtrage temporel / fréquentiel
+       Filtrage temporel : atténuation ou interruption du signal au cours du temps
+             – Changement / annulation des amplitudes d’un
+               signal
+             – Sélection d'une portion du signal
+             – Lissage du signal
+          y (t)
+                                           y (t ) = h(t ) × x(t )   Multiplication temporelle
+                                        Y( f ) = H( f )∗ X ( f )    Convolution fréquentielle
+                                 t
+                  t1      t2
+
+
+       Filtrage fréquentiel : sélection ou atténuation de certaines fréquences
+                   – Sélection de certaines composantes fréquentielles du signal
+                   – Blocage des impulsions transitoires
+
+          Y (f)
+                                           y (t ) = h(t ) ∗ x(t )   Convolution temporelle
+                                        Y( f ) = H( f )× X ( f )    Multiplication fréquentielle
+                                 f
+                  f1      f2
+TdS                                                                                                7
+
+--- PAGE 8 ---
+Filtres élémentaires
+   Filtre passe-bas
+
+        Sélection des fréquences basses
+        Élimination des fréquences supérieures à fc (fréquence de coupure)
+        Bande passante BP = [0, f c ]
+
+                                                   |H( f )|
+                                                                            Représentation
+                                                  1
+                                                                              bilatérale
+
+
+
+
+                                     -fc                      fc            f
+       Remarque
+         La bande passante d'un filtre est l'intervalle de fréquence dans lequel
+         son gain G( f ) est supérieur à un gain de référence (par exemple –3dB)
+                                                     H( f )            
+          La bande passante à –3dB est  f : 20 log                ≥ − 3
+                                                   max( H ( f ) )      
+TdS                                                                                          8
+
+--- PAGE 9 ---
+Filtres élémentaires
+
+   Filtre passe-haut
+
+       Transmission des fréquences supérieures à fc                           |H ( f )|
+       Élimination des fréquences inférieures à fc
+                                                                                1
+
+       Bande passante BP =     [ fc , ∞ [                             -fc             fc               f
+   Filtre passe-bande                                                         |H( f )|
+       Transmission des fréquences appartenant                                 1
+        à un intervalle donné
+       Bande passante BP =     [ fc ,       f c2   ]                                                       f
+                                      1
+                                                                   -fc2 -fc1               fc1 fc2
+   Filtre coupe-bande                                                          |H( f )|
+       Transmission des fréquences hors d’une bande                             1
+        déterminée
+       Bande passante BP =     [0,           ] [
+                                          f c1 ∪ f c2 ,   ∞   [   -fc2 -fc1                 fc1   fc2           f
+TdS                                                                                                                 9
+
+--- PAGE 10 ---
+Filtre physiquement réalisable
+                                                                                         La sortie ne se produit
+                                                                                           pas avant l'entrée
+      Un filtre est physiquement réalisable s'il est stable et causal
+                                                                                    Revient à son état
+                                                                                  initial après excitation
+         Soit le filtre passe-bas idéal
+                                                       H ( f ) = Π 2 fc
+                        H( f )
+
+
+
+
+                                                                  TF inverse
+                        1
+
+
+                -fc              fc       f        h(t ) = 2 f c sinc(2π f ct )
+                                              réponse impulsionnelle du filtre
+
+           Donc pour un Dirac en 0, la réponse impulsionnelle h(t) va de – à + l'infini,
+           elle commence donc avant la cause ! Le système est NON CAUSAL.
+
+            Ce filtre n'est pas physiquement réalisable
+
+            Nécessité de trouver une approximation du filtre idéal
+TdS                                                                                                                10
+
+--- PAGE 11 ---
+Caractérisation des filtres
+   Discontinuités / dérivées infinies en fréquence -> réponse impulsionnelle non
+      causale = non physiquement réalisable => Approximation du filtre idéal
+   Les Filtres réels sont définis par un gabarit spécifiant :
+
+        Une zone dans laquelle doit passer sa courbe fréquentielle
+        La bande passante et la bande atténuée (ou rejetée)
+        Les ondulations maximales admissibles dans la bande passante a
+         et l'atténuation minimale dans la bande rejetée b
+
+                G( f ) en dB
+         0 dB                    fc
+                                                f
+           a
+
+                                                        => filtres réels classiques :
+           b                                                 COMPROMIS
+                Bande passante        Bande rejetée
+TdS                                                                                     11
+
+--- PAGE 12 ---
+Filtres classiques
+
+  Filtre de Butterworth :              2       1                    Passe bas
+                               ∣H  f ∣ =                           pour f' = f/fc
+       n : ordre du filtre
+                                           1 2 f 2n
+
+       Propriétés
+           Conçu pour avoir une réponse aussi plate que possible dans la bande passante
+
+           Pour tout n, l'Atténuation asymptotique est de –20n dB/décade à partir de Fc = 1
+
+
+
+
+                                                                     Réalisation :
+                                                                     – Quel ordre choisir ?
+                                                                     – Détermination de H(f) ?
+                                                                     – Réaliser le filtre à partir
+                                                                       de H(f) ?
+
+
+
+TdS                                                                                              12
+
+--- PAGE 13 ---
+Filtres classiques
+  Filtre de Butterworth : réalisation
+
+       Problème N°1: déterminer l'ordre du filtre
+
+           On trouve l'ordre du filtre en fonction de l'atténuation b que l'on désire
+
+                                    G( f ) en dB
+                             0 dB                       fc
+                                                                                    f
+                                a
+
+
+                                b
+
+
+
+          Détermination de n en fonction de b : atténuation minimale en bande rejetée
+                                                                                                − 10b    
+                                                                 1                         log 10 − 1
+           G ( f s ) = 20 log H ( f s ) ≤ b        20 log                     ≤ b                        
+                                                                 f 
+                                                                         2n             n≥                    n : entier
+                                                             1+  s                                f 
+                                                                                             2 log s 
+                                                                 fc                               fc 
+TdS                                                                                                                        13
+
+--- PAGE 14 ---
+Filtres classiques
+  Filtre de Butterworth : réalisation
+       Problème N° 2 : déterminer la fonction de transfert
+
+         A partir de l'ordre du filtre, les tables nous donnent le polynôme H(s) :
+
+
+
+
+                         Avec H(s) = 1/Bn(s)
+
+TdS                                                                                  14
+
+--- PAGE 15 ---
+Filtres classiques
+  Filtre de Butterworth : réalisation
+
+       Problème N° 3 : réalisation pratique du filtre :
+
+      Par exemple, implémentation électronique avec un montage passif grâce à
+        la méthode de Cauer :
+
+
+
+
+           Le kième élément du circuit est donné par :
+
+
+
+                                       2k−1
+                         C k =2 sin[          ]k impair 
+                                         2n
+                                       2k−1
+                         Lk =2 sin [          ] k pair
+                                         2n
+TdS                                                                             15
+
+--- PAGE 16 ---
+Filtres classiques
+  Filtres de Tchebychev de type I                            Avec Tn : polynômes de
+                                                                 Tchebytchev
+             2              1
+      ∣H  f ∣ =       2   2                                    cos( n cos − 1 ( x) )     si x < 1
+                    1 T n  2 f                  Tn ( x) = 
+                                                                  cosh ( n cosh − 1 ( x) ) si x > 1
+
+                                                     Tn (1) = 1 ∀ n
+             Filtre qui minimise les oscillations
+                                                              plus d'ondulations pour x > 1
+             dans la bande atténuée
+
+  Filtres de Tchebychev de type II
+
+                            2    1
+                           Tn        
+                     1−         2 f
+       ∣H  f ∣2 =
+                               2   1
+                    1      Tn         
+                       1−        2 f
+            Filtre qui minimise les oscillations
+TdS         dans la bande passante
+                                                                                                        16
+
+--- PAGE 17 ---
+Filtres classiques
+  Filtres de Tchebychev
+
+                                                                                                          F ilt re s d e T c h e b y t c h e v
+                                                                                           0
+        Propriétés des filtres de Tchebytchev I                                                                                                           n=2
+                                                                                                                                                           n=4
+                                                                                        -1 0                                                               n=6
+           – Ondulation dans la bande passante réglée                                   -2 0
+             par ε
+
+
+
+
+                                                             G a in ( e n d B )
+                                                                                        -3 0
+           – Pas d'ondulation en bande rejetée
+                                                                                        -4 0
+           – Raideur de coupure importante
+                                                                                        -5 0
+
+           – Meilleure atténuation que butterworth                                      -6 0
+                                                                                              -1                                0                                         1
+                                                                                           10                            10                                      10
+                                                                                                    F ré q u e n c e ré d u it e (é c h e lle lo g )
+
+                                                                                                    F ilt r e s d e T c h e b y t c h e v in v e r s e s
+        Propriétés des filtres de Tchebytchev II                                              0
+
+                                                                                         -1 0
+
+           – Ondulation dans la bande rejetée réglée par ε                               -2 0
+                                                                                                    n=2
+           – Pas d'ondulation en bande passante                                          -3 0       n=4
+
+
+
+
+                                                                    G a in (e n d B )
+                                                                                                    n=6
+                                                                                         -4 0
+
+                                                                                         -5 0
+
+             Comme pour Butterworth, on détermine                                        -6 0
+
+             l'ordre, ε et H(s) à partir du gabarit et de                                -7 0
+
+             tables                                                                      -8 0
+                                                                                               -1                               0                                     1
+                                                                                            10                              10                                   10
+                                                                                                     F r é q u e n c e r é d u it e ( é c h e lle lo g )
+TdS                                                                                                                                                                           17
+
+--- PAGE 18 ---
+Filtres classiques
+   Filtres de Tchebychev de type I : réglage des paramètres
+
+       Problème : déterminer n, ε et la FT H(s) à partir du gabarit
+
+                cosh − 1
+                           (10− 0.1b − 1)                          a
+           n≥                   ε2                            −
+
+                               f 
+                                                   ε =   10       10
+                                                                       −1
+                     cosh − 1  s 
+                               fc 
+                A partir de n et ε , on déduit H(s) en utilisant les tables :
+
+
+
+
+TdS                                                                             18
+
+--- PAGE 19 ---
+Filtres classiques
+
+   Filtres de Cauer ou filtres elliptiques
+
+
+              2             1
+        H( f ) =
+                   1 + ε 2 Rn2 (2π f )
+
+
+       Optimaux en terme de
+        bande de transition
+       Ondulations en bande
+        passante et atténuée
+
+
+
+
+      Finalement, on choisit son filtre en fonction des besoins : ondulations, raideur
+TdS                                                                                      19
+
+--- PAGE 20 ---
+Transformation de filtres
+      Les définitions précédentes correspondent à des filtres génériques.
+      Le filtre voulu s’obtient par changement de variables, en introduisant
+      la fréquence de coupure :
+
+
+       Changement de variables                   Filtre associé
+                                     f
+                             f '↔                     passe-bas        fc = fo
+                                     fo
+                                    fo                                  fc = fo
+                             f '↔                     passe-haut
+                                    f
+                                          2
+                                f 
+                                    + 1                             fo =   f1 f 2
+                           f      fo 
+                      f' ↔ o ⋅                       passe bande
+                           B          f                                B = f 2 − f1
+                                     fo
+                                      f
+                             B        fo                                fo =   f1 f 2
+                      f' ↔     ⋅
+                             fo  f  2               coupe-bande
+                                      + 1                           B = f 2 − f1
+TdS                                fo 
+                                                                                        20
+
+--- PAGE 21 ---
+Exemples de transformation
+
+   Soit le filtre suivant : H( f ) passe-bas
+                                                                        1
+           Butterworth 2ème ordre              H( f ) =
+                                                              1+   2 2π f + 4π 2 f 2
+       Filtre passe haut équivalent
+
+                                                         fo
+          Changement de variable              f '↔
+                                                         f
+                                    1                                                       f2
+           H ( f ') =                                              H( f ) =                                  2
+                                  f          f 
+                                                     2
+                                                                              f2+      2 2π f o f + 4π 2 f o
+                        1+   2 2π o' + 4π 2  o 
+                                  f          f '
+
+       Réalisation effective des filtres :
+            Electronique (montage RLC) : filtres passifs (bon marché, délicat
+             en basses fréquences)
+            Electronique (montage avec amplificateurs opérationnels) : filtres
+             actifs
+            Mécanique (ressort amortisseur)
+TdS                                                                                                              21
+
+--- PAGE 22 ---
+Exemple de filtrage
+  Soit un signal x(t) est un signal physiologique (ECG) et un bruit b(t) superposé
+   Problème : élimination du bruit pour améliorer la détection de pathologies cardiaques
+
+                                                   xb (t ) = x(t ) + b(t )
+                                            Objectif : retrouver x(t) à partir de xb(t)
+                                               Elimination du signal perturbateur
+                                                 filtrage du bruit.
+
+
+                                                                     Filtre passe bas de fc=35 Hz
+
+   Analyse du spectre de xb(t) :
+       Spectre et gabarit proposés :
+
+
+                               Spectre du signal
+                               Butterworth 10
+                               Butterworth 2
+TdS                                                                                                 22
+
+--- PAGE 23 ---
+Exemple de filtrage
+
+   Filtre passe-bas électronique du 2e ordre :
+
+           Butterworth : table + transformation
+                                                                                48361
+   Réalisation pratique                                   H( f ) =
+                                                                      48361 + 311 j 2π f + ( j 2π f ) 2
+
+                                                                    Ho                     1 C1
+                                               H( f ) =         2                     Q=
+                                                           f   1   f                     3 C2
+                                                           j  + ⋅ j +1
+            R                 C2                           fo  Q   fo
+                                                                                               1
+            R      R
+                          -                                                         fo =
+                                     -1
+                                                              Ho=1                         2π R C1C2
+      Ve                  +
+                  C1                      Vs
+                                                           On a :        fo=35 Hz          Q=     2
+
+                                                    R=1071 Ω             C1=18 µF           C2=1 µF
+
+
+
+TdS                                                                                                       23
+
+--- PAGE 24 ---
+Exemple de filtrage
+   Résultats
+
+       Filtrage avec Butterworth 2         Filtrage avec Butterworth 10
+
+
+
+
+ Suppression du bruit hautes fréquences.       Atténuation plus importante
+
+ Amélioration des performances
+                                               Différence faible car composantes
+       - augmentation de l'ordre,
+                                               fréquentielles d'amplitude peu élevée
+       - diminution de la fc,
+       - changement de filtre
+TdS                                                                                    24
+
+--- PAGE 25 ---
+A savoir : tout :)
+
+  Toutes les définitions : classification des signaux, etc.
+  Connaître les signaux usuels : échelon/sin/cos/porte/expo/dirac/ ...
+  Energie et puissance, corrélation, distribution
+  Notion de fréquence, savoir calculer la DSF et la TF d'un signal + TF inverse
+  Connaître leur propriétés : dualité, etc.
+  Systèmes :
+       Convolution
+       Notion de réponse impulsionnelle
+       Transformée de Laplace + propriétés, TL inverse
+       Plancherel
+       Fonction de transfert d'un système : pôles/zéros
+  Filtrage :
+       Définition, notion de bande passante
+       Filtre usuels : butterworth, Tchebychev, Cauer
+
+
+
+
+TdS                                                                                25

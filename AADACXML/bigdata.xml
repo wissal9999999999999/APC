@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="BGD" nbMax="56" obligatoire="true" presentDansRecapitulatif="true" detailleSurSiteWeb="true" url="http://moodle.insa-rouen.fr/course/view.php?id=16" type="ressource">
+  <responsable ref="MaximeGueriau" />
+  <credits nb="4.5" />
+  <volume-horaire cm="12h" td="24h" />
+  <attendus-apprentissages-disciplinaires>
+    <domaine>
+      <titre xml:lang="fr">Comprendre le Big Data et ses enjeux</titre>
+      <domaine>
+        <titre xml:lang="fr">Caractéristiques des données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-CBD01" code="CBD-01">
+          <titre xml:lang="fr">Identifier les caractéristiques des données massives (volume, vélocité, variété, véracité)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Enjeux du Big Data</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-CBD02" code="CBD-02">
+          <titre xml:lang="fr">Expliquer les enjeux liés au traitement de données massives</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Limites des approches classiques</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-CBD03" code="CBD-03">
+          <titre xml:lang="fr">Expliquer les limites des systèmes de gestion de données traditionnels</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Architectures et organisation des systèmes Big Data</titre>
+      <domaine>
+        <titre xml:lang="fr">Organisation globale</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-ARC01" code="ARC-01">
+          <titre xml:lang="fr">Décrire l'organisation générale d'un système Big Data</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Architecture Lambda</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-ARC02" code="ARC-02">
+          <titre xml:lang="fr">Expliquer le rôle des différentes couches (batch, temps réel, stockage)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Chaîne de traitement des données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-ARC03" code="ARC-03">
+          <titre xml:lang="fr">Décrire les étapes de traitement des données (collecte, traitement, stockage)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Stocker et gérer des données distribuées</titre>
+      <domaine>
+        <titre xml:lang="fr">Stockage distribué</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-STO01" code="STO-01">
+          <titre xml:lang="fr">Décrire les principes du stockage distribué des données</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Tolérance aux pannes</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-STO02" code="STO-02">
+          <titre xml:lang="fr">Expliquer les mécanismes assurant la fiabilité des données (réplication, distribution)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Types de bases de données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-STO03" code="STO-03">
+          <titre xml:lang="fr">Identifier différents types de bases de données adaptées au Big Data</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Manipulation de données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-STO04" code="STO-04">
+          <titre xml:lang="fr">Manipuler des données dans une base NoSQL (requêtes, insertion, modification)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Traiter des données distribuées</titre>
+      <domaine>
+        <titre xml:lang="fr">Traitement batch</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRD01" code="TRD-01">
+          <titre xml:lang="fr">Décrire le principe du traitement de données en mode batch</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Modèle MapReduce</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRD02" code="TRD-02">
+          <titre xml:lang="fr">Expliquer le fonctionnement du modèle MapReduce</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Conception de traitements</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRD03" code="TRD-03">
+          <titre xml:lang="fr">Concevoir un traitement distribué à partir d'un problème donné</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Limites des approches batch</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRD04" code="TRD-04">
+          <titre xml:lang="fr">Identifier les limites des traitements batch pour certaines applications</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Traiter des données en temps réel</titre>
+      <domaine>
+        <titre xml:lang="fr">Traitement en flux</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRT01" code="TRT-01">
+          <titre xml:lang="fr">Expliquer les principes du traitement de données en flux</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Différence batch / temps réel</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRT02" code="TRT-02">
+          <titre xml:lang="fr">Comparer les traitements batch et temps réel</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Pipeline de traitement</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRT03" code="TRT-03">
+          <titre xml:lang="fr">Décrire les étapes d'un traitement de données en temps réel (collecte, traitement, stockage)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Outils de streaming</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-TRT04" code="TRT-04">
+          <titre xml:lang="fr">Utiliser des outils de traitement de flux pour analyser des données en temps réel</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Collecter et diffuser des données</titre>
+      <domaine>
+        <titre xml:lang="fr">Collecte de données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-COL01" code="COL-01">
+          <titre xml:lang="fr">Décrire les mécanismes de collecte de données dans un système distribué</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Communication entre systèmes</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-COL02" code="COL-02">
+          <titre xml:lang="fr">Expliquer le principe d'échange de données entre producteurs et consommateurs</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Accès aux données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-COL03" code="COL-03">
+          <titre xml:lang="fr">Interagir avec des services permettant d'accéder aux données (API)</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Exposition de données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-COL04" code="COL-04">
+          <titre xml:lang="fr">Mettre à disposition des données via une interface ou un service</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Mettre en oeuvre des solutions Big Data</titre>
+      <domaine>
+        <titre xml:lang="fr">Environnement de travail</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-SYS01" code="SYS-01">
+          <titre xml:lang="fr">Mettre en place un environnement de travail pour le traitement de données</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Exécution de traitements</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-SYS02" code="SYS-02">
+          <titre xml:lang="fr">Exécuter des traitements distribués sur un système Big Data</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Analyse des résultats</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-SYS03" code="SYS-03">
+          <titre xml:lang="fr">Interpréter les résultats produits par un traitement de données</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+    <domaine>
+      <titre xml:lang="fr">Concevoir une solution Big Data</titre>
+      <domaine>
+        <titre xml:lang="fr">Conception d'architecture</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-PRJ01" code="PRJ-01">
+          <titre xml:lang="fr">Concevoir une architecture répondant à un besoin de traitement de données massives</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Intégration de composants</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-PRJ02" code="PRJ-02">
+          <titre xml:lang="fr">Intégrer différents outils dans une chaîne de traitement cohérente</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+      <domaine>
+        <titre xml:lang="fr">Exploitation des données</titre>
+        <attendu-apprentissage-disciplinaire id="BGD-PRJ03" code="PRJ-03">
+          <titre xml:lang="fr">Exploiter et restituer les résultats d'un traitement de données</titre>
+        </attendu-apprentissage-disciplinaire>
+      </domaine>
+    </domaine>
+  </attendus-apprentissages-disciplinaires>
+  <alignements>
+    <alignement>
+      <apprentissage-critique ref="specifier-2.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-CBD02" />
+      <attendu-apprentissage-disciplinaire ref="BGD-CBD03" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-CBD03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-ARC01" />
+      <attendu-apprentissage-disciplinaire ref="BGD-ARC02" />
+      <attendu-apprentissage-disciplinaire ref="BGD-ARC03" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD01" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-2.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-ARC02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO01" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-1.4" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.4" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-2.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO03" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-2.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-3.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-STO04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD03" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="specifier-1.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-1.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-2.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-3.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRD04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT02" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-2.5" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-4.5" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-2.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-TRT04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-3.4" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL02" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL04" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-3.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.4" />
+      <attendu-apprentissage-disciplinaire ref="BGD-COL04" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-1.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="developper-4.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS01" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS02" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-3.1" />
+      <attendu-apprentissage-disciplinaire ref="BGD-SYS03" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ03" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-4.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-4.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="modeliser-4.4" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ01" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="concevoir-1.3" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ02" />
+    </alignement>
+    <alignement>
+      <apprentissage-critique ref="communiquer-2.2" />
+      <attendu-apprentissage-disciplinaire ref="BGD-PRJ03" />
+    </alignement>
+  </alignements>
+  <description xml:lang="fr">
+    <titre>Big Data</titre>
+    <langue>Français ou anglais</langue>
+    <objectif>
+      <p>Ce cours a pour objectif principal de développer les compétences indispensables permettant de manipuler de gigantesques volumes et fréquences de données.
+Plus précisément :</p>
+      <ul>
+        <li>Comprendre les enjeux et les problématiques associées au stockage et au traitement des méga- données</li>
+        <li>Comprendre les limitations des systèmes de gestion de bases de données (relationnelles) classiques et les solutions plus adaptées aux méga-données</li>
+        <li>Connaître le fonctionnement de l'algorithme MapReduce</li>
+        <li>Apprendre à utiliser l'éco-système Apache Hadoop</li>
+        <li>Apprendre à gérer des flux en streaming avec Spark</li>
+        <li>S'initier au calcul distribué avec Spark</li>
+        <li>Découvrir le traitement temps-réel avec les technologies NoSQL (en utilisant MongoDB)</li>
+      </ul>
+    </objectif>
+    <programme>
+      <ul>
+        <li>Introduction et concepts fondamentaux</li>
+        <li>Solutions pour le traitement et le stockage des méga-données • Hadoop et MapReduce</li>
+        <li>Streaming et calcul distribué avec Spark</li>
+        <li>Stokage et traitement temps-réel avec MongoDB</li>
+      </ul>
+    </programme>
+    <pre-requis>
+      <ul>
+        <li>BD1s</li>
+        <li>BD2 (option)</li>
+      </ul>
+    </pre-requis>
+    <documentation>
+      <ul>
+        <li>Big Data &amp; Streaming : Le traitement streaming &amp; temps réel des données en Big Data, Juvénal Chokogoue, Juvénal &amp; Associés.</li>
+        <li>Hadoop Devenez Opérationnel dans le monde du Big Data, Juvénal Chokogoue, Juvénal &amp; Associés</li>
+        <li>Les bases de données NoSQL et le Big Data, Rudi Bruchez, Eyrolles. </li>
+      </ul>
+    </documentation>
+    <evaluation>
+      <ul>
+        <li>Contrôle continu (partie théorique) et/ou TPs/Projet: 40% </li>
+        <li>Examen final machine (partie pratique): 60% </li>
+      </ul>
+    </evaluation>
+  </description>
+  <description xml:lang="en">
+    <titre>Big Data</titre>
+    <langue>English</langue>
+    <objectif>
+      <p>This course aims to develop essential skills for handling massive volumes and frequencies of data. More specifically:</p>
+      <ul>
+        <li>Understanding the challenges and issues associated with the storage and processing of mega-data</li>
+        <li>Understanding the limitations of traditional (relational) database management systems and solutions more suitable for mega-data</li>
+        <li>Familiarity with the functioning of the MapReduce algorithm</li>
+        <li>Learning to use the Apache Hadoop ecosystem</li>
+        <li>Learning to manage streaming data with Spark</li>
+        <li>Introduction to distributed computing with Spark</li>
+        <li>Exploring real-time processing with NoSQL technologies (using MongoDB)</li>
+      </ul>
+
+    </objectif>
+    <programme>
+      <ul>
+        <li>Introduction and fundamental concepts</li>
+        <li>Solutions for the processing and storage of mega-data • Hadoop and MapReduce</li>
+        <li>Streaming and distributed computing with Spark</li>
+        <li>Real-time storage and processing with MongoDB</li>
+      </ul>
+
+    </programme>
+    <pre-requis>
+      <ul>
+        <li>Database 1</li>
+        <li>Database 2 (option)</li>
+      </ul>
+    </pre-requis>
+    <documentation>
+      <ul>
+        <li>Big Data &amp; Streaming : Le traitement streaming &amp; temps réel des données en Big Data, Juvénal Chokogoue, Juvénal &amp; Associés.</li>
+        <li>Hadoop Devenez Opérationnel dans le monde du Big Data, Juvénal Chokogoue, Juvénal &amp; Associés</li>
+        <li>Les bases de données NoSQL et le Big Data, Rudi Bruchez, Eyrolles. </li>
+      </ul>
+    </documentation>
+    <evaluation>
+      <ul>
+        <li>Continuous assessment (theoretical part) and/or labs/project: 40%</li>
+        <li>Final machine exam (practical part): 60%</li>
+
+      </ul>
+    </evaluation>
+  </description>
+</ec>

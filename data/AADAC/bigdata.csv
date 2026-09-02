@@ -1,0 +1,52 @@
+﻿AC-ID,AC-TITLE,AAD-ID,AAD-TITLE,LABEL
+specifier-2.1,Analyser la demande,BGD-CBD02,Expliquer les enjeux liés au traitement de données massives,1
+specifier-2.1,Analyser la demande,BGD-CBD03,Expliquer les limites des systèmes de gestion de données traditionnels,1
+specifier-2.1,Analyser la demande,BGD-TRD04,Identifier les limites des traitements batch pour certaines applications,1
+specifier-2.1,Analyser la demande,BGD-TRT01,Expliquer les principes du traitement de données en flux,1
+modeliser-2.1,Analyser les données numériques et symboliques du problème,BGD-CBD03,Expliquer les limites des systèmes de gestion de données traditionnels,1
+specifier-1.2,Décomposer et organiser un processus,BGD-ARC01,Décrire l'organisation générale d'un système Big Data,1
+specifier-1.2,Décomposer et organiser un processus,BGD-ARC02,"Expliquer le rôle des différentes couches (batch, temps réel, stockage)",1
+specifier-1.2,Décomposer et organiser un processus,BGD-ARC03,"Décrire les étapes de traitement des données (collecte, traitement, stockage)",1
+specifier-1.2,Décomposer et organiser un processus,BGD-TRD01,Décrire le principe du traitement de données en mode batch,1
+specifier-1.2,Décomposer et organiser un processus,BGD-TRT03,"Décrire les étapes d'un traitement de données en temps réel (collecte, traitement, stockage)",1
+specifier-2.2,Définir des cas d’utilisation,BGD-ARC02,"Expliquer le rôle des différentes couches (batch, temps réel, stockage)",1
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,BGD-STO01,Décrire les principes du stockage distribué des données,1
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant,BGD-COL01,Décrire les mécanismes de collecte de données dans un système distribué,1
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques,BGD-STO01,Décrire les principes du stockage distribué des données,1
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques,BGD-STO02,"Expliquer les mécanismes assurant la fiabilité des données (réplication, distribution)",1
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,BGD-STO03,Identifier différents types de bases de données adaptées au Big Data,1
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données,BGD-TRT02,Comparer les traitements batch et temps réel,1
+developper-2.2,Exploiter une documentation,BGD-STO04,"Manipuler des données dans une base NoSQL (requêtes, insertion, modification)",1
+developper-2.2,Exploiter une documentation,BGD-COL03,Interagir avec des services permettant d'accéder aux données (API),1
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,BGD-STO04,"Manipuler des données dans une base NoSQL (requêtes, insertion, modification)",1
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,BGD-TRD03,Concevoir un traitement distribué à partir d'un problème donné,1
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,BGD-TRT04,Utiliser des outils de traitement de flux pour analyser des données en temps réel,1
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,BGD-COL04,Mettre à disposition des données via une interface ou un service,1
+developper-3.3,Utiliser et paramétrer des frameworks adaptés,BGD-SYS02,Exécuter des traitements distribués sur un système Big Data,1
+specifier-1.3,Utiliser un langage formel,BGD-TRD02,Expliquer le fonctionnement du modèle MapReduce,1
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa,BGD-TRD02,Expliquer le fonctionnement du modèle MapReduce,1
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée,BGD-TRD03,Concevoir un traitement distribué à partir d'un problème donné,1
+concevoir-3.1,Évaluer la complexité du traitement,BGD-TRD03,Concevoir un traitement distribué à partir d'un problème donné,1
+communiquer-3.2,Critiquer les résultats,BGD-TRD04,Identifier les limites des traitements batch pour certaines applications,1
+communiquer-3.2,Critiquer les résultats,BGD-TRT02,Comparer les traitements batch et temps réel,1
+communiquer-3.2,Critiquer les résultats,BGD-SYS03,Interpréter les résultats produits par un traitement de données,1
+concevoir-2.5,Identifier le paradigme de traitement de données statistique,BGD-TRT01,Expliquer les principes du traitement de données en flux,1
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel,BGD-TRT03,"Décrire les étapes d'un traitement de données en temps réel (collecte, traitement, stockage)",1
+concevoir-2.3,Choisir le framework,BGD-TRT04,Utiliser des outils de traitement de flux pour analyser des données en temps réel,1
+concevoir-2.3,Choisir le framework,BGD-COL03,Interagir avec des services permettant d'accéder aux données (API),1
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,BGD-COL02,Expliquer le principe d'échange de données entre producteurs et consommateurs,1
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données,BGD-COL04,Mettre à disposition des données via une interface ou un service,1
+developper-3.2,Optimiser et sécuriser l’échange de données,BGD-COL02,Expliquer le principe d'échange de données entre producteurs et consommateurs,1
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,BGD-COL04,Mettre à disposition des données via une interface ou un service,1
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats,BGD-PRJ03,Exploiter et restituer les résultats d'un traitement de données,1
+developper-1.3,Caractériser le matériel et le système au regard des besoins,BGD-SYS01,Mettre en place un environnement de travail pour le traitement de données,1
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,BGD-SYS01,Mettre en place un environnement de travail pour le traitement de données,1
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,BGD-SYS02,Exécuter des traitements distribués sur un système Big Data,1
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle,BGD-PRJ02,Intégrer différents outils dans une chaîne de traitement cohérente,1
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,BGD-SYS03,Interpréter les résultats produits par un traitement de données,1
+communiquer-3.1,Interpréter les résultats dans le contexte du problème,BGD-PRJ03,Exploiter et restituer les résultats d'un traitement de données,1
+concevoir-4.3,Choisir les patrons d'architecture,BGD-PRJ01,Concevoir une architecture répondant à un besoin de traitement de données massives,1
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements,BGD-PRJ01,Concevoir une architecture répondant à un besoin de traitement de données massives,1
+modeliser-4.4,Évaluer les besoins en ressources,BGD-PRJ01,Concevoir une architecture répondant à un besoin de traitement de données massives,1
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système,BGD-PRJ02,Intégrer différents outils dans une chaîne de traitement cohérente,1
+communiquer-2.2,Restituer oralement le travail réalisé,BGD-PRJ03,Exploiter et restituer les résultats d'un traitement de données,1

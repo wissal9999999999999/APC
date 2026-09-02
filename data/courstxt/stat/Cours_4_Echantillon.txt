@@ -1,0 +1,566 @@
+--- PAGE 1 ---
+Introduction aux statistiques pour l’Ingénieur
+
+                  Stéphane Canu
+       asi.insa-rouen.fr/enseignants/~scanu
+                   scanu@insa-rouen.fr
+
+
+
+
+    ITI 3, INSA Rouen Normandie, Janvier 2026
+
+--- PAGE 2 ---
+Lecture road map
+
+
+
+1   Échantillonnage
+      Échantillon, vraisemblance et statistique
+        Échantillon
+        Vraisemblance
+        Statistique
+        Deux statistiques : la moyenne et la variance
+      Moyenne et variance : le cas normal
+        Définition
+        Le cas de deux échantillons gaussien
+
+
+
+
+                                                        https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 3 ---
+Échantillon
+Définition naïve (après l’observation)
+Une partie (représentative) d’un ensemble,
+utilisée pour analyser ou comprendre la nature de l’ensemble entier.
+
+Exemple de « partie » (échantillon observé):
+                   sn = (pile, pile, face, . . . , pile . . . , face)
+L’ensemble entier : le résultat du tirage suit une loi de Bernouilli de
+paramètre p
+                                  X ∼ B(p)
+comprendre sa nature
+                    Quelle est la valeur du paramètre p ?
+
+Définition mathématique d’un échantillon (avant l’observation)
+Une liste de variables aléatoires
+
+                           Sn = (X1 , . . . , Xi , . . . , Xn )
+
+--- PAGE 4 ---
+Exemples d’échantillons
+ 1   Quelle page d’accueil (A/B) génère le meilleur taux de conversion ?
+       I   Loi binomiale x ∈ {0, 1}
+       I   sn = (x1 = 1, x2 = 0, . . . , xi = 1, . . . , xn = 0)
+ 2   Comment détecter une attaque DoS : Combien de paquets arrivent à ce
+     switch en une mili seconde ?
+       I   Loi de poisson : x ∈ IN
+       I   sn = (x1 = 3, x2 = 15, . . . , xi = 7, . . . , xn = 11)
+ 3   Comment dimensionner un load balanceur ? Quel ve être le temps entre
+     deux arrivées de requêtes réseau ?
+       I Loi exponentielle : x ∈ IR+
+       I s = (x = 0, 329, x = 1, 511, . . . , x = 0, 271, . . . , x = 0, 111)
+          n     1            2                 i                   n
+
+ 4   Entraînement d’un modèle de Deep Learning sur GPU : Quel va être le
+     temps d’exécution d’un algorithme complexe
+       I   Loi normale : x ∈ IR
+       I   sn = (x1 = 12, 2, x2 = 15, 11, . . . , xi = 27, 1, . . . , xn = 14, 53)
+
+--- PAGE 5 ---
+Échantillon
+L’ensemble entier : loi parente de paramètre θ
+
+                                     X ∼ L(θ)
+
+comprendre sa nature
+
+                    Quelle est la valeur du paramètre θ ?
+
+Définition mathématique d’un échantillon
+Une liste de variables aléatoires i.i.d de loi parente L(θ)
+
+                          Sn = (X1 , . . . , Xi , . . . , Xn )
+
+i.i.d = indépendant et identiquement distribué
+
+Contre-exemples :
+     non indépendance : suite de mots
+     non identiquement distribué : temps entre 2 pannes d’un logiciel
+
+--- PAGE 6 ---
+Échantillon
+
+L’ensemble entier : loi parente de paramètre θ
+
+         X ∼ L(θ)         de densité ou probabilité f (x, θ) ou IP(x, θ)
+
+Définition mathématique d’un échantillon
+Une liste de variables aléatoires i.i.d de loi parente L(θ)
+
+                            Sn = (X1 , . . . , Xi , . . . , Xn )
+
+i.i.d = indépendant et identiquement distribué
+Sn est une variable aléatoire de densité (ou probabilité)
+                          n
+                          Y                                        n
+                                                                   Y
+           f (sn , θ) =         f (xi , θ)   ou    IP(sn , θ) =          IP(xi , θ)
+                          i=1                                      i=1
+
+--- PAGE 7 ---
+Exemples de loi de probabilité d’un Échantillon
+ 1   Quelle page d’accueil (A/B) génère le meilleur taux de conversion ?
+       I
+                     QnX ∼ B(p)
+         Loi binomiale                   Qn          IP(X = x) = p x (1 − p)1−x
+                                               x       1−xi
+                                          i=1 p (1 − p)
+       I IP(s , p) =
+                       i=1 IP(X = xi ) =
+                                                i
+             n
+
+ 2   Comment détecter une attaque DoS : Combien de paquets arrivent à ce
+     switch en une mili seconde ?
+                                                                                k
+       I Loi de poisson : X ∼ P(λ)                              IP(X = k) = λk! e −λ
+                     Qn λki −λ
+       I IP(s , λ) =
+             n         i=1 ki ! e
+
+ 3   Comment dimensionner un load balanceur ? Quel ve être le temps entre
+     deux arrivées de requêtes réseau ?
+       I Loi exponentielle : X ∼ E(µ)                                f (x) = µ1 e −x/µ
+                     Qn 1 −xi /µ
+       I f (s , µ) =
+             n        i=1 µ e
+
+ 4   Entraînement d’un modèle de Deep Learning sur GPU : Quel va être le
+     temps d’exécution d’un algorithme complexe
+                                                                                        2
+       I Loi normale : X ∼ N (µ, σ)                                 1
+                                                          f (x) = √2πσ 2
+                                                                         exp − (x−µ)
+                                                                                 2σ 2
+                                                         2
+                         2
+                               Q n    1         (x   −µ)
+                                 i=1 2πσ 2 exp − 2σ 2
+       I f (s , θ = (µ, σ )) =                     i
+             n                      √
+
+--- PAGE 8 ---
+Exemples de loi de probabilité d’un Échantillon
+ 1   Quelle page d’accueil (A/B) : Loi binomiale X ∼ B(p)
+                       n
+                       Y                       n
+                                               Y
+      IP(sn , p)   =       IP(X = xi ) =             p xi (1 − p)1−xi
+                       i=1                     i=1
+                        Pn                     Pn                                             n
+                                                                                              X
+                   = p     i=1 xi         n−
+                                    (1 − p)      i=1 xi       = IP(t(sn ), p) avec t(sn ) =         xi
+                                                                                              i=1
+
+ 2   Comment détecter une attaque DoS : Loi de poisson : X ∼ P(λ)
+                   Qn λki −λ
+      IP(sn , λ) =  Pi=1 ki !
+                              e
+                         n    ki                                                             Pn
+                   =   Qn i=1 e −nλ
+                       λ
+                                               = IP(t1 (sn ), t2 (sn ), p) avec t1 (sn ) =
+                         i=1 ki !
+                                                                                              i=1 ki
+
+ 3   Comment dimensionner un load balanceur : Loi exponentielle : X ∼ E(µ)
+                      Qn 1 −xi /µ
+         f (sn , µ) =        µe
+                         i=1 P
+                              n                                      Pn
+                    = µ1n e − i=1 xi /µ = f (t(sn ), µ) avec t(sn ) = i=1 xi
+
+ 4   Quel va être le temps d’exécution : Loi normale : X ∼ N (µ, σ)
+                                             Qn                   −µ)2
+                                                    1
+                     f (sn , θ = (µ, σ 2 )) = i=1 √2πσ 2
+                                                         exp − (xi2σ 2
+
+--- PAGE 9 ---
+Exemples de loi de probabilité d’un Échantillon
+
+   Loi normale
+                                                1                (x − µ)2
+                               f (x) = √                exp −
+                                               2πσ 2                2σ 2
+                                                        −µ)2
+                                                − (xi2σ
+                            Qn
+        f (sn , θ) =                √ 1
+                              i=1 2πσ 2 exp   Pn
+                                                           2
+                                                      (x  −µ)   2
+                                1
+                      =     (2πσ 2 )n/2
+                                        exp − i=12σ2i
+                                              Pn        2
+                                                                  Pn           2
+                                1                 i=1 xi −2µ         i=1 xi +nµ
+                      =          2
+                            (2πσ )  n/2 exp −                  2σ  2
+
+                                1             t2 (x1 ,...,xi ,...,xn )−2µt1 (x1 ,...,xi ,...,xn )+nµ2
+                      =     (2πσ 2 )n/2
+                                        exp −                             2σ 2
+                                               n
+                                               X                                                  n
+                                                                                                  X
+   avec t1 (x1 , . . . , xi , . . . , xn ) =         xi et t2 (x1 , . . . , xi , . . . , xn ) =         xi2
+                                               i=1                                                i=1
+
+                                    f (sn , θ) = f (t1 , t2 , µ, σ)
+
+--- PAGE 10 ---
+Une fonction de deux variables
+
+La densité : θ est fixé, la variable est x
+
+                                     f (x, θ) ou IP(x, θ)
+
+                           n
+                           Y                                      n
+                                                                  Y
+            f (sn , θ) =         f (xi , θ)   ou   IP(sn , θ) =         IP(xi , θ)
+                           i=1                                    i=1
+
+
+La vraisemblance : x est fixé, la variable est θ
+
+                                    L: R →R
+                                       θ 7→ f (sn , θ)
+
+--- PAGE 11 ---
+Statistique
+Définition naïve d’une statistique
+C’est une caractéristique ou une mesure qui décrit un aspect des données
+d’un échantillon. Cette mesure peut être utilisée pour résumer ou
+interpréter un ensemble de données.
+
+Exemple : la moyenne
+
+
+Définition mathématique d’une statistique
+Une statistique T est une fonction de l’échantillon, donc une variable
+aléatoire
+                   T : Ωn → R
+                         Sn 7→ T (X1 , . . . , Xi , . . . , Xn )
+
+                                        n
+                                      1X
+                               X̄ =      Xi
+                                      n
+                                       i=1
+
+--- PAGE 12 ---
+Moyenne et variance : la moyenne
+si X1 , X2 , ..., Xn est un échantillon de n réalisation i.i.d. d’une loi parente
+d’espérance µ et le variance σ 2 .
+La Moyenne
+                              n                         n
+                            1X                    1X
+                       x̄ =    xi             X =    Xi
+                            n                     n
+                             i=1                      i=1
+                                                         1 Pn
+  IE(X ) = IE(Pn1 ni=1 Xi )
+                 P
+                                             V (X ) = V (P
+                                                         n   i=1 Xi )
+         = n1 Pni=1 IE(Xi )                         = n12 ni=1 V (Xi )
+                                                                           2
+         = n1 ni=1 µ                                = n12 ni=1 σ 2     = σn
+                                                         P
+                            =µ
+
+Le thèorème central limite (De Moivre, 1733)
+      La loi de la moyenne         converge vers        la loi normale
+              X −µ                     (d)
+              q                        −→                   N (0, 1)
+                  σ2                  n→∞
+                  n
+
+--- PAGE 13 ---
+Moyenne et variance : la variance (1)
+                                                          n
+                                                 1X
+   Espérance µ est connue (c’est rare) : Sn2 =      (Xi − µ)2
+                                                 n
+                                                      i=1
+                               n
+                          1X
+   Propriété : IE(Sn2 ) =    IE (Xi − µ)2 = σ 2
+                                         
+                          n
+                              i=1
+   Espérance µ est inconnue (c’est le plus souvent le cas)
+                                         n
+                                       1X
+                               Sn2 =     (Xi − X )2
+                                       n
+                                        i=1
+
+                 IE(Sn2 )    = n1 ni=1 IE (Xi − X )2
+                                 P                    
+
+                             = n1 ni=1 IE (Xi − X − µ + µ)2
+                                 P                          
+   Propriété :
+                                       2
+                             = σ 2 − σn                         = n−1
+                                                                   n σ
+                                                                       2
+                                           n
+                             2         1 X
+                            Sn−1 =            (Xi − X )2
+                                    n−1
+                                          i=1
+                                                   
+                                   1          n−3 4
+                       V (Sn−1 ) =       µ4 −     σ .
+                                   n          n−1
+
+--- PAGE 14 ---
+Moyenne et variance : le cas normal
+
+
+      Que ce passe t’il quand la loi parente est la loi normale ?
+
+       La loi de la moyenne       est       la loi normale
+                X −µ
+                 q                ∼           N (0, 1)
+                      σ2
+                      n
+                                                   σ2
+                                                     
+                  X               ∼           N µ,
+                                                   n
+
+            La loi de la variance   est         la loi ???
+                     2
+                   Sn−1           ∼            ???
+
+--- PAGE 15 ---
+La loi du χ2
+ Soit Y ∼ N (0, 1) une variable aléatoire normale centrée réduite. Soit
+ Y1 , Y2 , ..., Yn un échantillon de n réalisation i.i.d. de cette variable
+ aléatoire.
+
+
+
+
+Definition (La loi du χ2 )
+On appelle loi du χ2 à n degrés de
+libertés la loi de la variable aléatoire Zn
+                      n
+                      X
+               Zn =         Yi2
+                      i=1
+                                              Figure: Exemples de loi du chi 2 pour 1
+                                              (bleu), 2 (rouge), 3 (vert), 4 (violet) et
+                                              5 (bleu ciel) degrés de liberté
+
+--- PAGE 16 ---
+le cas de la moyenne
+si X1 , X2 , ..., Xn est un échantillon de n réalisation i.i.d. d’une variable
+aléatoire normale N (µ, σ 2 ) d’espérance µ et le variance σ 2 .
+                                            n
+                                          1X
+                                    X =      Xi
+                                          n
+                                           i=1
+
+
+                                                            1 Pn
+     IE(X ) = IE(Pn1 ni=1 Xi )
+                    P
+                                                V (X ) = V (P
+                                                            n   i=1 Xi )
+            = n1 Pni=1 IE(Xi )                         = n12 ni=1 V (Xi )
+                                                                              2
+            = n1 ni=1 µ                                = n12 ni=1 σ 2     = σn
+                                                            P
+                               =µ
+
+                         σ2                     √ (X − µ)
+             X ∼ N (µ,      )                    n        ∼ N (0, 1)
+                         n                           σ
+et
+                            (X − µ)2
+                                n      ∼ χ21
+                                σ2
+La moyenne se concentre autour de l’espérance
+
+--- PAGE 17 ---
+si X1 , X2 , ..., Xn est un échantillon de n réalisation i.i.d. d’une variable
+aléatoire normale N (µ, σ 2 ) d’espérance µ et le variance σ 2 .
+                              n
+                              X (Xi − µ)2
+                                                      ∼ χ2n
+                                            σ2
+                               i=1
+
+puisque Yi = Xi σ−µ suit une loi normale centrée réduite.
+                                                      n
+                                                      X (Xi − X )2
+Il est moins évident c’est de montrer que :                               ∼ χ2n−1 Lorsque
+                                                               σ2
+                                           i=1
+l’on remplace le paramètre µ par son estimation X = n1 ni=1 Xi on perd
+                                                        P
+un degré de liberté. En effet on a la décomposition suivante :
+                n                     n
+                X (Xi − µ)2           X (Xi − X )2             (X − µ)2
+                                  =                       +n
+                         σ2                      σ2               σ2 }
+                i=1                   i=1                  |     {z
+                                                                    χ21
+                |      {z     }
+                       χ2n
+
+Qui permet de conclure en invoquant le théorème de Cochran sur
+l’additivité des degrés de liberté.
+
+--- PAGE 18 ---
+Moyenne et variance : le cas normal
+
+
+      Que ce passe t’il quand la loi parente est la loi normale ?
+
+       La loi de la moyenne       est       la loi normale
+                X −µ
+                 q                ∼           N (0, 1)
+                      σ2
+                      n
+                                                   σ2
+                                                     
+                  X               ∼           N µ,
+                                                   n
+
+          La loi de la variance     est       la loi du chi 2
+                n−1 2
+                       S                ∼         χ2n−1
+                  σ 2 n−1
+
+--- PAGE 19 ---
+La loi de Student : définition
+     Soit N ∼ N (0, 1) une variable aléatoire normale centrée réduite.
+
+     Soit Xn la variable aléatoire distribuée suivant une loi du χ2 à n ddl
+       I   C’est le cas par exemple, si N1 , N2 , ..., Nn un échantillon de n réalisation
+                                                                                 X n
+           i.i.d. une variable aléatoire normale centrée réduite quand Xn =           Ni2
+                                                                                 i=1
+
+
+     supposons que N et Xn sont indépendantes (i.e. cov (Y , Xn ) = 0)
+
+
+Definition (La loi de student)
+On appelle loi de student à n degrés de libertés la loi de la variable
+aléatoire Tn
+                                             N ∼ N (0, 1)
+                         N
+                 Tn = q
+                          Xn
+                           n                 Xn ∼ χ2n
+
+--- PAGE 20 ---
+Le cas de la moyenne d’un échantillon gaussien
+
+
+Soit X ∼ N (µ, σ 2 ) une variable aléatoire normale d’espérance µ et de
+variance σ 2 . Soit X1 , X2 , ..., Xn un échantillon de n réalisation i.i.d. de
+                                                1 Pn
+cette variable aléatoire. La moyenne X = n i=1 Xi de cet échantillon suit
+aussi une loi normale
+                                                σ2
+                                                  
+                                   X ∼ N µ,
+                                                 n
+                             2
+car IE(X ) = µ et V (X ) = σn :
+                                                      1 Pn
+  IE(X ) = IE(Pn1 ni=1 Xi )
+                 P
+                                          V (X ) = V (P
+                                                      n   i=1 Xi )
+         = n1 Pni=1 IE(Xi )                      = n12 ni=1 V (Xi )
+                                                                        2
+         = n1 ni=1 µ                             = n12 ni=1 σ 2     = σn
+                                                      P
+                            =µ
+
+--- PAGE 21 ---
+Le cas de la moyenne d’un échantillon gaussien
+Soit X ∼ N (µ, σ 2 ) une variable aléatoire normale d’espérance µ et de
+variance σ 2 . Soit X1 , X2 , ..., Xn un échantillon de n réalisation i.i.d. de
+                                                1 Pn
+cette variable aléatoire. La moyenne X = n i=1 Xi de cet échantillon suit
+aussi une loi normale
+                                                σ2
+                                                  
+                                   X ∼ N µ,
+                                                 n
+
+On peut donc construire la variable normale centrée réduite
+                                                         )2
+              X −µ
+                   ∼ N (0, 1). Or Zn−1 = ni=1 (Xi σ−X       ∼ χ2n−1
+                                            P
+        Y =q     2                                     2
+                  σ
+                   n
+
+
+On peut construire une variable aléatoire suivant une loi de Student
+                              X −µ
+                              q
+                                    σ2
+              Y                      n                X −µ                X −µ
+  Tn−1 = q             =r                       = q 1 Pn            2
+                                                                      =   Sn−1
+              Zn−1          Pn      (Xi −X )2            i=1 (Xi −X )      √
+                                                   n−1
+              n−1             i=1       σ2                                   n
+                                                           n
+                                 n−1
+      2      1
+                  Pn                2
+avec Sn−1 = n−1      i=1 (Xi − X ) .
+
+--- PAGE 22 ---
+Conclusion
+
+
+   Échantillon
+     I Une liste de variables aléatoires Sn = (X1 , . . . , Xi , . . . , Xn )
+     I i.i.d de loi parente L(θ)
+     I paramètre θ
+
+
+
+   Vraisemblance
+     I fonction de densité (ou probabilité) de l’échantillon
+     I vue comme une fonction du paramètre θ
+     I importance de l’hypothèse i.i.d.
+
+
+
+   Statistique
+     I c’est une variable aléatoire
+     I apparait « naturellement » dans l’écriture de la vraisemblance
+     I suit une certaine loi

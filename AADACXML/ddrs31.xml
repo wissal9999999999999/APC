@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="H-31-DDRS-ITI" id="DDRS" nbMax="56" obligatoire="true" presentDansRecapitulatif="true" detailleSurSiteWeb="true" type="ressource">
+	<responsable ref="GeraldineDelMondo"/>
+	<intervenants>
+		<intervenant ref="ThomasBreteau"/>
+		<intervenant ref="BenoitGauzere"/>
+	</intervenants>
+	<credits nb="1"/>
+	<volume-horaire cm="4h30" td="6h"/>
+	<attendus-apprentissages-disciplinaires>
+		<attendu-apprentissage-disciplinaire id="DDRS-001" code="ACV001">
+			<titre xml:lang="fr">Connaître les évolutions récentes du système terre et des causes de celles-ci</titre>
+		</attendu-apprentissage-disciplinaire>
+		<attendu-apprentissage-disciplinaire id="DDRS-002" code="ACV002">
+			<titre xml:lang="fr">Catégoriser les impacts environnementaux des activités anthropiques</titre>
+		</attendu-apprentissage-disciplinaire>
+		<attendu-apprentissage-disciplinaire id="DDRS-003" code="ACV003">
+			<titre xml:lang="fr">Définir une Unité Fonctionnelle et un flux de référence </titre>
+		</attendu-apprentissage-disciplinaire>
+		<attendu-apprentissage-disciplinaire id="DDRS-004" code="ACV004">
+			<titre xml:lang="fr">Analyser et comprendre une ACV </titre>
+		</attendu-apprentissage-disciplinaire>
+		<attendu-apprentissage-disciplinaire id="DDRS-005" code="ACV005">
+			<titre xml:lang="fr">Faire preuve de regard critique sur les résultats d'une ACV (hypothèses sur les données, contexte dans lequel elle est valide...)</titre>
+		</attendu-apprentissage-disciplinaire>
+	</attendus-apprentissages-disciplinaires>
+	<alignements>
+		<alignement>
+			<apprentissage-critique ref="specifier-1.2"/>
+			<attendu-apprentissage-disciplinaire ref="DDRS-002" />
+			<attendu-apprentissage-disciplinaire ref="DDRS-003" />
+		</alignement>
+		<alignement>
+			<apprentissage-critique ref="communiquer-3.1"/>
+			<attendu-apprentissage-disciplinaire ref="DDRS-004" />
+		</alignement>
+		<alignement>
+			<apprentissage-critique ref="communiquer-3.2"/>
+			<attendu-apprentissage-disciplinaire ref="DDRS-005" />
+		</alignement>
+		<alignement>
+			<apprentissage-critique-huma ref="huma-3.3"/>
+			<attendu-apprentissage-disciplinaire ref="DDRS-001" />
+		</alignement>
+		<alignement>
+			<apprentissage-critique-huma ref="huma-3.5"/>
+			<attendu-apprentissage-disciplinaire ref="DDRS-003" />
+			<attendu-apprentissage-disciplinaire ref="DDRS-004" />
+			<attendu-apprentissage-disciplinaire ref="DDRS-005" />
+		</alignement>
+	</alignements>
+	<description xml:lang="fr">
+		<titre>Analyse du Cycle de Vie</titre>
+		<langue>Français</langue>
+		<objectif>
+			<p>Connaître les étapes principales d'une ACV, être capable de la comprendre et d'exploiter ses résultats.</p>
+			<p>Prendre conscience des enjeux environnementaux dans le numérique</p>
+		</objectif>
+		<programme>
+			<ul>
+				<li>Le système terre et les effets des activités anthropiques sur la biosphère</li>
+				<li>Méthodologie générale de l'ACV :
+					<ul>
+						<li>Dans quel but faire une ACV ?</li>
+						<li>Quels indicateurs utiliser et à quels moments impactent-ils l'environnement ?</li>
+						<li>Les étapes de l'ACV</li>
+						<li>Analyse et critique des résultats</li>
+					</ul>
+				</li>
+				<li>Quelques notions d'éco-conception</li>
+			</ul>
+		</programme>
+		<pre-requis>
+			<p>Aucun</p>
+		</pre-requis>
+		<documentation>
+			<p>aucun</p>
+		</documentation>
+		<evaluation>
+			<ul>
+				<li>Examen final : 50%</li>
+				<li>Projet : 50%</li>
+			</ul>
+		</evaluation>
+	</description>
+	<description xml:lang="en">
+		<titre>Life Cycle Analysis</titre>
+		<langue>English</langue>
+		<objectif>
+			<p>Know the main stages of an LCA, be able to understand it and use its results.</p>
+			<p>Become aware of environmental issues in digital technology.</p>
+		</objectif>
+		<programme>
+			<ul>
+				<li>The Earth system and the effects of human activities on the biosphere</li>
+				<li>General LCA methodology:
+					<ul>
+						<li>What is the purpose of conducting an LCA?</li>
+						<li>Which indicators should be used and when do they impact the environment?</li>
+						<li>The stages of an LCA</li>
+						<li>Analysis and critique of the results</li>
+					</ul>
+				</li>
+				<li>Some concepts of eco-design</li>
+			</ul>
+		</programme>
+		<pre-requis>
+			<p>None</p>
+		</pre-requis>
+		<documentation>
+			<p>None</p>
+		</documentation>
+		<evaluation>
+			<ul>
+				<li>Final exam : 50%</li>
+				<li>Project : 50%</li>
+			</ul>
+		</evaluation>
+	</description>
+</ec>

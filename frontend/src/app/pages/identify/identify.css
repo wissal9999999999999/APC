@@ -187,6 +187,39 @@
   gap: 12px;
 }
 
+.selectable{
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.selectable.selected{
+  border-color: rgba(120,255,198,.55);
+  background: rgba(120,255,198,.10);
+}
+
+.aad-checkbox{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: #78ffc6;
+}
+
+.selection-actions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.success-message{
+  margin: 12px 0 0;
+  color: #78ffc6;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .item-title{
   margin: 0;
   font-size: 14px;

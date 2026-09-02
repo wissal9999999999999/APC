@@ -1,0 +1,809 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                       Cours 4
+
+            Systèmes linéaires continus
+Définition et caractérisations (temporelle et fréquentielle)
+
+
+                         ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+   Introduction
+        Définition d'un système
+        Classification des systèmes
+   Réponse d'un système LTI (Linéaire à Temps Invariant) à une entrée :
+      caractérisation temporelle
+        Notion de convolution : définition et propriétés
+        Réponse impulsionnelle d'un système
+        Réponse à une entrée quelconque
+   Réponse fréquentielle d'un système
+        Théorème de Plancherel
+        Caractérisation des systèmes LTI par la fonction de transfert
+        Transformée de Laplace
+            Définition
+            Propriétés
+
+        Fonction de transfert d'un système : notion de pôles et zéros
+        Détermination de la réponse temporelle d'un système par la TL
+TdS                                                                        2
+
+--- PAGE 3 ---
+Introduction
+  Exemples de systèmes                        entrée : force
+                L                                                                              Conjoncture mondiale
+     i(t) R                                    sortie : position
+                                                                            Taux de crédit
+                                                                                                                      Chômage
+                                                            M      f
+ u(t)                   C       Vc(t)                                         Balance
+                                                                            commerciale      Economie d’un pays
+                                               K                             Dépenses                                 Inflation
+                                                                             publiques
+                                                           x
+        Système électrique               Système mécanique                               Système économique
+  Définition
+
+        Un système est un ensemble d'éléments fonctionnels interagissant entre eux et qui
+        établit un lien de cause à effet entre ses signaux d'entrées et ses signaux de sortie
+
+                                          Perturbations (souvent imprévisibles)
+
+             Signaux d’entrée                                          Signaux de sortie
+             ou excitations x               Système
+                                               S                       ou réponses y
+
+
+
+                                        Notation : y = S x   [ ]
+TdS                                                                                                                               3
+
+--- PAGE 4 ---
+Classification des systèmes
+  Système statique
+
+        La réponse du système à une excitation est instantanée
+                   i(t)       R                 Équation
+          u(t)                                  y (t ) = i (t ) =
+                                                                    1
+                                                                      u (t )
+                                                                    R
+  Système dynamique
+      La réponse est fonction de l'excitation et des réponses passées
+                 i(t)     R                       Équation
+                                              u(t) = V(t) + Ri(t)                       d'où :
+         u(t)                     C   Vc(t)   et i(t) = CdV(t)/dt              RC y (t ) + y (t ) = u (t )
+                                              donc                               avec y (t ) = Vc (t )
+                                              u(t) = V(t)+RC dV(t)/dt
+
+  Systèmes mono variable et multivariable
+
+       Monovariable : système à une entrée et une sortie
+       Multivariable : nombre d'entrées + nombre de sorties > 2
+
+TdS                                                                                                           4
+
+--- PAGE 5 ---
+Classification des systèmes
+ Linéarité
+
+      Si x(t ) = a1 x1 (t ) + a2 x2 (t )      alors    y (t ) = a1S [ x1 (t )] + a2 S [ x2 (t )]
+ Causalité
+      La réponse du système ne peut pas se produire avant l'excitation qui l'engendre
+      Conséquence : si x(t ) = 0 pour t < 0              alors      y (t ) = S [ x(t )] = 0 pour t < 0
+ Invariance temporelle
+      Un décalage temporel en entrée induit le même décalage en sortie. La réponse du
+      système est invariante par translation dans le temps. Le système est dit alors invariant.
+      Si   y (t ) = S [ x (t ) ]   alors   y (t − t0 ) = S [ x(t − t0 )]
+ Stabilité
+      Un système est dit stable si en réponse à une entrée bornée, sa sortie est bornée
+      ∃ M x / x(t ) < M x ⇒ ∃ M y / y (t ) = S [ x(t )] < M y
+      Système qui, perturbé, revient à son état
+      initial après disparition de la perturbation
+                                                                      Instable                     Stable
+TdS                                                                                                         5
+
+--- PAGE 6 ---
+Exemples
+
+  Tachymètre
+        Entrée :         Vitesse d'un véhicule v(t)
+        Sortie :         Position angulaire de l'aiguille θ (t)
+          Propriétés :    linéaire, causal, invariant
+
+
+  Exemple de système
+        non linéaire :   hauteur d’une vague en fonction du vent
+        non causal :     retour vers le futur
+        non invariant : y(t) = t.x(t); parcmètre (le tarif dépend de l'heure)
+
+
+
+
+      Dans la suite, on étudiera les systèmes monovariables continus linéaires à temps
+      invariant (systèmes LTI)
+
+TdS                                                                                      6
+
+--- PAGE 7 ---
+Caractérisation d'un système LTI
+  Relation entrée/sortie
+
+        La plus courante : équation différentielle linéaire à coefficients constants
+         an y ( n ) (t ) +  + a1 y (1) (t ) + a0 y (t ) = bm x ( m ) (t ) +  + b1 x (1) (t ) + b0 x(t )
+                              d i y (t ) (dérivée d'ordre i)
+        avec       y (i ) =
+                                dt i
+                 Caractérisation complète du système par la connaissance des coefficients
+
+                 Sortie y(t) calculable par la connaissance de x(t)
+
+  Exemple
+                                                              Lois de l'électricité
+
+         i(t)     R             L                                            di (t )
+                                                               Ri (t ) + L           + Vc (t ) = u (t )
+                                                                              dt
+ u(t)                           C        Vc(t)
+                                                                    et        i (t ) = CVc (t )
+
+      Entrée du système : x (t ) = u (t )                    On en déduit :
+
+      Sortie du système : y (t ) = Vc (t )                     LC Vc (t ) + RC Vc (t ) + Vc (t ) = u (t )
+TdS                                                                                                            7
+
+--- PAGE 8 ---
+Caractérisation d'un système LTI
+  Réponse impulsionnelle
+
+          La réponse impulsionnelle d'un système est sa réponse à une
+          entrée sous forme d'impulsion de Dirac
+
+                                               h(t)
+                 δ (t)
+                                                                h(t ) = S [ δ (t )]
+                         t
+                             Système S                    t
+
+
+
+
+  Avantages de la réponse impulsionnelle
+
+       caractérisation complète du système
+
+       permet de calculer la sortie du système LTI pour d’autres signaux d’entrée
+
+          Comment calculer la sortie du système avec un signal d’entrée quelconque à
+          partir de la réponse impulsionnelle ?
+           ⇒ notion de convolution
+TdS                                                                                    8
+
+--- PAGE 9 ---
+Notion de convolution
+  Définition
+      On appelle produit de convolution de deux signaux f(t) et g(t) et on note f ∗ g ,
+      l'expression
+                                                           ∞
+                                  f t∗g t=∫−∞ f  g t− d 
+
+      Ressemble beaucoup à une corrélation
+
+      Rappel :
+
+                          ∞
+         C fg =∫−∞ f t  g t− dt
+
+      Pour la convolution, un des signaux est inversé
+
+
+
+
+              Images provenant des applets de
+TdS           http://cnyack.homestead.com/files/aconv/convau1.htm                         9
+
+--- PAGE 10 ---
+Notion de convolution
+
+  Cas de signaux causaux ( f (t ) = 0, g (t ) = 0 pour t < 0)
+                                                               ∞
+      La convolution devient :                   f t∗g t=∫0 f  g t − d 
+
+  Exemple
+      Calculer le produit de convolution des signaux suivants
+            f (t)                               g (t)
+                                                                  g (t ) = e− at Γ (t )
+       A                                    1
+                                                                   a> 0
+
+                                    t                         t
+                    t1   t2
+                                                                              A                 f (τ)
+           Posons z (t ) = f (t ) * g (t ).                          g (-τ)
+                                                                     (t=0)
+                              +∞
+           On a z (t ) =      ∫ f (τ ) g (t − τ )dτ                                   t1   t2
+                                                                                                        τ
+                              −∞
+
+
+
+
+TdS                                                                                                         10
+
+--- PAGE 11 ---
+Notion de convolution
+              +∞                                                           t
+      z (t ) = ∫   f (τ )e− a (t − τ )Γ (t − τ )dτ    ⇒ z (t ) = ∫ f (τ )e − a (t − τ ) dτ                 car Γ (t − τ ) ≠ 0 pour τ < t
+              −∞                                                          0
+ On distingue 3 cas :
+       t < t1                                                 t1 < t < t2                                               t > t2
+                           f (τ)                                                                                                         f (τ)
+          A                                                   A                            f (τ)                       A
+
+  g (t-τ)                                                         g (t-τ)                                                            g (t-τ)
+                                     τ                                                             τ                                                      τ
+                    t t1       t2                                              t1   t t2                                            t1           t2   t
+                                                                      t                                                        t2
+  f (τ ) = 0 ⇒ z (t ) = 0                                    z (t ) = ∫ Ae− a (t − τ ) dτ                             z (t ) = ∫ Ae− a (t − τ ) dτ
+                                                                      t1                                                       t1
+
+                                            On trouve z (t ) =
+                                                               A
+                                                               a
+                                                                                (
+                                                                 1 − e− a (t − t1 )                )                 z (t ) =
+                                                                                                                              Ae− at at2
+                                                                                                                               a
+                                                                                                                                         (
+                                                                                                                                     e − eat1                 )
+                                             A                                             z(t)
+  Finalement, on a :                         a
+                                               1−e
+                                                   −a t −t 
+                                                         2
+                                                             1
+
+
+
+
+                                                                                                       τ
+TdS                                                                   t1            t2                                                                            11
+
+--- PAGE 12 ---
+Convolution
+ Propriétés
+
+       Commutativité :          f (t ) ∗ g (t ) = g (t ) ∗ f (t )
+
+       Associativité :         e(t ) ∗ f (t ) ∗ g (t ) = e(t ) ∗ ( g (t ) ∗ f (t ) ) = ( e(t ) ∗ f (t ) ) ∗ g (t )
+
+
+       Distributivité par rapport à l'addition : e(t ) ∗ ( f (t ) + g (t ) ) = e(t ) ∗ f (t ) + e(t ) ∗ g (t )
+
+
+       Elément neutre du produit de convolution : impulsion de Dirac                                   f (t ) ∗ δ (t ) = f (t )
+
+       Translation temporelle (conv. avec un Dirac retardé) :                              f (t ) ∗ δ (t − t0 ) = f (t − t0 )
+
+
+
+
+TdS                                                                                                                          12
+
+--- PAGE 13 ---
+Convolution
+  Propriétés (suite et fin)
+
+       Convolution avec un peigne de Dirac
+                                                                +∞
+                                                   T (t ) = ∑ δ (t − kT )
+                                  Peigne de Dirac Ш
+                                                               k= − ∞
+
+                                 +∞
+                      T (t ) = ∑ f (t ) ∗ δ (t − kT ) Linéarité de la convolution : on sort la somme
+            f (t ) ∗ Ш
+                                k= − ∞
+
+                              Convolution avec un Dirac retardé
+
+
+                                  +∞
+      ⇒      f (t ) ∗ Ш
+                       T (t ) = ∑ f (t − kT )
+                                k= − ∞
+                                         T                                            f ∗T
+
+          f (t)
+
+                  t *
+                        -2T      -T      0    T     2T     t
+                                                                  =     -2T   -T   0           T   2T   t
+
+
+            On obtient une fonction périodique formée par la recopie de f autour de chaque dent
+
+TdS                                                                                                     13
+
+--- PAGE 14 ---
+Réponse d'un système LTI à une entrée quelconque
+  Application de la notion de convolution
+            x(t)                                                       Réponse du système
+                            Système               y (t ) = ?           on cherche y (t ) = S [ x(t )]
+                    t
+
+
+Élément neutre          x(t ) = x(t ) ∗ δ (t ) ⇒ x(t ) = ∫ −+ ∞∞ x(τ )δ (t − τ )dτ
+de la convolution
+                                                            [   +∞
+                                           ⇒ y (t ) = S ∫ − ∞ x(τ )δ (t − τ ) dτ      ]
+                                                 y (t ) = ∫ − ∞ x(τ ) S [ δ (t − τ )] dτ
+                                                           +∞
+      Propriété de linéarité du système :                                                      (Voir diapo 5)
+
+      Propriété d'invariance temporelle du système :                  S [ δ (t − τ )] = h(t − τ )
+                                                                     (réponse impulsionnelle décalée,
+                                                                            voir diapos 5 et 8)
+
+                                 +∞
+      On en déduit      y (t ) = ∫ − ∞ x(τ ) h(t − τ )dτ    ⇒        y (t ) = x(t ) ∗ h(t )
+
+      La réponse du système à une entrée quelconque x est la convolution de x avec
+      la réponse impulsionnelle h du système. h caractérise entièrement le système.
+TdS                                                                                                             14
+
+--- PAGE 15 ---
+Stabilité et réponse impulsionnelle
+      On dit qu'un système est stable si sa sortie est bornée lorsque son entrée est bornée
+
+                      L'entrée x est bornée i.e. ∃ M x / x(t ) < M x ∀ t
+                                                        +∞
+                      Réponse du système : y (t ) = ∫ − ∞ x(τ ) h(t − τ )dτ
+
+               Quelle est la condition sur h(t) pour que y(t) soit bornée ?
+                                                               +∞
+               On montre que la sortie est bornée ssi        ∫ − ∞ h(τ ) dτ   < ∞
+
+         Un système est stable ssi sa réponse impulsionnelle est absolument intégrable
+
+
+
+        Nous venons de présenter les aspects temporels des systèmes continus LTI
+        Maintenant nous allons nous intéresser aux aspects fréquentiels
+
+
+
+
+TdS                                                                                           15
+
+--- PAGE 16 ---
+Systèmes et transformée de Fourier
+                                                         Soit le système de réponse impulsionnelle h
+   x(t )        Système                 y (t )           Soit le signal d'entrée x(t ) = Ae j 2π ft
+                                                         Que vaut la sortie y(t) ?
+   Réponse fréquentielle des systèmes LTI
+
+       y (t ) = h(t ) ∗ x(t ) ⇒                              +∞
+                                        h(t ) ∗ x(t ) = ∫ − ∞ h(τ ) x(t − τ )dτ
+
+                                                                  +∞
+                                       h(t ) ∗ Ae j 2π ft = ∫ − ∞ h(τ ) Ae j 2π f (t − τ ) dτ
+
+Sortons ce qui ne dépend pas de    : h(t ) ∗ Ae j 2π f t = Ae j 2π ft ∫ −+ ∞∞ h(τ ) e− j 2π fτ dτ
+                                                         0
+
+
+
+                                                                                  H ( f ) TF de la réponse impulsionnelle
+
+                      S  Ae j2 ft =h t∗Ae j  ft =H  f . Ae j2 ft
+
+      La réponse d'un système LTI à une exponentielle complexe (resp. signal sinusoïdal) est
+      une exponentielle complexe (resp. signal sinusoïdal) multipliée par le gain complexe H( f )
+TdS                                                                                                                   16
+
+--- PAGE 17 ---
+Systèmes et transformée de Fourier
+  Réponse fréquentielle des systèmes LTI
+
+                                x(t )           Système                  y (t )
+                                                                                                      +∞
+      Si le signal d'entrée est quelconque, on peut l'exprimer sous la forme
+      d'une somme infinie d'exponentielles complexes : c'est la TF inverse
+                                                                                              x(t ) = ∫ X ( f )e j 2π ft df
+                                                                                                      −∞
+                                        +∞
+       y (t ) = S [ x(t )] ⇒ y (t ) = ∫ S [ X ( f )e j 2π ft ] df         (linéarité du système)
+                                        −∞
+
+                                                   [                 ]
+      En vertu du résultat précédent S X ( f )e j 2π ft = H ( f ). X ( f ).e j 2π ft
+                                           +∞
+                             ⇒ y (t ) =     ∫ H ( f ). X ( f ).e j 2π ft df       (définition de la TF inverse de Y)
+                                           −∞
+                                                Y( f )
+                                             (TF de la sortie y)
+
+
+
+  Donc si y (t ) = h(t ) ∗ x(t ) alors Y ( f ) = X ( f ).H ( f )                             H ( f ) : fonction de transfert
+
+                    convolution en temporel  multiplication en fréquentiel
+TdS                                                                                                                           17
+
+--- PAGE 18 ---
+Systèmes et transformée de Fourier
+  Représentation fréquentielle des systèmes LTI
+
+                        x(t )         Système               y (t )
+                                                                              Module H ( f )
+
+                                Y ( f ) = X ( f ).H ( f )            H( f )
+                                                                               Argument φ ( f ) = arg( H ( f ) )
+        H ( f ) : représentation fréquentielle du système
+        Simplicité de la relation entrée/sortie en fréquentiel
+        La représentation fréquentielle illustre l'aptitude du système à faire passer une
+         composante fréquentielle présente dans le signal d'entrée
+
+  Relations entrée-sortie en fréquentiel
+                                        Module Y ( f ) = X ( f ) . H ( f )
+
+  Y ( f ) = X ( f ).H ( f )     ⇒       Argument arg( Y ( f ) ) = φ ( f ) + arg( X ( f ) )
+
+                                        Densité spectrale d'énergie S yy ( f ) = S xx ( f ).S hh ( f )
+TdS                                                                                                            18
+
+--- PAGE 19 ---
+Systèmes et transformée de Fourier
+   Théorème de Plancherel
+
+      La transformée de Fourier d'un produit de convolution est un produit simple
+      et réciproquement
+
+                                x(t ) ∗ y (t ) ↔ X ( f ).Y ( f )
+
+                                x(t ). y (t ) ↔ X ( f ) ∗ Y ( f )
+
+
+
+
+            Attention : la TF d'un signal n'est pas toujours définie !
+            Comment faire lorsque x(t) n'a pas de TF ?
+            => Introduction de la transformée de Laplace
+
+
+
+TdS                                                                                 19
+
+--- PAGE 20 ---
+Transformée de Laplace (TL)
+  De la TF à la TL
+                                                        +∞
+      Soit la TF d'un signal x(t) : X ( f ) =            ∫ x(t )e − j 2π ft dt . Cette TF existe si l'intégrale converge
+                                                        −∞
+      Dans le cas contraire, multiplions x(t) par une exponentielle décroissante telle que
+      +∞
+       ∫ x(t )e − σ t dt < ∞ avec σ > 0. Calculons la TF de ce nouveau signal
+      −∞
+                   +∞                                                 +∞
+                              − σ t − j 2π ft
+      X ( f ,σ ) = ∫ x(t )e       e             dt ⇒ X ( f ,σ ) = ∫ x(t )e − (σ + 2π f )t dt
+                   −∞                                                 −∞
+
+       Posons      s = σ + j 2π f               On obtient :
+
+                                          +∞
+                           X ( s ) = ∫ x(t )e − st dt          Définition de la transformée
+                                          −∞                   de Laplace du signal x
+
+             Transformée de Laplace = généralisation de la TF : décomposition de x(t)
+             sur une base de fonctions exponentielles est (avec s complexe)
+                                  Ne pas poser que X( f ) = X(s) pour s=j2πf
+TdS                              (car X(s) existe toujours mais pas X(f)!)                                                 20
+
+--- PAGE 21 ---
+Transformée de Laplace
+  Convergence de la TL
+                +∞
+                                            X(s) n'est défini que si l'intégrale converge
+      X ( s ) = ∫ x(t )e − st dt
+                −∞
+                                            Définition : on appelle Région de Convergence (RC) de la TL,
+       s = σ + j 2π f
+                                            l'ensemble des complexes s tels que l'intégrale converge.
+  Exemple
+
+      Calculer la TL du signal x(t ) = e Γ (t )
+                                        at
+
+                +∞                                           +∞
+       X (s) = ∫     e at Γ (t )e − st dt   ⇒     X ( s ) = ∫ e ( a − s )t dt
+                −∞                                            0
+
+                          1 [ ( a − s )t ] + ∞               X ( s) =
+                                                                           1 
+                                                                                    lim e ( a − s )t − 1
+       ⇒     X (s) =          e                     ⇒
+                         a− s              0                             a − s  t → + ∞               
+
+                                                            ( a − s ) t = lim e ( a − σ − j 2π f ) t
+           Or a − s = a − σ − j 2π f             D'où lim e                                                      Im(s)
+                                                         t→ + ∞                 t→ + ∞
+
+           Cette limite est nulle si a − σ < 0 i.e. Re( s ) > a                                                    RC
+
+                                                                                                             a           Re(s)
+                                                              1
+                                                    X (s) =                              Re( s ) > a
+TdS
+                                                            s − a avec
+                                                                                                                           21
+
+--- PAGE 22 ---
+Transformée de Laplace : propriétés
+  Linéarité a1 x1 (t ) + a2 x2 (t ) ↔ a1 X 1 ( s ) + a2 X 2 ( s )
+
+
+  Convolution x(t ) ∗ y (t ) ↔ X ( s ).Y ( s )
+                                                                                    Idem TF
+  Translation temporelle x(t − t0 ) ↔ e − st0 X ( s )
+
+
+  Translation fréquentielle e x(t ) ↔ X ( s − a )
+                              at
+
+
+
+                            dx(t )                                  x( 0 + ) : condition initiale
+                        
+  Dérivation                      ↔ sX ( s) − x(0 + )
+                             dt
+
+                         x ( k ) (t ) ↔ s k X ( s ) − s k − 1 x(0 + ) − s k − 2 x (1) (0 + ) −  − x ( k − 1) (0 + )
+
+                 ( )        ( )                 ( ) : conditions initiales (souvent nulles => simplification)
+      Avec : x 0 + , x (1) 0 + , , x ( k − 1) 0 +
+
+                          t               X ( s)
+  Intégration          ∫ 0 x(τ )dτ   ↔
+                                            s
+TdS                                                                                                                     22
+
+--- PAGE 23 ---
+Transformée de Laplace : propriétés
+                                            ( ) t→ 0
+  Théorème de la valeur initiale x 0 + = lim x(t ) = lim sX ( s )
+                                                            +          s→ + ∞
+
+  Théorème de la valeur finale            x∞ = lim x(t ) = lim sX ( s )
+                                                  t→ + ∞            s→ 0
+
+
+
+  Transformée de Laplace et systèmes LTI
+       Réponse du système à une entrée x(t) quelconque
+       y (t ) = x(t ) ∗ h(t )
+       TL de la réponse
+                                                Y (s)           Fonction de transfert ou transmittance
+        Y ( s ) = X ( s ).H ( s)    H ( s) =
+                                                X ( s)          complexe du système
+
+       Lien entre la transmittance et la représentation spectrale H(s)  H (f )
+        Si s=j2πf appartient à la région de convergence de la représentation de Laplace,
+        alors on peut poser s = j2πf, et on obtient la relation suivante :
+
+                                    H ( f ) = H ( s ) s = j 2π f
+TdS                                                                                                      23
+
+--- PAGE 24 ---
+TL de quelques signaux usuels (Cf. table)
+     Impulsion de Dirac δ(t)                    Rampe ou échelon de vitesse
+               δ (t )                                   v(t)                                   v(t ) = tΓ (t )
+                        L ( δ (t ) ) = 1
+                                                                                                               1
+                                       t                                            t          L ( v(t ) ) =
+                                                                                                               s2
+  Echelon unité Γ(t)                            Signal sinusoïdal
+      Γ (t )
+
+      1
+                                                                                                 t
+                                   t
+          0 t < 0
+ Γ (t ) =                                 1                   x(t ) = sin ( ω t + ϕ ) t ≥ 0
+                          L ( Γ (t ) ) =
+          1 t ≥ 0                         s
+                                                                           s sin ϕ + ω cos ϕ
+                                                           L ( x(t ) ) =
+                                                                                s2 + ω 2
+
+                                                         A
+ Le plus utilisé : x t = A  t e s t  Laplacien=
+                                           1
+
+                                                        s−s 1
+
+TdS                                                                                                                 24
+
+--- PAGE 25 ---
+Transformée de Laplace et systèmes LTI
+  Systèmes LTI
+
+       Systèmes régis par une équation différentielle linéaire à coefficients constants
+       an y ( n ) (t ) +  + a1 y (1) (t ) + a0 y (t ) = bm x ( m ) (t ) +  + b1 x (1) (t ) + b0 x(t )   avec m ≤ n
+
+       On suppose les conditions initiales nulles i.e.                   y ( n− 1) (0) =  = y (1) (0) = y (0) = 0
+
+                                                                         x ( m− 1) (0) =  = x (1) (0) = x(0) = 0
+         En utilisant la TL, on a :
+
+         an s nY ( s ) +  + a1sY ( s ) + a0Y ( s ) = bm s m X ( s ) +  + b1sX ( s ) + b0 X ( s )
+
+         ( an s n +  + a1s + a0 )Y (s) = ( bm s m +  + b1s + b0 ) X (s)
+                                         Y ( s ) bm s m +  + b1s + b0
+                                 H (s) =        =
+                                         X ( s ) an s n +  + a1s + a0
+
+                                                                                                          N (s)
+           La fonction de transfert a la forme d'une fraction rationnelle : H ( s ) =
+                                                                                                          D( s )
+               N(s) et D(s) : polynômes en s de degrés respectifs m et n
+TdS                                                                                                                    25
+
+--- PAGE 26 ---
+Notion de pôles et zéros - critère de stabilité
+
+          N ( s ) bm s m +  + b1s + b0
+  H (s) =        =
+          D( s ) an s n +  + a1s + a0
+
+   Notion de pôles (modes) et zéros du système
+
+       Les pôles sont les racines λ i ∈  du polynôme D(s). Les pôles sont soit réels, soit des
+      paires de pôles complexes conjugués
+
+       Les zéros sont les racines zi ∈  du polynôme N(s)
+
+   Fonction de transfert et stabilité
+
+       Le système est stable ssi tous les pôles de H(s) sont à partie réelle strictement négative
+
+       Exemples
+                s− 1                                       s+ 2                            3
+                                          H ( s) =                        H ( s) =
+       H ( s) =
+                s+ 1                                 ( s + 1)( s − 3)                s 2 + 5s + 6
+
+      λ =                                 λ1 =                λ2 =       λ1 =               λ2 =
+      Concl :                             Concl :                        Concl :
+TdS                                                                                                 26
+
+--- PAGE 27 ---
+Réponse d'un système LTI par la TL
+   Exemple
+                                                   d 2 y (t )
+                                                           dy (t )
+        Soit le système caractérisé par :                       +  + 6 y (t ) = x(t )
+                                                    dt 2    dt
+       Le système est ils stable ? Calculer la réponse impulsionnelle du système h(t)
+       la réponse indicielle (réponse à l'échelon). Dans ce cas, préciser la valeur de la sortie y∞
+   Solution :
+                               2                                                            Y s      1
+ On passe tout en laplace : s Y s sY  s6 Y  s= X  s donc H s =                         = 2
+                                                                                            X  s s s6
+                                                                            −1±i  23
+       Calcul des pôles du système :      =b2 −4ac=−230               s1, s 2=
+                                                                                2
+       Les deux pôles sont à partie réelle négative; le système est donc stable.
+       La réponse indicielle h(t) s'obtient à partir de H(s) grâce à la décomposition en éléments simples :
+                 1    A     B                   Après calcul, on trouve :
+                                                                                             1            1
+       H s = 2    =                                                           A=
+                                                                                          s 1−s 2
+                                                                                                  ; B=
+                                                                                                       s 2−s 1
+              s s6 s−s 1 s−s 2
+                                                   Finalement : h t = Ae s t  t B es t  t 
+                                                                                 1                    2
+
+
+
+
+                                                                                                                 Puis Laplace
+       Réponse indicielle :    x t = t  donc X  s=1/ s       ⇒                 2
+                                                                          Y  s s s6=1/ s                   inverse ...
+                                                                                     1      1    1
+       y∞ : Il faut utiliser le théorème de la valeur finale :      y ∞=lim s 0 s             =
+                                                                                     s s 2 s6 6
+TdS                                                                                                                         27
+
+--- PAGE 28 ---
+Conclusion
+  Caractérisation d’un système linéaire continu par :
+
+       relation entre x(t) et y(t)          [équation différentielle]
+
+
+       réponse impulsionnelle               h(t)
+
+
+       réponse fréquentielle                H( f )
+
+
+       transmittance complexe                H(s)
+
+                  Equation                                      Fonction de transfert
+                différentielle                                         H(s)
+             y + a y + a y = b u + b u
+                    1      0     1      0
+
+
+
+
+                                                Réponse
+                                              impulsionnelle
+                                                   h(t)
+TdS                                                                                     28
+
+--- PAGE 29 ---
+Rappels sur la décomposition en éléments simples
+  La marche à suivre :
+                                                                    m           m−1             2
+                                                                   p a m−1 p         a 2 p a 1 pa0                  N  p
+      Soit la fraction S(p) suivante à décomposer :      S  p=                                                      =
+                                                                   p nb n−1 pn−1 b 2 p2 b1 pb0                      D  p
+      1ère étape : Si   mn, il faut extraire la valeur entière : quotient des polynômes
+                                     N 1  p
+      On obtient alors S  p=C 0            , et la valeur entière donne une impulsion de Dirac.
+                                     D1  p
+      2ème étape : Calculer les pôles du système, cad les zéros du dénominateur.
+        Si n<3 : facile
+        Sinon, essayer des valeurs simples -1, 0, 1, 2, etc. et espérer ...
+
+          Rmq. : nous ne traiterons que le pôles simples de type (p – p1)
+                                                         A1     A2         An
+      3ème étape : Mettre sous la forme S  p=C 0                  
+                                                        p− p 1 p− p 2     p− p n
+                                                                                                           N 1  p
+       On trouve les An en multipliant par (p - pn) et en prenant p = pn :              An=lim p  p   n
+                                                                                                           D1  p 
+          Une fois les An trouvés, le laplacien inverse devient très facile !
+
+
+TdS                                                                                                                            29
+
+--- PAGE 30 ---
+Exemple
+   Exemple
+
+      Soit le système caractérisé par : ÿ t3 y t2 y t= ẍ t2 x  t−x t
+      Donner la réponse impulsionnelle h(t) du système.
+   Solution
+      On passe en Laplace :    s 2 Y s 3 s Y s 2 Y  s=s 2 X  s2 s X s − X  s
+                                    2
+                        Y s  s 2 s−1
+      D'où :    H s =       =
+                        X  s s 23 s2
+                                                                  s 23 s 2−s−3        −s−3
+                                                         H s =                   =1
+      Degré num = degré den donc Valeur entière :                      s 23 s2       s 23 s2
+
+                                                            donc s , s = −3± 1 =−1,−2
+                                2
+      Calcul des pôles : =b −4ac=9−4∗2=10
+                                                                  1   2
+                                                                                2
+      Partie réelle < 0, Donc le système est stable. H(s) peut s'écrire : H s =1
+                                                                                     A   B
+                                                                                       
+                                                                                    s1 s2
+      Par identification et en multipliant par (s+ 1) pris en s=s1, on trouve A = -2, puis B = 1
+                               −2   1
+      Finalement H s =1            et grâce aux tables, on repasse en temporel :
+                               s1 s2
+                                                                             −t        −2t
+                                                     h t = t −2 u t  e u t  e
+TdS                                                                                                30

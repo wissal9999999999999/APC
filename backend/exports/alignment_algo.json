@@ -1,0 +1,38 @@
+{
+  "subject_id": "algo",
+  "embedding_model": "Lajavaness/sentence-camembert-large",
+  "threshold": 0.3,
+  "alignment_count": 1,
+  "alignments": [
+    {
+      "aad_id": "AAD-1",
+      "aad_text": "Déclarer et initialiser des variables de types simples en C.",
+      "top_match": {
+        "rank": 1,
+        "ac_id": "specifier-1.1",
+        "ac_title": "Décrire les types de données en entrée et sortie de chaque composant",
+        "score": 0.4511
+      },
+      "matches": [
+        {
+          "rank": 1,
+          "ac_id": "specifier-1.1",
+          "ac_title": "Décrire les types de données en entrée et sortie de chaque composant",
+          "score": 0.4511
+        },
+        {
+          "rank": 2,
+          "ac_id": "developper-3.3",
+          "ac_title": "Utiliser et paramétrer des frameworks adaptés",
+          "score": 0.4224
+        },
+        {
+          "rank": 3,
+          "ac_id": "modeliser-1.2",
+          "ac_title": "Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel",
+          "score": 0.4196
+        }
+      ]
+    }
+  ]
+}

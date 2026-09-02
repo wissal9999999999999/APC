@@ -1,0 +1,597 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                       Cours 8
+
+            Systèmes linéaires discrets
+Définition et caractérisations (temporelle et fréquentielle)
+
+
+                           ASI 3
+
+--- PAGE 2 ---
+Contenu du cours
+   Introduction
+       Définition d'un système discret
+       Classification des systèmes discrets
+
+   Caractérisation temporelle des systèmes linéaires discrets
+       Notion de convolution linéaire de signaux discrets
+       Réponse impulsionnelle d'un système (stabilité, réponse à une entrée quelconque)
+       Système linéaire discret décrit par une équation aux différences
+
+   Réponse fréquentielle des systèmes linéaires discrets
+       Caractérisation des SLID par la fonction de transfert
+       Transformée en z
+           Définition
+
+           Propriétés
+
+           SLID et Transformée en z
+
+           Pôles et zéros
+
+           Stabilité d'un SLID
+
+
+TdS                                                                                        2
+
+--- PAGE 3 ---
+Introduction
+  Définition d'un système discret
+
+      Un système discret est une entité qui réalise la conversion d'une suite discrète {x(n)}
+      en entrée en une autre suite discrète {y(n)} en sortie.
+
+
+             Signal d’entrée x(n)                                            Signal de sortie
+                                              Système discret
+                                                    T                        ou réponse y(n)
+
+
+                                       Notation : y  n =T [ x  n  ]
+
+  Classification des systèmes
+       Système statique ou sans mémoire
+
+                                                                           Exemple
+         L'échantillon de sortie y(n) à l'instant n ne dépend
+         que de l'échantillon de l'entrée x(n) au même instant             y (n) = ax 2 (n) + b
+       Système dynamique ou avec mémoire
+
+          L'échantillon y(n) est fonction des échantillons de l'entrée aux instants
+          antérieurs ou égaux à n et/ou des échantillons de sortie antérieurs à l'instant n
+
+          Exemple      y (n) = a1 y (n − 1) + a2 y (n − 2) + b0 x 2 (n) + b1x(n − 1)
+TdS                                                                                               3
+
+--- PAGE 4 ---
+Introduction
+  Exemple de systèmes dynamiques : « Voice transformer »
+
+             Signal d’entrée x(n)                                  Signal de sortie
+                                        Système discret
+                                              T                    ou réponse y(n)
+
+
+       Effet « écho » : ajout au signal d'entrée le même son retardé
+
+                      y t =x t x t −t 0 
+       Effet « réverbération » : addition d'échos successifs avec retards et
+        filtrages différents (atténuations)
+
+                                       nbechos   A
+                       y t =x t ∑ n=0         n xt −nt 0 
+                                                 2
+       Effet « voix de robot » : addition d'un tremolo
+
+
+                      y t =x t sin 2  f 0 t 
+       Effet « flanger », « chorus », « wha wha », etc.
+
+
+TdS                                                                                   4
+
+--- PAGE 5 ---
+Introduction
+  Classification des systèmes
+       Linéarité
+
+         Si   x  n =a 1 x 1  n a 2 x2  n     alors   y  n =a 1 T [ x 1 n  ] a 2 T [ x 2  n  ]
+
+       Causalité
+
+         La réponse y(n) du système à l'instant n=k0 ne dépend que des entrées x(n) aux instants n≤ k0
+       Invariance temporelle
+
+        Si y  n =T [ x  n  ]      alors        y  n−n0 =T [ x  n−n0  ]                ∀ n , n0 ∈Zℤ
+
+         Exemples
+
+          y (n) = x(n) − x(n − 1) est un système invariant
+          y (n) = nx(n) est un système variant
+       Stabilité BIBO (Bounded Input, Bounded Output)
+
+         Un système discret est dit stable si en réponse à une entrée bornée, sa sortie est bornée
+
+         ∃ M x / ∣x  n ∣M x ⇒ ∃ M y / ∣ y  n =T [ x n  ] ∣M y                  ∀ n∈Zℤ
+TdS                                                                                                           5
+
+--- PAGE 6 ---
+Convolution linéaire de signaux discrets
+  Définition
+
+      On appelle produit de convolution linéaire de deux signaux discrets x(n) et h(n), l'expression
+                                               ∞
+                               x  n ∗h n = ∑ x  k h  n−k 
+                                              k=−∞
+
+
+       Cas de signaux causaux          ( x  n =0, h n =0 pour n < 0)
+
+                       n
+                                                             Ne pas confondre la convolution linéaire et la
+       x  n ∗h n = ∑ x  k  h n−k                     convolution circulaire des signaux discrets
+                      k= 0
+
+  Exemple
+
+       Calculer le produit de convolution linéaire des signaux suivants
+            x(n)
+                                                     h (n)                          n
+        1
+                                                 1                          h n  =a Γ  n
+                                                                            avec 0 <a<1
+
+                               n                                                    n
+TdS                  N-1
+                                                                                                              6
+
+--- PAGE 7 ---
+Convolution linéaire de signaux discrets
+  Exemple (suite et fin)
+
+      Posons z  n =x  n ∗h n  . Les 2 signaux étant                x(k)
+                                                                     1           1
+      causaux, on a
+               n                                            h (-k)
+       z n =∑ x  k h  n−k 
+              k=0                                                                    k
+                                                                           N-1
+
+
+
+
+TdS                                                                                      7
+
+--- PAGE 8 ---
+Convolution linéaire de signaux discrets
+  Propriétés (idem analogique)
+       Commutativité
+
+          x  n ∗h n = x n ∗h n 
+       Associativité
+
+          x  n ∗h n ∗z  n=x  n∗ h n ∗z  n   = x  n ∗h  n  ∗z  n 
+       Distributivité par rapport à l'addition
+
+
+         h n ∗ x  nz  n   =h  n ∗x  n h n ∗z n 
+       Elément neutre du produit de convolution : impulsion de Dirac
+
+
+          x  n ∗δ  n =x  n 
+      et aussi :
+       Durée d'un signal issu du produit de convolution linéaire
+
+
+          Si x(n) est de durée N1 et h(n) de durée N2, alors x(n)*h(n) est de durée N1+N2−1
+TdS                                                                                           8
+
+--- PAGE 9 ---
+Etude de système linéaire invariant discret (SLID)
+  Caractérisation d'un SLID : réponse impulsionnelle
+
+                 La réponse impulsionnelle d'un système discret est sa
+                 réponse à une entrée sous forme d'impulsion de Dirac
+
+                                               h(n)
+               δ(n)
+
+                      n   Système discret                   n      h n =T [ δ  n  ]
+                                T
+
+
+  Avantages de la réponse impulsionnelle : idem analogique
+
+       caractérisation complète du système
+
+       permet de calculer la sortie du système discret pour des signaux d’entrée
+        quelconques en utilisant la convolution linéaire de signaux discrets
+
+
+                                                       Preuve !
+
+TdS                                                                                       9
+
+--- PAGE 10 ---
+Réponse d'un SLID à une entrée quelconque
+  Application de la convolution linéaire
+
+                          x(n)        Système T                  y ( n) = ?
+
+
+ Décomposition du                 x  n = ∑ x  k  δ  n−k 
+ signal discret x(n)                       k∈ℤ
+
+
+
+Réponse du système               y  n =T [ x  n  ]    ⇒
+                                                                              [
+                                                                 y  n =T ∑ x  k  δ n−k 
+                                                                                  k∈ℤ                  ]
+ Propriété de linéarité          y  n = ∑ x  k T [ δ  n−k  ]      L'opérateur T [.] agit sur les termes
+ du système discret                      k∈ℤ                            dépendant de la variable temporelle n
+
+
+ Propriété d'invariance
+ temporelle du système
+                                 T [ δ  n−k  ] =h n−k                Réponse impulsionnelle décalée
+
+
+                                 y  n = ∑ x  k h n−k                         y  n =x  n ∗h  n 
+           On en déduit
+                                         k∈ℤ
+                                                                        ⇒
+
+        La réponse d'un système discret linéaire invariant à une entrée quelconque x(n)
+        est la convolution linéaire de x(n) avec la réponse impulsionnelle h(n) du système.
+TdS                                                                                                             10
+
+--- PAGE 11 ---
+Réponse impulsionnelle d'un SLID
+  Stabilité et réponse impulsionnelle
+
+      Stabilité = garantir que la sortie d'un système est bornée si son entrée est bornée
+
+       Un système linéaire discret invariant est stable ssi sa     ∑ h(n) < +∞
+       réponse impulsionnelle est absolument sommable              n∈ ℤ
+
+  Causalité et réponse impulsionnelle
+
+        Un système linéaire discret invariant est causal
+                                                                 h(n) = 0 ∀n < 0
+        ssi sa réponse impulsionnelle h(n) est causale
+
+          Remarque : si le système est causal, on a
+
+                                  n
+             yn =x n ∗h  n = ∑ x k h n−k 
+                                k=−∞
+
+  Exemple
+
+      Etudier la causalité et la stabilité du système linéaire caractérisé par la réponse impulsionnelle
+      h( n) = a n Γ ( n )
+TdS                                                                                                        11
+
+--- PAGE 12 ---
+Autre caractérisation d'un SLID
+  Equation aux différences linéaire à coefficients constants
+       Système régi par une équation aux différences d'ordre N
+        N                   M                                    N
+                                                                     ak             M
+                                                                                        br
+        ∑ a k y  n−k = ∑ br x  n−r                 y  n =− ∑         y n−k ∑         x  n−r 
+       k=0                 r=0                                  k =1 a 0            r=0 a 0
+
+       Avantages
+         Calcul de la sortie du système sans connaissance de la réponse impulsionnelle h(n)
+
+         Calcul de la sortie y(n) à partir des N sorties décalées y(n−k), des M entrées décalées
+        x(n−r) et de l'entrée courante x(n). Mais ceci nécessite la connaissance des conditions
+        initiales du système
+
+          Quelle que soit la longueur de la réponse impulsionnelle h(n) (finie ou infinie), le nombre
+         d'opérations nécessaires au calcul de y(n) est fini (comparativement au calcul par
+         convolution linéaire)
+       Inconvénients
+        Caractéristiques du système plus difficile à déterminer; ex. : stabilité
+  Exemple de système caractérisé par une équation aux différences :
+         y (n) − ay (n − 1) = cx(n)
+TdS                                                                                                       12
+
+--- PAGE 13 ---
+Autre caractérisation d'un SLID
+   Equation aux différences linéaire à coefficients constants
+      N              M
+      ∑ a k yn−k = ∑ br xn−r       avec a0=1
+      k=0           r=0
+                                   M
+       N=0                yn= ∑ br xn−r 
+                                 r=0
+             y(n) dépend de l'entrée courante x(n) et des M entrées précédentes x(n−r)
+
+             Système à réponse non récursive
+                                                               M
+             La réponse impulsionnelle est finie
+                                                        hn= ∑ b r δ n−r 
+                                                              r=0
+            On parle de système à Réponse Impulsionnelle Finie (RIF)
+
+                                        N           M
+       N≥ 1
+                             yn=− ∑ ak y n−k  ∑ b r xn−r
+                                     k=1           r=0
+             y(n) dépend de l'entrée courante x(n) , des M entrées précédentes x(n−r) mais aussi des
+              N sorties précédentes y(n−k)
+             Système à réponse récursive
+
+             Système à Réponse Impulsionnelle Infinie (RII)
+
+TdS                                                                                                     13
+
+--- PAGE 14 ---
+SLID et Transformée de Fourier à Temps Discret
+
+  x(n)            Système T          y (n)
+
+  Réponse fréquentielle des SLID
+
+         y  n =h  n ∗x  n 
+
+         En utilisant le théorème de Plancherel, on a
+
+         Y  f =H  f . X  f       Remarque : convolution linéaire => f continue
+
+
+         H  f  : TFTD de la réponse impulsionnelle ou fonction de transfert du système discret
+
+
+                      Module ∣H  f ∣ : spectre d'amplitude
+          Hf 
+                        Argument   f =arg  H  f   : spectre de phase
+
+
+TdS                                                                                            14
+
+--- PAGE 15 ---
+Transformée en z (TZ)
+  Définition
+       La TZ est la généralisation de la TFTD. Soit un signal discret x(n). Sa TZ est définie par
+                     ∞
+                                                                          Rappel : la TFTD de x(n) est :
+        X  z = ∑ x  n . z −n       avec        z ∈ℂ
+                                                                                       ∞
+                 n=−∞
+                                                                              X  f = ∑ x  n e−j2π nf
+                                                                                     n=−∞
+  Condition d'existence de la TZ
+
+       La transformée existe si la série converge. L'ensemble des valeurs de la variable
+       complexe z pour lesquelles la série converge est appelée Région De Convergence (RDC)
+
+
+                 {                             }
+                           ∞
+        RDC = z ∈ℂ/ ∑ ∣x  n . z−n∣<+ ∞
+                          n=−∞
+  Exemple
+
+    Calculer la TZ de x(n) = Γ(n)
+            ∞                                     ∞                                  N −1
+
+    X  z = ∑ x n.z    −n             X  z = ∑ z −n               X  z = lim ∑ z−n
+                                                   n=0                           N ∞ n=0
+          n=−∞
+
+                  1−z −N                                                                           1
+    X  z = lim                 La limite est finie si z −1 < 1 i.e. z > 1           X  z =            pour z > 1
+            N ∞ 1−z
+                      −1
+                                                                                                 1−z −1
+TdS                                                                                                                    15
+
+--- PAGE 16 ---
+Transformée en z
+  Région de convergence
+                                                                                          Im(z)
+      De façon générale, on montre que la RDC
+      est un anneau de convergence défini par                                            r1
+       0 ≤ r 1 ≤ ∣z∣ ≤ r 2 ≤ ∞                                                                          Re(z)
+                             1/n                             −1/n              RDC
+      avec r 1= lim ∣x  n ∣        et   r 2 = lim ∣x −n ∣                                 r2
+                  n ∞                       n ∞
+                           (Vérifions que ça marche avec x(n) = Γ(n) )
+  Remarques
+       Si r1 > r2, la série ne converge pas
+                                                                                          Im(z)
+       Signal défini à droite
+                                     ∃ n0 / x(n) = 0     ∀n < n0                   RDC
+        (signal causal pour n0=0)                                                                  r1
+        r 2 =+ ∞                                                                                        Re(z)
+                  RDC = région extérieure au cercle de rayon r           1
+       Signal défini à gauche
+                                      ∃ n0 / x(n) = 0 ∀n > n0                             Im(z)
+         (signal anticausal pour n0=0)                                                             r2
+          r 1=0                                                                                         Re(z)
+                          RDC = disque de rayon r2
+                                                                             RDC
+TdS                                                                                                              16
+
+--- PAGE 17 ---
+Transformée en z : propriétés
+  Soit x(n), un signal discret. Soit X(z) sa TZ avec la RDC : r1 ≤ z ≤ r2
+
+       Linéarité                                          Décalage temporel
+         ax(n) + by (n) → aX ( z ) + bY ( z )                  x  n−n0  z
+                                                                                 −n0
+                                                                                       X  z  ∀ n0 ℤ
+         La RDC est au moins l'intersection de                La RDC est identique à l'exception de
+         la RDC de X(z) et de la RDC de Y(z)                  restrictions éventuelles en z=0 et z=∞
+
+       Changement d'échelle en z                          Dérivation en z
+                                                                               dX  z 
+           n
+          a x  n  X
+                       z
+                       a                                     n x  n −z
+                                                                                 dz
+                                                              La RDC est identique à l'exception de
+          RDC : ∣a∣r 1 ≤ ∣z∣ ≤ ∣a∣r 2                         restrictions éventuelles en z=0 et z=∞
+
+       Retournement du temps                              Produit de convolution
+
+               x −n  X  z−1                               x  n ∗y  n  X  z .Y  z 
+
+                      1           1                            La RDC est au moins l'intersection de
+            RDC : r ≤ ∣z∣ ≤ r                                  la RDC de X(z) et de la RDC de Y(z)
+                   2          1
+
+
+       Théorème de la valeur finale                        Théorème de la valeur initiale
+            lim x  n=lim  z −1  X  z                       lim x 0 x n =lim z  ∞ X  z 
+TdS        n ∞           z 1
+                                                                                                        17
+
+--- PAGE 18 ---
+Transformées en z usuelles
+
+
+
+
+TdS                           18
+
+--- PAGE 19 ---
+Transformée en z et Transformée en z inverse
+  Transformée en z inverse
+         Intégrale de Cauchy                           1
+                                            x  n =      ∮  X  z  z n−1 dz
+                                                       j2π C
+         Décomposition en éléments simples
+
+             X  z =∑ X i  z                        x  n =∑ x i  n          Les Xi (z) sont des fonctions à TZ-1 connues
+                        i                                         i
+         Développement en série de puissance
+                       ∞                                                          Si X (z) peut être décomposé en série
+             X  z = ∑ c n z   −n                      x  n =c n ∀ n            alors x(n) est le coefficient associé à z-n
+                       n=−∞
+  TZ et Transformée de Fourier à Temps Discret (TFTD)
+
+       Hypothèse : on suppose que le cercle unité (|z|=1) ∈ RDC de X (z).
+                                                                                         j2πf
+      On restreint le calcul de X(z) au cercle unité en posant z=e
+                ∞
+                                                                                                La transformée de Fourier à temps discret
+       X  z = ∑ x  n . e− j2π fn= X  f                  X  f =X  z ∣z=e j2πf          (TFTD) d'un signal est sa transformée en
+               n=−∞                                                                             z évaluée sur le cercle unité
+                                                                 (|z|=1) ∈ RDC
+  Exemples
+                       Calculer la TZ et la région de convergence associée des signaux suivants :
+
+
+
+TdS
+                   n
+       x  n =a Γ  n  , a∈Rℝ
+                                     
+                                               x  n =  {
+                                                          a n , n≥0
+                                                         −bn , n≤−1
+                                                                    avec ∣a∣∣b∣                           x  n =Γ  n −Γ  N −n 
+                                                                                                                                       19
+
+--- PAGE 20 ---
+Transformée en z et systèmes linéaires discrets
+  Caractérisation par la réponse impulsionnelle
+                                                                                      y  n =h n ∗x  n 
+      x n       Système T                   yn
+
+                                                                                       Y  z =X  z . H  z 
+      h(n) : réponse impulsionnelle du système
+
+  Caractérisation du SLID par une équation aux récurrences
+                                               N               M
+         Equation aux récurrences :           ∑ a k y  n−k =∑ b r x  n−r 
+                                              k= 0            r= 0
+
+
+
+                                                                                                                            
+                                                                                               N                         M
+          En utilisant la propriété de décalage temporel de la TZ, on a :                     ∑ ak z   −k
+                                                                                                            Y  z = ∑ b r z −r X  z 
+                                                                                              k= 0                      r= 0
+                                      N
+
+
+                           Y z 
+                                  ∑ a k z−k
+                H  z =           = k=M0                                 b M z −M ⋯+b1 z−1 +b0
+                           X z                      ou       H  z =          −N                  −1
+                                                                          aN z        ⋯+a 1 z            +a0
+                                     ∑ br z   −r
+
+                                     r= 0
+                                                                                                                     Nz
+              La fonction de transfert H(z) a la forme d'une fraction rationnelle :                       H  z =
+                                                                                                                     D z 
+TdS            N(z) et D(z) : polynômes en z-1 de degrés respectifs M pour les entrées et N pour les sorties
+                                                                                                                                      20
+
+--- PAGE 21 ---
+Pôles et zéros – stabilité d'un système discret causal
+               Nz                                          Pôles d'un système discret
+      H  z =
+               D z 
+                                                            Les pôles sont les racines λ i ∈ ℂdu polynôme D(z)
+  Zéros d'un système discret
+                                                             Remarque : H(z) diverge (H(z) = ∞) pour
+  Les zéros sont les racines du polynôme N(z)                            z= λ i ⇒ λ i ∉ RDC de H(z)
+
+
+   Fonction de transfert H(z) et stabilité d'un système discret causal
+
+          Causalité
+
+               Le système est causal ssi la RDC de H(z)
+               est l'extérieur d'un disque ⇒ λ i ∈ au disque
+                                                                RDC= { z ∈ℤ , ∣z∣>r }      λi ∈ { z ∈ℤ , ∣z∣≤r }
+
+          Stabilité
+
+               Un système linéaire discret est stable ssi
+               sa FT H(z) converge sur le cercle unité
+                                                                 ∑ ∣h n ∣<+ ∞ ⇔ { z∈ℤ , ∣z∣=1 } ∈RDC
+                                                                n∈ ℤ
+
+          Conclusion
+
+
+                        Un système discret linéaire et causal est stable ssi tous
+                        les pôles de H(z) sont à l'intérieur du cercle unité
+TdS                                                                                                                21
+
+--- PAGE 22 ---
+Récapitulatif sur les transformées ...
+  Transformée de Fourier                                    Étude des systèmes :
+     Pour passer du temps continu à la fréquence continue
+  Tranformée de Laplace                                     continu 2 continu
+     Généralisation de la TF
+     Permet de décrire les systèmes linéaires continus
+
+
+  TFTD
+     = transformée de Fourier classique
+     appliquée aux signaux à temps discret                  discret 2 continu
+     La fréquence est continue
+
+
+  Transformée de Fourier Discrete
+     Pour passer du temps discret à la fréquence discrète
+     Algo de calcul rapide : FFT
+  Transformée en Z                                          discret 2 discret
+     Généralisation de la TFTD(f continue !)
+     Permet de décrire les systèmes linéaires discrets
+
+TdS                                                                              22

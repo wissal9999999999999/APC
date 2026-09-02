@@ -1,0 +1,563 @@
+--- PAGE 1 ---
+INSA         Informatique                                     UV Statistique
+Rouen        Technologie
+Normandie    Information                                         Cours n°9
+
+
+                            UV Statistique pour l'Ingénieur
+
+
+
+
+                                    Cours n° 9
+
+
+                                  Tests statistiques
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                        1
+
+--- PAGE 2 ---
+INSA           Informatique                                                UV Statistique
+Rouen          Technologie
+Normandie      Information                                                    Cours n°9
+
+
+                                        Exemple
+• Réviser les statistiques => réussir l'examen ???
+           on aimerait bien croire en cette affirmation de PhL ...
+            mais ce n'est pas l'hypothèse privilégiée des étudiants
+
+             • H0 : ce n'est pas vrai     note =8       (hypothèse nulle)
+             • H1 : c'est vrai            note = 11     (hypothèse alternative)
+
+           réviser coûte du temps et de l'énergie ... il faut donc arriver à prouver
+            H1 pour que les étudiants soient convaincus
+
+           on observe la note moyenne des examens depuis 1999 :
+            9 11 10 12 8 11 12
+
+
+ Ph. LERAY - A. ROGOZAN                                                                     2
+
+--- PAGE 3 ---
+INSA           Informatique                                                     UV Statistique
+Rouen          Technologie
+Normandie      Information                                                         Cours n°9
+
+
+                                               Exemple
+• Réviser les statistiques => réussir l'examen ???
+
+       on modélise la situation H0 : note moyenne ~ N(8,σ2/7)
+       à partir de quelle note moyenne est-on sur de pouvoir accepter H1 à la
+        place de H0 en se trompant uniquement de α=5%
+                                   2
+                              N(8,σ /7)
+                                                  α
+                                                      Seuil
+
+
+                                          H0                  Région critique
+                                                               (rejet de H0)
+           si note moyenne < Seuil, on décide H0 sinon H1
+
+ Ph. LERAY - A. ROGOZAN                                                                          3
+
+--- PAGE 4 ---
+INSA           Informatique                                            UV Statistique
+Rouen          Technologie
+Normandie      Information                                                Cours n°9
+
+
+                                      Exemple
+• Réviser les statistiques => réussir l'examen ???
+
+           mais quelle est l'erreur commise en choisissant H0 alors que H1 est
+            vrai ? ==> calcul de β
+
+                                                                       2
+                                                                N(11,σ /7)
+                                          β
+                                              Seuil
+
+
+
+      
+            les pourcentages d'erreur α et β n'ont pas le même rôle
+
+
+ Ph. LERAY - A. ROGOZAN                                                                 4
+
+--- PAGE 5 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°9
+
+
+                             Principe des tests statistiques
+• But :
+   Décider, à la vue de l'échantillon X ,...,X tiré, entre deux
+                                        1      n
+    hypothèses complémentaires :
+             • H0 (hypothèse nulle)
+             • H1 (hypothèse alternative)
+           Ces hypothèses peuvent porter sur :
+             • le(s) paramètre(s) inconnu(s) d'une loi connue
+               (test paramétrique)
+             • la distribution inconnue d'une v.a. X
+               (test non-paramétrique).
+ Ph. LERAY - A. ROGOZAN                                                          5
+
+--- PAGE 6 ---
+INSA          Informatique                                      UV Statistique
+Rouen         Technologie
+Normandie     Information                                          Cours n°9
+
+
+                             Principes des tests statistiques
+• Méthode générale
+
+           Poser le test
+             = définir les hypothèses ;
+           Résoudre le test :
+             = construire une règle de décision associant à toute
+            réalisation de l'échantillon soit H0, soit H1
+
+           Décider
+             à partir d'une réalisation de l'échantillon
+
+
+ Ph. LERAY - A. ROGOZAN                                                          6
+
+--- PAGE 7 ---
+INSA         Informatique                                         UV Statistique
+Rouen        Technologie
+Normandie    Information                                             Cours n°9
+
+
+            Poser le test - définir les hypothèses H0 et H1
+• Les deux hypothèses ne jouent pas un rôle symétrique
+  (lors de la détermination de la règle de décision)
+1. L'hypothèse nulle H0 est privilégiée par rapport à l'hypothèse
+   alternative (ou de référence) H 1, car supposée plus
+   vraisemblable
+       Le seuil de la règle de décision dépend de H0, mais pas de H1
+       La puissance du test (capacité d'écarter H0 en ayant raison) dépend
+        de H0 et de H1
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                            7
+
+--- PAGE 8 ---
+INSA           Informatique                                             UV Statistique
+Rouen          Technologie
+Normandie      Information                                                 Cours n°9
+
+
+              Poser le test - définir les hypothèses H0 et H1
+• Les deux hypothèses ne jouent pas un rôle symétrique
+  (lors de la détermination de la règle de décision)
+2. Le choix de l'hypothèse nulle H0 est primordial :
+
+           hypothèse la plus plausible (ou raisonnable)
+            car non contredite par les
+            résultats des expériences            H0 : «fumer provoque le cancer»
+
+           hypothèse habituelle                      H0 : X suit une Loi Normale
+
+           hypothèse de prudence              H0 : «le médicament est inefficace»
+
+           hypothèse plus facile à formuler                 H0 : θ=θ0 ; H1 : θ<θ0
+
+ Ph. LERAY - A. ROGOZAN                                                                  8
+
+--- PAGE 9 ---
+INSA         Informatique                                         UV Statistique
+Rouen        Technologie
+Normandie    Information                                             Cours n°9
+
+                                 Poser le test (paramétrique)
+                                choix d'hypothèses et décisions
+• Le procédé augmente de 50 mm le niveau moyen des pluies?
+
+    {
+   H 0 :=0=600 mm
+   H 1 :=1=650 mm                }
+                    D = { j'achète le procédé / je n'achète pas }
+                    θ=µ ; Loi = Normale ; Hypothèse de prudence
+
+• Le médicament est efficace ou inefficace (pour réduire le
+  niveau de cholestérol) ?
+
+     {                      }
+   H 0 :1=2         D = { j'achète le produit / je n'achète pas }
+   H 1 :12          θ=? ; Loi = ? ; Hypothèse de ...
+
+• Le patient est malade (niveau de cholestérol trop élevé) ?
+
+     {  H 0 :=0
+   H 1 :=1 10               }
+                       D = { on soigne / on ne soigne pas }
+                       θ=? ; Loi = ? ; Hypothèse de ...
+ Ph. LERAY - A. ROGOZAN                                                            9
+
+--- PAGE 10 ---
+INSA         Informatique                                                UV Statistique
+Rouen        Technologie
+Normandie    Information                                                    Cours n°9
+
+                             Poser le test (paramétrique)
+                            choix d'hypothèses et décisions
+• Le diamètre des pièces est supérieur à la norme ?
+
+    {   H 0 :=0
+        H 1 :0      }          D = { c'est vrai / c'est faux }
+                                  θ=? ; Loi = ? ; Hypothèse de ...
+
+
+• La qualité d'un lot est satisfaisante (pour le producteur) ?
+
+    { H 0 : p= p0
+      H 1 : p p0      }           p = P(trouver 1 pièce défectueuse)
+                                  D = { j'accepte / je refuse le lot }
+                                  θ=? ; Loi = ? ; Hypothèse de ...
+
+• La qualité d'un lot est satisfaisante (pour le client) ?
+
+ Ph. LERAY - A. ROGOZAN                                                               10
+
+--- PAGE 11 ---
+INSA         Informatique                                                         UV Statistique
+Rouen        Technologie
+Normandie    Information                                                             Cours n°9
+
+
+                                  Erreurs de décision
+                                       Vérité          H0           H1
+                            Décision
+                            On accepte H0              1−α          β     erreur moins grave
+
+                            On rejette H0              α            1−β
+                                                erreur très grave
+
+• Probabilités d'erreur
+       de 1ère espèce :      α = P(choisir H1 alors que H0 est vrai)
+       de 2ème espèce :      β = P(garder H0 alors que H1 est vrai)
+      ➔ Risques différents en pratique !
+
+
+
+
+• Puissance du test : 1-β = P(choisir H1 alors que H1 est vrai)
+
+ Ph. LERAY - A. ROGOZAN                                                                        11
+
+--- PAGE 12 ---
+INSA            Informatique                                             UV Statistique
+Rouen           Technologie
+Normandie       Information                                                 Cours n°9
+
+
+              Résoudre le test - choix d'une règle de décision
+• Soit X une v.a. dont la loi de probabilité, supposée connue,
+  dépend d'un seul paramètre inconnu θ sur lequel porte le test
+
+          {   H 0 , ∈ A0
+              H 1 , ∈ A1      }
+           Optique décisionnelle : préférer la règle de décision R1 à R2 si
+
+
+          { ∀ ∈ A0 ,  R1  R 2 
+            ∀ ∈ A1 ,  R1  R2     }
+      ➔     problème car impossible de minimiser simultanément les risques de
+            1ère et de 2ème espèces.
+
+ Ph. LERAY - A. ROGOZAN                                                               12
+
+--- PAGE 13 ---
+INSA           Informatique                                                  UV Statistique
+Rouen          Technologie
+Normandie      Information                                                      Cours n°9
+
+
+            Résoudre le test : Choix d'une règle de décision
+           Optique « Neyman-Pearson » : dissymétriser !
+            - fixer α (niveau de signification) = contrôler l'erreur GRAVE
+            - minimiser le risque de 2ème espèce β (ou maximiser 1-β)
+              pour une valeur fixée du risque α de 1ère espèce
+
+
+
+• Règle de décision R1 d'un test UPP (Uniformément Plus Puissant)
+                          ∀ ∈ A1 , ∀ R, 1− R1 ≥1− R ,  R1  R
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                   13
+
+--- PAGE 14 ---
+INSA           Informatique                                                UV Statistique
+Rouen          Technologie
+Normandie      Information                                                    Cours n°9
+
+
+            Résoudre le test - construire la règle de décision
+• Choisir comme variable de décision la statistique T qui
+           apporte le maximum d'information sur le problème posé
+             (estimateur exhaustif)
+           avec un risque d'erreur minimum
+             (estimateur efficace)
+
+
+           T doit avoir une loi différente selon que H0 ou H1 est vraie
+             (condition nécessaire)
+           T doit avoir une loi connue au moins si H0 est vraie
+             (condition suffisante)
+ Ph. LERAY - A. ROGOZAN                                                                 14
+
+--- PAGE 15 ---
+INSA           Informatique                                             UV Statistique
+Rouen          Technologie
+Normandie      Information                                                 Cours n°9
+
+
+            Résoudre le test - construire la règle de décision
+• Déterminer la région critique W
+  = ensemble des valeurs de T qui conduisent à
+    écarter H0 au profit de H1
+                                                       α fixé
+      
+             P W∣H 0 =     P W∣H 1 =1−
+                                                       β à minimiser
+      
+            forme de la région critique: T<seuil, T>seuil ou T≠ seuil
+
+• Région d'acceptation W
+                 0 =1−
+             P  W∣H
+
+ Ph. LERAY - A. ROGOZAN                                                              15
+
+--- PAGE 16 ---
+INSA         Informatique                               UV Statistique
+Rouen        Technologie
+Normandie    Information                                   Cours n°9
+
+
+              Résoudre le test - autres règles de décision
+• Règle « pure » (page précédente)
+   si T>seuil on garde H sinon on rejette H
+                         0                  0
+
+• Règle « mixte »
+   on tire au sort la décision
+
+
+
+• Règle « générale » (avec rejet)
+   hypothèse H : « je ne sais pas »
+                2
+    par exemple, s'il n'y a pas assez d'information pour décider
+    raisonnablement => on augmente la taille de l'échantillon
+• Théorie de la décision bayésienne (coûts)
+    UV Data Mining ; UV RNA
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                              16
+
+--- PAGE 17 ---
+INSA         Informatique                                UV Statistique
+Rouen        Technologie
+Normandie    Information                                    Cours n°9
+
+
+            Fiche « recette » pour la construction d'un test
+• Fixer les hypothèses :
+    définir la nature de H et H
+                           0     1
+    choisir l'hypothèse H de référence
+                           0
+
+• Construire la règle de décision :
+   choisir la variable de décision (statistique T adaptée)
+
+  
+    forme de la région critique (T<seuil, T>seuil ou T≠ seuil)
+  
+    déterminer l'expression du seuil (pour α fixé, minimiser β)
+• Rejet ou acceptation de H0 au vu de l'échantillon tiré :
+   à partir de la valeur empirique de la variable de décision T
+
+    sur l'échantillon tiré
+ Ph. LERAY - A. ROGOZAN                                               17
+
+--- PAGE 18 ---
+INSA          Informatique                                         UV Statistique
+Rouen         Technologie
+Normandie     Information                                             Cours n°9
+
+
+                             Taxinomie des tests statistiques
+• Tests paramétriques :
+
+           tester des hypothèses relatives à un ou plusieurs
+            paramètres d'une v.a. de loi spécifiée
+            exemple: on suppose que X~N(µ,σ2)
+           hypothèse simple              {H : θ = θ0}
+             • uniquement si les autres paramètres sont connus
+               sinon elle devient une hypothèse composite
+      
+            hypothèse composite                {H : θ ∈ A}
+                       {H : θ < θ0}            {H : θ > θ0}     {H : θ ≠ θ0}
+
+ Ph. LERAY - A. ROGOZAN                                                         18
+
+--- PAGE 19 ---
+INSA         Informatique                                      UV Statistique
+Rouen        Technologie
+Normandie    Information                                          Cours n°9
+
+
+                            Taxinomie des tests statistiques
+• Robustesse d'un test :
+   qualité de rester relativement insensible à certaines
+
+    modifications du modèle
+   i.e. tests de moyenne, tests de non-corrélation
+
+
+
+
+• Tests libres :
+    tests robustes par rapport à la loi de probabilité
+
+     (tests souvent non-paramétriques )
+    i.e. tests d'ajustement du « chi2 »
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                     19
+
+--- PAGE 20 ---
+INSA         Informatique                                                          UV Statistique
+Rouen        Technologie
+Normandie    Information                                                              Cours n°9
+
+
+                        Tests entre 2 hypothèses SIMPLES
+X v.a. dont la distribution dépend du seul paramètre inconnu θ
+• se pose le problème de tester :       H 0 :=0  HS 
+                                        H 1 :=1  HS    {                  }
+• pour α fixé : ∫ L  x 1 , , x n ; 0  dx 1 dx n= fixé = P W∣H 0 
+                            W
+
+
+      on veut maximiser : 1−=∫ L  x 1 , , x n ; 1  dx 1 dx n= P W∣H 1 
+                                                W
+
+
+
+• Région critique optimale                                              Th. de Neyman Pearson
+  = ensemble des points W de Rn tels que :
+                          L  x 1 , , x n ; 1 
+                     W ={                        k  }    ➔   T < seuil ou T > seuil
+                          L  x 1 , , x n ; 0     fixé
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                                         20
+
+--- PAGE 21 ---
+INSA         Informatique                                                     UV Statistique
+Rouen        Technologie
+Normandie    Information                                                         Cours n°9
+
+
+                        Tests entre 2 hypothèses SIMPLES
+• Exemple 1 :
+  
+    soit X ~ N(µ, σ2) où µ inconnue et σ connue
+   se pose le problème de tester 2 hypothèses simples :
+
+
+                              Paramètre θ inconnu
+
+
+
+             {      H 0 :=0  HS 
+               H 1 :=1 10  HS    }
+                                                     Variable T de décision
+
+                                                           
+• La région critique est définie par                 0−
+                                                    X         n1−
+   
+     α fixé                                                n          fixé
+
+
+
+
+                                                         {
+    = f n ,  ,  ,   constant
+                 0   1                              Seuil fonction de H0 mais pas de H1
+ Ph. LERAY - A. ROGOZAN                                                                    21
+
+--- PAGE 22 ---
+INSA         Informatique                                     UV Statistique
+Rouen        Technologie
+Normandie    Information                                         Cours n°9
+
+
+                        Tests entre 2 hypothèses SIMPLES
+• Exemple 1 :
+  
+    soit X ~ N(µ, σ2) où µ inconnue et σ connue
+   se pose le problème de tester 2 hypothèses simples :
+
+
+
+
+            {      H 0 :=0  HS 
+              H 1 :=1 10  HS    }
+                                            
+• La région critique est définie par X
+                                      0    n1−
+                                            n         fixé
+
+
+
+
+ Ph. LERAY - A. ROGOZAN                                                    22
+
+--- PAGE 23 ---
+INSA         Informatique                                            UV Statistique
+Rouen        Technologie
+Normandie    Information                                                Cours n°9
+
+
+                        Tests entre 2 hypothèses SIMPLES
+• Interprétation graphique des erreurs α et β :
+       loi de T sous H0                  Seuil         loi de T sous H1
+
+                                   β              α
+
+
+                                                   Région critique
+• Remarques :
+      
+        le seuil est calculé en contrôlant le risque de 1ère espèce α
+          • si α diminue, le seuil et β augmentent
+      
+        β>α (généralement)
+      
+        quand n→∞, pour α fixé, β→ 0 alors le test est convergent
+
+ Ph. LERAY - A. ROGOZAN                                                           23

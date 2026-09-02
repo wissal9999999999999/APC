@@ -1,0 +1,806 @@
+--- PAGE 1 ---
+Programmation dynamique
+                     Inspiré de [CLR94] et [Reb05]
+
+
+                           Nicolas Delestre
+
+
+
+
+Prog. Dyn. v1.3.3                                     1 / 30
+
+--- PAGE 2 ---
+Plan. . .
+
+
+
+    1    Introduction
+
+
+    2    Programmation dynamique
+
+
+    3    Exemple : Problème du sac à dos
+
+
+    4    Conclusion
+
+
+
+
+Prog. Dyn. v1.3.3                            2 / 30
+
+--- PAGE 3 ---
+Introduction
+
+      Combinaison 1 / 4
+    Exercice
+    Écrire une fonction cnp, qui pour deux entiers positifs n et p (p ≤ n),
+    retourne le nombre de combinaisons de p éléments parmi n.
+    Pour rappel :
+                             (
+                   n      p      1              si p = 0 ou n = p
+                       = Cn =      p      p−1
+                   p             Cn−1 + Cn−1
+
+    Solution
+    fonction cnp (n,p : naturel) : NaturelNonNul
+        ⌊précondition(s) n≥p
+    debut
+        si p=0 ou n=p alors
+             retourner 1
+        sinon
+             retourner cnp(n-1,p)+cnp(n-1,p-1)
+        finsi
+    fin
+Prog. Dyn. v1.3.3                                                              3 / 30
+
+--- PAGE 4 ---
+Introduction
+
+      Combinaison 2 / 4
+    Code C
+ 1 #include<stdlib.h>
+ 2 #include<stdio.h>
+ 3
+ 4 unsigned int combinaison(unsigned int n,unsigned int p) {
+ 5 if ((p==0) || (n==p))
+ 6     return 1;
+ 7 else
+ 8     return combinaison(n=1,p)+combinaison(n=1,p=1);
+ 9}
+10
+11 int main(int argc , char** argv) {
+12 unsigned int a,b;
+13 if (argc==3) {
+14     a = atoi(argv [1]) ;
+15     b = atoi(argv [2]) ;
+16     if (a>=b)
+17        printf (”%d\n”,combinaison(a,b));
+18 }
+19 return EXIT SUCCESS;
+20 }
+Prog. Dyn. v1.3.3                                              4 / 30
+
+--- PAGE 5 ---
+Introduction
+
+      Combinaison 3 / 4
+    Temps d’exécution
+
+
+
+
+Prog. Dyn. v1.3.3                  5 / 30
+
+--- PAGE 6 ---
+Introduction
+
+      Combinaison 4 / 4
+    Arbre des appels
+
+
+                                                          5,3
+
+
+
+
+                                        4,3                           4,2
+
+
+
+
+                  3,3                   3,2                           3,2                     3,1
+
+
+
+
+              1             2,2               2,1               2,2         2,1               2,1         2,0
+
+
+
+
+                        1         1,1               1,0         1           1,1   1,0   1,1         1,0         1
+
+
+
+
+                                  1                 1                       1     1     1           1
+
+
+
+Prog. Dyn. v1.3.3                                                                                                   6 / 30
+
+--- PAGE 7 ---
+Programmation dynamique
+
+      Programmation dynamique 1 / 2
+
+
+    Première définition
+    ≪ Paradigme de conception qu’il est possible de voir comme une
+
+    amélioration ou adaptation de la méthode diviser-régner [dans le sens où
+    une] solution d’un problème dépend des solutions précédentes obtenues
+    des sous-problèmes ≫ [Reb05]
+
+    Deuxième définition
+    ≪ La programmation dynamique est une technique algorithmique pour
+
+    optimiser des sommes de fonctions monotones croissantes sous
+    contrainte. ≫ (Wikipédia)
+
+
+
+
+Prog. Dyn. v1.3.3                                                              7 / 30
+
+--- PAGE 8 ---
+Programmation dynamique
+
+      Programmation dynamique 2 / 2
+    Historique
+         Principe invité en 1940 par Richard Bellman
+            Pour la petite histoire, Bellman a choisi le terme programmation
+            dynamique dans un souci de communication : son supérieur ne
+            supportait ni le mot ≪ recherche ≫ ni celui de ≪ mathématique ≫.
+            Alors il lui a semblé que les termes ≪ programmation ≫ [(au sens de
+            la planification)] et ≪ dynamique ≫ donnaient une apparence qui
+            plairait à son supérieur
+
+    Amélioration de la méthode ≪ diviser-régner ≫
+            Il faut (tenter d’) utiliser la programmation dynamique lorsque les sous-problèmes ne
+            sont pas indépendants et/ou la complexité de l’algorithme ≪ naı̈f ≫ est élevé (non
+            polynomiale : exponentielle, factorielle)
+            C’est un algorithme itératif qui calcule tout d’abord les résultats de base pour les
+            assembler et ainsi calculer le résultat recherché
+            Utilisation d’un tableau pour stocker des valeurs calculées qui pourront être réutilisées
+
+Prog. Dyn. v1.3.3                                                                                           8 / 30
+
+--- PAGE 9 ---
+Programmation dynamique
+
+      Retour sur l’exemple Combinaison 1 / 5
+    On part des feuilles
+
+
+                    1,0 = 1       1,1 = 1
+
+
+                    2,0 = 1       2,1 = 2     2,2 = 1
+
+
+                    3,0 = 1       3,1 = 3     3,2 = 3    3,3 = 1
+
+
+                    4,0 = 1       4,1 = 4     4,2 = 6    4,3 = 4    4,4 = 1
+
+
+                    5,0 = 1       5,1 = 5     5,2 = 10   5,3 = 10
+
+
+    On reconnaı̂t le triangle de Pascal. . .
+
+Prog. Dyn. v1.3.3                                                             9 / 30
+
+--- PAGE 10 ---
+Programmation dynamique
+
+      Retour sur l’exemple Combinaison 2 / 5
+
+    Nouvel algorithme pour cnp
+    fonction cnp (n,p : naturel) : NaturelNonNul
+        ⌊précondition(s) n≥p et n≤MAX N et p≤MAX P
+        Déclaration i,j : Naturel
+                        b : Tableau[0..MAX N][0..MAX P] de
+                        NaturelNonNul
+                                                                 (53)                 j
+
+                                                                          0   1   2   3   4   5
+    debut
+        pour i ←0 à n faire                                            0 1
+                                                                        1 1   1
+             pour j ←0 à min(i,p) faire                                2 1   2 1
+                  si i=j ou i=0 ou j=0 alors                            3 1   3 3 1
+                                                             i
+                       b[i,j] ← 1                                       4 1   4 6 4
+                  sinon                                                 5 1   5 10 10
+                       b[i,j] ← b[i-1,j-1]+b[i-1,j]
+                  finsi
+             finpour
+        finpour
+        retourner b[n,p]
+    fin
+
+
+
+Prog. Dyn. v1.3.3                                                                                 10 / 30
+
+--- PAGE 11 ---
+Programmation dynamique
+
+      Retour sur l’exemple Combinaison 3 / 5
+
+
+    En utilisant un tableau à une dimension [Reb05]
+    fonction cnp (n,p : naturel) : NaturelNonNul
+        ⌊précondition(s) n≥p et n≤MAX N et p≤MAX P
+        Déclaration i,j : Naturel
+                        b : Tableau[0..MAX N] deNaturelNonNul
+    debut
+        b[0] ← 1
+        pour i ←1 à n faire
+             b[i] ← 1
+             pour j ←i-1 à 1 pas de -1 faire
+                   b[j] ← b[j]+b[j-1]
+             finpour
+        finpour
+        retourner b[p]
+    fin
+
+
+
+
+Prog. Dyn. v1.3.3                                               11 / 30
+
+--- PAGE 12 ---
+Programmation dynamique
+
+      Retour sur l’exemple Combinaison 4 / 5
+
+    Code C
+  1 #include<stdlib.h>
+  2 #include<stdio.h>
+  3
+  4 unsigned int combinaison(unsigned int n,unsigned int p) {
+  5   int i , j ;
+  6 unsigned int b[n+1];
+  7 b [0] = 1;
+  8   for ( i =1;i<=n;i++) {
+  9       b[ i ] = 1;
+ 10       for ( j=i=1;j>0;j==)
+ 11         b[ j ] = b[j ] + b[j =1];
+ 12 }
+ 13 return b[p ];
+ 14 }
+ 15
+ 16 int main(int argc , char** argv) {
+ 17 unsigned int a,b;
+ 18    if (argc==3) {
+ 19       a = atoi(argv [1]) ;
+ 20       b = atoi(argv [2]) ;
+ 21       if (a>=b)
+ 22          printf (”%d\n”,combinaison(a,b));
+ 23 }
+ 24 return EXIT SUCCESS;
+ 25 }
+
+
+
+
+Prog. Dyn. v1.3.3                                               12 / 30
+
+--- PAGE 13 ---
+Programmation dynamique
+
+      Retour sur l’exemple Combinaison 5 / 5
+    Temps d’exécution
+
+
+
+
+Prog. Dyn. v1.3.3                              13 / 30
+
+--- PAGE 14 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 1 / 15
+
+    Présentation du problème
+         Soit n objets i d’un certain poids wi et d’une certaine valeur vi
+            Soit un sac à dos permettant de stocker au maximum des objets
+            dont la somme des poids est W
+            Quels objets mettre dans le sac de façon à maximiser la valeur de
+            l’ensemble ?
+
+    Présentation mathématique du problème
+            Soit X ∈ [0, 1]n tel que xi = 1 si l’objet est dans le sac à dos, 0
+            sinon.
+            L’objectif est de choisir X afin de maximiser ni=1 xi vi tel que
+                                                            P
+            P  n
+               i=1 xi wi ≤ W
+
+
+
+
+Prog. Dyn. v1.3.3                                                                  14 / 30
+
+--- PAGE 15 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 2 / 15
+
+    Signature de la fonction
+    fonction resoudreSacADos (tailleDuSac, nbObjets : NaturelNonNul ;
+    valeurs, poids : Tableau[1..MAX] de Naturel) :
+    Ensemble<NaturelNonNul>
+       ⌊précondition(s) nbObjets ≤ MAX
+
+    Exemple [Reb05]
+            Données du problème :
+                    Taille du sac : 11
+                    Caractéristiques des objets :
+                     objets      1 2 3         4   5
+                     valeurs 1 6 18 22 28
+                     poids       1 2 5         6   7
+            Solution : {3,4} avec la valeur 40
+
+Prog. Dyn. v1.3.3                                                       15 / 30
+
+--- PAGE 16 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 3 / 15
+    Résolution en force brute
+    fonction resoudreSacADos (tailleDuSac, nbObjets : NaturelNonNul ; valeurs, poids :
+    Tableau[1..MAX OBJETS] de Naturel) : Ensemble<NaturelNonNul>
+        ⌊précondition(s) nbObjets ≤ MAX OBJETS
+        Déclaration i : NaturelNonNul
+                      objetsDispos : Ensemble<Naturel>
+    debut
+        objetsDispos ← ensembleNaturels(1,nbObjets)
+        retourner resoudreSacADosR(tailleDuSac,ensemble(),objetsDispos,valeurs,poids)
+    fin
+    On suppose posséder :
+            fonction ensembleNaturels (borneInf, borneSup) : Ensemble<Naturel>
+            fonction somme (indice : Ensemble<Naturel>, valeurs : Tableau[1..MAX] de Naturel)
+            : Naturel
+            procédure obtenirSupprimerUnElement (E/S ens : Ensemble<Naturel>, S el : Naturel)
+
+    Il faut donc l’algorithme de :
+            fonction resoudreSacADosR (tailleDuSac :NaturelNonNul, objetsChoisis,
+            objetsRestants : Ensemble<NaturelNonNul> ; valeurs, poids : Tableau[1..MAX] de
+            Naturel) : Ensemble<NaturelNonNul>
+
+Prog. Dyn. v1.3.3                                                                            16 / 30
+
+--- PAGE 17 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 4 / 15
+
+
+
+    Résolution en force brute
+    Trois cas (disjoints) possibles :
+        1   La somme des poids des objets choisis est plus grande que la taille
+            du sac à dos, on retourne alors un ensemble vide
+        2   Il n’y a plus d’objets restants, on retourne alors les objets choisis
+        3   On résout le problème avec un élément el de moins pour les objets
+            restants. On obtient ainsi un ensemble d’objets ens. On retourne
+            l’ensemble ens ou ens ∪ {el}, celui dont la somme des valeurs est la
+            plus grande
+
+
+
+
+Prog. Dyn. v1.3.3                                                                   17 / 30
+
+--- PAGE 18 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 5 / 15
+    Résolution en force brute
+    fonction resoudreSacADosR (tailleDuSac : NaturelNonNul, objetsChoisis, objetsRestants : Ensemble<NaturelNonNul>,
+    valeurs, poids : Tableau[1..MAX OBJETS] de Naturel) : Ensemble<NaturelNonNul>
+         Déclaration temp1,temp2,objetsChoisisAvecEl : Ensemble<NaturelNonNul>
+                         el : NaturelNonNul
+    debut
+         si somme(objetsChoisis,poids)>tailleDuSac alors
+               retourner ensemble()
+         sinon
+               si estVide(objetsRestants) alors
+                       retourner objetsChoisis
+               sinon
+                       obtenirSupprimerUnElement(objetsRestants,el)
+                       objetsChoisisAvecEl ← objetsChoisis
+                       ajouter(objetsChoisisAvecEl,el)
+                       temp1 ← resoudreSacADosR(tailleDuSac,objetsChoisis,objetsRestants,valeurs,poids)
+                       temp2 ← resoudreSacADosR(tailleDuSac,objetsChoisisAvecEl,objetsRestants,valeurs,poids)
+                       si somme(temp1,valeurs)>somme(temp2,valeurs) alors
+                             retourner objetsChoisis
+                       sinon
+                             retourner objetsChoisisAvecEl
+                       finsi
+               finsi
+         finsi
+    fin
+
+
+
+                                                         O(2n )
+Prog. Dyn. v1.3.3                                                                                                      18 / 30
+
+--- PAGE 19 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 6 / 15
+    Temps d’exécution
+
+
+
+
+Prog. Dyn. v1.3.3                                  19 / 30
+
+--- PAGE 20 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 7 / 15
+    Programmation dynamique : analyse du problème
+        Soit Vi,j la somme des valeurs des objets retenus parmi les i
+        premiers objets pour un sac à dos de contenance maximale j.
+        Résoudre le problème du sac à dos pour n objets avec un sac de
+        contenance maximale W revient à calculer Vn,W
+        Déterminons une relation récursive de Vi,j en s’inspirant d’une
+        démonstration par récurrence :
+                    Mettre aucun objet quelque soit le sac donne la valeur 0, donc
+                    V0,j = 0
+                    On ne peut mettre aucun objet dans un sac de taille O, donc Vi,0 = 0
+                    Supposons que Vi−1,0..j donne les valeurs maximales recherchées pour
+                    les i − 1 premiers objets pour les sacs à dos de taille 0..j. Lorsque l’on
+                    essaye d’ajouter le ième objet deux cas se présentent :
+                       1   il est plus lourd que le sac à dos (wi > j), on ne peut donc pas l’ajouter,
+                           Vi,j ← Vi−1,j
+                       2   il est plus léger (ou égal) au sac à dos (wi ≤ j). Dans ce cas on ne retient
+                           ce ième objet que si sa valeur additionnée à la valeur d’un sac de poids
+                           maximal j − wi (vi + Vi−1,j−wi ) est plus grande que la valeur précédemment
+                           calculée pour un sac de même taille avec les i − 1 objets (Vi−1,j )
+Prog. Dyn. v1.3.3                                                                                       20 / 30
+
+--- PAGE 21 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 8 / 15
+    Exemple [Reb05]
+            Données du problème :
+                          Taille du sac : 11
+                          Caractéristiques des objets :
+                           objets          1 2 3         4          5
+                           valeurs (vi ) 1 6 18 22                 28
+                           poids (wi )     1 2 5         6          7
+            Calcul de V (ne pas oublier que les Vi,j sont sommes de vk ) :
+                                    Poids maximal du sac à dos (j)
+                      i    wi
+                             0 1 2 3 4 5 6 7 8 9 10 11
+                      0 0 0 0 0 0 0 0 0 0 0 0 0 0
+                      1 1 0 1 1 1 1 1 1 1 1 1 1 1
+             Objets
+
+
+
+
+                      2 2 0 1 6 7 7 7 7 7 7 7 7 7
+                      3 5 0 1 6 7 7 18 19 24 25 25 25 25
+                      4 6 0 1 6 7 7 18 22 24 28 29 29 40
+                      5 7 0 1 6 7 7 18 22 28 29 34 35 40
+                      Cas n°1 : 5 > 3      Cas n°2 : 5 < 7
+                      V3,3 ← V2,3          j – wi = 7 – 5 = 2, on compare donc :
+                                            V2,2 + v3 = 24 et V2,7 = 7 donc V3,7 ← 24
+
+Prog. Dyn. v1.3.3                                                                       21 / 30
+
+--- PAGE 22 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 9 / 15
+    Quels objets retenir ?
+            Il faut partir de Vn,W (i ← n et j ← W ) et remonter les lignes
+            (i ← i − 1) jusqu’à la première (i = 1) ou s’arréter lorsqu’il n’y a
+            plus de place dans le sac à dos (j = 0)
+            À chaque itération, deux cas se présentent :
+               1    Si Vi,j ̸= Vi−1,j alors il faut garder le ième objet et se positionner sur
+                    un sac plus petit (colonne j − wi )
+               2    Sinon ne pas garder le ième objet et rester sur la même contenance
+                    du sac (même colonne j)
+
+                                                          Poids maximal du sac à dos (j)
+                                           i   wi
+                                                  0   1    2 3 4 5 6 7 8 9 10 11
+                                           0    0 0   0    0 0 0 0 0 0 0 0 0 0
+                                           1    1 0   1    1 1 1 1 1 1 1 1 1 1
+                                  Objets
+
+
+
+
+                                           2    2 0   1    6 7 7 7 7 7 7 7 7 7
+                                           3    5 0   1    6 7 7 18 19 24 25 25 25 25
+                                           4    6 0   1    6 7 7 18 22 24 28 29 29 40
+                                           5    7 0   1    6 7 7 18 22 28 29 34 35 40
+                                                            objets retenus = {}
+
+
+Prog. Dyn. v1.3.3                                                                             22 / 30
+
+--- PAGE 23 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 10 / 15
+    Quels objets retenir ?
+            Il faut partir de Vn,W (i ← n et j ← W ) et remonter les lignes
+            (i ← i − 1) jusqu’à la première (i = 1) ou s’arréter lorsqu’il n’y a
+            plus de place dans le sac à dos (j = 0)
+            À chaque itération, deux cas se présentent :
+               1    Si Vi,j ̸= Vi−1,j alors il faut garder le ième objet et se positionner sur
+                    un sac plus petit (colonne j − wi )
+               2    Sinon ne pas garder le ième objet et rester sur la même contenance
+                    du sac (même colonne j)
+
+                                                           Poids maximal du sac à dos (j)
+                                            i   wi
+                                                   0   1    2 3 4 5 6 7 8 9 10 11
+                                            0    0 0   0    0 0 0 0 0 0 0 0 0 0
+                                            1    1 0   1    1 1 1 1 1 1 1 1 1 1
+                                   Objets
+
+
+
+
+                                            2    2 0   1    6 7 7 7 7 7 7 7 7 7
+                                            3    5 0   1    6 7 7 18 19 24 25 25 25 25
+                                            4    6 0   1    6 7 7 18 22 24 28 29 29 40
+                                            5    7 0   1    6 7 7 18 22 28 29 34 35 40
+                                                             objets retenus = {4}
+
+
+Prog. Dyn. v1.3.3                                                                             22 / 30
+
+--- PAGE 24 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 11 / 15
+    Quels objets retenir ?
+            Il faut partir de Vn,W (i ← n et j ← W ) et remonter les lignes
+            (i ← i − 1) jusqu’à la première (i = 1) ou s’arréter lorsqu’il n’y a
+            plus de place dans le sac à dos (j = 0)
+            À chaque itération, deux cas se présentent :
+               1    Si Vi,j ̸= Vi−1,j alors il faut garder le ième objet et se positionner sur
+                    un sac plus petit (colonne j − wi )
+               2    Sinon ne pas garder le ième objet et rester sur la même contenance
+                    du sac (même colonne j)
+
+                                                           Poids maximal du sac à dos (j)
+                                            i   wi
+                                                   0   1    2 3 4 5 6 7 8 9 10 11
+                                            0    0 0   0    0 0 0 0 0 0 0 0 0 0
+                                            1    1 0   1    1 1 1 1 1 1 1 1 1 1
+                                   Objets
+
+
+
+
+                                            2    2 0   1    6 7 7 7 7 7 7 7 7 7
+                                            3    5 0   1    6 7 7 18 19 24 25 25 25 25
+                                            4    6 0   1    6 7 7 18 22 24 28 29 29 40
+                                            5    7 0   1    6 7 7 18 22 28 29 34 35 40
+                                                             objets retenus = {4,3}
+
+
+Prog. Dyn. v1.3.3                                                                             22 / 30
+
+--- PAGE 25 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 12 / 15
+
+    Algorithme
+    fonction toutesLesValeursPossibles (tailleDuSac, nbObjets : NaturelNonNul ; valeurs, poids : Tableau[1..MAX OBJETS] de
+    Naturel) : Tableau[0..MAX OBJETS][0..TAILLE MAX SAC] de Naturel
+         ⌊précondition(s) nbObjets ≤ MAX OBJETS et tailleDuSac≤TAILLE MAX SAC
+         Déclaration v : Tableau[0..MAX OBJETS][0..TAILLE MAX SAC] de Naturel
+                        i,j : Naturel
+    debut
+        pour i ←0 à nbObjets faire
+             v[i,0] ← 0
+        finpour
+        pour j ←0 à tailleDuSac faire
+             v[0,j] ← 0
+        finpour
+        pour i ←1 à nbObjets faire
+             pour j ←1 à tailleDuSac faire
+                     si poids[i]≤j alors
+                           v[i,j] ← max(v[i-1,j],valeurs[i]+v[i-1,j-poids[i]])
+                     sinon
+                           v[i,j] ← v[i-1,j]
+                     finsi
+             finpour
+        finpour
+        retourner v
+    fin
+
+
+
+
+Prog. Dyn. v1.3.3                                                                                                        23 / 30
+
+--- PAGE 26 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 13 / 15
+
+
+    Algorithme
+    fonction rechercherObjetsARetenir (tailleDuSac, nbObjets : NaturelNonNul ;
+                                        v : Tableau[0..MAX OBJETS][0..TAILLE MAX SAC] de Naturel ;
+                                        poids : Tableau[1..MAX OBJETS] de Naturel ) : Ensemble<NaturelNonNul>
+         ⌊précondition(s) nbObjets ≤ MAX OBJETS et tailleDuSac≤TAILLE MAX SAC
+         Déclaration i,j : Naturel
+                        resultat : Ensemble<NaturelNonNul>
+    debut
+        resultat ← ensemble()
+        i ← nbObjets
+        j ← tailleDuSac
+        tant que i > 0 et j > 0 faire
+              si v[i,j]̸=v[i-1,j] alors
+                        ajouter(resultat,i)
+                        j ← j-poids[i]
+              finsi
+              i ← i-1
+        fintantque
+        retourner resultat
+    fin
+
+
+
+
+Prog. Dyn. v1.3.3                                                                                               24 / 30
+
+--- PAGE 27 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 14 / 15
+
+
+
+
+    Algorithme
+    fonction resoudreSacADos (tailleDuSac, nbObjets : NaturelNonNul ;
+                              valeurs, poids : Tableau[1..MAX OBJETS] de Naturel) : Ensemble<NaturelNonNul>
+        ⌊précondition(s) nbObjets ≤ MAX OBJETS et tailleDuSac≤TAILLE MAX SAC
+    debut
+        retourner rechercherObjetsARetenir(tailleDuSac,
+                                           nbObjets,
+                                           toutesLesValeursPossibles(tailleDuSac, nbObjets, valeurs, poids),
+                                           poids)
+    fin
+
+
+
+
+Prog. Dyn. v1.3.3                                                                                              25 / 30
+
+--- PAGE 28 ---
+Exemple : Problème du sac à dos
+
+      Problème du sac à dos 15 / 15
+    Temps d’exécution
+
+
+
+
+Prog. Dyn. v1.3.3                                  26 / 30
+
+--- PAGE 29 ---
+Conclusion
+
+      Conclusion 1 / 3
+
+
+
+            Utiliser la programmation dynamique lorsque :
+                    besoin d’une solution exacte
+                    il y a une résolution ≪ récursive ≫ du problème mais que l’algorithme
+                    ≪ naı̈f ≫ est d’une grande complexité (car un même calcul est réalisé
+
+                    plusieurs fois)
+            Attention : peut être difficile à concevoir
+            Certains langages proposent des outils (par exemple des décorateurs)
+            permettant de faciliter le développement de ce type d’algorithme
+
+
+
+
+Prog. Dyn. v1.3.3                                                                           27 / 30
+
+--- PAGE 30 ---
+Conclusion
+
+      Conclusion 2 / 3
+
+    Exemple de problèmes pouvant nécessiter la programmation dynamique
+        Distance de Levenshtein : distance entre chaı̂nes de caractères
+        fondée sur le coût de trois opérations (insertion, suppression,
+        substitution)
+            Problème de rendu de monnaie
+            Problème du voyageur de commerce : plus court chemin qui permet
+            de passer par n sommets d’un graphe (O(n!) → O(n2 2n ) cf.
+            Wikipédia)
+              n          1    ...       8        9        10        11          12          13       ...
+              n!         1    ...     40320   362880   3628800   39916800   479001600   6227020800   ...
+              n 2 × 2n   2    ...     16384    41472    102400    247808      589824      1384448    ...
+
+            Multiplications chaı̂nées de matrices
+                    ex : |A1 | = (10, 100), |A2 | = (100, 5) et |A3 | = (5, 50), Nombre
+                    d’opérations pour (A1 A2 )A3 et A1 (A2 A3 ) ?
+
+
+
+Prog. Dyn. v1.3.3                                                                                          28 / 30
+
+--- PAGE 31 ---
+Conclusion
+
+      Conclusion 3 / 3
+
+    Remarques
+       ≪ Martelli a démontré en 1976 que tout algorithme de
+
+       programmation dynamique pouvait se ramener à la recherche du
+       plus court chemin dans un graphe. Or, les techniques de recherche
+       heuristique basées sur l’algorithme A* permettent d’exploiter les
+       propriétés spécifiques d’un problème pour gagner en temps de calcul.
+       Autrement dit, il est souvent plus avantageux d’exploiter un A* que
+       d’utiliser la programmation dynamique. ≫ (Wikipédia)
+       Lorsque la recherche d’une solution exacte est trop coûteuse, on
+       peut essayer de trouver des solutions approchées :
+                    algorithmes glouton
+                    algorithme du recuit simulé
+                    algorithme tabou
+                    etc.
+
+
+Prog. Dyn. v1.3.3                                                            29 / 30
+
+--- PAGE 32 ---
+Conclusion
+
+    Références I
+
+
+
+    [CLR94] Thomas Cormen, Charles Leiserson, and Ronald Rivest.
+                Introduction à l’algorithmique.
+                Dunod, 1994.
+
+    [Reb05] Djamal Rebaı̈ne.
+                Analyse et conception d’algorithme, chapitre 5.
+                http://www.uqac.ca/rebaine/8INF806/
+                Chapitre5propreprogrammationdynamique.pdf, 2005.
+
+
+
+
+Prog. Dyn. v1.3.3                                                  30 / 30

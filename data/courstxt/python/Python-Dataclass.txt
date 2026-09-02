@@ -1,0 +1,161 @@
+--- PAGE 1 ---
+Python
+                     Les Dataclasses
+
+                      Nicolas Delestre
+
+
+
+
+Dataclasses - v1.0                       1/8
+
+--- PAGE 2 ---
+Contexte
+
+
+     La représentation des données
+          Très souvent les objets ont besoin de s’échanger des données qui forment un tout mais
+          qui n’ont pas nécessairement des messages à traiter
+             Dans les langages tels que C, Pascal, etc. on utilise dans ce cas des struct, record, etc.
+             pour organiser ces données
+             En python, jusqu’à la version 3.7, on utilisait soit :
+                     des tuples, mais dans ce cas le code était moins lisible
+                     des classes, mais dans ce cas le concepteur devait coder un initialiseur, des transtypages en
+                     str , etc.
+
+
+
+
+Dataclasses - v1.0                                                                                                   2/8
+
+--- PAGE 3 ---
+Module dataclasses
+
+             Disponible à partir de la version 3.7 de Python
+             Module proposant un décorateur et des fonctions permettant de générer
+             automatiquement du code comme par exemple __init__ et __repr__ (cf. la PEP 557)
+             facilitant le développement de classes qui représentent des données
+
+     Avantages
+         Développement accéléré
+             Lisibilité du code
+
+     Inconvénient
+          Pas d’encapsulation
+
+
+Dataclasses - v1.0                                                                         3/8
+
+--- PAGE 4 ---
+Un exemple (tiré de la documentation de python)
+     Conception
+  1 from dataclasses import dataclass
+  2
+  3 @dataclass
+  4 class ElementDInventaire:
+  5     """Classe représentant un élément d’inventaire en stock."""
+  6     nom: str
+  7     prix_unitaire: float
+  8     quantite_en_stock: int = 0
+  9
+ 10     def cout_total(self) -> float:
+ 11         return self.prix_unitaire * self.quantite_en_stock
+
+
+
+
+     Utilisation
+     >>> from inventaire import ElementDInventaire                       >>> ecrous.cout_total()
+     >>> ecrous = ElementDInventaire("Ecrou de diametre 15", 0.1,        20.0
+            100)
+     >>> ecrous
+     ElementDInventaire(nom=’Ecrou de diametre 15’, prix_unitaire
+            =0.1, quantite_en_stock=100)
+     >>> ecrous.nom
+     ’Ecrou de diametre 15’
+     >>> ecrous.prix_unitaire = 0.2
+Dataclasses - v1.0                                                                                 4/8
+
+--- PAGE 5 ---
+Principaux paramètres du décorateur dataclass
+     À partir de la 3.7
+             init (valeur par défaut True) pour générer la méthode __init__
+             repr (valeur par défaut True) pour générer la méthode __repr__
+             eq (valeur par défaut True) pour générer la méthode __eq__
+             frozen (valeur par défaut False) pour définir les objets immuables
+             unsafe_hash (valeur par défaut False) pour générer la méthode __hash__ (à n’utiliser
+             que si les objets sont immuables)
+             order (valeur par défaut False) pour générer les méthodes de comparaison (__lt__,
+             __le__, etc.) en considérant les objets comme des tuples
+
+     À partir de la 3.10
+             kw_only (valeur par défaut False) pour obliger à utiliser une initialisation des objets à
+             l’aide d’un passage de paramètre nommé
+Dataclasses - v1.0                                                                                          5/8
+
+--- PAGE 6 ---
+Quelques fonctions du module dataclasses
+
+
+
+     >>> import dataclasses
+     >>> dataclasses.asdict(ecrous)
+     {’nom’: ’Ecrou de diametre 15’, ’prix_unitaire’: 0.1, ’quantite_en_stock’:
+          100}
+     >>> dataclasses.astuple(ecrous)
+     (’Ecrou de diametre 15’, 0.1, 100)
+     >>> dataclasses.is_dataclass(ecrous)
+     True
+
+
+
+
+Dataclasses - v1.0                                                                6/8
+
+--- PAGE 7 ---
+Fonction field
+             Elle permet de paramétrer les valeurs par défaut et le comportement des champs
+
+     Exemple tiré de https://www.youtube.com/watch?v=CvQ7e6yUtnw
+  1 #!/usr/bin/env python3                                                   >>> from personne import Personne
+  2 import random                                                            >>> p = Personne("Delestre","Nicolas")
+  3 import string                                                            >>> p
+  4 from dataclasses import dataclass, field                                 Personne(nom=’Delestre’, prenom=’Nicolas’, majeur=True,
+  5                                                                                 emails=[], identifiant=’YZOYLUVTDRSA’)
+  6 def id_aleatoire() -> str:                                               >>>
+  7     return "".join(random.choices(string.ascii_uppercase, k=12))
+  8
+  9 @dataclass
+ 10 class Personne:
+ 11     """Classe représentant une personne"""
+ 12     nom: str
+ 13     prenom: str
+ 14     majeur: bool = True
+ 15     emails: list[str] = field(default_factory=list)
+ 16     identifiant: str = field(init=False, default_factory=id_aleatoire)
+ 17     _champ_recherche: str = field(init=False, repr=False)
+ 18
+ 19     def __post_init__(self):
+ 20         self._champ_recherche = f"{self.nom} {self.prenom}"
+
+
+
+Dataclasses - v1.0                                                                                                                     7/8
+
+--- PAGE 8 ---
+Conclusion
+
+             Les dataclasses en Python, introduites à partir de la version 3.7, simplifient
+             considérablement la création de classes destinées principalement à stocker des données
+             Grâce au décorateur @dataclass, les méthodes spéciales telles que __init__,
+             __repr__, et __eq__ peuvent être générées automatiquement, réduisant ainsi la
+             quantité de code à écrire
+             Cela conduit à un développement plus rapide, un code plus lisible, et une meilleure
+             gestion des classes utilisées pour représenter des données
+             Le module dataclasses offre des fonctionnalités telles que asdict, astuple, et field
+             pour une personnalisation accrue
+             Il est essentiel de comprendre les paramètres du décorateur @dataclass et la fonction
+             field pour tirer le meilleur parti de cette fonctionnalité
+
+
+Dataclasses - v1.0                                                                                         8/8

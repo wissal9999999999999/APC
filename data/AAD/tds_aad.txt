@@ -1,0 +1,18 @@
+AAD-ID,AAD-TITLE
+TDS1.1,Décomposer une chaine de traitement du signal
+TDS1.2,Identifier les différents types de signaux
+TDS1.3,Comparer deux signaux temporel avec une correlation
+TDS2.1,Calculer une représentation fréquentielle des signaux
+TDS4.1,Identifier les différents types de systèmes
+TDS4.2,Calculer la réponse d’un système linéaire
+TDS4.3,Calculer une transformée de Laplace
+TDS4.4,Caractériser la réponse fréquentielle d’un système linéaire
+TDS5.1,synthétiser un filtre linéaire continu
+TDS6.1,Echantillonner un signal continu
+TDS7.1,Calculer une représentation fréquentielle d’un signal discret
+TDS8.1,Caractériser un système linéaire discret
+TDS8.2,Transiter d’une représentation temporelle à fréquentielle et inversement
+TDS8.3,Calculer une transformée en Z
+TDS9.1,Caractériser un filtre numérique
+TDS9.2,Identifier un filtre RIF ou RII
+TDS9.3,Synthétiser un filtre linéaire numérique

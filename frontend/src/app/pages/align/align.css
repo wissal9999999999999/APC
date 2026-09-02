@@ -68,6 +68,35 @@
   padding: 18px;
 }
 
+.batch-card{
+  margin-top: 18px;
+}
+
+.section-description{
+  margin: -4px 0 14px;
+  opacity: .72;
+  font-size: 13px;
+}
+
+.batch-results{
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.aad-result{
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.035);
+}
+
+.aad-title{
+  margin: 0 0 10px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
 .section-title{
   font-size: 14px;
   font-weight: 700;
@@ -96,6 +125,19 @@
 
 .input::placeholder{
   color: rgba(233,236,255,.55);
+}
+
+.threshold {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 12px;
+  font-size: 13px;
+  opacity: .85;
+}
+
+.threshold input {
+  width: 220px;
 }
 
 .btn{

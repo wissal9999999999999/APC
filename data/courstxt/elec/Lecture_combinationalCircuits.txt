@@ -1,0 +1,397 @@
+--- PAGE 1 ---
+DIGITAL
+ ELECTRONICS:
+COMBINATIONAL
+   CIRCUITS
+ H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+WHAT HAVE WE LEARNT?
+• Digital systems: definition,
+• Different Numbering system representations
+• Boolean algebra: definitions and theorems
+• Semi-conductors and logic gates
+• Combinational circuits
+
+--- PAGE 3 ---
+ILO OF THIS SESSION
+
+• Bcome familiar with combinational logic circuits
+• Analysis and design of logic circuits
+• Become familiar with minimization methods
+• Become familiar with fundamental combinational blocks with examples
+• Common manufactured Integrated Circuits: advantages & disadvantages
+
+--- PAGE 4 ---
+XOR GATE
+                             ത 𝑏 + 𝑎. 𝑏ത
+• Is equivalent to : 𝑎 ⊕ 𝑏 = 𝑎.
+• Properties:
+                                            𝑎⊕𝑎 =0
+                                            𝑎⊕0 =𝑎
+                                            𝑎 ⊕ 1 = 𝑎ത
+                                            𝑎 ⊕ 𝑎ത = 1
+• Theorem:
+                              𝑎 + 𝑏 = 𝑎.ത 𝑏ത + 𝑎. 𝑏 = 𝑎 ⊕ 𝑏ത = 𝑎ത ⊕ 𝑏
+                              𝑎ത ⊕ 𝑏ത = 𝑎 ⊕ 𝑏 = 𝑎 ⊕ 𝑏ത = 𝑎ത ⨁𝑏
+• The XOR of N variables is:
+    – 1 when the number of variables equal to 1 is odd
+    – 0 when the number of variables equal to 1 is even
+
+--- PAGE 5 ---
+LOGIC OPERATORS
+
+• It is possible to transform a diagram composed of OR gates with AND gates and vice-versa
+• The rules to follow are:
+    – Inverse each input and each output
+    – Switch the AND to OR
+    – Switch the OR to AND
+• De Morgan’s law:
+                                   ത
+    – 𝑎. 𝑏 = 𝑎. 𝑏 = (𝑎. 𝑏) = (𝑎ത + 𝑏)
+
+    – 𝑎 + 𝑏 = 𝑎 + 𝑏 = 𝑎 + 𝑏 = (𝑎. ത
+                               ത 𝑏)
+
+--- PAGE 6 ---
+COMBINATIONAL LOGIC CIRCUITS
+
+• Definition: Combinational Circuit is the type of circuit in which output is independent of time and
+  only relies on the input present at that particular instant.
+• Feedback: In Combinational circuit as output does not depend on the time instant, no feedback is
+  required for its next output generation.
+• Performance: As the input of current instant is only required in case of Combinational circuit, it is
+  faster and better in performance as compared to that of Sequential circuit.
+• Complexity: No implementation of feedback makes the combinational circuit less complex as
+  compared to sequential circuit.
+• Elementary blocks: Elementary building blocks for combinational circuit are logic gates.
+• Operation: Combinational circuit are mainly used for arithmetic as well as Boolean operations
+
+--- PAGE 7 ---
+STEP1-THE TRUTH TABLE
+
+• Depending on your problem, you need to determine the number of inputs and outputs
+• For each state of your input, you’ll have to attribute either a 0 or a 1 to determine the state of
+  your output
+
+--- PAGE 8 ---
+STEP2-BOOLEAN FUNCTIONS
+
+• A Boolean function is described by an algebraic expression consisting of binary variables, the
+  constants 0 and 1, and the logic operation symbols +, ., ‘
+• For a given set of values of the binary variables involved, the boolean function can have a value of 0
+  or 1. Give cases for which this function F=x’y+z is equal to 1
+
+
+
+
+• Any binary variable can take one of two forms x and x’ and any function can be expressed in terms
+  of 𝑛 variables
+• If all the binary variables are combined together using the AND operation, then there are a total of
+  2𝑛 combinations since each variable can take 2 forms
+
+--- PAGE 9 ---
+STEP2-BOOLEAN FUNCTIONS
+
+• Each of the combinations is called a minterm or standard product. (combination with AND
+  operator).
+• A minterm is represented by 𝑚𝑖 where 𝑖 is the decimal equivalent of the binary number the
+  minterm is designated.
+• The minterms of a function containing variables 𝑥 and 𝑦 are: 𝑚0 = 𝑥 ′ 𝑦 ′ , 𝑚1 = 𝑥 ′ 𝑦, 𝑚2 =
+  𝑥𝑦 ′ , 𝑚3 = 𝑥𝑦
+• If the variables are combined with the OR operator=> the obtain term is the maxterm or
+  standard sum
+• A maxterm is represented by 𝑀𝑖 where 𝑖 is the decimal equivalent of the binary number the
+  maxterm is designated.
+• The minterms of a function containing variables 𝑥 and 𝑦 are: 𝑀0 = 𝑥 + 𝑦, 𝑀1 = 𝑥 + 𝑦 ′ , 𝑀2 = 𝑥 ′ +
+  𝑦, 𝑀3 = 𝑥 ′ + 𝑦′
+
+--- PAGE 10 ---
+MINTERMS AND MAXTERMS
+
+
+
+
+• Relation between Minterms and Maxterms – Each minterm is the complement of it’s
+  corresponding maxterm.
+• 𝑚0 = 𝑥 ′ 𝑦 ′ ⟶ 𝑚0′ = 𝑥 ′ 𝑦 ′ ′ = 𝑥 ′ ′ + 𝑦 ′ ′ = 𝑥 + 𝑦 = 𝑀0
+
+--- PAGE 11 ---
+MINTERMS AND MAXTERMS
+
+                                    A modifier
+         • What are the minterms of the Boolean function 𝑓1 and 𝑓2 ?
+           SOP form
+         • 𝑓1 = 𝑥 ′ 𝑦 ′ 𝑧 + 𝑥𝑦 ′ 𝑧 ′ + 𝑥𝑦𝑧
+         • 𝑓2 = 𝑥 ′ 𝑦𝑧 + 𝑥𝑦 ′ 𝑧 + 𝑥𝑦𝑧 ′ + 𝑥𝑦𝑧
+         • What are the maxterms of the Boolean functions (POS)
+           form,
+         • 𝑓1 = (𝑥′ + 𝑦′ + 𝑧′)(𝑥 + 𝑦 ′ + 𝑧)(𝑥 ′ + 𝑦 + 𝑧)(𝑥 + 𝑦 ′ +
+           𝑧)(𝑥 + 𝑦 + 𝑧 ′ )
+         • 𝑓2 = (𝑥 + 𝑦 + 𝑧)(𝑥 ′ + 𝑦 ′ + 𝑧)(𝑥 ′ + 𝑦 + 𝑧 ′ )(𝑥 + 𝑦 ′ + 𝑧 ′ )
+
+--- PAGE 12 ---
+STEP3 - MINIMIZATION OF BOOLEAN
+FUNCTIONS
+• The process of simplifying the algebraic expression of a Boolean function is called minimization
+• It is important to include this process when designing a circuit because it reduces cost and
+  complexity.
+• Different methods can be used for minimization:
+    – Algebraic Manipulation
+    – K-map
+• For an algebraic minimization, you can use some rules:
+    – A+A’=1
+    – A+A’B=A+B
+    – A+AB=A
+    – And more …
+
+--- PAGE 13 ---
+KARNAUGH MAP OR K-MAP
+
+• A very efficient method to find an
+  expression with minimum variables
+• Can minimize Boolean expressions of 3, 4
+  variables without using any Boolean algebra
+• It is a table representation which can give
+  more information than Truth Tables
+• Rows and columns are in Gray code
+
+--- PAGE 14 ---
+KARNAUGH MAP OR K-MAP
+• Steps to solve expression using K-map:
+   1. Select K-map according to the number of variables.
+   2. Identify minterms or maxterms as given in problem.
+   3. For SOP put 1’s in blocks of K-map respective to the minterms (0’s elsewhere).
+   4. For POS put 0’s in blocks of K-map respective to the maxterms(1’s elsewhere).
+   5. Make rectangular groups containing total terms in power of two like 2,4,8 ..(except 1) and try to
+      cover as many elements as you can in one group.
+   6. From the groups made in step 5 find the product terms and sum them up for SOP form.
+
+--- PAGE 15 ---
+MINIMIZATION METHODS
+
+• To compare both methods : see example on wooclap
+• https://app.wooclap.com/DIGELEC
+
+--- PAGE 16 ---
+MINIMIZATION METHODS
+
+To minimize using the K-map:
+• The green one spans the whole third row, which gives
+  us AB
+• The blue one spans 4 squares, which gives us AC
+• The one spans 4 squares, which gives us AD
+• So, the minimized boolean expression is AB+AC+AD
+
+--- PAGE 17 ---
+STEP4- LOGIC DIAGRAM
+ We have just synthesized a combinatorial logic system. The last step is to design the logic diagram
+
+--- PAGE 18 ---
+OTHER CASES
+
+• Cases of input reduction and undifferentiated inputs. Give the expression of S in both cases
+
+--- PAGE 19 ---
+COMBINATIONAL COMPONENTS
+
+--- PAGE 20 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+The look-up table
+• A mapping table
+• It is a widely used component, which allows to
+  generate directly an output value for a defined
+  range of inputs
+• Composed essentially of RAM memory, it allows
+  to save manually the output values of a truth
+  table
+• The calculation delay is fixed,- It is only limited by
+  the number of inputs and outputs
+
+--- PAGE 21 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Multiplexers
+• The multiplexer is a data selector.
+• It allows to select an input among 2𝑁 with 𝑁 selection lines
+  (inputs), and to redirect it to the output
+• There are for example multiplexers 2 to 1, 4 to 1, 8 to 1, etc.
+• The inverse function is called the demultiplexer
+• Input select: allows to choose which switch to close
+• Which values of ab to seect A, B, C, D?
+
+--- PAGE 22 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Demultiplexer
+• The demultiplexing consists in distributing on several
+  lines information which arrive in series on the same
+  line,
+• It has an input x, 𝑁 selection inputs (or address), and
+  2𝑁 outputs.
+
+--- PAGE 23 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Encoder
+• The Digital Encoder more commonly called a Binary Encoder takes ALL its data inputs
+  one at a time and then converts them into a single encoded output.
+• A multi-input combinational logic circuit that converts the logic level “1” data at its inputs into
+  an equivalent binary code at its output.
+• Example: 4-to-2 Bit Binary Encoder
+
+--- PAGE 24 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+8-to-3 Bit Priority Encoder
+• Priority encoders are available in standard IC form and the TTL 74LS148 is an 8-to-3 bit
+  priority encoder which has eight active LOW (logic “0”) inputs and provides a 3-bit code of
+  the highest ranked input at its output.
+
+--- PAGE 25 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Decoder
+• The decoder is a specific case of the demultiplexer for
+  which the inputs x take the value 1
+• Binary Decoders are another type of digital logic
+  device that has inputs of 2-bit, 3-bit or 4-bit codes
+  depending upon the number of data input lines, so a
+  decoder that has a set of two or more bits will be
+  defined as having an n-bit code, and therefore it will be
+  possible to represent 2n possible values
+
+--- PAGE 26 ---
+FUNDAMENTAL COMBINATIONAL
+    BLOCKS
+                                                        BCD to seven-segment display
+
+
+
+
+Reference: https://www.geeksforgeeks.org/dsa/maximum-number-on-7-segment-display-using-n-segments-recursive/
+
+--- PAGE 27 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Memory Address Decoding
+3 address lines, (A0 to A2) to select each one of the 8 chips (the lower part of the address), while the
+remaining 8 address lines (A3 to A10) select the correct memory location on that chip (the upper part
+of the address).
+
+--- PAGE 28 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Binary Half-Adder
+A half adder is a logical circuit that performs an addition operation on two binary digits. The half
+adder produces a sum and a carry value which are both binary digits.
+
+--- PAGE 29 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Binary Full Adder
+The main difference between the Full Adder and the previous Half Adder is that a full adder
+has three inputs. The same two single bit data inputs A and B as before plus an additional Carry-
+in (C-in) input to receive the carry from a previous stage as shown below.
+
+--- PAGE 30 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+A 4-bit Ripple Carry Binary Adder
+4-bit full adder circuits with carry look ahead features are available as standard IC packages in the
+form of the TTL 4-bit binary adder 74LS83 or the 74LS283 and the CMOS 4008 which can add
+together two 4-bit binary numbers and generate a SUM and a CARRY
+
+
+
+
+                                                                        74LS83 Logic Symbol
+
+--- PAGE 31 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Comparator
+The binary or digital comparator can be constructed using standard AND, NOR and NOT gates
+to compare the digital signals present at their input terminals and produce an output depending
+upon the condition of those inputs.
+
+--- PAGE 32 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Comparator
+Some commercially available digital comparators such as the
+TTL 74LS85 or CMOS 4063 4-bit magnitude comparator have
+additional input terminals that allow more individual
+comparators to be “cascaded” together to compare words
+larger than 4-bits with magnitude comparators of “n”-bits
+being produced.
+
+--- PAGE 33 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+Arithmetic & Logic Unit (ALU)
+• The ALU is one of the main component of the CPU. It is used in the Execution stage of the
+  FDE cycle to perform all the logical (e.g. AND, OR, NOT) operations and all the arithmetic
+  calculations (e.g. ADD, SUB instructions).
+• Our ALU will perform 4 different operations: three logical operations (NOT, OR and AND)
+  and one arithmetical operation (ADD: +). Here is the instruction table for our ALU:
+
+--- PAGE 34 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+1-bit Arithmetic & Logic Unit (ALU)
+
+--- PAGE 35 ---
+FUNDAMENTAL COMBINATIONAL
+BLOCKS
+8-bit Arithmetic & Logic Unit (ALU)
+By connecting eight 1-bit ALUs together, we obtain an 8-bit ALU
+• Note that a single decoder can be used to control all the 1-bit ALUs. There is no need to
+  replicate this decoder eight times.
+• The last carried value can be used to detect overflows when performing a binary addition on
+  the two Bytes of data A and B.
+
+--- PAGE 36 ---
+INTEGRATED CIRCUITS
+• The integrated circuits that operate only at a few
+  defined levels instead of operating overall levels
+  of signal amplitude are called Digital ICs and
+  these are designed by using multiple numbers
+  of digital logic gates, multiplexers, flip flops, and
+  other electronic components of circuits.
+• There are different types of digital ICs or types of
+  digital integrated circuits, such as programmable
+  ICs, memory chips, logic ICs, power management
+  ICs and interface ICs.
+
+--- PAGE 37 ---
+INTEGRATED CIRCUITS
+
+The most popular among the digital logic families include:
+• TTL (Transistor-transistor Logic)
+• ECL (Emitter-coupled logic)
+• MOS (Metal-oxide semiconductor)
+• CMOS (Complementary metal-oxide-semiconductor)
+
+
+
+• The most produced gate is the NAND gate
+
+                                                             TTµL-103 Fairchild (1964)
+
+--- PAGE 38 ---
+INTEGRATED CIRCUITS
+• TTL consumes more power than CMOS
+• CMOS logic lends itself very well to miniaturization, with millions of transistors being able to
+  be packed into a small area without the current requirement being impractically high.
+• CMOS very susceptible to electrostatic discharge and overvoltage.TTL does not suffer this
+  problem for the most part since the input is a transistor base, which acts more like a diode and
+  is less sensitive to noise because of its lower impedance.
+
+--- PAGE 39 ---
+REFERENCES
+
+• Digital Electronics and Logic Design Tutorials https://www.geeksforgeeks.org/digital-electronics-
+  logic-design-tutorials/?ref=lbp
+• Digital ICs: https://www.javatpoint.com/integrated-circuits

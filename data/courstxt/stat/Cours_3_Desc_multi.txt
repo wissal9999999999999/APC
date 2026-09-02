@@ -1,0 +1,750 @@
+--- PAGE 1 ---
+Introduction aux statistiques pour l’Ingénieur
+
+               Stéphane Canu
+    asi.insa-rouen.fr/enseignants/~scanu
+                scanu@insa-rouen.fr
+
+
+
+
+ITI 3, INSA Rouen Normandie, janvier 2026
+
+--- PAGE 2 ---
+Lecture road map
+
+
+   Description d’un couple de variables
+      Cas de deux variable quantitatives
+          Covariance et corrélation
+          Espérance conditionnelle et prédiction
+          La régression linéaire
+      Tableau de contingence
+      Quantitatif vs. Qualitatif
+
+
+   Description d’un ensemble de variables
+      Cas des variable quantitatives
+      Cas des variables qualitatives
+
+
+                                              https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 3 ---
+Deux variables quantitatives
+
+       (xi , yi ), i = 1, . . . , n     Nuage de point (scatterplot)
+                 taille    poids
+      Alice       x1        y1
+        ..         ..        ..
+         .          .         .
+       Bill        xi         yi
+        ..          ..         ..
+         .           .          .
+       Sue         xn        yn
+
+   import matplotlib.pyplot as plt
+
+   taille = [157.2, 162,5, 181.2, 180.9, 155.8]
+   poids = [64.0, 53.0, 73.0, 83.4, 53.4]
+
+   plt.plot(taille,poids,"ob") # ob = "o" ronds, "b" bleus
+
+--- PAGE 4 ---
+Mesure de dépendance : Covariance et corrélation
+   Variance
+                                    n
+                                  1X
+                     V (X ) =        (xi − x̄)2
+                                  n
+                                   i=1
+
+   Covariance
+                              n
+                           1X
+                   cov =      (xi − x̄)(yi − ȳ )
+                           n
+                             i=1
+
+   Corrélation
+                                     cov (X , Y )
+                 ρ = cor (X , Y ) = p
+                                     V (X ) V (Y )
+
+
+
+
+          ρ=0              ρ = 0.9                  ρ = −0.75
+
+--- PAGE 5 ---
+Les OPM associées
+
+
+                     n
+                   1X
+                      (xi − x̄)2            IEX (X − µx )2 = σx2
+                                                          
+        V (X ) =                       −→
+                   n                n→∞
+                    i=1
+
+
+              n
+           1X                                                        
+   cov =      (xi − x̄)(yi − ȳ )      −→   IEX ,Y (X − µx )(Y − µy )
+           n                        n→∞
+             i=1
+
+
+                                                                        
+                       cov (X , Y )            IEX ,Y (X − µx )(Y − µy )
+   ρ = cor (X , Y ) = p                 −→              q
+                       V (X ) V (Y )    n→∞
+                                                          σx2 σy2
+
+--- PAGE 6 ---
+Distribution Gaussienne en dimension 2
+
+
+
+
+   Soit Z une variable aléatoire Gaussienne bidimensionnelle
+                                  
+                                 X
+                         Z=           ∼ N (µ, Σ)
+                                 Y
+
+   avec la matrice de variance covariance Σ
+                                
+                    µx = IE(X )
+                                            IE (z − µ)(z − µ)> = Σ
+                                                              
+   IE(Z ) = µ =
+                    µy = IE(Y )
+
+
+             σx2                                                 σy2
+                                                                           
+                   cov                −1          1                    −cov
+   Σ=                         ,   Σ        = 2 2
+            cov     σy2                     σx σy − cov 2       −cov    σx2
+
+--- PAGE 7 ---
+Distribution Gaussienne en dimension 2
+
+   Soit Z une variable aléatoire Gaussienne bidimensionnelle
+                                  
+                                 X
+                         Z=           ∼ N (µ, Σ)
+                                 Y
+
+   avec la matrice de variance covariance Σ
+                                                            σy2
+                                                                       
+           µx = IE(X )               −1          1                 −cov
+   µ=                              Σ = 2 2
+           µy = IE(Y )                     σx σy − cov 2   −cov     σx2
+
+   Sa densité s’écrit (z ∈ IR2 )
+
+                          1           n
+                                         1        > −1
+                                                               o
+           f (z) =                exp  − 2 (z − µ) Σ   (z − µ)
+                     2π det(Σ)1/2
+
+--- PAGE 8 ---
+Probabilité et Densité conditionnelle
+
+
+       Variables qualitatives              Variables quantitatives
+       Bob Alice John
+  TV    12      21      12     45
+  PC    21      12      14     47
+  VC    22      31      14     67
+  LV     4      17       5     26
+        59      81      45    185
+
+                         IPX ,Y (x, y )                    fX ,Y (x, y )
+       IPY |X (y |x) =                    fY |X (y |x) =
+                           IPX (x)                            fX (x)
+
+--- PAGE 9 ---
+Exemple : densité conditionnelle de gaussiennes
+                                             1
+                                                     exp − 12 (z − µ)> Σ−1 (z − µ)
+                                                         
+                  fX ,Y (z = (x, y ))   2π det(Σ)1/2
+   fY |X (y |x) =                     =                    n                 o
+                         fX (x)                   1
+                                                        exp − 1 2 (x − µ )2
+                                                    (2π σy )1/2             2σx   x
+
+                                            (                                         2 )
+                             1                         1                     σy
+   fY |X (y |x) =        p            exp       − 2σ2 (1−ρ 2)      y − µy − ρ (x − µx )
+                    σy    2π(1 − ρ2 )               y                        σx
+   et la loi conditionnelle est aussi normale
+                                                                            
+                                    σy                       
+                     Y |X ∼ N µy + ρ (x − µx ), σy2 (1 − ρ2 )
+                                                             
+                                    σx                     }
+                               |      {z     } | {z    2
+                                            µY |X                   σY |X
+
+
+
+
+   L’espérance conditionnelle gaussienne
+                                                                σy
+                         IE(Y |X = x) = µY |X = µy + ρ             (x − µx )
+                                                                σx
+
+--- PAGE 10 ---
+Le problème de prédiction
+   Fixons x et essayons de prédire y .
+   Soit h? (x) la meilleure prédiction pour y , (au sens des moindres
+   carrés)
+                                             2
+    h? (x)   =   arg min IEY |X Y − h(x)
+                  h(x)                                    Z
+                                                                        2
+             =   arg min J(h(x))       avec J(h(x)) =           Y − h(x) fY |X (y |x)dy
+                  h(x)                                      y
+
+   or                                  Z
+                   dJ(h(x))                        
+                            = −2           Y − h(x) fY |X (y |x)dy
+                    dh(x)              y
+
+   et
+                                            Z
+         dJ(h(x))                  ?
+                  =0       ⇔    h (x) =           Y fY |X (y |x)dy = IE(Y |X ) .
+          dh(x)                              y
+
+   Dans le cas gaussien, la meilleure prédiction est donnée par :
+                                                  σy
+                         IE(Y |X ) = µy + ρ          (x − µx )
+                                                  σx
+
+--- PAGE 11 ---
+Le problème des moindres carrés
+   Les données dont nous disposons peuvent aussi être vue comme un
+   système de n équations à 2 + n inconnues (a, b et ε). Ce système
+   s’écrit de la manière suivante :
+                          
+                          
+                            ax1 + b + ε1 = y1
+                                   ...     ...
+                          
+                          
+                          
+                             axi + b + εi = yi
+                                   ...     ...
+                          
+                          
+                          
+                          
+                             axn + b + εn = yn
+                          
+
+   on recherche a et b qui minimisent simultanément tous les
+   εi , i = 1, n
+                                 n
+                                 X                  2
+                     J(a, b) =         yi − axi − b
+                                       |    {z    }
+                                 i=1        εi
+
+--- PAGE 12 ---
+Calcul du gradient
+                                                     n
+                                                1X
+       min J(a, b)     avec         J(a, b) =      (axi + b − yi )2
+        a,b                                     2
+                                                    i=1
+
+
+                     n                              n
+   
+     ∂J(a, b)        X                              X
+                                                           axi2 + bxi − yi xi
+                                                                                 
+   
+               =          (axi + b − yi ) xi   =
+       ∂a
+   
+   
+   
+                    i=1                            i=1
+                                                    n              n             n
+   
+   
+                                                   X              X             X
+                                                          axi2 +
+   
+   
+   
+   
+                                               =                        bxi −             yi xi
+   
+                                                   i=1            i=1            i=1
+                                                       n             n              n
+   
+   
+                                                     X              X             X
+                                                =a         xi2 + b         xi −             yi xi
+   
+                                                    i=1             i=1              i=1
+                     n                              n             n           n
+   
+   
+    ∂J(a, b)
+                    X                              X             X           X
+   
+               =          (axi + b − yi )      =         axi +          b−           yi
+       ∂b
+   
+   
+   
+                    i=1                            i=1            i=1        i=1
+                                                       n                  n
+   
+   
+   
+                                                     X                   X
+   
+   
+   
+                                               =a         xi + bn −             yi
+                                                     i=1                   i=1
+
+--- PAGE 13 ---
+Conditions d’optimalité                                               
+                                                                       ∂J(b
+                                                                           a, b)
+                                                                             b
+                                                                                 =0
+                                                                      
+   (b  b est solution du problème min J(a, b)
+    a, b)                                                      ⇔          ∂a
+                                                a,b                    ∂J(b
+                                                                           a, b)
+                                                                              b
+                                                                      
+                                                                                =0
+                                                                          ∂b
+                  n          n                 n           n
+     ∂J(b
+        a , b)
+                             X               X             X
+                                    2
+                           a     x     +  b        x     =     yi xi              ×n                    (
+           b     X
+               =0                                    i
+                                         b
+                          b       i
+       ∂a
+   
+                  i=1 ⇔      i=1             i=1           i=1
+                              n                             n                   n
+     ∂J(b
+        a, b)
+                            X                             X                   X
+                           a     x     +  b
+                                          bn             =     y             ×       xi                 (
+           b
+   
+              =0          b       i                              i
+       ∂b                    i=1                           i=1                 i=1
+                n             n         n                   n          n      n
+   (
+     ∂J(b
+        a, b)
+            b X            X
+                                   2
+                                       X        2        X           X     X
+                    ⇔  ab  n     xi  −      x i        = n     y   x
+                                                                 i i −   y i      xi
+       ∂a
+                     i=1                      i=1        i=1                i=1             i=1   i=1
+
+   Deux équations linéaires à deux inconnues
+                     n
+                     X               n
+                                     X        n
+                                              X                       n
+                                                                      X               n
+                                                                                      X
+                 n         yi xi −       yi         xi                      yi − ab         xi
+                     i=1         i=1    i=1                           i=1             i=1
+          ab =          n           n                          bb =
+                       X          X       2                                      n
+                     n     xi2 −       xi
+                       i=1         i=1
+
+--- PAGE 14 ---
+Réécriture de la solution
+                  n                                    n                     n
+                            1X          1X            1X         2
+   si l’on note x =            xi , y =    yi et Vx =    (xi − x) la
+                            n           n             n
+                                 i=1                  i=1                   i=1
+   variance des xi
+               n
+               X               n
+                               X        n
+                                        X
+           n         yi xi −       yi            xi
+               i=1               i=1    i=1
+    ab =           n               n
+                   X              X         2
+               n         xi2 −         xi
+                   i=1           i=1
+              n                n       n
+           1X              1X 1X
+                  yi xi −        yi       xi                                      n               n
+           n i=1           n i=1    n i=1
+                                                                                  X               X
+                                                                                        yi − ab         xi
+      =            n             n
+               1X 2           1 X 2                                       b
+                                                                           b =    i=1             i=1
+                        xi −        xi                                                       n
+               n i=1          n i=1
+              n                                                                     n              n
+           1X                                                                     1 X           1X
+                  yi xi − y x                                               =           yi − ab       xi
+           n i=1                                                                  n i=1         n i=1
+      =         n
+            1X 2 2
+                    x −x                                                    =     y − ab x
+            n i=1 i
+              n
+           1X
+                  (yi − y ) (xi − x)
+           n i=1                                               cov(x, y)
+      =               n                                    =
+                   1X                                             Vx
+                         (xi − x)2
+                   n i=1
+
+--- PAGE 15 ---
+Le théorème des moindres carrés
+   Théorème des moindres carrées
+   Soient (xi , yi ), i = 1, n un ensemble de couples d’observations.
+   La meilleur prédiction de y sachant x, au sens des moindres carrées
+   est donnée par
+                                                    σy
+         y = h(x) = IEY |X (y |x) = µy + ρ             (x − µx ) = ax + b
+                                                    σx
+
+   avec ab et bb estimés par :
+             n
+             X
+                   (yi − y ) (xi − x)
+             i=1                            cov(x, y)
+      ab =         n                    =                et     bb = y − ab x
+                   X                2
+                                               Vx
+                         (xi − x)
+                   i=1
+
+
+   ab et bb que l’on appelle aussi les estimateurs au sens des moindres
+   carrés.
+
+--- PAGE 16 ---
+Causalité 6= Corrélation (selon chatGPT)
+
+
+
+
+   Considérons deux variables, X (heures de sommeil) et Y
+   (productivité au travail). Une corrélation positive entre X et Y
+   suggérerait que lorsque X (heures de sommeil) augmente, Y
+   (productivité) augmente également. Cependant, cela n’établit pas
+   la causalité; ce n’est pas parce qu’une personne dort plus que
+   nécessairement que sa productivité s’améliorera.
+   Considérons maintenant une troisième variable, Z (niveau de
+   stress). Le niveau de stress peut avoir un impact à la fois sur le
+   nombre d’heures de sommeil d’une personne et sur sa productivité
+   au travail. Si une personne a des niveaux de stress élevés, elle peut
+   dormir moins et être également moins productive. Dans ce cas, le
+   niveau de stress (Z) serait une variable causale commune qui
+   affecte à la fois X (heures de sommeil) et Y (productivité).
+
+--- PAGE 17 ---
+Lecture road map
+
+
+   Description d’un couple de variables
+      Cas de deux variable quantitatives
+          Covariance et corrélation
+          Espérance conditionnelle et prédiction
+          La régression linéaire
+      Tableau de contingence
+      Quantitatif vs. Qualitatif
+
+
+   Description d’un ensemble de variables
+      Cas des variable quantitatives
+      Cas des variables qualitatives
+
+
+                                              https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 18 ---
+Codage disjontif complet (one hot vector)
+
+                     (Bob, un pc)
+                     (Percy, un aspirateur)
+                     (Percy, une télé)
+                     (Bob, une télé)
+                                                 =⇒
+                     (Percy, une télé)
+                     (Bob, un mac)
+                     (John, un mac)
+                     (Bob, un lave vaisselle)
+                 Bob Percy John télé            ordi   aspi   lave v.
+           v1     1        0       0       0     1      0        0
+       H = v2     0        1       0       0     0      1        0
+            ..    ..       ..      ..      ..     ..    ..       ..
+             .     .        .       .       .      .     .        .
+            v8    1       0        0      0      0      0       1
+             Table: Exemple de codage disjonctif complet.
+
+--- PAGE 19 ---
+Tableau de contingence
+   Prenons un exemple : Si l’on considère l’échantillon constitué de
+   l’ensemble des produits vendus par les vendeurs d’une boutique. On
+   peut lui associer un tableau de contingence
+     (Bob, un pc)
+     (Percy, un aspirateur)
+                                                           Bob   Percy   John
+     (Percy, une télé)
+                                            télévision      1      2       0
+     (Bob, une télé)
+                                =⇒   T=    ordinateurs      2      0       1
+     (Percy, une télé)
+                                           aspirateurs      0      1       0
+     (Bob, un mac)
+                                          lave vaisselle    0      1       0
+     (John, un mac)
+     (Bob, un lave vaisselle)
+
+                   Table: Exemple de tableau de contingence.
+
+   Matrice de co occurrence O (liée ici au tableau de contingence)
+
+                                     O = HtH
+
+   Lien entre le codage disjonctif complet et la table de contingence
+
+--- PAGE 20 ---
+Mesures d’indépendance (d’association)
+   Distance du chi2
+                             c X
+                               r
+                      2
+                             X   (nij − ni• n•j /n)2
+                      χ =n
+                                             ni• n•j
+                             i=1 j=1
+
+   Le Φ2 de Pearson (indépendant de n)
+
+                                        χ2
+                                 Φ2 =
+                                        n
+   Coefficient de Tschuprow (indép. de r et c)
+                              s
+                                       Φ2
+                         T =
+                                 (r − 1)(c − 1)
+
+   Coefficient de Cramer
+                                s
+                                         Φ2
+                           C=
+                                    min(r , c) − 1
+
+--- PAGE 21 ---
+Lecture road map
+
+
+   Description d’un couple de variables
+      Cas de deux variable quantitatives
+          Covariance et corrélation
+          Espérance conditionnelle et prédiction
+          La régression linéaire
+      Tableau de contingence
+      Quantitatif vs. Qualitatif
+
+
+   Description d’un ensemble de variables
+      Cas des variable quantitatives
+      Cas des variables qualitatives
+
+
+                                              https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 22 ---
+Formules de décomposition de la moyenne
+
+                        (xi , yi ), i = 1, . . . , n
+  il y a r vendeurs
+                           vendeur        prix
+                            Alice          y1
+                              ..            ..
+                               .             .
+                               Bill         yi
+                                ..           ..
+                                 .            .
+                              Sue          yn
+
+  Décomposition de la moyenne, y m la moyenne des ventes du
+  vendeur m
+                           n           r
+                        1X          1X
+                    y=        yi =       nm y m
+                        n           n
+                           i=1             m=1
+
+--- PAGE 23 ---
+Formules de décomposition de la variance
+                      vendeur      prix
+                       Alice        y1
+                         ..          ..
+                          .           .
+  il y a r vendeurs                           Décomposition de la variance,
+                        Bill        yi
+                         ..          ..
+                          .           .
+                       Sue          yn
+                       n
+                       X                         nm
+                                               r X
+                                               X
+                                          2
+       SC total =              (yi − y ) =               (ymj − y )2
+                       i=1                     m=1 j=1
+                         nm
+                       r X
+                       X
+                  =                (ymj − y m + y m − y )2
+                       m=1 j=1
+                       Xr                              nm
+                                                     r X
+                                                     X
+                  =            nm (y m − y )2 +                (ymj − y m )2
+                       m=1                           m=1 j=1
+       SC total =         SC expliqués           +       SC résiduels
+
+--- PAGE 24 ---
+Lecture road map
+
+
+   Description d’un couple de variables
+      Cas de deux variable quantitatives
+          Covariance et corrélation
+          Espérance conditionnelle et prédiction
+          La régression linéaire
+      Tableau de contingence
+      Quantitatif vs. Qualitatif
+
+
+   Description d’un ensemble de variables
+      Cas des variable quantitatives
+      Cas des variables qualitatives
+
+
+                                              https://moodle.insa- rouen.fr/course/view.php?id=93
+
+--- PAGE 25 ---
+Variables quantitatives : Multiplot
+
+
+
+
+   from pandas.plotting import scatter_matrix
+
+   df = pd.read_csv(data)
+   scatter_matrix(df)
+
+--- PAGE 26 ---
+Variables quantitatives : L’ACP
+
+                      min kX − UV > k2
+                      U,V
+
+
+
+
+                                         https://github.com/MaxHalford/prince
+
+--- PAGE 27 ---
+Variables qualitatives : l’exemple des textes
+
+
+
+
+                        min kX − UV > k2
+                        U,V
+
+--- PAGE 28 ---
+Comment trouver U et V ?
+
+   Approximation de faible rang de Y
+
+                                                    p
+                                                  n X
+                                                  X
+       min      L(Y , U, V ) := kY − UV t k2F =             (Yij − Ui• V•j )2
+       U,V
+                                                  i=1 j=1
+      with      rang(UV t ) = d
+   Eckart & Young 1936
+
+
+
+   Solution: SVD Yb = USV t
+   from scipy.sparse.linalg import svds
+
+   Y = normalise(Y)               # depend de la nature de Y
+   d = 300                        # taille de la representation
+   U, S, Vt = svds(Y, k=d)
+   Vt = np.diag(S)@Vt             # ou U = U*S
+
+--- PAGE 29 ---
+Tableau de Burt (variables qualitative)
+   Table de tables de contingences (plus de deux modalités, deux ou
+   plus variables qualitatives)
+
+
+
+
+   Exemple avec trois variables de respectivement L=3, W=3 et T=4
+                               modalités.
+                                            https://fr.wikipedia.org/wiki/Table_de_Burt
+
+--- PAGE 30 ---
+Conclusion
+   Attention à la nature des variables
+
+   Comment représenter 2 variables ?
+   par une matrice... n × 2
+    I 2 quantitatives -> nuage de point
+    I 2 qualitatives -> tableau de contingence
+    I Une de chaque -> r histogrammes
+
+
+   Ces 2 variables sont elles liées ?
+    I 2 quantitatives -> corrélation
+    I 2 qualitatives -> distance du χ2 (coefficient de Cramer)
+    I Une de chaque -> décomposition de la variance
+
+
+   Qualitatif -> Quantitatif : valeurs singulières (propre)

@@ -1,0 +1,83 @@
+AC-ID,AC-TITLE
+specifier-1.1,Décrire les types de données en entrée et sortie de chaque composant
+specifier-1.2,Décomposer et organiser un processus
+specifier-1.3,Utiliser un langage formel
+specifier-2.1,Analyser la demande
+specifier-2.2,Définir des cas d’utilisation
+specifier-2.3,Caractériser l’utilisation des données au regard du RGPD
+specifier-3.1,Discriminer et hiérarchiser les demandes
+specifier-3.2,Définir la recette
+specifier-3.3,Lister les tests fonctionnels
+specifier-4.1,Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS
+specifier-4.2,Prototyper des interfaces utilisateurs en prenant la RGAA
+specifier-4.3,Respecter un référentiel qualité
+modeliser-1.1,Représenter une collection de données numériquement ou symboliquement
+modeliser-1.2,Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel
+modeliser-1.3,Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter
+modeliser-1.4,Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques
+modeliser-2.1,Analyser les données numériques et symboliques du problème
+modeliser-2.2,Comparer les différentes représentations numériques et symboliques des données
+modeliser-2.3,Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème
+modeliser-2.4,Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques
+modeliser-3.1,Normaliser des données pour appliquer un modèle
+modeliser-3.2,Caractériser les données pour en déduire le modèle
+modeliser-4.1,Transformer le modèle pour obtenir une résolution acceptable
+modeliser-4.2,Transformer les données pour obtenir une résolution acceptable
+modeliser-4.3,Construire les modèles statistiques adaptés aux données
+modeliser-4.4,Évaluer les besoins en ressources
+concevoir-1.1,Transposer une expression formelle en algorithme et vice-versa
+concevoir-1.2,Transposer une représentation formelle en structure de données et vice-versa
+concevoir-1.3,Intégrer des composants logiciels ou physiques au sein d’un système
+concevoir-2.1,Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée
+concevoir-2.2,Choisir les patrons de conception
+concevoir-2.3,Choisir le framework
+concevoir-2.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire"
+concevoir-2.5,Identifier le paradigme de traitement de données statistique
+concevoir-3.1,Évaluer la complexité du traitement
+concevoir-3.2,Intégrer des patrons de conception
+concevoir-3.3,Adapter le framework
+concevoir-3.4,Échanger de manière adaptée et sécurisée les données
+concevoir-4.1,Aligner des structures de données issues de différents paradigmes
+concevoir-4.2,Choisir le paradigme de programmation le mieux adapté aux traitements
+concevoir-4.3,Choisir les patrons d'architecture
+concevoir-4.4,"Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire"
+concevoir-4.5,Échanger de manière adaptée et sécurisée les données en temps réel
+concevoir-4.6,Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances
+developper-1.1,Implémenter efficacement un algorithme dans un langage de la programmation structurée
+developper-1.2,Utiliser un logiciel de suivi de version
+developper-1.3,Caractériser le matériel et le système au regard des besoins
+developper-2.1,Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML
+developper-2.2,Exploiter une documentation
+developper-3.1,Caractériser et représenter l’information
+developper-3.2,Optimiser et sécuriser l’échange de données
+developper-3.3,Utiliser et paramétrer des frameworks adaptés
+developper-4.1,Automatiser les tâches de validation et de déploiement
+developper-4.2,Mettre en œuvre l’architecture matérielle et logicielle
+gerer-1.1,Utiliser une forge pour la gestion des tickets
+gerer-1.2,Utiliser le cycle de développement en V
+gerer-2.1,Utiliser un framework de tests unitaires
+gerer-2.2,Utiliser un logiciel d’audit de code statique
+gerer-2.3,Mettre en place des tests de non régression
+gerer-3.1,Utiliser un cycle de développement Agile
+gerer-3.2,Suivre des procédures
+gerer-3.3,Rédiger des procédures
+gerer-4.1,Auditer des projets
+gerer-4.2,Passer des audits
+gerer-4.3,Organiser les rôles et les tâches
+communiquer-1.1,Documenter le code à l’aide d’un framework
+communiquer-1.2,Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet
+communiquer-1.3,Représenter les modèles à l’aide de langage formel
+communiquer-2.1,Rédiger des supports de présentation
+communiquer-2.2,Restituer oralement le travail réalisé
+communiquer-2.3,Synthétiser le travail réalisé
+communiquer-3.1,Interpréter les résultats dans le contexte du problème
+communiquer-3.2,Critiquer les résultats
+communiquer-3.3,Proposer des perspectives
+communiquer-3.4,Représenter de manière humainement compréhensible (graphiquement) les résultats
+communiquer-4.1,Résumer une méthode de l’état de l’art
+communiquer-4.2,Adapter son discours au public
+communiquer-4.3,Organiser la parole au sein d’un groupe
+communiquer-4.4,Convaincre son interlocuteur
+
+
+

@@ -1,0 +1,100 @@
+AAD-ID,AAD-TITLE
+AUTO-AUT01,"Définir et classer les systèmes selon des caractéristiques telles que : statique/dynamique, monovariable/multivariable, continu/discret, linéaire/non-linéaire, causal et invariant."
+AUTO-AUT02,"Décrire la nature des signaux d'entrée/sortie, qu'ils soient continus ou discrets."
+AUTO-AUT03,"Identifier la classe d’un système à partir de sa réponse indicielle, impulsionnelle, etc."
+AUTO-AUT04,Représenter des signaux en utilisant un outil numérique (Scilab)
+AUTO-AUT05,Analyser la stabilité d’un système en étudiant sa fonction de transfert à l’aide d’un outil numérique (Scilab)
+AUTO-AUT06,"Tracer des les diagrammes de réponse en fréquence (gain, phase) à l’aide d’un outil numérique (Scilab)"
+AUTO-AUT07,"Identifier les exigences clés dans la conception d’un système de commande : stabilité, marges, précision, rapidité, rejet des perturbations, robustesse."
+AUTO-AUT08,"Proposer une stratégie générale pour analyser un système non corrigé, définir les exigences, synthétiser un correcteur et vérifier les performances."
+AUTO-AUT09,Déterminer la fonction de transfert d'un système LTI continu à partir de son équation différentielle.
+AUTO-AUT10,"Identifier les éléments caractéristiques d'une fonction de transfert : pôles, zéros et gain."
+AUTO-AUT11,"Analyser la réponse temporelle des systèmes du premier ordre (intégrateur, premier ordre) soumis à des signaux d’entrée standards."
+AUTO-AUT12,"Analyser les caractéristiques temporelles (amortissement, oscillations, temps de stabilisation) des systèmes du second ordre en fonction de leurs pôles et de leurs paramètres."
+AUTO-AUT13,Appliquer la transformée de Laplace et ses propriétés aux signaux et aux systèmes.
+AUTO-AUT14,"Analyser la réponse fréquentielle des systèmes LTI à l’aide des diagrammes de Bode, Nyquist et Black."
+AUTO-AUT15,Appliquer le critère de Routh pour déterminer la stabilité d’un système en boucle fermée à partir de son équation caractéristique.
+AUTO-AUT16,Appliquer le critère de Nyquist pour déterminer la stabilité en boucle fermée à partir du diagramme de la fonction de transfert en boucle ouverte autour du point critique (-1).
+AUTO-AUT17,"Évaluer les performances dynamiques (rapidité, amortissement) des systèmes en boucle fermée, en les reliant si possible aux caractéristiques en boucle ouverte."
+AUTO-AUT18,"Interpréter les diagrammes de réponse fréquentielle (gain, phase) pour les systèmes élémentaires : gain pur, intégrateur, dérivateur, éléments du premier et du second ordre."
+AUTO-AUT19,"Relier les performances en temps (constante de temps, temps de montée) aux notions fréquentielles (fréquence de coupure, bande passante) pour les systèmes du premier ordre."
+AUTO-AUT20,Utiliser le critère du Revers pour une évaluation simplifiée de la stabilité à partir du diagramme de Nyquist ou de Black.
+AUTO-AUT21,Identifier les pôles dominants dans les systèmes d’ordre supérieur et analyser leur influence sur la réponse transitoire.
+AUTO-AUT22,Décrire la structure et le rôle d’un système automatique ou d’un système asservi (boucle de rétroaction).
+AUTO-AUT23,Distinguer les caractéristiques des systèmes en boucle ouverte et en boucle fermée.
+AUTO-AUT24,Analyser la stabilité des systèmes LTI à partir de la partie réelle des pôles de leur fonction de transfert.
+AUTO-AUT25,Déterminer les marges de stabilité à partir des diagrammes fréquentiels en boucle ouverte.
+AUTO-AUT26,Interpréter la signification des marges de stabilité pour évaluer la robustesse de la stabilité en boucle fermée.
+AUTO-AUT27,Analyser l’erreur statique en régime permanent pour différents types de signaux d’entrée en fonction de la classe du système.
+AUTO-AUT28,Analyser le rejet asymptotique des perturbations en fonction de la structure du système et du nombre d’intégrateurs.
+AUTO-AUT29,Comprendre les limitations des systèmes non corrigés et la nécessité d’ajouter des correcteurs.
+AUTO-AUT30,Décrire la fonction et les effets d’un correcteur intégral (I) sur les performances du système et sa réponse fréquentielle.
+AUTO-AUT31,"Décrire la fonction et les effets d’un correcteur proportionnel-intégral (PI), combinant amélioration de la précision et impact minimal sur la dynamique rapide."
+AUTO-AUT32,"Décrire la fonction et les effets d’un correcteur proportionnel-dérivatif (PD), améliorant principalement la stabilité et la dynamique rapide."
+AUTO-AUT33,Décrire la fonction et les effets d’un correcteur à avance de phase comme approximation causale d’un correcteur PD.
+AUTO-AUT34,Décrire les effets combinés et la structure d’un correcteur proportionnel-intégral-dérivatif (PID).
+AUTO-AUT35,Tracer les diagrammes de Bode asymptotiques à partir de la forme normalisée de la fonction de transfert.
+AUTO-AUT36,Tracer un diagramme de Nyquist
+AUTO-AUT37,Tracer un diagramme de Black
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,

@@ -1,0 +1,541 @@
+{
+  "input_root": "data/courspdf",
+  "output_root": "data/courstxt",
+  "pdf_count": 76,
+  "page_count": 1748,
+  "character_count": 1346409,
+  "files": [
+    {
+      "course": "SE",
+      "source_pdf": "SE/08-Memoire.pdf",
+      "output_text": "SE/08-Memoire.txt",
+      "pages": 20,
+      "characters": 15519
+    },
+    {
+      "course": "SE",
+      "source_pdf": "SE/basearchi.pdf",
+      "output_text": "SE/basearchi.txt",
+      "pages": 23,
+      "characters": 16652
+    },
+    {
+      "course": "SE",
+      "source_pdf": "SE/cm01-intro.pdf",
+      "output_text": "SE/cm01-intro.txt",
+      "pages": 18,
+      "characters": 13196
+    },
+    {
+      "course": "SE",
+      "source_pdf": "SE/cm04-systemedefichiers.pdf",
+      "output_text": "SE/cm04-systemedefichiers.txt",
+      "pages": 25,
+      "characters": 14764
+    },
+    {
+      "course": "SE",
+      "source_pdf": "SE/processus.pdf",
+      "output_text": "SE/processus.txt",
+      "pages": 37,
+      "characters": 35260
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/ELEC-Rappels.pdf",
+      "output_text": "elec/ELEC-Rappels.txt",
+      "pages": 51,
+      "characters": 25351
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/ELEC-intro.pdf",
+      "output_text": "elec/ELEC-intro.txt",
+      "pages": 22,
+      "characters": 14081
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/I2C_SPI.pdf",
+      "output_text": "elec/I2C_SPI.txt",
+      "pages": 32,
+      "characters": 13237
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/LectureRPI.pdf",
+      "output_text": "elec/LectureRPI.txt",
+      "pages": 59,
+      "characters": 46816
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture_DS.pdf",
+      "output_text": "elec/Lecture_DS.txt",
+      "pages": 38,
+      "characters": 15738
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture_SequentialCircuits.pdf",
+      "output_text": "elec/Lecture_SequentialCircuits.txt",
+      "pages": 38,
+      "characters": 20076
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture__4PWM.pdf",
+      "output_text": "elec/Lecture__4PWM.txt",
+      "pages": 35,
+      "characters": 11566
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture__7INT.pdf",
+      "output_text": "elec/Lecture__7INT.txt",
+      "pages": 13,
+      "characters": 4683
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture__SC.pdf",
+      "output_text": "elec/Lecture__SC.txt",
+      "pages": 70,
+      "characters": 25605
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/Lecture_combinationalCircuits.pdf",
+      "output_text": "elec/Lecture_combinationalCircuits.txt",
+      "pages": 39,
+      "characters": 13992
+    },
+    {
+      "course": "elec",
+      "source_pdf": "elec/SensingW1.pdf",
+      "output_text": "elec/SensingW1.txt",
+      "pages": 37,
+      "characters": 11422
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm-junit.pdf",
+      "output_text": "progav/cm-junit.txt",
+      "pages": 28,
+      "characters": 20664
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm01-intro.pdf",
+      "output_text": "progav/cm01-intro.txt",
+      "pages": 46,
+      "characters": 33064
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm02-heritage.pdf",
+      "output_text": "progav/cm02-heritage.txt",
+      "pages": 45,
+      "characters": 42940
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm03-abstraction.pdf",
+      "output_text": "progav/cm03-abstraction.txt",
+      "pages": 24,
+      "characters": 26679
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm04-gestiondeserreurs.pdf",
+      "output_text": "progav/cm04-gestiondeserreurs.txt",
+      "pages": 28,
+      "characters": 26261
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm05-collectionettypesgeneriques-partie1.pdf",
+      "output_text": "progav/cm05-collectionettypesgeneriques-partie1.txt",
+      "pages": 26,
+      "characters": 21696
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm05-collectionettypesgeneriques-partie2.pdf",
+      "output_text": "progav/cm05-collectionettypesgeneriques-partie2.txt",
+      "pages": 34,
+      "characters": 31471
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm06-io.pdf",
+      "output_text": "progav/cm06-io.txt",
+      "pages": 29,
+      "characters": 26261
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm08-introspection.pdf",
+      "output_text": "progav/cm08-introspection.txt",
+      "pages": 25,
+      "characters": 20540
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/cm09-swing-evt.pdf",
+      "output_text": "progav/cm09-swing-evt.txt",
+      "pages": 29,
+      "characters": 27437
+    },
+    {
+      "course": "progav",
+      "source_pdf": "progav/mvc.pdf",
+      "output_text": "progav/mvc.txt",
+      "pages": 29,
+      "characters": 16349
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Classe.pdf",
+      "output_text": "python/Classe.txt",
+      "pages": 10,
+      "characters": 9201
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Fonction.pdf",
+      "output_text": "python/Fonction.txt",
+      "pages": 16,
+      "characters": 10306
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/InstructionsDeBase.pdf",
+      "output_text": "python/InstructionsDeBase.txt",
+      "pages": 12,
+      "characters": 8286
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/ModulePackage.pdf",
+      "output_text": "python/ModulePackage.txt",
+      "pages": 13,
+      "characters": 11887
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-AbstractclassProtocol (1).pdf",
+      "output_text": "python/Python-AbstractclassProtocol (1).txt",
+      "pages": 7,
+      "characters": 7189
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-AbstractclassProtocol.pdf",
+      "output_text": "python/Python-AbstractclassProtocol.txt",
+      "pages": 7,
+      "characters": 7189
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Annotation.pdf",
+      "output_text": "python/Python-Annotation.txt",
+      "pages": 11,
+      "characters": 8187
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Arcanes.pdf",
+      "output_text": "python/Python-Arcanes.txt",
+      "pages": 13,
+      "characters": 10657
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-AttributsMethodesDeClasses.pdf",
+      "output_text": "python/Python-AttributsMethodesDeClasses.txt",
+      "pages": 7,
+      "characters": 3694
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Dataclass.pdf",
+      "output_text": "python/Python-Dataclass.txt",
+      "pages": 8,
+      "characters": 6505
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Enumeres.pdf",
+      "output_text": "python/Python-Enumeres.txt",
+      "pages": 11,
+      "characters": 10544
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Exceptions.pdf",
+      "output_text": "python/Python-Exceptions.txt",
+      "pages": 15,
+      "characters": 14966
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-ExpressionsLambda.pdf",
+      "output_text": "python/Python-ExpressionsLambda.txt",
+      "pages": 7,
+      "characters": 3500
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-IO.pdf",
+      "output_text": "python/Python-IO.txt",
+      "pages": 20,
+      "characters": 12920
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Logging.pdf",
+      "output_text": "python/Python-Logging.txt",
+      "pages": 17,
+      "characters": 12277
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-MapFilter-Comprehension.pdf",
+      "output_text": "python/Python-MapFilter-Comprehension.txt",
+      "pages": 9,
+      "characters": 6004
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-MethodesSpeciales1.pdf",
+      "output_text": "python/Python-MethodesSpeciales1.txt",
+      "pages": 11,
+      "characters": 10621
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-MethodesSpeciales2.pdf",
+      "output_text": "python/Python-MethodesSpeciales2.txt",
+      "pages": 9,
+      "characters": 7353
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-MethodesSpeciales3.pdf",
+      "output_text": "python/Python-MethodesSpeciales3.txt",
+      "pages": 10,
+      "characters": 6383
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-PDB.pdf",
+      "output_text": "python/Python-PDB.txt",
+      "pages": 13,
+      "characters": 10004
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-PipPyenv.pdf",
+      "output_text": "python/Python-PipPyenv.txt",
+      "pages": 18,
+      "characters": 12232
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Proprietes.pdf",
+      "output_text": "python/Python-Proprietes.txt",
+      "pages": 5,
+      "characters": 3298
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-TestsUnitaires.pdf",
+      "output_text": "python/Python-TestsUnitaires.txt",
+      "pages": 21,
+      "characters": 15171
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-With.pdf",
+      "output_text": "python/Python-With.txt",
+      "pages": 10,
+      "characters": 6886
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-Yield.pdf",
+      "output_text": "python/Python-Yield.txt",
+      "pages": 6,
+      "characters": 3021
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-caracteristiques.pdf",
+      "output_text": "python/Python-caracteristiques.txt",
+      "pages": 10,
+      "characters": 8348
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/Python-decorateur.pdf",
+      "output_text": "python/Python-decorateur.txt",
+      "pages": 9,
+      "characters": 6712
+    },
+    {
+      "course": "python",
+      "source_pdf": "python/TypesDeBase.pdf",
+      "output_text": "python/TypesDeBase.txt",
+      "pages": 13,
+      "characters": 9792
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM 10 STAT.pdf",
+      "output_text": "stat/CM 10 STAT.txt",
+      "pages": 15,
+      "characters": 15719
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM 56 STAT 2025.pdf",
+      "output_text": "stat/CM 56 STAT 2025.txt",
+      "pages": 22,
+      "characters": 21076
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM 6bis STAT 2025.pdf",
+      "output_text": "stat/CM 6bis STAT 2025.txt",
+      "pages": 3,
+      "characters": 1794
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM STAT 11  12 2025.pdf",
+      "output_text": "stat/CM STAT 11  12 2025.txt",
+      "pages": 25,
+      "characters": 27202
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM Stat 7 2025.pdf",
+      "output_text": "stat/CM Stat 7 2025.txt",
+      "pages": 11,
+      "characters": 10588
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM8 Stat 2025.pdf",
+      "output_text": "stat/CM8 Stat 2025.txt",
+      "pages": 19,
+      "characters": 18964
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/CM9 STAT 2025.pdf",
+      "output_text": "stat/CM9 STAT 2025.txt",
+      "pages": 23,
+      "characters": 19987
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Cours1_STAT-2025_V2.pdf",
+      "output_text": "stat/Cours1_STAT-2025_V2.txt",
+      "pages": 31,
+      "characters": 30068
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Cours_1_Intro.pdf",
+      "output_text": "stat/Cours_1_Intro.txt",
+      "pages": 26,
+      "characters": 12657
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Cours_2_description_monovariable.pdf",
+      "output_text": "stat/Cours_2_description_monovariable.txt",
+      "pages": 53,
+      "characters": 38993
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Cours_3_Desc_multi.pdf",
+      "output_text": "stat/Cours_3_Desc_multi.txt",
+      "pages": 30,
+      "characters": 27693
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Cours_4_Echantillon.pdf",
+      "output_text": "stat/Cours_4_Echantillon.txt",
+      "pages": 22,
+      "characters": 22915
+    },
+    {
+      "course": "stat",
+      "source_pdf": "stat/Tables-stat.pdf",
+      "output_text": "stat/Tables-stat.txt",
+      "pages": 26,
+      "characters": 16
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/Cours4.pdf",
+      "output_text": "tds/Cours4.txt",
+      "pages": 30,
+      "characters": 40192
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours1.pdf",
+      "output_text": "tds/cours1.txt",
+      "pages": 26,
+      "characters": 20727
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours2et3.pdf",
+      "output_text": "tds/cours2et3.txt",
+      "pages": 39,
+      "characters": 38389
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours5.pdf",
+      "output_text": "tds/cours5.txt",
+      "pages": 25,
+      "characters": 25766
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours6.pdf",
+      "output_text": "tds/cours6.txt",
+      "pages": 24,
+      "characters": 33705
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours7.pdf",
+      "output_text": "tds/cours7.txt",
+      "pages": 32,
+      "characters": 46044
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours8.pdf",
+      "output_text": "tds/cours8.txt",
+      "pages": 22,
+      "characters": 26752
+    },
+    {
+      "course": "tds",
+      "source_pdf": "tds/cours9.pdf",
+      "output_text": "tds/cours9.txt",
+      "pages": 26,
+      "characters": 32709
+    }
+  ]
+}

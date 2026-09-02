@@ -1,0 +1,1086 @@
+--- PAGE 1 ---
+Type Abstrait de Données
+              De l’analyse au tests unitaires
+
+
+                     Nicolas Delestre
+
+
+
+
+TAD - v3.6                                      1 / 46
+
+--- PAGE 2 ---
+Plan
+
+    1   De l’analyse au développement
+
+    2   Type Abstrait de Données (TAD)
+
+    3   Les TAD de base
+
+    4   Un exemple
+
+    5   Règles
+           Analyse
+           Conception
+           Développement
+           Tests unitaires
+
+    6   Conclusion
+
+
+TAD - v3.6                                2 / 46
+
+--- PAGE 3 ---
+De l’analyse au développement
+
+    Remarques
+
+
+    Types et analyse
+        Lors d’une analyse on peut avoir besoin de types de données qui ne
+        sont pas des types de bases
+                  ex : Graphique, Ecran, Point2D, Polyligne, etc.
+             L’objectif de l’analyse :
+                  n’est pas de savoir comment sont faite les ≪ choses ≫
+                  mais de savoir comment on les utilise et comment elles s’organisent
+                  pour résoudre un problème
+             L’analyse étant une vision mathématique de la résolution du
+             problème (définition hiérarchique de fonctions), il faut aussi une
+             définition mathématique des types
+
+
+
+
+TAD - v3.6                                                                              3 / 46
+
+--- PAGE 4 ---
+De l’analyse au développement
+
+    Qu’est ce qu’un type de donnée ?
+    Mathématiquement, un type de donnée est un ensemble d’éléments
+    auquel est associé un ensemble d’opérations (lois de composition
+    internes, externes, etc.).
+    Ces opérations peuvent être catégorisées de la manière suivante :
+             opérations d’accès aux éléments permettant de désigner des éléments dans
+             l’ensemble
+             opérations de manipulation qui permet de calculer des élements (internes ou
+             externes) à partir d’élements
+
+
+    Par exemple le type Booléen possède deux opérations de désignation
+    d’élément (les opérations vrai et faux) et trois opérations de
+    manipulation (et, ou et non).
+
+    Définition
+    Un Type Abstrait de Données (où TAD) est la définition mathématique
+    d’un type de donnée
+TAD - v3.6                                                                                     4 / 46
+
+--- PAGE 5 ---
+De l’analyse au développement
+
+    Les différentes étapes de création d’un programme
+
+             Analyse :
+                  Identifier et définir les TAD d’un programme
+                  Faire une analyse descendante de la résolution du problème
+             Conception :
+                  Conception Préliminaire :
+                          Déclarer les fonctions et procédures des opérations des TAD et de
+                          l’analyse descendante
+                  Conception Détaillée :
+                          Écrire (prouver ) les algorithmes qui mènent à la solution
+                          Choisir une manière de représenter les entités de l’analyse :
+                          → donner corps aux fonctionnalités associées
+             Développement :
+                  Choisir un langage de programmation
+                  Traduire ce qui a été défini au niveau de l’analyse et de la conception
+
+
+TAD - v3.6                                                                                       5 / 46
+
+--- PAGE 6 ---
+Type Abstrait de Données (TAD)
+
+    TAD
+
+    Comment définir un TAD ?
+       Il nous faut un formalisme (langage formelle) permettant de décrire
+       toutes ses caractéristiques
+       Les caractéristiques d’un TAD sont :
+                      son nom (son identifiant)
+                      ses paramètres (si nécessaire)
+                      ses dépendances (si nécessaire)
+                      ses opérations
+                      les axiomes (ou sémantiques) décrivant sans ambiguı̈té ses opérations
+                      (si nécessaire)
+                      les préconditions que peuvent avoir certaines opérations (si nécessaire)
+
+    Opérations communes à tout TAD
+         =
+             ̸=
+
+TAD - v3.6                                                                                      6 / 46
+
+--- PAGE 7 ---
+Type Abstrait de Données (TAD)
+
+     Formalisme 1 / 2
+
+    Officiel (100% mathématique, inspiré de Meyer)
+    Nom:            Nom du TAD
+    Paramètre:     Pour les TAD collections, le nom générique du type des
+                    éléments stockés
+    Utilise:        Types utilisés par le TAD
+    Opérations:    nom1 : Type1 × Type2 × . . . → Type1′ × Type2′ ×
+                            Type3′ × . . .
+                    nom2 : Type1 × Type2 × . . . ↛ Type1′ × Type2′ ×
+                            Type3′ × . . .
+                            ...
+    Axiomes:      - axiome1 qui décrit logiquement ce que fait une
+                    composition d’opérations
+                    ...
+    Préconditions: nom2 : la précondition
+
+
+TAD - v3.6                                                                     7 / 46
+
+--- PAGE 8 ---
+Type Abstrait de Données (TAD)
+
+     Formalisme 2 / 2
+
+
+    Mais parfois
+    Nom:            Nom du TAD
+    Paramètre:     Pour les TAD ensemblistes, le nom générique du type
+                    des éléments stockés
+    Utilise:        Types utilisés par le TAD
+    Opérations:    nom1 : Type1 × Type2 × . . . → Type1′ × Type2′ ×
+                             Type3′ × . . .
+                             ...
+    Sémantiques: nom1 : ce que fait l’opération nom1 en langue naturelle
+                             ...
+    Préconditions: nomi : la précondition
+
+
+
+
+TAD - v3.6                                                                   8 / 46
+
+--- PAGE 9 ---
+Les TAD de base
+
+     Les TAD de base 1 / 7
+    TAD Booleen a
+     a. Inspiré du cours ≪ Notion de type abstrait de données ≫ de Christian Carrez du
+    Cnam
+    Nom:               Booleen
+    Opérations:       vrai: → Booleen
+                       faux: → Booleen
+                       non: Booleen → Booleen
+                       et: Booleen × Booleen → Booleen
+                       ou: Booleen × Booleen → Booleen
+    Axiomes:         - non(vrai()) = faux()
+                     - non(faux()) = vrai()
+                     - non(non(b)) = b
+                     - et(b, vrai()) = b
+                     - et(b, faux()) = faux()
+                     - et(b1 , b2 ) = et(b2 , b1 )
+                     - ou(b1 , b2 ) = non(et(non(b2 ), non(b1 )))
+TAD - v3.6                                                                                 9 / 46
+
+--- PAGE 10 ---
+Les TAD de base
+
+     Les TAD de base 2 / 7
+    Une première version du TAD Naturel
+    Nom:            Naturel
+    Utilise:        Booleen
+    Opérations:    0:     → Naturel
+                    succ: Naturel → Naturel
+                    +:     Naturel × Naturel → Naturel
+                    -:     Naturel × Naturel ↛ Naturel
+                    *:     Naturel × Naturel → Naturel
+                    div: Naturel × Naturel ↛ Naturel
+                    <:     Naturel × Naturel → Booleen
+                                                                 Version
+    Axiomes:      - succ(a) ̸= 0
+                                                          très mathématique
+                  - succ(a) = succ(b) ⇒ a = b
+                                                         (Cf. Giuseppe Peano)
+                  - a+b =b+a
+                  - a+0=a
+                  - a + succ(b) = succ(a + b)
+                  - a∗b =b∗a
+                  - a∗0=0
+                  - a ∗ succ(b) = a + (a ∗ b)
+                  - ...
+    Préconditions: a-b:      b < a ou a = b
+                    a div b: b ̸= 0
+
+
+TAD - v3.6                                                                      10 / 46
+
+--- PAGE 11 ---
+Les TAD de base
+
+     Les TAD de base 3 / 7
+    Une deuxième version du TAD Naturel
+    Nom:            Naturel
+    Utilise:        Booleen,Reel,Entier
+    Opérations:    0:       → Naturel
+                    1:       → Naturel
+                    2:       → Naturel
+                             ...
+                    +:       Naturel × Naturel → Naturel
+                    -:       Naturel × Naturel → Entier
+                    *:       Naturel × Naturel → Naturel
+                    div:     Naturel × Naturel ↛ Naturel
+                    /:       Naturel × Naturel ↛ Reel
+                    <:       Naturel × Naturel → Booleen
+                             ...
+    Préconditions: a/b:     b ̸= 0
+                    a div b: b ̸= 0
+TAD - v3.6                                                 11 / 46
+
+--- PAGE 12 ---
+Les TAD de base
+
+     Les TAD de base 4 / 7
+    Une troisième version du TAD Naturel
+    Nom:             Naturel
+    Utilise:         Booleen,Reel,Entier
+    Opérations:     0|[1-9][0-9]* : → Naturel
+                     +:              Naturel × Naturel → Naturel
+                     -:              Naturel × Naturel → Entier
+                     *:              Naturel × Naturel → Naturel
+                     div:            Naturel × Naturel ↛ Naturel
+                     /:              Naturel × Naturel ↛ Reel
+                     <:              Naturel × Naturel → Booleen
+                                     ...
+    Préconditions: a/b:       b ̸= 0
+                     a div b: b ̸= 0
+
+             0|[1-9][0-9]* est une expression rationnelle (appelée aussi expression régulière, notation
+             POSIX) : elle représente les identifiants d’opérations composés uniquement d’un 0 ou
+             d’un chiffre de 1 à 9 suivi optionnellement de chiffres compris entre 0 et 9
+TAD - v3.6                                                                                               12 / 46
+
+--- PAGE 13 ---
+Les TAD de base
+
+     Les TAD de base 5 / 7
+
+
+    TAD Reel
+    Nom:            Reel
+    Utilise:        Booleen
+    Opérations:    (0|[1-9][0-9]*),[0-9]+: → Reel
+                    +:                     Reel × Reel → Reel
+                    -:                     Reel × Reel → Reel
+                    *:                     Reel × Reel → Reel
+                    /:                     Reel × Reel ↛ Reel
+                    <:                     Reel × Reel → Booleen
+    Préconditions: a / b: b ̸= 0
+
+
+
+
+TAD - v3.6                                                         13 / 46
+
+--- PAGE 14 ---
+Les TAD de base
+
+     Les TAD de base 6 / 7
+
+    TAD Caractere
+    Nom:            Caractere
+    Utilise:        Naturel
+    Opérations:    ’.’:    → Caractere
+                    car:    Naturel → Caractere
+                    pred: Caractere ↛ Caractere
+                    succ: Caractere → Caractere
+                    ord:    Caractere → Naturel
+    Axiomes:      - car(ord(c))=c
+                  - pred(c)=car(ord(c)-1)
+                  - succ(c)=car(ord(c)+1)
+    Préconditions: pred(c): ord(c)>1
+
+             le point représente n’importe quel caractère
+
+
+
+TAD - v3.6                                                    14 / 46
+
+--- PAGE 15 ---
+Les TAD de base
+
+     Les TAD de base 7 / 7
+
+
+    TAD Chaine de caracteres
+    Nom:            Chaine de caracteres
+    Utilise:        Caractere,Naturel
+    Opérations:    ”.∗ ”:              → Chaine de caracteres
+                    caractereEnChaine: Caractere → Chaine de caracteres
+                    +:                  Chaine de caracteres × Chaine de caracteres
+                                        → Chaine de caracteres
+                    longueur:           Chaine de caracteres → Naturel
+                    iemeCaractere:      Chaine de caracteres × Naturel ↛ Caractere
+    Axiomes:      - longueur (””) = 0
+                  - longueur (ch1 + caractereEnChaine(c)) = longueur (ch1) + 1
+                  - iemeCaractere(ch + caractereEnChaine(c), longueur (ch) + 1) = c
+    Préconditions: iemeCaractere(c,i): 0 < i ≤ longueur (ch)
+
+
+
+
+TAD - v3.6                                                                            15 / 46
+
+--- PAGE 16 ---
+Un exemple
+
+    Poin2D : l’Analyse
+
+
+
+    TAD Point2D
+    Nom:             Point2D
+    Utilise:         Reel
+    Opérations:     point2D: Reel × Reel → Point2D
+                     abscisse: Point2D → Reel
+                     ordonnée: Point2D → Reel
+    Axiomes:       - abscisse(point2D(a,b))=a
+                   - ordonnée(point2D(a,b))=b
+
+
+
+
+TAD - v3.6                                            16 / 46
+
+--- PAGE 17 ---
+Un exemple
+
+    Point2D : la Conception préliminaire
+
+
+
+    Les opérations en fonction ou procédure
+    fonction point2D (lAbscisse,lOrdonnee : Reel) : Point2D
+    fonction abscisse (lePoint : Point2D) : Reel
+    fonction ordonnee (lePoint : Point2D) : Reel
+
+
+    Attention
+    Suivant le paradigme utilisé, de nouvelles opérations peuvent apparaı̂tre
+    au niveau de la conception préliminaire
+
+
+
+
+TAD - v3.6                                                                        17 / 46
+
+--- PAGE 18 ---
+Un exemple
+
+     Point2D : la Conception détaillée 1 / 3
+
+    À l’aide des coordonnées cartésiennes
+    Type Point2D = Structure
+        x : Reel
+        y : Reel
+    finstructure
+    fonction point2D (x,y :Reel) : Point2D
+        Déclaration resultat : Point2D
+    debut
+        resultat.x ← x
+        resultat.y ← y
+        retourner resultat
+    fin
+    fonction abscisse (p :Point2D) : Reel
+    debut
+        retourner p.x
+    fin
+    ...
+
+
+TAD - v3.6                                       18 / 46
+
+--- PAGE 19 ---
+Un exemple
+
+     Point2D : la Conception détaillée 2 / 3
+
+    À l’aide de coordonnées polaires
+    Type Point2D = Structure
+        module : Reel
+        argument : Reel
+    finstructure
+    fonction point2D (x,y : Reel) : Point2D
+        Déclaration resultat :Point2D
+    debut
+        resultat.module ← sqrt(x2 +y2 )
+        ...
+        retourner resultat
+    fin
+    fonction abscisse (p :Point2D) : Reel
+    debut
+        retourner p.module*cosinus(p.argument)
+    fin
+    ...
+
+
+TAD - v3.6                                       19 / 46
+
+--- PAGE 20 ---
+Un exemple
+
+     Point2D : la Conception détaillée 3 / 3
+
+
+    Point2D : exemple d’utilisation
+    fonction saisirPoint2D () : Point2D
+        Déclaration x,y :Reel
+    debut
+        ecrire(”Abscisse :”)
+        lire(x)
+        ecrire(”Ordonnée :”)
+        lire(y)
+        retourner point2D(x,y)
+    fin
+    fonction point2DEnChaine (p :Point2D) : Chaine de caracteres
+    debut
+        retourner ”(”+reelEnChaine(abscisse(p))+”,”+reelEnChaine(ordonnée(p))+”)”
+    fin
+
+
+
+
+TAD - v3.6                                                                           20 / 46
+
+--- PAGE 21 ---
+Règles                                       Analyse
+
+    Règles lors de l’analyse
+
+    À la définition d’un TAD, il faut faire attention à :
+          la complétude : a-t-on donné un nombre suffisant d’opérations pour
+          décrire toutes les propriétés du type abstrait ?
+             la consistance : certains TAD possèdent des invariants a . N’y a-t-il
+             pas des compositions d’opérations qui violent ces invariants ?
+     a. ex : Pile type à accès FIFO, ABR : tous les éléments du sous arbre gauche sont
+    plus petits que la racine, tous ceux du sous arbres droits plus grands, etc.
+
+
+    Comment bien définir les opérations d’un TAD
+       Choisir des identifiants significatifs en leur associant axiomes ou
+       sémantiques, qui pourront être utilisés pour la création des tests
+       unitaires
+             Bien préciser les conditions de bon fonctionnement (préconditions)
+
+TAD - v3.6                                                                                   21 / 46
+
+--- PAGE 22 ---
+Règles                                     Conception
+
+    Règles lors de la Conception Préliminaire
+             Dans le paradigme de la programmation structurée, lors de la phase
+             de conception préliminaire, les opérations des TAD sont traduites
+             par des fonctions ou des procédures manipulant les variables du type
+             de données
+             Il faut veiller à avoir des implantations efficaces (type muable plutôt
+             qu’immuable)
+
+    Point2D
+    Ajouter des procédures permettant de modifier l’abscisse ou l’ordonnée
+
+    Fonction ou procédure ?
+        Les opérations d’un TAD sont traduites par :
+                  des fonctions lorsque l’on interroge l’état de la variable du TAD
+                  des procédures lorsque l’on va modifier l’état de la variable du TAD
+
+    Ne pas oublier les préconditions
+TAD - v3.6                                                                                 22 / 46
+
+--- PAGE 23 ---
+Règles                                Conception
+
+    Règles lors de la Conception Détaillée
+
+
+
+    Utilisation d’un TAD
+    Lors de l’utilisation d’une fonction ou procédure d’un TAD s’il y a
+    ambiguı̈te, la fonction est préfixée du nom du TAD (en séparant les deux
+    parties par un point)
+
+    Exemple
+    pt : Point2D
+    ...
+    pt ← Point2D.point2d(x,y)
+
+
+
+
+TAD - v3.6                                                                   23 / 46
+
+--- PAGE 24 ---
+Règles                             Développement
+
+    Développement en C
+
+
+    Rappels : rôle .h
+    Le rôle d’un fichier .h est de déclarer une API, c’est-à-dire déclarer :
+             les constantes
+             les types
+             les signatures des fonctions
+    Le .h est utilisé lors de la compilation d’un .c utilisant cette API
+
+    Rappels : rôle du .c associé à .h
+    Le rôle du .c est de définir le comportement des fonctions proposées
+    Il permet aussi de déclarer et définir des constantes, types, et fonctions
+    privées
+
+
+
+TAD - v3.6                                                                         24 / 46
+
+--- PAGE 25 ---
+Règles                                Développement
+
+    TAD → C
+
+
+
+
+    Donc
+        La déclaration de la partie publique du TAD doit être dans un .h
+             La définition de l’implantation du type bien que partie privée au
+             niveau de l’analyse et la conception doit être dans le .h
+             La définition des fonctions du type doivent être dans le .c
+
+
+
+
+TAD - v3.6                                                                         25 / 46
+
+--- PAGE 26 ---
+Règles                                 Développement
+
+     Problèmes liés au C 1 / 2
+
+             Le C ne permet pas facilement d’avoir des types collections
+             génériques
+             ⇒ Soit il faut développer autant de type collection que
+             nécessaire
+             ⇒ Soit il faut utiliser le type void* et les pointeurs de
+             fonction pour simuler la généricité
+             Le C ne possède pas d’espace de nommage
+             ⇒ Il faut alors préfixer tous les identifiants
+             Le C n’empèche pas l’utilisation de la partie privée
+             ⇒ S’obliger à utiliser uniquement les fonctions données
+             Le C gère les erreurs par les retours de fonction ou à l’aide de la
+             bibliothèque errno
+             ⇒ Si besoin modifier la signature des fonctions et indiquer
+             dans le .h comment sont gérées les erreurs
+
+TAD - v3.6                                                                           26 / 46
+
+--- PAGE 27 ---
+Règles                               Développement
+
+     Problèmes liés au C 2 / 2
+
+
+             Le C ne possède pas de garbage collecteur
+             ⇒ Si besoin ajouter des fonctions pour permettre de
+             désallouer ce qui a été alloué dynamiquement
+             Le C ne permet pas de modifier la signification de l’instruction
+             d’affectation en fonction du type (possible en Ada)
+             ⇒ Si besoin ajouter des fonctions permettant de
+             ≪ copier ≫ (en surface et/ou en profondeur)
+
+             Le C ne permet pas de distinguer ≪ identique ≫ et ≪ égale ≫
+             ⇒ Si besoin ajouter une fonction permettant de tester
+             l’égalité entre deux variables
+
+
+
+
+TAD - v3.6                                                                      27 / 46
+
+--- PAGE 28 ---
+Règles                     Développement
+
+     Exemple 1 / 2
+
+    point2D.h
+
+    #ifndef __POINT_2D__
+    #define __POINT_2D__
+
+    typedef struct {
+      float x;
+      float y;
+    } PT_Point2D;
+
+    PT_Point2D PT_point2D(float x, float y);
+    float PT_abscisse(PT_Point2D pt);
+    float PT_ordonnee(PT_Point2D pt);
+
+    #endif
+
+
+
+
+TAD - v3.6                                                      28 / 46
+
+--- PAGE 29 ---
+Règles                      Développement
+
+     Exemple 2 / 2
+    point2D.c
+
+    #include "point2D.h"
+
+    PT_Point2D PT_point2D(float x, float y) {
+      PT_Point2D pt;
+      pt.x = x;
+      pt.y = y;
+      return pt;
+    }
+
+    float PT_abscisse(PT_Point2D pt) {
+      return pt.x;
+    }
+
+    float PT_ordonnee(PT_Point2D pt) {
+      return pt.y;
+    }
+
+
+TAD - v3.6                                                       29 / 46
+
+--- PAGE 30 ---
+Règles                                Développement
+
+     Documentation 1 / 1
+
+
+             Lorsqu’on utilise plusieurs TAD, il est indispensable d’utiliser une
+             documentation
+             Le mieux est que cette documentation soit disponible en plusieurs
+             formats (XHTML, PDF, man, etc.) et qu’elle soit intégrée au code
+
+    C’est ce que propose des outils tels que Doxygen, XDoclet, Javadoc, etc.
+
+    Principes
+         Ajouter des commentaires qui suivent un certain format
+             Utiliser un compilateur qui extrait ces commentaires et génèrent la
+             documentation
+
+
+
+TAD - v3.6                                                                           30 / 46
+
+--- PAGE 31 ---
+Règles                                  Développement
+
+     Doxygen 1 / 2
+
+    Doxygen
+             Multi-langages (C, C++, Java, Objective-C, Python, PHP, C#)
+             Multi-formats d’export (manpage, LATEX, rtf, html)
+             Outil d’aide à la création des scripts de configuration (doxywizard)
+
+    Commandes les plus courantes
+             \struct               \typedef              \pre
+             \union                \file                 \post
+             \enum                 \namespace            \author
+             \fn                   \package              \brief
+             \var                  \interface            \date
+             \def                  \attention            \version
+
+
+TAD - v3.6                                                                            31 / 46
+
+--- PAGE 32 ---
+Règles                         Développement
+
+     Doxygen 2 / 2
+
+
+
+
+    http://www.stack.nl/~dimitri/doxygen/starting.html
+
+
+
+TAD - v3.6                                                                32 / 46
+
+--- PAGE 33 ---
+Règles           Développement
+
+     Exemple avec Doxygen 1 / 2
+
+
+    Point2D.h
+  1 /**
+  2 * \ file point2D.h
+  3 * \ brief Implantation du TAD Point2D
+  4 * \author N. Delestre
+  5 * \version 1.0
+  6 * \date 15/12/2013
+  7 *
+  8 */
+  9
+ 10
+ 11 #ifndef POINT 2D
+ 12 #define POINT 2D
+ 13
+ 14 typedef struct {
+ 15   float x;
+ 16   float y;
+ 17 } PT Point2D;
+
+
+
+
+TAD - v3.6                                                   33 / 46
+
+--- PAGE 34 ---
+Règles                                                  Développement
+
+     Exemple avec Doxygen 2 / 2
+
+ 19 /**
+ 20 * \fn PT Point2D PT point2D(float x, float y)
+ 21 * \ brief Création d’un Point2D à partir de son abscisse et de son ordonnée
+ 22 * \param x l’ abscisse du point
+ 23 * \param y l’ordonnée du point
+ 24 * \return PT Point2D
+ 25 */
+ 26 PT Point2D PT point2D(float x, float y) ;
+ 27
+ 28 /**
+ 29 * \fn float PT abscisse(PT Point2D pt)
+ 30 * \ brief L’ abscisse d’un point Point2D
+ 31 * \param pt le point
+ 32 * \return float
+ 33 */
+ 34 float PT abscisse(PT Point2D pt);
+ 35
+ 36 /**
+ 37 * \fn float PT ordonnee(PT Point2D pt)
+ 38 * \ brief L’ordonnée d’un point Point2D
+ 39 * \param pt le point
+ 40 * \return float
+ 41 */
+ 42 float PT ordonnee(PT Point2D pt);
+ 43
+ 44 #endif
+
+
+
+
+TAD - v3.6                                                                                            34 / 46
+
+--- PAGE 35 ---
+Règles                                  Tests unitaires
+
+     Tests unitaires 1 / 2
+    Questions :
+        L’implantation est-elle conforme aux attentes spécifiées dans
+        l’analyse ?
+             L’implantation définie lors de la conception détaillée est-elle
+             robuste ?
+
+    Tests unitaires :
+    Tests boı̂te blanche ≪ Le but de ce test est d’exécuter chaque branche
+                   du code avec différentes conditions d’entrée afin de
+                   détecter tous les comportements anormaux. ≫ a : Très
+                   difficile à réaliser
+    Tests boı̂te noire Le but de ce test est de vérifier que les axiomes définies
+                   sont vrais sur des exemples
+     a. http://www.journaldunet.com/developpeur/tutoriel/out/011012_
+    parasoft(3).shtml
+
+TAD - v3.6                                                                         35 / 46
+
+--- PAGE 36 ---
+Règles                              Tests unitaires
+
+     Tests unitaires 2 / 2
+
+
+
+
+    Outils
+         Des framework nous permettent d’écrire ≪ facilement ≫ des tests
+         unitaires :
+                     C CUnit
+                 Java JUnit
+                  Php PHPUnit
+                       ...
+
+
+
+
+TAD - v3.6                                                                  36 / 46
+
+--- PAGE 37 ---
+Règles                                   Tests unitaires
+
+     CUnit 1 / 3
+    CUnit
+        CUnit est un framework permettant de créer des tests unitaires en
+        mode :
+                 Automated pour générer un fichier XML (pas d’interaction)
+                 Basic pour avoir une interface compréhensible (pas
+                 d’interaction)
+                 Console pour avoir une interface en mode texte (interactif)
+                 Curses pour avoir une interface ≪ graphique ≫ (interactif)
+
+    Organisation des tests
+        Un programme test CUnit est composé d’un registre de tests
+        Un registre de test est composé d’une ou plusieurs suites
+        (CU pSuite) de tests
+                 Chaque suite de tests est encadrée par une fonction d’initialisation et
+                 une fonction de nettoyage, toute de deux de type int *f(void)
+             Un test est une fonction C de type void *f(void)
+TAD - v3.6                                                                              37 / 46
+
+--- PAGE 38 ---
+Règles                                  Tests unitaires
+
+     CUnit 2 / 3
+
+
+    Structure type d’un programme CUnit
+       1     Définition des tests :
+               1   Initialiser le registre de tests : CU initialize registry()
+               2   Ajouter une suite de tests au registre : CU add suite()
+               3   Ajouter des tests à une suite de tests : CU add test()
+       2     Lancer les tests avec un mode :
+                   Automated : CU automated run tests
+                   Basic : CU basic set mode et CU basic run tests
+                   Console : CU console run tests
+                   Curses : CU curses run tests
+       3     Nettoyer le registre de tests : CU cleanup registry
+
+
+
+
+TAD - v3.6                                                                         38 / 46
+
+--- PAGE 39 ---
+Règles                                      Tests unitaires
+
+     CUnit 3 / 3
+
+
+    Structure type d’un test unitaire
+         Fonction du type void *f(void) qui utilise des assertions : macro
+         instructions commencant par CU ASSERT (définies dans
+         CUnit/CUnit.h
+                   CU ASSERT TRUE, CU ASSERT FALSE, CU ASSERT EQUAL,
+                   CU ASSERT NOT EQUAL, CU ASSERT PTR EQUAL, . . .
+             Algorithme :
+               1   Définir le(s) paramètre(s) effectif(s)
+               2   Définir le(s) résultat(s) attendu(s)
+               3   Appeler la fonction à tester et récupérer le(s) résultat(s) obtenu(s)
+               4   Comparer le(s) résultat(s) attendu(s) et obtenu(s)
+
+
+
+
+TAD - v3.6                                                                                     39 / 46
+
+--- PAGE 40 ---
+Règles                         Tests unitaires
+
+     Exemple 1 / 4
+
+
+    testPoint2D
+  1 #include<stdio.h>
+  2 #include<CUnit/Basic.h>
+  3 #include<string.h>
+  4 #include"point2D.h"
+  5
+  6 void test_abscisse(void){
+  7 PT_Point2D pt = PT_point2D(1,2);
+  8   float resultatAttendu = 1;
+  9   float resultatObtenu = PT_abscisse(pt);
+ 10 CU_ASSERT_EQUAL(resultatAttendu, resultatObtenu);
+ 11 }
+ 12
+ 13 void test_ordonnee(void){
+ 14 PT_Point2D pt = PT_point2D(1,2);
+ 15   float resultatAttendu = 2;
+ 16   float resultatObtenu = PT_ordonnee(pt);
+ 17 CU_ASSERT_EQUAL(resultatAttendu, resultatObtenu);
+ 18 }
+
+
+
+
+TAD - v3.6                                                                40 / 46
+
+--- PAGE 41 ---
+Règles                                              Tests unitaires
+
+     Exemple 2 / 4
+
+ 20 int init_suite_success(void) {
+ 21 return 0;
+ 22 }
+ 23
+ 24 int clean_suite_success(void) {
+ 25 return 0;
+ 26 }
+ 27
+ 28 int main(int argc, char** argv){
+ 29 CU_pSuite pSuite = NULL;
+ 30
+ 31 /* initialisation du registre de tests */
+ 32    if (CU_initialize_registry() != CUE_SUCCESS)
+ 33      return CU_get_error();
+ 34
+ 35 /* ajout d’une suite de test */
+ 36 pSuite = CU_add_suite("Tests boite noire", init_suite_success, clean_suite_success);
+ 37    if (pSuite == NULL) {
+ 38      CU_cleanup_registry();
+ 39      return CU_get_error();
+ 40 }
+ 41
+ 42 /* Ajout des tests à la suite de tests boite noire */
+ 43    if ((CU_add_test(pSuite, "Test general de PT_abscisse", test_abscisse) == NULL)
+ 44        || (CU_add_test(pSuite, "Test general de PT_ordonnee", test_ordonnee) == NULL)
+ 45        ) {
+ 46        CU_cleanup_registry();
+ 47        return CU_get_error();
+ 48 }
+
+
+
+
+TAD - v3.6                                                                                      41 / 46
+
+--- PAGE 42 ---
+Règles                      Tests unitaires
+
+     Exemple 3 / 4
+
+
+
+
+ 50 /* Lancement des tests */
+ 51 CU_basic_set_mode(CU_BRM_VERBOSE);
+ 52 CU_basic_run_tests();
+ 53 printf("\n");
+ 54 CU_basic_show_failures(CU_get_failure_list());
+ 55 printf("\n\n");
+ 56
+ 57 /* Nettoyage du registre */
+ 58 CU_cleanup_registry();
+ 59 return CU_get_error();
+ 60 }
+
+
+
+
+TAD - v3.6                                                             42 / 46
+
+--- PAGE 43 ---
+Règles                             Tests unitaires
+
+     Exemple 4 / 4
+
+    Exécution
+    $ tests/testPoint2D
+         CUnit - A unit testing framework for C - Version 2.1-3
+         http://cunit.sourceforge.net/
+
+
+    Suite: Tests boite noire
+      Test: Test general de PT_abscisse ...passed
+      Test: Test general de PT_ordonnee ...passed
+
+    Run Summary:      Type       Total   Ran Passed Failed Inactive
+                    suites           1     1    n/a      0        0
+                     tests           2     2      2      0        0
+                   asserts           2     2      2      0      n/a
+
+    Elapsed time =           0.000 seconds
+
+
+TAD - v3.6                                                               43 / 46
+
+--- PAGE 44 ---
+Conclusion
+
+     Conclusion 1 / 2
+
+    Analyse - Conception - Développement - Tests Unitaires
+    Vous verrez en cours UMLP que :
+        Le cyle de vie d’un projet informatique (version simplifiée) est
+               1   L’analyse : identification des entités (définition des parties publiques)
+                   et leurs formalisations
+               2   La conception : les TAD sont utilisés sans savoir comment ils
+                   fonctionnent (CP), les entités de l’analyse sont traduites dans un
+                   contexte donné, d’autres TAD sont éventuellement utilisés (CD)
+               3   Le développement : traduction de la conception dans un langage
+                   informatique et utilisation d’un outil de documentation
+               4   Les tests unitaires : utilisation d’API facilitant leurs développements
+             Aujourd’hui les entités centrales dans un projet informatique sont les
+             données
+             ⇒ Utilisation des types abstraits de données
+
+
+TAD - v3.6                                                                                   44 / 46
+
+--- PAGE 45 ---
+Conclusion
+
+     Conclusion 2 / 2
+
+
+             Le développement requière :
+                 la connaissance du langage (la traduction CD vers un langage n’est
+                 pas automatique)
+                 de la méthodologie
+                 de la communication (indentation, documentation, etc.)
+                 l’utilisation d’outils ou d’API
+
+    Organisation d’un projet
+        Répertoire : bin, tests, lib, include, src, doc
+             Fichiers : Makefile, readme, changelog
+             Le make compile le programme (all), les tests unitaires (tests) et la
+             documentation (doc)
+
+
+
+TAD - v3.6                                                                            45 / 46
+
+--- PAGE 46 ---
+Conclusion
+
+    Références
+
+
+
+
+             Cours “Structure de données linéaires” de Christophe Hancart de
+             l’Université de Rouen
+             Conception et Programmation Objet de Bertrand Meyer
+             Eyrolles ISBN : 2-212-09111-7
+
+
+
+
+TAD - v3.6                                                                       46 / 46

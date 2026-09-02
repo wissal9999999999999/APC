@@ -1,0 +1,44 @@
+{
+  "chapter": "Cours de algo",
+  "target_ac_id": "COURS-ALGO",
+  "aads": [
+    {
+      "aad_id": "AAD-1",
+      "formulation": "Définir un Type Abstrait de Données en utilisant un formalisme mathématique.",
+      "action_verb": "Définir",
+      "disciplinary_concept": "Type Abstrait de Données (TAD)",
+      "source_pages": [
+        6,
+        7
+      ],
+      "course_grounding": "L'extrait du cours explique comment définir un TAD en utilisant un formalisme mathématique, incluant le nom, les paramètres, les dépendances, les opérations, les axiomes et les préconditions.",
+      "ac_alignment": "Cet AAD permet de mobiliser les notions de TAD présentées dans le cours en les appliquant de manière concrète à travers la définition formelle d'un type de données."
+    },
+    {
+      "aad_id": "AAD-2",
+      "formulation": "Implémenter les opérations d'un TAD en utilisant un langage de programmation.",
+      "action_verb": "Implémenter",
+      "disciplinary_concept": "Implémentation des opérations d'un TAD",
+      "source_pages": [
+        28,
+        29
+      ],
+      "course_grounding": "L'extrait montre comment traduire les opérations d'un TAD en fonctions dans un langage de programmation comme le C, en utilisant des fichiers d'en-tête et des fichiers source.",
+      "ac_alignment": "Cet AAD permet de mobiliser les méthodes de développement présentées dans le cours en les appliquant à l'implémentation concrète des opérations d'un TAD."
+    },
+    {
+      "aad_id": "AAD-3",
+      "formulation": "Créer des tests unitaires pour vérifier la conformité d'une implantation de TAD.",
+      "action_verb": "Créer",
+      "disciplinary_concept": "Tests unitaires pour les TAD",
+      "source_pages": [
+        35,
+        36,
+        40,
+        41
+      ],
+      "course_grounding": "L'extrait explique comment utiliser des frameworks comme CUnit pour créer des tests unitaires qui vérifient la conformité des implantations de TAD aux spécifications définies lors de l'analyse.",
+      "ac_alignment": "Cet AAD permet de mobiliser les notions de tests unitaires présentées dans le cours en les appliquant à la vérification de la conformité des implantations de TAD."
+    }
+  ]
+}

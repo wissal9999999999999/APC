@@ -1,0 +1,318 @@
+[
+  {
+    "AC-ID": "specifier-1.1",
+    "AC-TITLE": "Décrire les types de données en entrée et sortie de chaque composant"
+  },
+  {
+    "AC-ID": "specifier-1.2",
+    "AC-TITLE": "Décomposer et organiser un processus"
+  },
+  {
+    "AC-ID": "specifier-1.3",
+    "AC-TITLE": "Utiliser un langage formel"
+  },
+  {
+    "AC-ID": "specifier-2.1",
+    "AC-TITLE": "Analyser la demande"
+  },
+  {
+    "AC-ID": "specifier-2.2",
+    "AC-TITLE": "Définir des cas d’utilisation"
+  },
+  {
+    "AC-ID": "specifier-2.3",
+    "AC-TITLE": "Caractériser l’utilisation des données au regard du RGPD"
+  },
+  {
+    "AC-ID": "specifier-3.1",
+    "AC-TITLE": "Discriminer et hiérarchiser les demandes"
+  },
+  {
+    "AC-ID": "specifier-3.2",
+    "AC-TITLE": "Définir la recette"
+  },
+  {
+    "AC-ID": "specifier-3.3",
+    "AC-TITLE": "Lister les tests fonctionnels"
+  },
+  {
+    "AC-ID": "specifier-4.1",
+    "AC-TITLE": "Recueillir et reformuler les demandes du prescripteur en confrontant sa demande (fonctionnalités et données) à ses besoins réels pour prendre en compte le DDRS"
+  },
+  {
+    "AC-ID": "specifier-4.2",
+    "AC-TITLE": "Prototyper des interfaces utilisateurs en prenant la RGAA"
+  },
+  {
+    "AC-ID": "specifier-4.3",
+    "AC-TITLE": "Respecter un référentiel qualité"
+  },
+  {
+    "AC-ID": "modeliser-1.1",
+    "AC-TITLE": "Représenter une collection de données numériquement ou symboliquement"
+  },
+  {
+    "AC-ID": "modeliser-1.2",
+    "AC-TITLE": "Déterminer les propriétés des entrées sorties d’un composant logiciel ou matériel"
+  },
+  {
+    "AC-ID": "modeliser-1.3",
+    "AC-TITLE": "Déterminer la famille d’algorithmes à utiliser au regard des données numériques ou symboliques à traiter"
+  },
+  {
+    "AC-ID": "modeliser-1.4",
+    "AC-TITLE": "Identifier le rôle des composants d’un ordinateur ou des systèmes électroniques"
+  },
+  {
+    "AC-ID": "modeliser-2.1",
+    "AC-TITLE": "Analyser les données numériques et symboliques du problème"
+  },
+  {
+    "AC-ID": "modeliser-2.2",
+    "AC-TITLE": "Comparer les différentes représentations numériques et symboliques des données"
+  },
+  {
+    "AC-ID": "modeliser-2.3",
+    "AC-TITLE": "Représenter dans le paradigme de la programmation orienté objet aussi bien les données que les fonctionnalités du problème"
+  },
+  {
+    "AC-ID": "modeliser-2.4",
+    "AC-TITLE": "Identifier le fonctionnement et les différentes implantations des composants d’un ordinateur ou des systèmes électroniques"
+  },
+  {
+    "AC-ID": "modeliser-3.1",
+    "AC-TITLE": "Normaliser des données pour appliquer un modèle"
+  },
+  {
+    "AC-ID": "modeliser-3.2",
+    "AC-TITLE": "Caractériser les données pour en déduire le modèle"
+  },
+  {
+    "AC-ID": "modeliser-4.1",
+    "AC-TITLE": "Transformer le modèle pour obtenir une résolution acceptable"
+  },
+  {
+    "AC-ID": "modeliser-4.2",
+    "AC-TITLE": "Transformer les données pour obtenir une résolution acceptable"
+  },
+  {
+    "AC-ID": "modeliser-4.3",
+    "AC-TITLE": "Construire les modèles statistiques adaptés aux données"
+  },
+  {
+    "AC-ID": "modeliser-4.4",
+    "AC-TITLE": "Évaluer les besoins en ressources"
+  },
+  {
+    "AC-ID": "concevoir-1.1",
+    "AC-TITLE": "Transposer une expression formelle en algorithme et vice-versa"
+  },
+  {
+    "AC-ID": "concevoir-1.2",
+    "AC-TITLE": "Transposer une représentation formelle en structure de données et vice-versa"
+  },
+  {
+    "AC-ID": "concevoir-1.3",
+    "AC-TITLE": "Intégrer des composants logiciels ou physiques au sein d’un système"
+  },
+  {
+    "AC-ID": "concevoir-2.1",
+    "AC-TITLE": "Sélectionner les structures de données dont la complexité (en temps et en espace) est adaptée"
+  },
+  {
+    "AC-ID": "concevoir-2.2",
+    "AC-TITLE": "Choisir les patrons de conception"
+  },
+  {
+    "AC-ID": "concevoir-2.3",
+    "AC-TITLE": "Choisir le framework"
+  },
+  {
+    "AC-ID": "concevoir-2.4",
+    "AC-TITLE": "Prétraiter, estimer et prédire un signal à l’aide d’un système linéaire"
+  },
+  {
+    "AC-ID": "concevoir-2.5",
+    "AC-TITLE": "Identifier le paradigme de traitement de données statistique"
+  },
+  {
+    "AC-ID": "concevoir-3.1",
+    "AC-TITLE": "Évaluer la complexité du traitement"
+  },
+  {
+    "AC-ID": "concevoir-3.2",
+    "AC-TITLE": "Intégrer des patrons de conception"
+  },
+  {
+    "AC-ID": "concevoir-3.3",
+    "AC-TITLE": "Adapter le framework"
+  },
+  {
+    "AC-ID": "concevoir-3.4",
+    "AC-TITLE": "Échanger de manière adaptée et sécurisée les données"
+  },
+  {
+    "AC-ID": "concevoir-4.1",
+    "AC-TITLE": "Aligner des structures de données issues de différents paradigmes"
+  },
+  {
+    "AC-ID": "concevoir-4.2",
+    "AC-TITLE": "Choisir le paradigme de programmation le mieux adapté aux traitements"
+  },
+  {
+    "AC-ID": "concevoir-4.3",
+    "AC-TITLE": "Choisir les patrons d'architecture"
+  },
+  {
+    "AC-ID": "concevoir-4.4",
+    "AC-TITLE": "Prétraiter, estimer et prédire un signal à l’aide d’un système non linéaire"
+  },
+  {
+    "AC-ID": "concevoir-4.5",
+    "AC-TITLE": "Échanger de manière adaptée et sécurisée les données en temps réel"
+  },
+  {
+    "AC-ID": "concevoir-4.6",
+    "AC-TITLE": "Choisir un modèle optimal d'un problème de traitement de données et évaluer ses performances"
+  },
+  {
+    "AC-ID": "developper-1.1",
+    "AC-TITLE": "Implémenter efficacement un algorithme dans un langage de la programmation structurée"
+  },
+  {
+    "AC-ID": "developper-1.2",
+    "AC-TITLE": "Utiliser un logiciel de suivi de version"
+  },
+  {
+    "AC-ID": "developper-1.3",
+    "AC-TITLE": "Caractériser le matériel et le système au regard des besoins"
+  },
+  {
+    "AC-ID": "developper-2.1",
+    "AC-TITLE": "Implémenter dans un langage de la programmation orientée objet à partir de diagrammes UML"
+  },
+  {
+    "AC-ID": "developper-2.2",
+    "AC-TITLE": "Exploiter une documentation"
+  },
+  {
+    "AC-ID": "developper-3.1",
+    "AC-TITLE": "Caractériser et représenter l’information"
+  },
+  {
+    "AC-ID": "developper-3.2",
+    "AC-TITLE": "Optimiser et sécuriser l’échange de données"
+  },
+  {
+    "AC-ID": "developper-3.3",
+    "AC-TITLE": "Utiliser et paramétrer des frameworks adaptés"
+  },
+  {
+    "AC-ID": "developper-4.1",
+    "AC-TITLE": "Automatiser les tâches de validation et de déploiement"
+  },
+  {
+    "AC-ID": "developper-4.2",
+    "AC-TITLE": "Mettre en œuvre l’architecture matérielle et logicielle"
+  },
+  {
+    "AC-ID": "gerer-1.1",
+    "AC-TITLE": "Utiliser une forge pour la gestion des tickets"
+  },
+  {
+    "AC-ID": "gerer-1.2",
+    "AC-TITLE": "Utiliser le cycle de développement en V"
+  },
+  {
+    "AC-ID": "gerer-2.1",
+    "AC-TITLE": "Utiliser un framework de tests unitaires"
+  },
+  {
+    "AC-ID": "gerer-2.2",
+    "AC-TITLE": "Utiliser un logiciel d’audit de code statique"
+  },
+  {
+    "AC-ID": "gerer-2.3",
+    "AC-TITLE": "Mettre en place des tests de non régression"
+  },
+  {
+    "AC-ID": "gerer-3.1",
+    "AC-TITLE": "Utiliser un cycle de développement Agile"
+  },
+  {
+    "AC-ID": "gerer-3.2",
+    "AC-TITLE": "Suivre des procédures"
+  },
+  {
+    "AC-ID": "gerer-3.3",
+    "AC-TITLE": "Rédiger des procédures"
+  },
+  {
+    "AC-ID": "gerer-4.1",
+    "AC-TITLE": "Auditer des projets"
+  },
+  {
+    "AC-ID": "gerer-4.2",
+    "AC-TITLE": "Passer des audits"
+  },
+  {
+    "AC-ID": "gerer-4.3",
+    "AC-TITLE": "Organiser les rôles et les tâches"
+  },
+  {
+    "AC-ID": "communiquer-1.1",
+    "AC-TITLE": "Documenter le code à l’aide d’un framework"
+  },
+  {
+    "AC-ID": "communiquer-1.2",
+    "AC-TITLE": "Rédiger un rapport cohérent retraçant toutes les étapes du cycle de vie du projet"
+  },
+  {
+    "AC-ID": "communiquer-1.3",
+    "AC-TITLE": "Représenter les modèles à l’aide de langage formel"
+  },
+  {
+    "AC-ID": "communiquer-2.1",
+    "AC-TITLE": "Rédiger des supports de présentation"
+  },
+  {
+    "AC-ID": "communiquer-2.2",
+    "AC-TITLE": "Restituer oralement le travail réalisé"
+  },
+  {
+    "AC-ID": "communiquer-2.3",
+    "AC-TITLE": "Synthétiser le travail réalisé"
+  },
+  {
+    "AC-ID": "communiquer-3.1",
+    "AC-TITLE": "Interpréter les résultats dans le contexte du problème"
+  },
+  {
+    "AC-ID": "communiquer-3.2",
+    "AC-TITLE": "Critiquer les résultats"
+  },
+  {
+    "AC-ID": "communiquer-3.3",
+    "AC-TITLE": "Proposer des perspectives"
+  },
+  {
+    "AC-ID": "communiquer-3.4",
+    "AC-TITLE": "Représenter de manière humainement compréhensible (graphiquement) les résultats"
+  },
+  {
+    "AC-ID": "communiquer-4.1",
+    "AC-TITLE": "Résumer une méthode de l’état de l’art"
+  },
+  {
+    "AC-ID": "communiquer-4.2",
+    "AC-TITLE": "Adapter son discours au public"
+  },
+  {
+    "AC-ID": "communiquer-4.3",
+    "AC-TITLE": "Organiser la parole au sein d’un groupe"
+  },
+  {
+    "AC-ID": "communiquer-4.4",
+    "AC-TITLE": "Convaincre son interlocuteur"
+  }
+]

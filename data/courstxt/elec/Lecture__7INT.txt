@@ -1,0 +1,118 @@
+--- PAGE 1 ---
+INTERRUPTS
+MULTITHREADING
+     & ADC
+  H IN D L AGHM AR A   ITI3
+
+--- PAGE 2 ---
+PREVIOUSLY SEEN
+
+• Usage of a sensor with a specific acquisition frequency
+• A sequential processing of different instructions: A successive processing of tasks (task A =>
+  task B => task C…)
+• No priorities of processing tasks
+
+--- PAGE 3 ---
+THREADS
+
+• A thread is a basic unit of CPU utilization
+• A thread is a separate process with its own instructions and data
+• A thread may represent a process that is part of a parallel program consisting of multiple
+  processes or it may represent an independent program
+
+--- PAGE 4 ---
+MULTITHREADING
+• Multithreading allows multiple threads to share the functional units of a single processor in an
+  overlapping fashion
+• Computers and microcontrollers with multiple cores can run more than one sequence of code
+  at the same time ➔ Multithreading
+• The hardware must support the ability to change to a different thread relatively quickly
+
+--- PAGE 5 ---
+MULTITHREADING ON RPI
+• To learn more about the Raspberry Pi CPU, type in the command: lscpu
+• The physical chip supports 64-bit instructions
+• ARMv7 supports both Big Endian and Little endian => the default is Little Endian
+
+--- PAGE 6 ---
+MULTITHREADING ON RPI
+
+• With RPI we know that there is one socket (or chip) with 4 physical cores, where each core
+  can support 1 thread.
+• In the case of the Raspberry Pi, each core only supports one thread
+• A core can be thought of as the compute unit of the CPU. It includes registers, an ALU, and
+  control units.
+• Process: for each launched command, the bash shell launches a process associated with that
+  program executable. Each process contains a copy of the code and data of the program
+  executable, and its own allocation of the stack and heap.
+• Thread: A thread is a light-weight process. While each thread gets its own stack allocation,
+  it shares the heap, code and data of the parent process.
+
+--- PAGE 7 ---
+MULTITHREADING: WIRINGPI
+• wiringPi has a simplified interface to the Linux implementation of Posix threads, as well as a
+  (simplified)     mechanisms         to      access      mutex’s        (Mutual      exclusions)
+  Using these functions you can create a new process (a function inside your main program) which
+  runs concurrently with your main program and using the mutex mechanisms, safely pass variables
+  between them.
+• int piThreadCreate (name) ;
+  This function creates a thread which is another function in your program previously declared using
+  the PI_THREAD declaration. This function is then run concurrently with your main program. An
+  example may be to have this function wait for an interrupt while your program carries on doing
+  other tasks. The thread can indicate an event, or action by using global variables to communicate
+  back to the main program, or other threads.
+
+--- PAGE 8 ---
+INTERRUPTS
+
+• A changing event can be useful for your program by checking the state of a GPIO
+• Either regularly check ➔ polling or set a notification ➔ interrupt
+• There are 2 kind of interrupts:
+    • RISING: when the state goes from LOW to HIGH.
+    • FALLING: when the state goes from HIGH to LOW.
+
+--- PAGE 9 ---
+INTERRUPTS ON WIRINGPI
+
+• int wiringPiISR (int pin, int edgeType, void (*function)(void)) ;
+This function registers a function to received interrupts on the specified pin. The edgeType parameter is
+either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP. If
+it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already
+setup the pin elsewhere (e.g. with the gpio program), but if you specify one of the other types, then the pin
+will be exported and initialised as specified. This is accomplished via a suitable call to the gpio utility
+program, so it need to be available.
+• int waitForInterrupt (int pin, int timeOut) ;
+When called, it will wait for an interrupt event to happen on that pin and your program will be stalled.
+The timeOut parameter is given in milliseconds, or can be -1 which means to wait forever.
+
+--- PAGE 10 ---
+ADC: ANALOG-DIGITAL CONVERTER
+
+
+The ADC0832 is a successive approximation, 8-bit
+Analog to Digital Converter. The ADC0832 has 2 analog
+input channels and a serial I/O output for connecting to
+microcontrollers. The ADC0832 inputs can be configured
+for either single-ended or differential inputs. The device
+operates with a +5Vdc supply.
+
+
+
+
+ Ref: ADC0832 Datasheet
+
+--- PAGE 11 ---
+ADC: ANALOG-DIGITAL CONVERTER
+
+
+
+
+ Ref: futurlec
+
+--- PAGE 12 ---
+ADC: ANALOG-DIGITAL CONVERTER
+
+--- PAGE 13 ---
+REFERENCES
+
+• https://www.learnpdc.org/RaspberryPiHandout/01multicore_overview/index.html

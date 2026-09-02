@@ -1,0 +1,963 @@
+--- PAGE 1 ---
+UV Traitement du signal
+
+                 Cours 2 et 3
+
+      Représentation fréquentielle des signaux
+           Transformation de Fourier
+
+
+                      ASI 3
+TdS                                              1
+
+--- PAGE 2 ---
+Contenu du cours
+  Introduction
+       Notion de fréquence
+       Pourquoi la représentation fréquentielle ?
+  Décomposition en série de Fourier
+       Définition
+       Quelques propriétés
+  Transformée de Fourier des signaux à énergie finie
+       Définition, conditions d'existence
+       Propriétés de la TF
+       Notion de densité spectrale d'énergie
+  TF au sens des distributions
+       Définition
+       Transformée de l'impulsion de Dirac
+       Transformée de Fourier des signaux périodiques
+
+TdS                                                      2
+
+--- PAGE 3 ---
+Introduction
+  Notion de fréquence
+
+
+       Qu'est ce qu'une fréquence ?
+           La fréquence est le nombre de fois qu'un phénomène périodique se
+            reproduit pendant une durée déterminée
+           C'est donc l'inverse de la période f = 1/T
+           La fréquence est mesurée en hertz (= 1/seconde)
+
+
+
+
+       Dans un son
+           Sons graves = basses fréquences
+           Sons aigus = hautes fréquences
+
+
+
+
+       => La fréquence permet de caractériser un certain type d'information
+
+
+
+TdS                                                                            3
+
+--- PAGE 4 ---
+Introduction
+  Notion de fréquence
+
+
+       Dans une image
+          Surfaces =
+           basses fréquences
+          Contours =
+           hautes fréquences
+
+
+
+
+       Dans une onde lumineuse
+          Les couleurs dépendent
+           de la longeur d'onde
+
+           = la fréquence
+
+
+
+
+TdS               Image provenant de http://web.ujf-grenoble.fr/ujf/
+                                                                       4
+
+--- PAGE 5 ---
+Introduction
+  La notion de fréquence est également présente dans :
+        La voix, un téléphone portable, la radio, l'ADSL, les horaires de passage d'un
+         train, la musique electronique, un equaliser, un radar, etc.
+  Toute ces applications véhiculent ou analysent le contenu fréquentiel
+      de l'information
+        Une représentation fréquentielle de l'information est souvent + facile à
+         interpréter que la représentation temporelle
+                         Rep. temporelle                Rep. frequentielle
+
+
+
+
+TdS                                                                                       5
+
+--- PAGE 6 ---
+Introduction
+
+  Autre exemple : Analyse d'ondes cérébrales
+                                                 Rep. temporelle     Rep. frequentielle
+
+      Ondes Alpha: engendrées lorsque le
+      sujet change son niveau d'attention
+       (f modérées, amplitude importante)
+
+
+      Ondes Bêta: produites par une activité
+      mentale intense (fréquences. élevées,
+               faibles amplitudes)
+
+
+         Ondes Thêta: accompagnent des
+         sentiments de stress émotionnel
+               (fréquences faibles)
+
+
+
+
+       Question : Comment obtenir la représentation fréquentielle d'un signal ?
+
+TdS                                                                                       6
+
+--- PAGE 7 ---
+Vers une représentation fréquentielle ...
+  La notion de fréquence est intéressante, mais comment connaitre les
+        fréquences que contient un signal ?
+
+  Exemple d'un signal sinusoïdal :
+
+                                      f0 est la fréquence du signal
+   x  t =cos 2πf 0 t+φ 
+                                   => Pour un cosinus, c'est facile ...
+                                                                               Temps
+
+  Exemple d'une onde lumineuse :
+
+                                              Fréquences variables au cours du temps
+                                              (du rouge au violet). Comment caractériser
+      Onde lumineuse
+
+
+
+
+                                              les informations fréquentielles contenues
+                                              dans ce signal ?
+                                             => ici, c'est plus difficile ...
+
+                       Temps             idem pour un signal porte, une exponentielle, etc.
+
+
+                               Analyse fréquentielle des signaux
+TdS                                                                                       7
+
+--- PAGE 8 ---
+Vers une représentation fréquentielle ...
+ Petite expérience : mélangeons quelques sinus ...
+
+
+  % Code matlab
+  f0 = 0.51; A0 = 1;
+  f1 = 0.11; A1 = 2;
+  f2 = 0.21; A2 = 2;
+
+  % déclaration de signaux de base
+  x0 = A0*sin(2*pi*f0*t);
+  x1 = A1*sin(2*pi*f1*t);
+  x2 = A2*sin(2*pi*f2*t);
+
+  % affichage des signaux + combinaison
+  plot(t, x0, 'y'); hold on;
+  plot(t, x1, 'g');
+  plot(t, x2, 'c');
+  plot(t, x0+x1+x2, 'k.');
+
+
+
+
+      • Il est donc possible d'obtenir des signaux périodiques complexes
+      par une simple combinaison linéaire de signaux élémentaires
+
+      • C'est le principe inverse de la décomposition en série de Fourier
+TdS                                                                         8
+
+--- PAGE 9 ---
+Décomposition en Série de Fourier
+ Principe :
+         La Décomposition en Série de Fourrier consiste à exprimer un signal
+         périodique comme une combinaison linéaire de signaux sinusoïdaux
+                   1.5
+
+                              Signal 1              x(t)= Signal 1 + signal 2
+                     1
+
+                   0.5
+
+                     0
+
+                   ­0.5
+                                         Signal 2
+                     ­1
+
+                   ­1.5
+                          0     5           10          15           20
+
+
+      • Sous forme de signaux sinusoïdaux, les fréquences d'un signal apparaissent
+      naturellement.
+      • Pour les signaux périodiques, la décomposition en Série de Fourier (DSF)
+      constitue le lien entre la représentation temporelle d'un signal et sa
+      représentation fréquentielle.
+      • Pour les signaux non périodiques, il s'agit de la Transformée de Fourier (TF).
+TdS                                                                                      9
+
+--- PAGE 10 ---
+Décomposition en Série de Fourier
+  Principe
+       Exprimer un signal x(t) de période T comme une combinaison linéaire de fonctions
+                                                   1
+       sinusoïdales de fréquences multiples de F = T , dite fréquence fondamentale
+  Définition de la DSF : forme trigonométrique
+
+              Un signal x(t) de période T, s'exprime sous certaines conditions comme
+                                      ∞
+                          x  t =a0 ∑ an cos n
+                                     n= 1
+                                                    2π
+                                                      T     
+                                                        t +bn sin n
+                                                                    2π
+                                                                     T 
+                                                                       t    
+                        => Somme de sinus et de cosinus : facile à interpréter
+
+  Coefficients de la série
+              T /2
+          1                                         b 0=0
+      a 0= ∫ x  t  dt
+          T −T /2
+                                                                T /2
+
+                                                                            
+                T /2
+                                                         2               2π
+      a n=
+             2
+                ∫
+             T −T /2
+                     x  t  cos 
+                                 n
+                                   2π
+                                    T
+                                      t dt          b n = ∫ x  t  sin n t dt
+                                                         T −T /2          T
+                                                                                 (avec n ≥ 1 )
+
+                       a 0 : valeur moyenne du signal ou composante continue
+TdS                                                                                          10
+
+--- PAGE 11 ---
+Décomposition en Série de Fourier
+  Définition de la DSF : forme trigonométrique
+                          ∞
+
+                                   
+                x  t =a0 ∑ an cos n
+                          n= 1
+                                         2π
+                                          T          
+                                            t +bn sin n
+                                                        2π
+                                                         T
+                                                           t     
+  Interprétation :
+
+
+
+
+                                                   (Figure prise du site de Denis Auquebon)
+TdS                                                                                           11
+
+--- PAGE 12 ---
+Décomposition en Série de Fourier
+  Définition de la DSF : forme complexe
+
+  Rappels : formules de moivre et d'Euler
+                                                                             exp  jθ exp − jθ 
+              exp− jθ =cos θ − j sin θ                    cos θ =
+                                                                                        2
+               exp  jθ =cos θ +j sin θ                                   exp − jθ −exp  jθ 
+                                                                  sin θ  =j
+                                                                                           2
+  Application à la DSF
+                ∞
+   x  t =a0 ∑ an cos n
+                n= 1
+                                     2π
+                                       T         
+                                         t +bn sin n
+                                                     2π
+                                                      T
+                                                        t   
+                       ∞
+                  1
+      x  t =a0  ∑  a n− jb n  exp jn
+                  2 n= 1
+                                          2π
+                                           T         
+                                             t  an +jb n  exp − jn
+                                                                      2π
+                                                                       T
+                                                                         t               
+                                                                         a n − jb n
+  Posons la relation entre les coefficients                      c n=           si n>0                   c 0 =a0
+                                                                          2
+                                                                      a n +jb n
+                                                                 c n= 2        si n< 0
+                             ∞
+                                                  2π                 Les "cn" sont appelés les coefficients
+ On a alors     x  t = ∑ c n exp jn               t
+                            n=−∞                   T                 de Fourier de x(t). Ils forment la
+                            T/2                                      représentation fréquentielle de x(t).
+                       1                        2π
+TdS
+        Où     c n=       ∫
+                       T −T / 2
+                                x t exp − jn
+                                                T
+                                                   t  dt
+                                                                      Notation         x(t ) → { cn } n∈Z            12
+
+--- PAGE 13 ---
+Décomposition en Série de Fourier
+ Remarques
+       Posons F = 1 . Les deux formes de la DSF s'écrivent alors
+                   T                                        ∞
+                     ∞
+        x  t =a0 ∑ an cos  2π nFt  +b n sin  2π nFt      x  t = ∑ c n exp j2πnFt 
+                     n= 1                                               n=−∞
+        F est la fréquence fondamentale                    f = nF sont les harmoniques
+       Les coefficients cn sont complexes en général              cn = cn exp( j arg(cn ))
+       Dans la forme complexe de la DSF, interviennent des fréquences négatives et
+        positives qui sont introduites par commodité de représentation
+
+ Quelques propriétés
+       Si le signal x(t) est réel, c− n = cn* : les coefficients sont nécessairement complexes
+        conjugués pour restituer x réel car exp( j 2πnFt ) est complexe
+
+       Si le signal x(t) est réel et pair, c− n = cn ⇒ bn = 0
+
+       Si le signal x(t) est réel et impair, c− n = −cn ⇒ an = 0
+                                                                                        ∞
+       Théorème de Parseval : la puissance du signal périodique est P=                 ∑ ∣c n∣2
+                                                                                       n=−∞
+
+TdS                                                                                                13
+
+--- PAGE 14 ---
+Décomposition en Série de Fourier
+ Remarque : Pourquoi les nombres complexes ?
+
+       Quand on a des phénomènes périodiques, les complexes sont plus
+        faciles à manipuler.
+       Exemple : analyse de circuits électriques RLC :
+
+                          résistance   inductance          capacité
+
+                                           di                 dv
+             En réels :   v=Ri         v=L                i=C
+                                           dt                 dt
+      En complexes :      Z =R         Z= j wL        Z =− j / w C
+      avec   V =ZI
+       => remplacement d'équations différentielles par des équations
+        algébriques
+
+
+
+
+TdS                                                                      14
+
+--- PAGE 15 ---
+Exemple de DSF
+
+  Soit h(t) de période T tel que sur l'intervalle [0, T] :
+
+
+
+
+      Décomposition en Série de Fourier de h(t)
+
+
+
+
+TdS                                                          15
+
+--- PAGE 16 ---
+Exemple de DSF
+                              A       n t0
+      On a trouvé que : c n=    sin        
+                             n       T
+      Donc la série de Fourier de h(t) s'écrit :
+
+                 ∞A      n t 0         j2 n t
+      h t=∑n=−∞    sin         exp          
+                  n       T               T
+      Approximation du signal créneau par la série de Fourier en limitant n à différentes valeurs :
+
+
+
+
+              n=10                             n=50                           n=250
+         Phénomène de Gibbs = effet de bord aux
+TdS                 discontinuités                                                                    16
+
+--- PAGE 17 ---
+Exemple de DSF
+                                                 A       n t0                   A t0
+      Représentation des Cn:               c n=    sin                    c 0=
+                                                n       T                        T
+
+
+
+
+                                                                 Spectre de raie : les Cn
+                                                               indiquent quelles sont les
+                                                                 fréquences présentes
+                                                                     dans le signal
+
+
+
+
+       Autre exemple : essayer avec : x(t) = 1 si t<T/2; 0 si t>T/2
+
+
+
+TdS                                                                                         17
+
+--- PAGE 18 ---
+Autres exemples
+
+ Exemples :
+
+
+
+
+               Attention à l'écriture alternative avec la pulsation   =2  f
+
+
+
+
+               OK pour les signaux périodiques ...
+
+TdS                                                                             18
+
+--- PAGE 19 ---
+Et pour les signaux non périodiques ?
+
+
+
+ La DSF n'est applicable qu'aux signaux périodiques
+
+ Comment faire pour les signaux non périodiques ?
+
+ Considérons que la période T est infinie (donc F tend vers 0)
+
+ Et comme les harmoniques sont des multiples de F ...
+
+ ... l’écart entre les raies du spectre va donc devenir infiniment petit
+
+ On tend alors vers une représentation fréquentielle continue
+
+
+
+      C'est la Transformée de Fourier, qui peut être vue comme une
+      généralisation des séries de Fourier aux signaux non périodiques
+
+
+TdS                                                                         19
+
+--- PAGE 20 ---
+Spectres de raie pour différentes périodes
+
+
+
+
+                               Plus la période augmente,
+                                plus l'écart entre les Cn
+                                        diminue ...
+
+
+
+TdS                                                         20
+
+--- PAGE 21 ---
+Transformée de Fourier
+ Définition de la TF
+                                                                  ∞
+       Soit signal x(t) un signal non périodique.
+                                                         X  f = ∫ x  t  e− j2πft dt
+       La TF de x(t), si elle existe, est
+                                                                  −∞
+
+
+       X(f) indique la "quantité" de fréquence f présente dans le signal x(t) sur
+        l'intervalle ] − ∞,+∞[ . X(f) donne des informations fréquentielles sur x(t).
+
+   X(f) : fonction complexe (de la variable réelle f) qui admet
+           Un spectre d'amplitude A f = X ( f )          un spectre de phase φ ( f ) = arg( X ( f ) )
+
+
+
+ Transformée de Fourier inverse
+                                                                   ∞
+         Si elle existe, la TF inverse est définie par     x  t = ∫ X  f  e j2πft df
+ Notations                                                        −∞
+
+
+         X ( f ) = F ( x(t ) )          x(t ) = F −1 ( X ( f ) )
+      X(f) et x(t) sont deux descriptions équivalentes (temporelle ou fréquentielle)
+      du même signal. On écrit : x(t) ↔ X(f)
+
+TdS                                                                                                       21
+
+--- PAGE 22 ---
+Exemple de calcul de TF
+
+      x(t)=1 pour 0<t<T, 0 sinon.
+
+          T
+                                   1
+  X  f =∫ 1 . e− j2πft dt =−        [ e− j2πfT −1 ]
+           0                     j2πf
+
+                                                             − jπfT sin πfT 
+               − jπfT
+           e
+  X  f =       . 2j. sin  πfT                X  f =e
+            j2πf                                                       πf
+                                 X  f =Te− jπfT sin c  πfT 
+
+   Amplitude spectrale                                               Phase Spectrale
+
+
+
+
+TdS                                                                                    22
+
+--- PAGE 23 ---
+Exemple de calcul de TF
+
+      A vous de jouer avec x t =exp −at   t    (a>1)
+
+
+
+
+TdS                                                           23
+
+--- PAGE 24 ---
+Conditions d'existence de la TF
+ Questions
+       Quand est-ce que la TF de g(t) existe ?
+                                                                      +∞ +∞
+      Quand est-ce que g(t) = gf (t) ?              avec g f (t ) = ∫ ∫ g (u ) e − j 2πfu e j 2πft dudf
+                                                                      −∞ −∞
+
+  Conditions d'existence
+                          +∞
+         Il faut que :     ∫ g (t ) dt < ∞             et g(t) continue par morceaux et admet un
+                          −∞                           nombre de discontinuités et d'extrema fini
+                                           OU
+                           +∞
+                                     2
+                           ∫ g (t ) dt < ∞
+                           −∞
+                                     +∞                                +∞                   2
+                                                2
+      Condition d'égalité       Si       ∫ g (t ) dt < ∞ alors ∫ g (t ) − g f (t ) dt = 0
+                                     −∞                                −∞
+       Si g(t) satisfait à la condition d'existence de la TF alors g(t)) et gf (t) ) sont égaux
+       presque partout sauf aux discontinuités
+
+      Cas de certains signaux ne respectant pas ces conditions
+
+           Si ce signal définit une distribution (exemple Impulsion de Dirac),
+           on peut définir une transformée de Fourier
+TdS                                                                                                       24
+
+--- PAGE 25 ---
+Propriétés de la TF
+  Linéarité
+      a 1 x1  t +a 2 x 2 t ↔ a1 X 1  f +a 2 X 2  f 
+  Décalage temporel
+                            − j2πft o               L'amplitude Af ne change pas. La
+      x  t −t o ↔ e                   Xf        phase est modifié de −j2π ft0
+
+  Décalage fréquentiel
+
+          j2πf o t
+      e              x  t ↔X  f −f o             x at arrow
+
+
+  Changement d'échelle
+                                                 La contraction dans le domaine temporel (a ≥ 1)
+                 X  
+               1      f
+      x(a t) ↔                          a∈   *
+                                                 correspond à la dilatation dans le domaine
+               a     a                         fréquentiel et inversement
+  Dérivation
+      dx  t 
+       dt
+               ↔j2πf X  f 
+                                                                               !
+  Intégration                                                             La TF et la TF inverse ne sont
+                                                      1                    pas toujours définies
+      Soit P[x(t)] la primitive de x(t) P[ x t ]↔      X f 
+TdS                                                 j2πf                                                    25
+
+--- PAGE 26 ---
+Propriétés de la TF
+  Inversion temporelle
+
+      x ( −t ) ↔ X ( − f )
+  Conjugaison complexe
+
+      x* (t ) ↔ X * (− f )
+  Symétrie dans le cas de signaux réels
+
+      Si x(t) est un signal réel alors   X  f =X −f            Le spectre d'amplitude est une
+                                                                   fonction paire et le spectre
+      donc ∣X  f ∣=∣X  −f ∣   et     φ  f =−φ −f           d'argument est impair
+  Symétrie dans le cas de signaux imaginaires purs
+
+       Si x(t) est un signal imaginaire pur alors      X  f  =−X  −f 
+  Parité
+
+        Si x(t) est un signal réel et pair alors X(f) est réelle et paire
+        Si x(t) est un signal réel et impair alors X(f) est imaginaire pure et impaire
+
+TdS                                                                                                 26
+
+--- PAGE 27 ---
+Exemple d'application des propriétés de la TF
+  Décalage fréquentiel
+                                j2πf o t
+             x  t =∏ t ⋅e                                      Partie Réelle de x          Module de X(f)
+
+      or    F  ∏  t   =T sinc  πfT 
+
+  Par la propriété de décalage
+  en fréquence de la TF
+
+             X  f = T sinc π  f −f o T 
+
+      Ce résultat est fondamental en modulation de signaux
+           Les radios Longues Ondes utilisent ce principe pour transmettre un message m
+           informatif dont le contenu fréquentiel est compris entre 0Hz et 20kHz
+                                                                          |MAM(f)|
+                       |M(f)|                   Même message                            France Inter f0= 195 kHz
+
+
+
+                                           mAM (t ) = m(t ) × e j 2πf0t
+
+                   0                f                                     0                         f0             f
+TdS                                                                                                                    27
+
+--- PAGE 28 ---
+Dualité de la TF
+  Les définitions symétriques de la TF et de la TF inverse permettent de mettre
+  en avant une propriété de la TF appelée Dualité de la TF.
+      Soit x(t) , une fonction quelconque dont la TF est bien définie
+                    +∞                                   +∞
+         X ( f ) = ∫ x(t )e − j 2πft dt   et    x(t ) = ∫ X ( f )e j 2πft df
+                    −∞                                   −∞
+                                                         +∞
+                                On a donc      x(−t ) = ∫ X ( f )e − j 2πft df
+                                                         −∞
+
+  En intervertissant les variables temporelles
+  et fréquentielles, on obtient :
+                +∞
+      x(− f ) = ∫ X (t )e  − j 2πtf
+                                     dt = F ( X (t ) )
+                  −∞
+
+                         F
+       Donc si    x(t ) 
+                        → X(f )
+                          F
+        alors     X (t ) 
+                         → x(− f )
+
+TdS                                                                               28
+
+--- PAGE 29 ---
+TF et énergie des signaux
+  Relation de Parseval
+
+       Loi de conservation de l'énergie
+              Dans le cas où les intégrales existent, on a
+
+               +∞           +∞
+                      2              2
+                ∫ x(t ) dt = ∫ X ( f ) df
+               −∞           −∞
+
+
+                La Transformée de Fourier conserve l'énergie du signal
+
+
+
+      Application
+              Montrer que l' énergie de F o sinc πtF o    vaut Fo
+
+
+
+
+TdS                                                                      29
+
+--- PAGE 30 ---
+Densité spectrale d'énergie
+   Comme la TF conserve l'énergie, on peut définir une notion d'énergie par
+   unité de fréquence, la densité spectrale d'énergie (DSE)
+                                                                    2
+                                        S xx ( f ) = X ( f )
+
+ Energie dans une bande de fréquence                                                      Energie totale
+ ∆f       |X(f)|                      f +Δf / 2
+                                       0                                                      +∞                      +∞
+                                                                                                             2
+                             E Δf =        ∫        S xx  f  df                        E = ∫ X ( f ) df = ∫ S xx ( f )df
+                   ∆f                 f 0− Δf / 2                                             −∞                      −∞
+
+
+
+           0 f0          f                                              Cas des signaux à puissance moyenne finie
+                                                                        Ce sont des signaux à énergie infinie. On
+Théorème de Wiener-Kintchine                                            définit alors une densité spectrale de puissance
+La densité spectrale Sxx(f) de x(t) est                                                                  2       X T ( f ) = F [ xT (t )]
+                                                                                                 X (f)
+la TF de sa fonction d'autocorrélation.                                         Pxx ( f ) = lim T
+                                                                                            T →∞   T             xT (t ) = x (t ) × Π T (t )
+              ∞
+   S xx  f = ∫ C xx  τ  e− j2πfτ dτ                                 xT(t) est le signal x(t) prélevé sur une fenêtre de largeur T
+              −∞
+                                                                                  La densité spectrale de puissance est la
+Ce théorème est valable aussi pour les signaux                                    TF de la fonction d'autocorrélation
+TdS
+aléatoires                                                                                                                                     30
+
+--- PAGE 31 ---
+Théorème de Bernstein
+
+ Ce théorème permet de relier le support en fréquence d'un signal et la variation de ce signal
+
+  Un signal est dit "à support borné en fréquence" si     ∀ f > f max , X ( f ) = 0
+
+      Énoncé
+           Si x(t) est
+                borné càd ∀ t ,      x(t ) < M
+                à support borné en fréquence
+
+                           dxt                         d p x t            p
+             Alors       ∣        ∣≤2πf max M     et   ∣       p
+                                                                    ∣≤  max  M
+                                                                        2πf
+                            dt                              dt
+       Interprétation
+
+         Les variations d'un signal sont liées à la dérivée de ce signal. Comme cette
+         dérivée est bornée, le signal ne peut pas varier arbitrairement vite.
+
+         Conséquence :
+         Un signal présentant des discontinuités est un signal à support en fréquence non borné.
+TdS                                                                                              31
+
+--- PAGE 32 ---
+TF d'une distribution
+ Question
+      Comment faire quand la TF d'un signal n'est pas définie ?
+       on considère si possible le signal comme une distribution.
+ Définition
+
+       La transformée de Fourier d'une distribution D est une distribution notée F [D] telle que
+       pour la fonction ϕ (t) indéfiniment dérivable et à support borné
+
+                                  〈 F [ D ] ,ϕ〉=〈D,F [ ϕ ] 〉
+ Application : quelle est la TF d'une impulsion de Dirac ?
+
+        Par définition : 〈 F  D  , 〉=〈 D  , F 〉=F 0
+                                       ∞
+                or     F       =∫−∞ t e− j2 ft dt
+                                       ∞                       ∞
+              donc     F 0=∫−∞ t dt=∫−∞ 1∗t dt=〈 D1, 〉
+              F  D=D1         La TF de l'impulsion de Dirac est une constante
+                                    En notation « fonction » : F =1
+                                                                                       − j2πaf
+      De même, grâce à la propriété de décalage temporel :         F [ δ t−a  ] =e
+TdS                                                                                                32
+
+--- PAGE 33 ---
+Applications de la TF d'une distribution
+    Question : Comment faire lorsque l'intégrale n'est pas définie car divergente ?
+                        Ex. : 1, cos, exp, etc.
+                         application de la théorie des distributions
+
+      Quelle est la TF de la distribution associée à 1 ?
+                                               ∞
+〈 F  D1 , 〉=〈 D 1, F 〉=∫−∞ F  dt =∫−∞ F  e
+                                                                 ∞
+                                                                                   j2 f 0t
+                                                                                                ∣
+                                                                                              dt t=0= F  F  ∣t =0= 0=〈 D , 〉
+                                                                                                       −1
+
+
+
+                                                       TF inverse de   F         prise en t=0
+
+                                                                    résultat sans                                 ∞
+                                              F  D1 =D
+        Donc finalement :                                       surprise en vertu du                   D'où :      ∫ e− j2πft dt =δ  f 
+                                                                principe de dualité !                             −∞
+              Notation “fonction” : F 1=
+
+   TF d'un signal sinusoïdal
+                                                                                               ∞                      ∞
+                          e
+                              j2πf 0 t    − j2πf 0 t
+                                         +e                                               1     − j2π  f −f t    1    − j2π  f+f t
+       cos  2πf 0 t =
+                                         2
+                                                                F [ cos 2πf 0 t  ]=       ∫
+                                                                                          2 −∞
+                                                                                               e             0
+                                                                                                                dt+ ∫ e
+                                                                                                                   2 −∞
+                                                                                                                                    0
+                                                                                                                                       dt
+        ∞
+              − j2π  f −f 0  t                                       j2πf 0 t
+                                                                 1⋅e              ↔δ  f −f 0 
+         ∫e                        dt         est la TF de                                                  (décalage fréquentiel)
+        −∞
+                              1             1                                                              1                1
+         F [ cos 2πf 0 t  ]= δ  f −f 0  δ  f+f 0                            F [ sin 2πf 0 t  ]=      δ  f −f 0 − δ  f+f 0 
+                              2             2                                                              2j              2j
+                                                                                              Une raie en f0 et une autre en -f0
+TdS                                                                                                                                         33
+
+--- PAGE 34 ---
+TF d'un signal périodique
+ Décomposition en série de Fourier
+ Toute fonction périodique f(t) de période T peut s'écrire comme une somme infinie de cos et sin.
+
+
+
+
+  La TF d'un signal périodique est divergente, mais on peut définir une TF au sens des
+  distributions en utilisant la décomposition en Série de Fourier.
+                                                              ∞                             ∞
+ En utilisant la propriété de                                        a n − jb n                    an +jb n
+ linéarité de la TF on obtient :      F [ f  t  ]=a0 δ  f ∑                  δ f −n F  ∑              δ  f+n F 
+                                                              n= 1       2                   n=1      2
+
+      Remarque                                                                                     c 0 =a0
+         ∞                                                             ∞
+                           2π      propriété de
+  f  t = ∑ c n exp jn      t                        F [ f  t  ]= ∑ c n δ  f −n F          c n=
+                                                                                                         a n − jb n
+                                                                                                                   n>0
+         n=−∞               T      linéarité de la TF                 n=−∞                                  2
+                                                                                                        a n +jb n
+        Le résultat correspond à un spectre de raies (non continu)                                 c n=           n< 0
+                                                                                                            2
+        Conclusion : On retrouve bien le résultat de la DSF;
+TdS     la TF est bien une généralisation de la DSF                                                                     34
+
+--- PAGE 35 ---
+TF d'un signal périodique
+
+
+
+
+                Idem DSF
+TdS                          35
+
+--- PAGE 36 ---
+TF d'un Peigne de Dirac
+
+
+
+
+        La TF d'un peigne de Dirac est un peigne de Dirac
+TdS                                                         36
+
+--- PAGE 37 ---
+Qu'est ce qu'un bruit blanc ?
+
+
+
+
+ Un bruit blanc est un signal aléatoire qui contient toutes les fréquences
+
+       Sa représentation fréquentielle est quasi plate :
+        (SA -> densité spectrale)
+       Pour un signal sonore,
+                                                                Densité spectrale
+        ceci correspond à un « souffle »
+                                                            (= TF de l'autocorrelation)
+       Remarque : théoriquement, un tel signal ne peut exister puisque son
+        énergie serait infinie ...
+
+
+
+TdS                                                                                       37
+
+--- PAGE 38 ---
+TF Usuelles
+                     distributions
+
+
+
+
+         fonctions
+
+
+
+
+TdS                                  38
+
+--- PAGE 39 ---
+Fourier's Song :)
+  by Dr Time and Brother Frequency
+
+  Integrate your function times a complex exponential
+  It's really not so hard you can do it with your pencil
+  And when you're done with this calculation
+  You've got a brand new function - the Fourier Transformation
+  What a prism does to sunlight, what the ear does to sound
+  Fourier does to signals, it's the coolest trick around
+  Now filtering is easy, you don't need to convolve
+  All you do is multiply in order to solve.
+  From time into frequency - from frequency to time
+  Every operation in the time domain
+  Has a Fourier analog - that's what I claim
+  Think of a delay, a simple shift in time
+  It becomes a phase rotation - now that's truly sublime!
+  And to differentiate, here's a simple trick
+  Just multiply by J omega, ain't that slick?
+  Integration is the inverse, what you gonna do?
+  Divide instead of multiply - you can do it too.
+  From time into frequency - from frequency to time
+  etc ...
+  La suite + l'interprétation sur http://www.jmlg.org/lyrics/Fouriers_Song.htm
+
+
+TdS                                                                              39

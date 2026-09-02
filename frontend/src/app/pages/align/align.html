@@ -3,8 +3,8 @@
     <div class="brand">
       <div class="logo">AI</div>
       <div>
-        <h1>Alignement AC → AAD</h1>
-        <p>Tape un AC, puis clique sur “Rechercher”.</p>
+        <h1>Alignement AAD → AC</h1>
+        <p>Tape un AAD pour trouver les AC les plus proches sémantiquement.</p>
       </div>
     </div>
 
@@ -13,33 +13,49 @@
 
   <div class="card">
     <div class="card-body">
-      <div class="section-title">Rechercher des AAD alignés</div>
+      <div class="section-title">Rechercher des AC alignés</div>
 
       <div class="bar">
         <input
           class="input"
-          [(ngModel)]="ac"
-          placeholder="Ex : Développer un algorithme en C..."
+          [(ngModel)]="aad"
+          placeholder="Ex : Concevoir et implémenter un algorithme de tri en C..."
         />
 
         <button class="btn btn-primary" (click)="search()" [disabled]="loading">
-          {{ loading ? 'Recherche...' : 'Rechercher' }}
+          {{ loading ? 'Analyse en cours (le premier calcul peut être long)...' : 'Rechercher' }}
         </button>
       </div>
 
+      <label class="threshold">
+        Seuil de similarité : {{ threshold }}
+        <input type="range" min="0" max="1" step="0.05" [(ngModel)]="threshold" />
+      </label>
+
       <p class="hint" *ngIf="error">{{ error }}</p>
 
-      <div *ngIf="results.length > 0">
+      <div *ngIf="topMatch" class="best-match">
+        <div class="section-title">AC le mieux aligné</div>
+        <div class="item">
+          <div>
+            <p class="item-title">{{ topMatch.ac_id }} — {{ topMatch.ac_title }}</p>
+            <p class="item-sub">Meilleur résultat obtenu par similarité cosinus.</p>
+          </div>
+          <span class="score">{{ topMatch.score }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="results.length > 1">
         <div class="results-head">
-          <div class="section-title">Résultats</div>
-          <span class="pill">Top {{ results.length }}</span>
+          <div class="section-title">Autres AC proches</div>
+          <span class="pill">{{ results.length - 1 }} alternatives</span>
         </div>
 
         <div class="grid">
-          <div class="item" *ngFor="let item of results">
+          <div class="item" *ngFor="let item of results.slice(1)">
             <div>
-              <p class="item-title">{{ item.aad }}</p>
-              <p class="item-sub">AAD proposé par similarité (cosine).</p>
+              <p class="item-title">{{ item.ac_id }} — {{ item.ac_title }}</p>
+              <p class="item-sub">AC proposé par similarité cosinus.</p>
             </div>
 
             <span class="score">{{ item.score }}</span>
@@ -47,8 +63,61 @@
         </div>
       </div>
 
-      <div class="empty" *ngIf="!loading && results.length === 0 && ac.trim().length > 0 && !error">
-        Aucun résultat pour l’instant.
+      <div class="empty" *ngIf="!loading && results.length === 0 && aad.trim().length > 0 && !error">
+        Aucun AC ne dépasse le seuil choisi.
+      </div>
+    </div>
+  </div>
+
+  <div class="card batch-card">
+    <div class="card-body">
+      <div class="section-title">Aligner un fichier JSON d’AAD</div>
+      <p class="section-description">
+        Importe un JSON généré ou sélectionné pour trouver les AC alignés avec chaque AAD.
+      </p>
+
+      <div class="bar">
+        <input
+          class="input"
+          type="file"
+          accept="application/json,.json"
+          (change)="onJsonChange($event)"
+        />
+        <button class="btn btn-primary" (click)="alignJson()" [disabled]="batchLoading">
+          {{ batchLoading ? 'Alignement du fichier en cours...' : 'Aligner le JSON' }}
+        </button>
+        <button class="btn" *ngIf="batchDownloadReady" (click)="downloadBatchAlignment()">
+          Télécharger le résultat JSON
+        </button>
+      </div>
+
+      <p class="hint" *ngIf="batchError">{{ batchError }}</p>
+
+      <div *ngIf="batchResults.length > 0">
+        <div class="results-head">
+          <div class="section-title">Alignements du fichier</div>
+          <span class="pill">{{ batchResults.length }} AAD analysé(s)</span>
+        </div>
+
+        <div class="batch-results">
+          <div class="aad-result" *ngFor="let alignment of batchResults">
+            <p class="aad-title">{{ alignment.aad_id }} — {{ alignment.aad_text }}</p>
+
+            <div class="item" *ngIf="alignment.top_match; else noBatchMatch">
+              <div>
+                <p class="item-title">
+                  {{ alignment.top_match.ac_id }} — {{ alignment.top_match.ac_title }}
+                </p>
+                <p class="item-sub">AC le mieux aligné.</p>
+              </div>
+              <span class="score">{{ alignment.top_match.score }}</span>
+            </div>
+
+            <ng-template #noBatchMatch>
+              <p class="empty">Aucun AC ne dépasse le seuil choisi.</p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
   </div>
